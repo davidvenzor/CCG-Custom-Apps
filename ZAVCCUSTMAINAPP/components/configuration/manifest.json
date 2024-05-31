@@ -1,0 +1,92 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "sap.i2d.lo.lib.zvchclfz.components.configuration",
+		"type": "component",
+		"resources": "resources.json",
+		"i18n": "i18n/messagebundle.properties",
+		"title": "{{FULLSCREEN_TITLE}}",
+		"ach": "LO-VCH-FIO",
+		"embeddedBy": "../../",
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/SAP/LO_VCHCLF",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "../../common/localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"libs": {
+				"sap.m": {
+					"minUI5Version": "1.40.0"
+				},
+				"sap.ui.layout": {
+					"minUI5Version": "1.40.0"
+				},
+				"sap.ui.core": {
+					"minUI5Version": "1.40.0"
+				},
+				"sap.f": {
+					"minUI5Version": "1.40.0"
+				}
+			}
+		},
+
+		"componentUsages": {
+			"valuationComponent": {
+				"name": "sap.i2d.lo.lib.zvchclfz.components.valuation",
+				"settings": {}
+			},
+			"structurePanelComponent": {
+				"name": "sap.i2d.lo.lib.zvchclfz.components.structurepanel",
+				"settings": {}
+			},
+			"inspectorComponent": {
+				"name": "sap.i2d.lo.lib.zvchclfz.components.inspector",
+				"settings": {}
+			}
+		},
+
+		"resources": {
+			"js": [],
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+
+		"contentDensities": {
+			"compact": true,
+			"cozy": false
+		},
+
+		"models": {
+			"vchI18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.i2d.lo.lib.zvchclfz.components.configuration.i18n.messagebundle"
+				}
+			},
+			"configurationSettings": {
+				"preload": true,
+				"type": "sap.ui.model.json.JSONModel"
+			}
+		}
+	}
+}

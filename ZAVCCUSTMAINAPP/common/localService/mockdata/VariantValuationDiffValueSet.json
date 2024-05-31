@@ -1,0 +1,128 @@
+[{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_1_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_CHAR_SINGLE_NOADD",
+		"ValueName": "Value_A",
+		"ValueDescription": "Value_A_descr",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_1_TST',Plant='0001',CsticId='OPA_DEFVAL_CHAR_SINGLE_NOADD',ValueName='Value_A')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	},
+	{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_1_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_NUM_MULTI_ADD",
+		"ValueName": "1",
+		"ValueDescription": "1",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_1_TST',Plant='0001',CsticId='OPA_DEFVAL_NUM_MULTI_ADD',ValueName='1')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	}, 
+	{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_1_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_NUM_MULTI_ADD",
+		"ValueName": "22",
+		"ValueDescription": "22",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_1_TST',Plant='0001',CsticId='OPA_DEFVAL_NUM_MULTI_ADD',ValueName='22')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	},
+	
+	{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_2_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_CHAR_SINGLE_NOADD",
+		"ValueName": "Value_A",
+		"ValueDescription": "Value_A_descr",
+		"ValType": "Var",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_2_TST',Plant='0001',CsticId='OPA_DEFVAL_CHAR_SINGLE_NOADD',ValueName='Value_A')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	},	
+	{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_2_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_NUM_MULTI_ADD",
+		"ValueName": "1",
+		"ValueDescription": "1",
+		"ValType": "Var",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_2_TST',Plant='0001',CsticId='OPA_DEFVAL_NUM_MULTI_ADD',ValueName='1')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	}, 
+	{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_2_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_NUM_MULTI_ADD",
+		"ValueName": "1",
+		"ValueDescription": "1",
+		"ValType": "Ref",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_2_TST',Plant='0001',CsticId='OPA_DEFVAL_NUM_MULTI_ADD',ValueName='1')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	}, 
+
+	{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_2_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_NUM_MULTI_ADD",
+		"ValueName": "333",
+		"ValueDescription": "333",
+		"ValType": "Var",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_2_TST',Plant='0001',CsticId='OPA_DEFVAL_NUM_MULTI_ADD',ValueName='333')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	},
+	
+	{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_2_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_NUM_MULTI_ADD",
+		"ValueName": "4444",
+		"ValueDescription": "4444",
+		"ValType": "Ref",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_2_TST',Plant='0001',CsticId='OPA_DEFVAL_NUM_MULTI_ADD',ValueName='4444')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	},
+	{
+		"ContextId": "VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit",
+		"InstanceId": "1",
+		"Product": "VARIANT_2_TST",
+		"Plant": "0001",
+		"CsticId": "OPA_DEFVAL_NUM_MULTI_ADD",
+		"ValueName": "4444",
+		"ValueDescription": "4444",
+		"ValType": "Var",
+		"__metadata": {
+			"uri": "VariantValuationDiffValueSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X(14)EMBEDDING_MODE(13)Configuration(15)LEGACY_SCENARIO(1)X(7)UI_MODE(4)Edit',InstanceId='1',Product='VARIANT_2_TST',Plant='0001',CsticId='OPA_DEFVAL_NUM_MULTI_ADD',ValueName='4444')",
+			"type": "LO_VCHCLF.VariantValuationDiffValue"
+		}
+	}
+
+]

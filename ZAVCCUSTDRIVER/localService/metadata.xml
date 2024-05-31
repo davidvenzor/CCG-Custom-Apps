@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="LO_VCHCLF_INTEGRATION_LEGACY_SRV" sap:schema-version="1" xml:lang="en" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="InconsistencyInformation" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+					<PropertyRef Name="CsticId"/>
+					<PropertyRef Name="DependencyId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Instance Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="CsticId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Characteristic" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="DependencyId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Int.no." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="DependencyDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="Material" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Material" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="MaterialDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="CsticName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Characteristic" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="CsticDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="HasDocumentation" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Has Documentation" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_InconsistencyInformationLongText" Name="Documentation" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.InconsistencyInformationLongText" ToRole="ToRole_InconsistencyInformationLongText"/>
+			</EntityType>
+			
+			<EntityType Name="Documentation" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+					<PropertyRef Name="CsticId"/>
+					<PropertyRef Name="DependencyId"/>
+					<PropertyRef Name="Object"/>
+					<PropertyRef Name="Id"/>
+					<PropertyRef Name="Language"/>
+					<PropertyRef Name="Name"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="CsticId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Internal char." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="DependencyId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Internal char." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="Object" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="Id" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="2" Name="Language" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Internal char." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="Name" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Internal char." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="200" Name="Html" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Internal char." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="ConfigurationHeaderField" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="HeaderFieldId"/>
+				</Key>
+				<Property Name="HeaderFieldId" Nullable="false" Type="Edm.Byte" sap:creatable="false" sap:filterable="false" sap:label="Header Field ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="80" Name="FieldLabel" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Field Label" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="Type" Type="Edm.Byte" sap:creatable="false" sap:filterable="false" sap:label="Field Type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="120" Name="Value" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Value" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="UnitOfMeasure" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Unit of Measure" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="120" Name="SubKey" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Sub Key" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="120" Name="Description" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DateField" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Date" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="SemanticObject" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Semantic Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="DraftKey" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Draft" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="ObjectKey" Type="Edm.String" sap:creatable="false" sap:filterable="true" sap:label="Object Key" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="Toggle" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ToggleId"/>
+				</Key>
+				<Property Name="ToggleStatus" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ToggleId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="CharacteristicsGroup" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+					<PropertyRef Name="GroupId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="GroupId" Nullable="false" Type="Edm.Int32" sap:creatable="false" sap:filterable="false" sap:label="Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Name" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Chars Group" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Description" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="CsticCount" Nullable="false" Type="Edm.Int32" sap:creatable="false" sap:filterable="false" sap:label="Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_CharacteristicsGroupToCharacteristics" Name="Characteristics" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicsGroupToCharacteristics" ToRole="ToRole_CharacteristicsGroupToCharacteristics"/>
+			</EntityType>
+			<EntityType Name="Characteristic" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+					<PropertyRef Name="GroupId"/>
+					<PropertyRef Name="CsticId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="GroupId" Nullable="false" Type="Edm.Int32" sap:creatable="false" sap:filterable="false" sap:label="Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="CsticId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Internal char." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Name" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Characteristic" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Description" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Format" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Format" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ValueCount" Nullable="false" Type="Edm.Int32" sap:creatable="false" sap:filterable="false" sap:label="Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="70" Name="Template" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Template" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="UseTemplate" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="With Template" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="HasAssignedValue" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Has Assigned Value" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="75" Name="AssignedValueId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Characteristic Value ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsInconsistent" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Inconsistent" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="HasValueContradiction" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Value Contradiction" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="HasLongText" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Has Long Text" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="Unit" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Int. Unit Meas." sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsRequired" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Required" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="NumberOfCharacters" Nullable="false" Type="Edm.Int16" sap:creatable="false" sap:filterable="false" sap:label="Number of Chars" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsHidden" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Hidden" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="AdditionalValuesAllowed" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Addnl Values" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsReadOnly" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="No input" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsSingleValued" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Single-value" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsIntervalAllowed" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Interval Values" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DomainHasIntervalValues" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Domain Has Interval Values" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ChangeTimestamp" Precision="7" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Change Timestamp" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="DepObjNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Dependency Object Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="HasDefaultValues" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Has Default Values" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_CharacteristicAllValues" Name="AllValues" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicAllValues" ToRole="ToRole_CharacteristicAllValues"/>
+				<NavigationProperty FromRole="FromRole_CharacteristicToDependencies" Name="to_ObjectDependencyHeaders" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicToDependencies" ToRole="ToRole_CharacteristicToDependencies"/>
+				<NavigationProperty FromRole="FromRole_CharacteristicToCharacteristicDetail" Name="to_CharacteristicDetail" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicToCharacteristicDetail" ToRole="ToRole_CharacteristicToCharacteristicDetail"/>
+				<NavigationProperty FromRole="FromRole_CharacteristicDomainValues" Name="DomainValues" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicDomainValues" ToRole="ToRole_CharacteristicDomainValues"/>
+				<NavigationProperty FromRole="FromRole_CharacteristicAssignedValues" Name="AssignedValues" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicAssignedValues" ToRole="ToRole_CharacteristicAssignedValues"/>
+			</EntityType>
+			<EntityType Name="CharacteristicValue" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+					<PropertyRef Name="GroupId"/>
+					<PropertyRef Name="CsticId"/>
+					<PropertyRef Name="ValueId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="GroupId" Nullable="false" Type="Edm.Int32" sap:creatable="false" sap:filterable="false" sap:label="Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="CsticId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Internal char." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="75" Name="ValueId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Char. Value ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="5" Name="Currency" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Currency" sap:semantics="currency-code" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="IntervalType" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Code" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="HasLongText" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="TRUE" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="70" Name="Description" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsInconsistent" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="TRUE" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="DepObjNumber" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Dependency object number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsDefaultValue" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Is Default Value" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_CharacteristicValueToDependencies" Name="to_ObjectDependencyHeaders" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValueToDependencies" ToRole="ToRole_CharacteristicValueToDependencies"/>
+				<NavigationProperty FromRole="FromRole_CharacteristicValueToValueDetail" Name="to_CharacteristicValueDetail" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValueToValueDetail" ToRole="ToRole_CharacteristicValueToValueDetail"/>
+			</EntityType>
+			<EntityType Name="ClassificationContext" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="SemanticObj" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Semantic Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="TechnicalObj" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Technical Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="ObjectKey" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object Key" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="DraftKey" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Draft (Technical ID)" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DraftKeyIsString" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Draft Key is String" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="ECN" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Change Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ValidFrom" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Valid From" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="ECNDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Change Number Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_ClassificationContextToClassTypeValHelp" Name="ClassTypes" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContextToClassTypeValHelp" ToRole="ToRole_ClassificationContextToClassTypeValHelp"/>
+				<NavigationProperty FromRole="FromRole_ClassificationContextToAssigned" Name="Assigned" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContextToAssigned" ToRole="ToRole_ClassificationContextToAssigned"/>
+				<NavigationProperty FromRole="FromRole_ClassificationContextToAssignable" Name="Assignable" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContextToAssignable" ToRole="ToRole_ClassificationContextToAssignable"/>
+			</EntityType>
+			<EntityType Name="ClassificationInstance" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+				</Key>
+				<Property Name="Status" Nullable="false" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstanceStatus"/>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="SemanticObj" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Semantic Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="ObjectKey" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="ClassType" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Class Type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="ClassName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Class" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="ClassTypeDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Class Type Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="70" Name="Description" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="DisableAddAssignment" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Disable Add Assgmt" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="DisableRemoveAssignment" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Disable Remove Assgmt" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_ClassificationInstanceToGroups" Name="CharacteristicsGroups" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstanceToGroups" ToRole="ToRole_ClassificationInstanceToGroups"/>
+			</EntityType>
+			<EntityType Name="ConfigurationInstance" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Configuration Instance" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="ParentInstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Parent Instance" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="Material" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Material" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="MaterialDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Material Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="StatusId" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="StatusType" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="CFG Status Type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="StatusDescription" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_ConfigurationInstanceToFullMatchVariants" Name="FullMatchingVariants" Relationship="LO_VCHCLF_SIMULATION_SRV.ConfigurationInstanceToFullMatchVariants" ToRole="ToRole_ConfigurationInstanceToFullMatchVariants"/>
+				<NavigationProperty FromRole="FromRole_ConfigurationInstanceToGroups" Name="CharacteristicsGroups" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationInstanceToGroups" ToRole="ToRole_ConfigurationInstanceToGroups"/>
+			</EntityType>
+			<EntityType Name="ConfigurationContext" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="RootInstanceId" Type="Edm.Int32" sap:creatable="false" sap:filterable="false" sap:label="Instance ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="StatusType" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="CFG Status Type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="SemanticObj" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Semantic Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="TechnicalObj" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Technical Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="ObjectKey" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object Key" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="DraftKey" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Draft (Technical ID)" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="DraftKeyIsString" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Draft Key is String" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="ECN" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Change Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="StatusId" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="StatusDescription" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="LegacyScenario" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Embedding in legacy transaction" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="NetValue" Precision="16" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:label="Net Value" sap:sortable="false" sap:unicode="false" sap:unit="Currency" sap:updatable="false"/>
+				<Property MaxLength="5" Name="Currency" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Doc. Currency" sap:semantics="currency-code" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_ConfigContextToConfigPricingRecords" Name="PricingRecords" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigContextToConfigPricingRecords" ToRole="ToRole_ConfigContextToConfigPricingRecords"/>
+				<NavigationProperty FromRole="FromRole_ConfigurationContextToTraceMessages" Name="to_TraceMessageSet" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToTraceMessages" ToRole="ToRole_ConfigurationContextToTraceMessages"/>
+				<NavigationProperty FromRole="FromRole_ConfigurationContextToBOMNode" Name="BOMNodes" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToBOMNode" ToRole="ToRole_ConfigurationContextToBOMNode"/>
+				<NavigationProperty FromRole="FromRole_ConfigurationContextToConfigProfile" Name="to_ConfigurationProfile" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToConfigProfile" ToRole="ToRole_ConfigurationContextToConfigProfile"/>
+				<NavigationProperty FromRole="FromRole_ConfigurationContextToInstances" Name="Instances" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToInstances" ToRole="ToRole_ConfigurationContextToInstances"/>
+				<NavigationProperty FromRole="FromRole_ContextInconsistencyInformation" Name="InconsistencyInformation" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ContextInconsistencyInformation" ToRole="ToRole_ContextInconsistencyInformation"/>
+				<NavigationProperty FromRole="FromRole_ConfigurationContextToUISettings" Name="UISettings" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToUISettings" ToRole="ToRole_ConfigurationContextToUISettings"/>
+			</EntityType>
+			<EntityType Name="UISettings" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ProductVariantCreationAllowed" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="TRUE" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="ConfigurationMaterialVariant" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+					<PropertyRef Name="Matnr"/>
+					<PropertyRef Name="Plant"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="Matnr" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Material" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Plant" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Plant" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="MaterialDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="CharacteristicValueDetail" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+					<PropertyRef Name="GroupId"/>
+					<PropertyRef Name="CsticId"/>
+					<PropertyRef Name="ValueId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="GroupId" Nullable="false" Type="Edm.Int32" sap:creatable="false" sap:filterable="false" sap:label="Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="CsticId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Characteristic" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="75" Name="ValueId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Char. value ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="LastChangedByUser" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Last Changed By" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="80" Name="LastChangedByUserDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Full Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsSelectable" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Selectable Value flag" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="ConfigurationProfile" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ConfigurationProfileNumber"/>
+					<PropertyRef Name="Product"/>
+					<PropertyRef Name="ContextId"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="BOMExplosionApplication" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Application" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="BOMExplosionLevel" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="BOMEXPLOSIONLEVEL" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="LastChangeDate" Nullable="false" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Changed On" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="ConfigurationProfileNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Int. counter" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="ConfigurationProfileName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Profile Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="ConfigurationProfileProcess" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="CONFIGURATIONPROFILEPROCESS" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ConfigurationProfileStatus" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status config. prof." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ConfProfileValidityEndDate" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="to" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ConfProfileValidityStartDate" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Valid From" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="ObjectDependencyAssgmtNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Assgmt no." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="LastChangedByUser" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Changed By" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="50" Name="Product" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Confble object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="80" Name="UserDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Full Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_ConfigurationProfileToDependencies" Name="to_ObjectDependencyHeaders" Relationship="LO_VCHCLF.ConfigurationProfileToDependencies" ToRole="ToRole_ConfigurationProfileToDependencies"/>
+			</EntityType>
+			<EntityType Name="Toggle" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ToggleId"/>
+				</Key>
+				<Property Name="ToggleStatus" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ToggleId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="CharacteristicDetail" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="CsticId"/>
+					<PropertyRef Name="GroupId"/>
+					<PropertyRef Name="InstanceId"/>
+				</Key>
+				<Property Name="CaseSensitive" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Case Sensitive" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ChangeDate" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Changed Date" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="CharactGroup" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Chars Group" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ConfigurationDate" Nullable="false" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Explosion Date" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="CsticId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Characteristic" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="DataType" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Format" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="60" Name="DataTypeText" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Format" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="2" Name="Decimals" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Decimal places" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="GroupId" Nullable="false" Type="Edm.Int32" sap:creatable="false" sap:filterable="false" sap:label="Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsRequired" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Required flag" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsRestrictable" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Restrictable flag" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="LastChangedByUser" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Last Changed By" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="80" Name="LastChangedByUserDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Full Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="2" Name="Length" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Number of characters" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Name" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Characteristic" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="Status" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="20" Name="StatusText" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status Text" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Template" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Template" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="60" Name="ValueAssignmentType" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Value Assignment Type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="BOMNode" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ComponentId"/>
+				</Key>
+				<Property MaxLength="40" Name="BOMComponentName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Component Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ChangeDate" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Change Date" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="Class" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Class" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="ClassType" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Class Type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ComponentId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="BOM Comp. ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ComponentLevel" Nullable="false" Type="Edm.Int16" sap:creatable="false" sap:filterable="false" sap:label="Component level" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="ConfigurationProfileName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Configuration Profile Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="ConfigurationStatusText" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Configuration Status Text" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="8" Name="DrilldownState" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Drill-Down State" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="HasObjectDependencies" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Obj. Dep. flag" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="HasReferenceCharacteristics" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Ref. Char. flag" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Instance ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="IsBOMExplosionPossible" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="BOM Expl. possible flag" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsConfigurableItem" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Conf. BOM Item flag" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="IsExcludedItem" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Excl. BOM Item flag" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ItemCategory" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item category" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="ItemCategoryDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item Category Text" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="ItemNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="LastChangedByUser" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Last Changed By" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="80" Name="LastChangedByUserDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Full Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="ObjectDependencyAssgmtNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Assgmt no." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ParentComponentId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Parent Comp. ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Plant" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Plant" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="ProductName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Product Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="Quantity" Nullable="false" Precision="13" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:label="Quantity" sap:sortable="false" sap:unicode="false" sap:unit="Unit" sap:updatable="false"/>
+				<Property MaxLength="120" Name="Relevance" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="BOM Item Relevance" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="Unit" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Unit of Measure" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_BOMNodeToDependencies" Name="to_ObjectDependencyHeaders" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.BOMNodeToDependencies" ToRole="ToRole_BOMNodeToDependencies"/>
+			</EntityType>
+			<EntityType Name="ObjectDependencyDetails" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="AssgmtNumber"/>
+					<PropertyRef Name="ObjectDependency"/>
+				</Key>
+				<Property MaxLength="12" Name="LastChangedByUser" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Changed By" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="80" Name="LastChangedByUserDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Changed By Full Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ChangeDate" Nullable="false" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Changed On" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="12" Name="CreatedByUser" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Created By" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="CreationDate" Nullable="false" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:filterable="false" sap:label="Created On" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1000" Name="Details" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="ObjDep details" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Name" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Dependency" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="AssgmtNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Assgmt no." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ObjectDependency" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Int.no." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="ProcessingMode" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Processing Mode" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="Scope" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Scope" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="Status" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="StatusText" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="ObjectDependencyHeader" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="AssgmtNumber"/>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="ObjectDependency"/>
+				</Key>
+				<Property MaxLength="18" Name="AssgmtNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Assgmt no." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="BOMComponentId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="BOM Comp. ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Name" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Dependency" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ObjectDependency" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Int.no." sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="Description" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="Type" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Relatship type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="TypeDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="ObjDep type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<NavigationProperty FromRole="FromRole_ObjDepHeader_ObjDepDetails" Name="to_ObjectDependencyDetails" Relationship="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjDepHeader_ObjDepDetails" ToRole="ToRole_ObjDepHeader_ObjDepDetails"/>
+			</EntityType>
+			<EntityType Name="TraceMessage" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="LineNumber"/>
+				</Key>
+				<Property MaxLength="10" Name="BOMComponentId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="BOM Comp. ID" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="BOMComponentName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="BOM Component" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="BOMItemNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="400" Name="ContextId" Type="Edm.String" sap:creatable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="CsticId" Type="Edm.String" sap:creatable="false" sap:label="Characteristic" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="CsticName" Type="Edm.String" sap:creatable="false" sap:label="Characteristic" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="CsticValueOneId" Type="Edm.String" sap:creatable="false" sap:label="Int counter" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="70" Name="CsticValueOneName" Type="Edm.String" sap:creatable="false" sap:label="Char. Value" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="CsticValueTwoId" Type="Edm.String" sap:creatable="false" sap:label="Int counter" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="70" Name="CsticValueTwoName" Type="Edm.String" sap:creatable="false" sap:label="Char. Value" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="6" Name="LineNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:label="Line Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="300" Name="MetaText" Nullable="false" Type="Edm.String" sap:creatable="false" sap:label="Meta-Text" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="10" Name="ObjectDependency" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object Dependency" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="18" Name="ObjectDependencyAssgmtNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object Dependency Assignment NUmber" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="30" Name="ObjectDependencyName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object Dependecy Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="300" Name="Text" Nullable="false" Type="Edm.String" sap:creatable="false" sap:label="Trace Message Text" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="MessageNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:label="Trace Message Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="Timestamp" Precision="7" Type="Edm.DateTime" sap:creatable="false" sap:label="Time stamp" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="Type" Nullable="false" Type="Edm.String" sap:creatable="false" sap:label="Trace Type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ValueSetBy" Type="Edm.Int32" sap:creatable="false" sap:label="Value Set By" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="ConfigurationPricingRecord" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="InstanceId"/>
+					<PropertyRef Name="ItemNumber"/>
+					<PropertyRef Name="StepNumber"/>
+					<PropertyRef Name="Counter"/>
+					<PropertyRef Name="CondTypeId"/>
+					<PropertyRef Name="VariantCondition"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="90" Name="InstanceId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Object" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="6" Name="ItemNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Item" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="StepNumber" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Step Number" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="Counter" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Counter" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="4" Name="CondTypeId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Condition type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="CondTypeDescr" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="16" Name="ConditionAmount" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Field of length 16" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="5" Name="ConditionUnit" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Unit" sap:semantics="currency-code" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="CondRefFactor" Nullable="false" Precision="5" Scale="0" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:label="Pricing Unit" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="CondRefUOM" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Condition Unit" sap:semantics="unit-of-measure" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ConditionFactor" Nullable="false" Type="Edm.Double" sap:creatable="false" sap:filterable="false" sap:label="CondFactor" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="ConditionValue" Nullable="false" Precision="14" Scale="3" Type="Edm.Decimal" sap:creatable="false" sap:filterable="false" sap:label="Condition Value" sap:sortable="false" sap:unicode="false" sap:unit="Currency" sap:updatable="false"/>
+				<Property MaxLength="5" Name="Currency" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Doc. Currency" sap:semantics="currency-code" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="26" Name="VariantCondition" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Variant" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property Name="CondStatistical" Nullable="false" Type="Edm.Boolean" sap:creatable="false" sap:filterable="false" sap:label="Statistical" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="CondInactive" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Inactive" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="ClassTypeValueHelp" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ContextId"/>
+					<PropertyRef Name="ClassType"/>
+				</Key>
+				<Property MaxLength="400" Name="ContextId" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Context Id" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="3" Name="ClassType" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Class Type" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="ClassTypeName" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Class Type Name" sap:sortable="false" sap:unicode="false" sap:updatable="false"/>
+			</EntityType>
+			<EntityType Name="C_ProductConfigurationProfileType" sap:content-version="1" sap:label="Configuration Profile for Products">
+				<Key>
+					<PropertyRef Name="ProductConfiguration"/>
+					<PropertyRef Name="ConfigurationProfileCounter"/>
+				</Key>
+				<Property MaxLength="50" Name="ProductConfiguration" Nullable="false" Type="Edm.String" sap:display-format="UpperCase" sap:label="Confble object" sap:quickinfo="Key of Configurable Object"/>
+				<Property MaxLength="4" Name="ConfigurationProfileCounter" Nullable="false" Type="Edm.String" sap:display-format="NonNegative" sap:label="Int. counter" sap:quickinfo="Internal counter"/>
+				<Property MaxLength="30" Name="ConfigurationProfileName" Type="Edm.String" sap:display-format="UpperCase" sap:label="Profile Name" sap:quickinfo="Configuration Profile Name"/>
+				<Property MaxLength="4" Name="BOMExplosionApplication" Type="Edm.String" sap:display-format="UpperCase" sap:label="BOM Application" sap:quickinfo="Application"/>
+				<Property MaxLength="80" Name="UserFullName" Type="Edm.String" sap:label="Description" sap:quickinfo="User Description"/>
+				<Property MaxLength="12" Name="LastChangedByUser" Type="Edm.String" sap:display-format="UpperCase" sap:label="Changed By" sap:quickinfo="Name of Person Who Changed Object"/>
+				<Property Name="LastChangeDate" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Last Changed On"/>
+				<Property MaxLength="1" Name="ConfigurationProfileStatus" Type="Edm.String" sap:display-format="UpperCase" sap:label="Status config. prof." sap:quickinfo="Status of configuration profile"/>
+				<Property MaxLength="4" Name="ConfigurationProfileProcess" Type="Edm.String" sap:display-format="UpperCase"/>
+				<Property MaxLength="1" Name="BOMExplosionLevel" Type="Edm.String" sap:display-format="UpperCase"/>
+				<Property Name="ConfProfileValidityStartDate" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Valid From" sap:quickinfo="Valid-From Date"/>
+				<Property Name="ConfProfileValidityEndDate" Precision="0" Type="Edm.DateTime" sap:display-format="Date" sap:label="Valid to" sap:quickinfo="Valid-to date"/>
+				<Property MaxLength="18" Name="DependencyObjectNumber" Type="Edm.String" sap:display-format="NonNegative" sap:label="Assignment number" sap:quickinfo="Number of Object with Assigned Dependencies"/>
+				<Property MaxLength="3" Name="ClassType" Type="Edm.String" sap:display-format="UpperCase" sap:label="Class Type"/>
+			</EntityType>
+			<ComplexType Name="ClassificationInstanceStatus">
+				<Property MaxLength="1" Name="Status" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status" sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="StatusSeverity" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Severity" sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="40" Name="Description" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Description" sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="120" Name="LongDescription" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Long Description" sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="IsReleased" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status is Released" sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="IsLocked" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status is Locked" sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="IsIncompleteManual" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status is Incomplete - Manual" sap:sortable="false" sap:updatable="false"/>
+				<Property MaxLength="1" Name="IsIncompleteSystem" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="Status is Incomplete - System" sap:sortable="false" sap:updatable="false"/>
+			</ComplexType>
+			<ComplexType Name="ClassificationSettings">
+				<Property MaxLength="30" Name="IsClassificationAllowed" Nullable="false" Type="Edm.String" sap:creatable="false" sap:filterable="false" sap:label="30 Characters" sap:sortable="false" sap:updatable="false"/>
+			</ComplexType>
+			<Association Name="ConfigurationInstanceToGroups" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigurationInstanceToGroups" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationInstance"/>
+				<End Multiplicity="*" Role="ToRole_ConfigurationInstanceToGroups" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicsGroup"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ConfigurationInstanceToGroups">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+					</Principal>
+					<Dependent Role="ToRole_ConfigurationInstanceToGroups">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ConfigurationInstanceToFullMatchVariants" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigurationInstanceToFullMatchVariants" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationInstance"/>
+				<End Multiplicity="*" Role="ToRole_ConfigurationInstanceToFullMatchVariants" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationMaterialVariant"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ConfigurationInstanceToFullMatchVariants">
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ConfigurationInstanceToFullMatchVariants">
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ConfigurationContextToInstances" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigurationContextToInstances" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext"/>
+				<End Multiplicity="*" Role="ToRole_ConfigurationContextToInstances" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationInstance"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ConfigurationContextToInstances">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ConfigurationContextToInstances">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ConfigurationContextToConfigProfile" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigurationContextToConfigProfile" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext"/>
+				<End Multiplicity="*" Role="ToRole_ConfigurationContextToConfigProfile" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationProfile"/>
+			</Association>
+			<Association Name="ConfigurationContextToBOMNode" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigurationContextToBOMNode" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext"/>
+				<End Multiplicity="*" Role="ToRole_ConfigurationContextToBOMNode" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.BOMNode"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ConfigurationContextToBOMNode">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ConfigurationContextToBOMNode">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ConfigurationContextToTraceMessages" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigurationContextToTraceMessages" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext"/>
+				<End Multiplicity="*" Role="ToRole_ConfigurationContextToTraceMessages" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.TraceMessage"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ConfigurationContextToTraceMessages">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ConfigurationContextToTraceMessages">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ConfigContextToConfigPricingRecords" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigContextToConfigPricingRecords" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext"/>
+				<End Multiplicity="*" Role="ToRole_ConfigContextToConfigPricingRecords" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationPricingRecord"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ConfigContextToConfigPricingRecords">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ConfigContextToConfigPricingRecords">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CharacteristicsGroupToCharacteristics" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicsGroupToCharacteristics" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicsGroup"/>
+				<End Multiplicity="*" Role="ToRole_CharacteristicsGroupToCharacteristics" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CharacteristicsGroupToCharacteristics">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="GroupId"/>
+					</Principal>
+					<Dependent Role="ToRole_CharacteristicsGroupToCharacteristics">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="GroupId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ConfigurationProfileToDependencies" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigurationProfileToDependencies" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationProfile"/>
+				<End Multiplicity="*" Role="ToRole_ConfigurationProfileToDependencies" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjectDependencyHeader"/>
+			</Association>
+			<Association Name="CharacteristicToValues" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicToValues" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic"/>
+				<End Multiplicity="*" Role="ToRole_CharacteristicToValues" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CharacteristicToValues">
+						<PropertyRef Name="CsticId"/>
+						<PropertyRef Name="GroupId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_CharacteristicToValues">
+						<PropertyRef Name="CsticId"/>
+						<PropertyRef Name="GroupId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CharacteristicAllValues" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicAllValues" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic"/>
+				<End Multiplicity="*" Role="ToRole_CharacteristicAllValues" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue"/>
+			</Association>
+			<Association Name="CharacteristicToDependencies" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicToDependencies" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic"/>
+				<End Multiplicity="*" Role="ToRole_CharacteristicToDependencies" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjectDependencyHeader"/>
+			</Association>
+			<Association Name="CharacteristicToCharacteristicDetail" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicToCharacteristicDetail" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic"/>
+				<End Multiplicity="1" Role="ToRole_CharacteristicToCharacteristicDetail" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicDetail"/>
+			</Association>
+			<Association Name="CharacteristicDomainValues" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicDomainValues" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic"/>
+				<End Multiplicity="*" Role="ToRole_CharacteristicDomainValues" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CharacteristicDomainValues">
+						<PropertyRef Name="CsticId"/>
+						<PropertyRef Name="GroupId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_CharacteristicDomainValues">
+						<PropertyRef Name="CsticId"/>
+						<PropertyRef Name="GroupId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CharacteristicAssignedValues" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicAssignedValues" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic"/>
+				<End Multiplicity="*" Role="ToRole_CharacteristicAssignedValues" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CharacteristicAssignedValues">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="GroupId"/>
+						<PropertyRef Name="CsticId"/>
+					</Principal>
+					<Dependent Role="ToRole_CharacteristicAssignedValues">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="GroupId"/>
+						<PropertyRef Name="CsticId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ClassificationContextToAssignable" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ClassificationContextToAssignable" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContext"/>
+				<End Multiplicity="*" Role="ToRole_ClassificationContextToAssignable" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ClassificationContextToAssignable">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ClassificationContextToAssignable">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ClassificationContextToAssigned" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ClassificationContextToAssigned" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContext"/>
+				<End Multiplicity="*" Role="ToRole_ClassificationContextToAssigned" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ClassificationContextToAssigned">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ClassificationContextToAssigned">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ClassificationContextToClassTypeValHelp" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ClassificationContextToClassTypeValHelp" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContext"/>
+				<End Multiplicity="*" Role="ToRole_ClassificationContextToClassTypeValHelp" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassTypeValueHelp"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ClassificationContextToClassTypeValHelp">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ClassificationContextToClassTypeValHelp">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="BOMNodeToDependencies" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_BOMNodeToDependencies" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.BOMNode"/>
+				<End Multiplicity="*" Role="ToRole_BOMNodeToDependencies" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjectDependencyHeader"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_BOMNodeToDependencies">
+						<PropertyRef Name="ComponentId"/>
+					</Principal>
+					<Dependent Role="ToRole_BOMNodeToDependencies">
+						<PropertyRef Name="BOMComponentId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ObjDepHeader_ObjDepDetails" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ObjDepHeader_ObjDepDetails" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjectDependencyHeader"/>
+				<End Multiplicity="1" Role="ToRole_ObjDepHeader_ObjDepDetails" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjectDependencyDetails"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ObjDepHeader_ObjDepDetails">
+						<PropertyRef Name="AssgmtNumber"/>
+						<PropertyRef Name="ObjectDependency"/>
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ObjDepHeader_ObjDepDetails">
+						<PropertyRef Name="AssgmtNumber"/>
+						<PropertyRef Name="ObjectDependency"/>
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ClassificationInstanceToGroups" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ClassificationInstanceToGroups" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance"/>
+				<End Multiplicity="*" Role="ToRole_ClassificationInstanceToGroups" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicsGroup"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ClassificationInstanceToGroups">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+					</Principal>
+					<Dependent Role="ToRole_ClassificationInstanceToGroups">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CharacteristicValueToValueDetail" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicValueToValueDetail" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue"/>
+				<End Multiplicity="1" Role="ToRole_CharacteristicValueToValueDetail" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValueDetail"/>
+			</Association>
+			<Association Name="CharacteristicValueToDependencies" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_CharacteristicValueToDependencies" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue"/>
+				<End Multiplicity="*" Role="ToRole_CharacteristicValueToDependencies" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjectDependencyHeader"/>
+			</Association>
+			<Association Name="ContextInconsistencyInformation" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ContextInconsistencyInformation" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext"/>
+				<End Multiplicity="*" Role="ToRole_ContextInconsistencyInformation" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.InconsistencyInformation"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ContextInconsistencyInformation">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ContextInconsistencyInformation">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="InconsistencyInformationLongText" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_InconsistencyInformationLongText" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Documentation"/>
+				<End Multiplicity="1" Role="ToRole_InconsistencyInformationLongText" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.InconsistencyInformation"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_InconsistencyInformationLongText">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="CsticId"/>
+						<PropertyRef Name="DependencyId"/>
+					</Principal>
+					<Dependent Role="ToRole_InconsistencyInformationLongText">
+						<PropertyRef Name="ContextId"/>
+						<PropertyRef Name="InstanceId"/>
+						<PropertyRef Name="CsticId"/>
+						<PropertyRef Name="DependencyId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ConfigurationContextToUISettings" sap:content-version="1">
+				<End Multiplicity="1" Role="FromRole_ConfigurationContextToUISettings" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext"/>
+				<End Multiplicity="0..1" Role="ToRole_ConfigurationContextToUISettings" Type="LO_VCHCLF_INTEGRATION_LEGACY_SRV.UISettings"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ConfigurationContextToUISettings">
+						<PropertyRef Name="ContextId"/>
+					</Principal>
+					<Dependent Role="ToRole_ConfigurationContextToUISettings">
+						<PropertyRef Name="ContextId"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			
+			<EntityContainer Name="LO_VCHCLF_INTEGRATION_LEGACY_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationHeaderField" Name="ConfigurationHeaderFieldSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Toggle" Name="ToggleSet" sap:addressable="false" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance" Name="ClassificationInstanceSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationInstance" Name="ConfigurationInstanceSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext" Name="ConfigurationContextSet" sap:content-version="1" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationMaterialVariant" Name="ConfigurationMaterialVariantSet" sap:addressable="false" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValueDetail" Name="ValueDetailSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationProfile" Name="ConfigurationProfileSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Toggle" Name="ToggleSet" sap:addressable="false" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicDetail" Name="CharacteristicDetailSet" sap:addressable="false" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.BOMNode" Name="BOMNodeSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjectDependencyDetails" Name="ObjectDependencyDetailsSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjectDependencyHeader" Name="ObjectDependencyHeaderSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.TraceMessage" Name="TraceMessageSet" sap:addressable="false" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationPricingRecord" Name="ConfigurationPricingRecordSet" sap:addressable="false" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassTypeValueHelp" Name="ClassTypeValueHelpSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.C_ProductConfigurationProfileType" Name="C_ProductConfigurationProfile" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:searchable="true" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicsGroup" Name="CharacteristicsGroupSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic" Name="CharacteristicSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue" Name="CharacteristicValueSet" sap:content-version="1" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContext" Name="ClassificationContextSet" sap:content-version="1" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.InconsistencyInformation" Name="InconsistencyInformationSet" sap:content-version="1" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Documentation" Name="DocumentationSet" sap:content-version="1" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<EntitySet EntityType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.UISettings" Name="UISettingsSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:updatable="false"/>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToUISettings" Name="ConfigurationContextToUISettingsSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationContextSet" Role="FromRole_ConfigurationContextToUISettings"/>
+					<End EntitySet="UISettingsSet" Role="ToRole_ConfigurationContextToUISettings"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicsGroupToCharacteristics" Name="CharacteristicsGroupToCharacteristicSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicsGroupSet" Role="FromRole_CharacteristicsGroupToCharacteristics"/>
+					<End EntitySet="CharacteristicSet" Role="ToRole_CharacteristicsGroupToCharacteristics"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContextToClassTypeValHelp" Name="ClassificationContextToClassTypeValHeSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ClassificationContextSet" Role="FromRole_ClassificationContextToClassTypeValHelp"/>
+					<End EntitySet="ClassTypeValueHelpSet" Role="ToRole_ClassificationContextToClassTypeValHelp"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicAllValues" Name="CharacteristicAllValues_AssocSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicSet" Role="FromRole_CharacteristicAllValues"/>
+					<End EntitySet="CharacteristicValueSet" Role="ToRole_CharacteristicAllValues"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicToDependencies" Name="CharacteristicToDependenciesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicSet" Role="FromRole_CharacteristicToDependencies"/>
+					<End EntitySet="ObjectDependencyHeaderSet" Role="ToRole_CharacteristicToDependencies"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToTraceMessages" Name="ConfigurationContextToTraceMessagesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationContextSet" Role="FromRole_ConfigurationContextToTraceMessages"/>
+					<End EntitySet="TraceMessageSet" Role="ToRole_ConfigurationContextToTraceMessages"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContextToAssigned" Name="ClassificationContextToAssigned_AssocSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ClassificationContextSet" Role="FromRole_ClassificationContextToAssigned"/>
+					<End EntitySet="ClassificationInstanceSet" Role="ToRole_ClassificationContextToAssigned"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ObjDepHeader_ObjDepDetails" Name="ObjDepHeader_ObjDepDetailedSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ObjectDependencyHeaderSet" Role="FromRole_ObjDepHeader_ObjDepDetails"/>
+					<End EntitySet="ObjectDependencyDetailsSet" Role="ToRole_ObjDepHeader_ObjDepDetails"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicToValues" Name="CharacteristicToValuesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicSet" Role="FromRole_CharacteristicToValues"/>
+					<End EntitySet="CharacteristicValueSet" Role="ToRole_CharacteristicToValues"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationInstanceToFullMatchVariants" Name="ConfigurationInstanceToFullMatchVariantsSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationInstanceSet" Role="FromRole_ConfigurationInstanceToFullMatchVariants"/>
+					<End EntitySet="ConfigurationMaterialVariantSet" Role="ToRole_ConfigurationInstanceToFullMatchVariants"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicAssignedValues" Name="CharacteristicAssignedValuesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicSet" Role="FromRole_CharacteristicAssignedValues"/>
+					<End EntitySet="CharacteristicValueSet" Role="ToRole_CharacteristicAssignedValues"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigContextToConfigPricingRecords" Name="ConfigContextToConfigPricingRecordSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationContextSet" Role="FromRole_ConfigContextToConfigPricingRecords"/>
+					<End EntitySet="ConfigurationPricingRecordSet" Role="ToRole_ConfigContextToConfigPricingRecords"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.BOMNodeToDependencies" Name="BOMNodeToDependenciesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="BOMNodeSet" Role="FromRole_BOMNodeToDependencies"/>
+					<End EntitySet="ObjectDependencyHeaderSet" Role="ToRole_BOMNodeToDependencies"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToBOMNode" Name="ConfigurationContextToBOMNodeSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationContextSet" Role="FromRole_ConfigurationContextToBOMNode"/>
+					<End EntitySet="BOMNodeSet" Role="ToRole_ConfigurationContextToBOMNode"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToInstances" Name="ConfigurationContextToInstancesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationContextSet" Role="FromRole_ConfigurationContextToInstances"/>
+					<End EntitySet="ConfigurationInstanceSet" Role="ToRole_ConfigurationContextToInstances"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationContextToAssignable" Name="ClassificationContextToAssignable_AssocS" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ClassificationContextSet" Role="FromRole_ClassificationContextToAssignable"/>
+					<End EntitySet="ClassificationInstanceSet" Role="ToRole_ClassificationContextToAssignable"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationProfileToDependencies" Name="ConfigurationProfileToDependenciesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationProfileSet" Role="FromRole_ConfigurationProfileToDependencies"/>
+					<End EntitySet="ObjectDependencyHeaderSet" Role="ToRole_ConfigurationProfileToDependencies"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationInstanceToGroups" Name="ConfigurationInstanceToGroups_AssocSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationInstanceSet" Role="FromRole_ConfigurationInstanceToGroups"/>
+					<End EntitySet="CharacteristicsGroupSet" Role="ToRole_ConfigurationInstanceToGroups"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValueToValueDetail" Name="CharacteristicValueToValueDetail_AssocSe" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicValueSet" Role="FromRole_CharacteristicValueToValueDetail"/>
+					<End EntitySet="ValueDetailSet" Role="ToRole_CharacteristicValueToValueDetail"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValueToDependencies" Name="CharacteristicValueToDependenciesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicValueSet" Role="FromRole_CharacteristicValueToDependencies"/>
+					<End EntitySet="ObjectDependencyHeaderSet" Role="ToRole_CharacteristicValueToDependencies"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstanceToGroups" Name="ClassificationInstanceToGroups_AssocSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ClassificationInstanceSet" Role="FromRole_ClassificationInstanceToGroups"/>
+					<End EntitySet="CharacteristicsGroupSet" Role="ToRole_ClassificationInstanceToGroups"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContextToConfigProfile" Name="ConfigurationContextToConfigProfileSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationContextSet" Role="FromRole_ConfigurationContextToConfigProfile"/>
+					<End EntitySet="ConfigurationProfileSet" Role="ToRole_ConfigurationContextToConfigProfile"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicToCharacteristicDetail" Name="CharacteristicToCharacteristicDetail_Ass" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicSet" Role="FromRole_CharacteristicToCharacteristicDetail"/>
+					<End EntitySet="CharacteristicDetailSet" Role="ToRole_CharacteristicToCharacteristicDetail"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicDomainValues" Name="CharacteristicDomainValuesSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="CharacteristicSet" Role="FromRole_CharacteristicDomainValues"/>
+					<End EntitySet="CharacteristicValueSet" Role="ToRole_CharacteristicDomainValues"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ContextInconsistencyInformation" Name="ContextInconsistencyInformationSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="ConfigurationContextSet" Role="FromRole_ContextInconsistencyInformation"/>
+					<End EntitySet="InconsistencyInformationSet" Role="ToRole_ContextInconsistencyInformation"/>
+				</AssociationSet>
+				<AssociationSet Association="LO_VCHCLF_INTEGRATION_LEGACY_SRV.InconsistencyInformationLongText" Name="InconsistencyInformationLongTextSet" sap:content-version="1" sap:creatable="false" sap:deletable="false" sap:updatable="false">
+					<End EntitySet="InconsistencyInformationSet" Role="FromRole_InconsistencyInformationLongText"/>
+					<End EntitySet="DocumentationSet" Role="ToRole_InconsistencyInformationLongText"/>
+				</AssociationSet>
+				
+				<FunctionImport EntitySet="ClassificationInstanceSet" Name="ClassificationInstanceAssign" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance">
+					<Parameter MaxLength="90" Mode="In" Name="InstanceId" Type="Edm.String"/>
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="ClassificationInstanceSet" Name="ClassificationInstanceUnassign" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance">
+					<Parameter MaxLength="90" Mode="In" Name="InstanceId" Type="Edm.String"/>
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="ConfigurationContextSet" Name="DiscardConfigurationDraft" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="BOMNodeSet" Name="ExplodeBOM" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.BOMNode" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.BOMNode">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="ConfigurationContextSet" Name="ValidateConfiguration" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="ConfigurationContextSet" Name="ConfigurationLock" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="ConfigurationContextSet" Name="ConfigurationUnlock" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="CharacteristicSet" Name="CalculatePricing" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ConfigurationContext">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="CharacteristicSet" Name="CharacteristicValueAssignTest" ReturnType="Collection(LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic)" m:HttpMethod="GET" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+					<Parameter MaxLength="90" Mode="In" Name="InstanceId" Type="Edm.String"/>
+					<Parameter Mode="In" Name="GroupId" Type="Edm.Int32"/>
+					<Parameter MaxLength="10" Mode="In" Name="CsticId" Type="Edm.String"/>
+					<Parameter Mode="In" Name="ValueId" Type="Edm.String"/>
+					<Parameter Mode="In" Name="StringValue" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="TraceMessageSet" Name="TraceActivation" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.TraceMessage" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.TraceMessage">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+					<Parameter Mode="In" Name="ActiveTrace" Type="Edm.Boolean"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="CharacteristicSet" Name="CharacteristicValueAssign" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue">
+					<Parameter Mode="In" Name="StringValue" Type="Edm.String"/>
+					<Parameter Mode="In" Name="ValueId" Type="Edm.String"/>
+					<Parameter MaxLength="10" Mode="In" Name="CsticId" Type="Edm.String"/>
+					<Parameter Mode="In" Name="GroupId" Type="Edm.Int32"/>
+					<Parameter MaxLength="90" Mode="In" Name="InstanceId" Type="Edm.String"/>
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport EntitySet="CharacteristicSet" Name="CharacteristicValueUnassign" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.Characteristic" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicValue">
+					<Parameter Mode="In" Name="StringValue" Type="Edm.String"/>
+					<Parameter MaxLength="75" Mode="In" Name="ValueId" Type="Edm.String"/>
+					<Parameter MaxLength="10" Mode="In" Name="CsticId" Type="Edm.String"/>
+					<Parameter Mode="In" Name="GroupId" Type="Edm.Int32"/>
+					<Parameter MaxLength="90" Mode="In" Name="InstanceId" Type="Edm.String"/>
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport Name="GetClassificationSettings" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationSettings" m:HttpMethod="GET"/>
+				<FunctionImport EntitySet="CharacteristicsGroupSet" Name="SetExpandPagingForCstics" ReturnType="LO_VCHCLF_INTEGRATION_LEGACY_SRV.CharacteristicsGroup" m:HttpMethod="POST" sap:action-for="LO_VCHCLF_INTEGRATION_LEGACY_SRV.ClassificationInstance">
+					<Parameter MaxLength="400" Mode="In" Name="ContextId" Type="Edm.String"/>
+					<Parameter MaxLength="90" Mode="In" Name="InstanceId" Type="Edm.String"/>
+					<Parameter Mode="In" Name="Skip" Type="Edm.Int32"/>
+					<Parameter Mode="In" Name="Top" Type="Edm.Int32"/>
+				</FunctionImport>
+				<FunctionImport Name="SwitchToETO" ReturnType="LO_VCHCLF.FunctionImportResponse" m:HttpMethod="POST">
+					<Parameter Mode="In" Name="ContextId" Type="Edm.String"/>
+				</FunctionImport>
+				<FunctionImport Name="SetETOStatus" ReturnType="LO_VCHCLF.FunctionImportResponse" m:HttpMethod="POST">
+					<Parameter Mode="In" Name="ContextId" Type="Edm.String"/>
+					<Parameter Mode="In" Name="Status" Type="Edm.String"/>
+				</FunctionImport>
+			</EntityContainer>
+			<atom:link href="http://localhost/DUMMY_SERVICE/$metadata" rel="self" xmlns:atom="http://www.w3.org/2005/Atom"/>
+			<atom:link href="http://localhost/DUMMY_SERVICE/$metadata" rel="latest-version" xmlns:atom="http://www.w3.org/2005/Atom"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

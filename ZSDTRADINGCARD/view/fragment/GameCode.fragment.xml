@@ -1,0 +1,100 @@
+<core:FragmentDefinition 
+xmlns="sap.m" 
+xmlns:fb="sap.ui.comp.filterbar" 
+xmlns:core="sap.ui.core" 
+xmlns:u="sap.ui.unified"
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form" 
+xmlns:tbl="sap.ui.table">
+	<Dialog id="gameCode" contentWidth="1050px" title="Game Code">
+		<content>
+
+		<Panel >
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginEnd">
+                                                    <Label  text="Game Code" />
+                                                    <Input id="gameCode_GC"></Input>
+                                                </l:VerticalLayout>
+                                               
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Active" />
+                                                    <Input id="Active_GC"></Input>
+                                                </l:VerticalLayout>
+                                                 
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Name" />
+                                                    <Input id="Name"></Input>
+                                                </l:VerticalLayout>
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Has Maker?" />
+                                                    <Input id="MakerFlag"></Input>
+                                                </l:VerticalLayout>
+												<l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Name Search" />
+                                                    <Input id="NameSearch"></Input>
+                                                </l:VerticalLayout>
+												<l:VerticalLayout  class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+												<Button class="sapUiTinyMarginTop" type="Accept" text="Search" press="onButtonGameSearch"></Button>
+												</l:VerticalLayout>
+                                                </l:HorizontalLayout>
+
+
+            </Panel>
+    
+         
+        
+       
+    <Panel>
+        <tbl:Table 
+				rows="{GameModel>/}"
+				visibleRowCount="6"
+				selectionMode="Single"
+				rowSelectionChange="GameCode_rowSelected"
+				ariaLabelledBy="title">
+				
+				<tbl:columns>
+					<tbl:Column >
+						<Label text="Game Code" />
+						<tbl:template>
+							<Text text="{GameModel>GameCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					<tbl:Column >
+						<Label text="Active" />
+						<tbl:template>
+							<Text text="{GameModel>Active}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Name" />
+						<tbl:template>
+							<Text text="{GameModel>Name}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Maker" />
+						<tbl:template>
+							<Text text="{GameModel>MakerFlag}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Name Search" />
+						<tbl:template>
+							<Text text="{GameModel>GameNameSearch}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+				</tbl:columns>
+			</tbl:Table>
+			</Panel>
+			
+		</content>
+		<Toolbar>
+							<ToolbarSpacer/>
+							<!--<HBox>-->
+							
+							<Button text="Close" type="Reject" press="CancelGameCode"/>
+							<!--</HBox>-->
+						</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,30 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" >
+	<Popover
+		showHeader="false"
+		placement="VerticalPreferredBottom"
+		class="sapUiContentPadding">
+		<content>
+			<l:HorizontalLayout 
+				class="vchclf_hlayout_valign_middle">
+				<Switch
+					class="sapUiTinyMarginEnd"
+					state="{global>/isDiffRestrictionActive}"
+					change="onChangeComparisonRestrictionActive">
+				</Switch>
+				<Text
+					text="{i18n>vchclf_comparison_filter_on_sel}">			
+				</Text>
+			</l:HorizontalLayout>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

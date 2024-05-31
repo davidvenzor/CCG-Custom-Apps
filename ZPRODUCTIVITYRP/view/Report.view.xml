@@ -1,0 +1,2644 @@
+<mvc:View controllerName="sap.ops.productivityreport.ZOPSPRODUCTIVITYREPORT.controller.Report" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns:micro="sap.suite.ui.microchart" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table"
+	xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Panel headerText="{i18n>appHeader}">
+		<!--<headerToolbar>-->
+		<!--	<OverflowToolbar>-->
+		<!--		<Title text="Filter Criteria"/>-->
+		<!--	</OverflowToolbar>-->
+		<!--</headerToolbar>-->
+		<!--<l:Grid hSpacing="0" vSpacing="0" binding="" class="sapUiSmallMarginEnd sapUiSmallMargin" defaultSpan="XL6 L6 M6 S12">-->
+		<l:HorizontalLayout class="sapUiTinyMarginEnd">
+			<l:VerticalLayout class="sapUiTinyMarginEnd">
+				<Label text="Business Unit:" width="100px" labelFor="Bunit" class="cllblview sapUiSmallMarginTop sapUiSmallMarginEnd "/>
+				<Input id="Bunit" type="Number" valueStateText="Name must not be empty. Maximum 10 characters."
+					value="{ path : '/BUnit', type : 'sap.ui.model.type.String', constraints : { minLength: 1, maxLength: 2 } }" change=".onNameChange"
+					width="150px" required="true" showSuggestion="true" showValueHelp="true" valueHelpRequest="BUhelp"/>
+				<!--<HBox>-->
+			</l:VerticalLayout>
+			<l:VerticalLayout class="sapUiTinyMarginEnd">
+				<Label  labelFor="BTunit" class="cllblview sapUiSmallMarginTop sapUiSmallMarginEnd "/>
+				<Input id="BTunit" value="{ path:'/BTUnit'}" width="150px" editable="false"/>
+			</l:VerticalLayout>
+			<l:VerticalLayout class="sapUiTinyMarginEnd">
+				<Label text="User:" width="100px" labelFor="FUser" class="cllblview sapUiMediumMarginEnd sapUiSmallMarginTop"/>
+				<Input id="FUser" width="150px" showSuggestion="true" showValueHelp="true" valueHelpRequest="Userhelp"/>
+			</l:VerticalLayout>
+			<!--<Label text="to" class="cllblview1 sapUiSmallMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd "/>-->
+			<!--<Input id="TUser" width="150px"/>-->
+			<!--</HBox>-->
+			<!--<HBox>-->
+			<l:VerticalLayout class="sapUiTinyMarginEnd">
+				<Label text="Date From:" width="100px" labelFor="FDate" class="cllblview sapUiMediumMarginEnd sapUiSmallMarginTop"/>
+				<!--<Input id="FDate" width="150px" required="true"/>-->
+				<DatePicker id="FDate" valueFormat="yyyyMMdd" value="{ path:'/fromdate', type:'sap.ui.model.type.Date'}" placeholder="Enter From Date"
+					change="handleChange" class="sapUiSmallMarginBottom" required="true"/>
+			</l:VerticalLayout>
+			<l:VerticalLayout class="sapUiTinyMarginEnd">
+				<Label text="Date to" width="100px" labelFor="TDate" class="cllblview1 sapUiSmallMarginTop sapUiMediumMarginEnd"/>
+				<!--<Input id="TDate" width="150px" required="true"/>-->
+				<DatePicker id="TDate" value="{ path:'/today', type:'sap.ui.model.type.Date' }" valueFormat="yyyyMMdd" placeholder="Enter To Date"
+					change="handleChange" class="sapUiSmallMarginBottom" required="true"/>
+			</l:VerticalLayout>
+			<l:VerticalLayout class="sapUiSmallMarginTop">
+				<RadioButtonGroup id="Option" columns="3" select="onRbutton" class="cllblview sapUiSmallMarginTop sapUiMediumMarginEnd ">
+					<RadioButton text="Daily" selected="true"/>
+					<RadioButton text="Weekly"/>
+				</RadioButtonGroup>
+			</l:VerticalLayout>
+			<l:VerticalLayout class="sapUiSmallMarginTop">
+				<Button id="Button1" text="Execute" width="100px" press="onPress"
+					class="cllblview1 sapUiSmallMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd"/>
+			</l:VerticalLayout>
+		</l:HorizontalLayout>
+		<!--</l:Grid>-->
+		<IconTabBar id="idIconTabBar" select=".onFilterSelect" class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter text="Weekly Status Report" key="Week">
+					<customData>
+						<core:CustomData key="myTextColor" value="blue" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idWeekTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true"
+						ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Grading" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Gradingcounts}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Gradingcounts}" color="Error"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<micro:BulletMicroChartData value="50" color="Critical"/>
+												<micro:BulletMicroChartData value="150" color="Critical"/>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Receiving" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>recevingcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>recevingcount}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<micro:BulletMicroChartData value="50" color="Critical"/>
+												<micro:BulletMicroChartData value="150" color="Error"/>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Verification" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>verificationcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>verificationcount}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<micro:BulletMicroChartData value="50" color="Critical"/>
+												<micro:BulletMicroChartData value="150" color="Critical"/>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="12em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Encapsulation Slabbed" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>enapsulationslabcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>enapsulationslabcount}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<micro:BulletMicroChartData value="50" color="Critical"/>
+												<micro:BulletMicroChartData value="150" color="Critical"/>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="12em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Encapsulation Imaged" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>enapsulationimagedcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>enapsulationimagedcount}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<micro:BulletMicroChartData value="50" color="Critical"/>
+												<micro:BulletMicroChartData value="150" color="Critical"/>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="QC" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>qccount}" forecastValue="{ProductivityModel>Totalcount}" app:name="bullet"
+											press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>qccount}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<micro:BulletMicroChartData value="50" color="Critical"/>
+												<micro:BulletMicroChartData value="150" color="Critical"/>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Finalization" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>finalizationcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>finalizationcount}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<micro:BulletMicroChartData value="50" color="Critical"/>
+												<micro:BulletMicroChartData value="150" color="Critical"/>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Shipping" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>shippedcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>shippedcount}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<micro:BulletMicroChartData value="50" color="Critical"/>
+												<micro:BulletMicroChartData value="150" color="Critical"/>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon=""/>
+				<IconTabFilter text="Grading" key="Grading">
+					<customData>
+						<core:CustomData key="myTextColor" value="red" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idReportTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true"
+						ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="14em">
+								<Label textAlign="Center" text="Week" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Week}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Full Name" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Guser}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em" visible="false">
+								<Label textAlign="Center" text="P4 Comp" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>P4Comp}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<!--<micro:thresholds>-->
+											<!--	<micro:BulletMicroChartData value="0" color="Error"/>-->
+											<!--	<micro:BulletMicroChartData value="50" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="150" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="200" color="Error"/>-->
+											<!--</micro:thresholds>-->
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="7-8" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket1}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket1}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="{ReportModel>Totalcount/2}" color="Error"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="8-9" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket2}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket2}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="9-10" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket3}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket3}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="10-11" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket4}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket4}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="11-12" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket5}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket5}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="12-1" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket6}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket6}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="1-2" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket7}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket7}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="2-3" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket8}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket8}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="3-4" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket9}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket9}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="4-5" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket10}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket10}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+					<!--<Table id="idTable" width="800px" inset="false" items="{ path: '/ReportModel' sorter: { path: 'Guser' } }">-->
+					<!--<Table>-->
+					<!--        <columns>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="Sl.No"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="Full Name"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="P4 Comp"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="Counts"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="Counts"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="Counts"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="Counts"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="Counts"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="Counts"/>-->
+					<!--                       </Column>-->
+					<!--                       <Column width="8em">-->
+					<!--                                      <Label text="TotalCounts"/>-->
+					<!--                       </Column>-->
+					<!--        </columns>-->
+					<!--        <items>-->
+					<!--                       <ColumnListItem>-->
+					<!--                                      <cells>-->
+					<!--                                                     <Text text="1"/>-->
+					<!--                                                     <Text text="{Guser}"/>-->
+					<!--                                                     <Text text="CGC"/>-->
+					<!--                                                     <FlexBox height="30px" width="70px" renderType="Bare">-->
+					<!--                                                                    <micro:BulletMicroChart size="S" targetValue="545" forecastValue="110" app:name="bullet" press="press">-->
+					<!--                                                                                   <micro:actual>-->
+					<!--                                                                                                  <micro:BulletMicroChartData value="227" color="Good"/>-->
+					<!--                                                                                   </micro:actual>-->
+					<!--                                                                                   <micro:thresholds>-->
+					<!--<micro:BulletMicroChartData value="0" color="Error" />-->
+					<!--<micro:BulletMicroChartData value="50" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="150" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="200" color="Error" />-->
+					<!--                                                                                   </micro:thresholds>-->
+					<!--                                                                    </micro:BulletMicroChart>-->
+					<!--                                                     </FlexBox>-->
+					<!--                                                     <FlexBox height="30px" width="100px" renderType="Bare">-->
+					<!--                                                                    <micro:BulletMicroChart size="S" targetValue="545" forecastValue="110" app:name="bullet" press="press">-->
+					<!--                                                                                   <micro:actual>-->
+					<!--                                                                                                  <micro:BulletMicroChartData value="318" color="Critical"/>-->
+					<!--                                                                                   </micro:actual>-->
+					<!--                                                                                   <micro:thresholds>-->
+					<!--<micro:BulletMicroChartData value="0" color="Error" />-->
+					<!--<micro:BulletMicroChartData value="50" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="150" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="200" color="Error" />-->
+					<!--                                                                                   </micro:thresholds>-->
+					<!--                                                                    </micro:BulletMicroChart>-->
+					<!--                                                     </FlexBox>-->
+					<!--                                                     <FlexBox height="30px" width="100px" renderType="Bare">-->
+					<!--                                                                    <micro:BulletMicroChart size="S" targetValue="895" forecastValue="110" app:name="bullet" press="press">-->
+					<!--                                                                                   <micro:actual>-->
+					<!--                                                                                                  <micro:BulletMicroChartData value="545" color="Error"/>-->
+					<!--                                                                                   </micro:actual>-->
+					<!--                                                                                   <micro:thresholds>-->
+					<!--<micro:BulletMicroChartData value="0" color="Error" />-->
+					<!--<micro:BulletMicroChartData value="50" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="150" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="200" color="Error" />-->
+					<!--                                                                                   </micro:thresholds>-->
+					<!--                                                                    </micro:BulletMicroChart>-->
+					<!--                                                     </FlexBox>-->
+					<!--                                                     <FlexBox height="30px" width="100px" renderType="Bare">-->
+					<!--                                                                    <micro:BulletMicroChart size="S" targetValue="895" forecastValue="110" app:name="bullet" press="press">-->
+					<!--                                                                                   <micro:actual>-->
+					<!--                                                                                                  <micro:BulletMicroChartData value="545" color="Error"/>-->
+					<!--                                                                                   </micro:actual>-->
+					<!--                                                                                   <micro:thresholds>-->
+					<!--<micro:BulletMicroChartData value="0" color="Error" />-->
+					<!--<micro:BulletMicroChartData value="50" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="150" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="200" color="Error" />-->
+					<!--                                                                                   </micro:thresholds>-->
+					<!--                                                                    </micro:BulletMicroChart>-->
+					<!--                                                     </FlexBox>-->
+					<!--                                                     <FlexBox height="30px" width="100px" renderType="Bare">-->
+					<!--                                                                    <micro:BulletMicroChart size="S" targetValue="895" forecastValue="110" app:name="bullet" press="press">-->
+					<!--                                                                                   <micro:actual>-->
+					<!--                                                                                                  <micro:BulletMicroChartData value="545" color="Error"/>-->
+					<!--                                                                                   </micro:actual>-->
+					<!--                                                                                   <micro:thresholds>-->
+					<!--<micro:BulletMicroChartData value="0" color="Error" />-->
+					<!--<micro:BulletMicroChartData value="50" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="150" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="200" color="Error" />-->
+					<!--                                                                                   </micro:thresholds>-->
+					<!--                                                                    </micro:BulletMicroChart>-->
+					<!--                                                     </FlexBox>-->
+					<!--                                                     <FlexBox height="30px" width="100px" renderType="Bare">-->
+					<!--                                                                    <micro:BulletMicroChart size="S" targetValue="895" forecastValue="110" app:name="bullet" press="press">-->
+					<!--                                                                                   <micro:actual>-->
+					<!--                                                                                                  <micro:BulletMicroChartData value="545" color="Error"/>-->
+					<!--                                                                                   </micro:actual>-->
+					<!--                                                                                   <micro:thresholds>-->
+					<!--<micro:BulletMicroChartData value="0" color="Error" />-->
+					<!--<micro:BulletMicroChartData value="50" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="150" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="200" color="Error" />-->
+					<!--                                                                                   </micro:thresholds>-->
+					<!--                                                                    </micro:BulletMicroChart>-->
+					<!--                                                     </FlexBox>-->
+					<!--                                                     <FlexBox height="30px" width="100px" renderType="Bare">-->
+					<!--                                                                    <micro:BulletMicroChart size="S" targetValue="895" forecastValue="110" app:name="bullet" press="press">-->
+					<!--                                                                                   <micro:actual>-->
+					<!--                                                                                                  <micro:BulletMicroChartData value="545" color="Error"/>-->
+					<!--                                                                                   </micro:actual>-->
+					<!--                                                                                   <micro:thresholds>-->
+					<!--<micro:BulletMicroChartData value="0" color="Error" />-->
+					<!--<micro:BulletMicroChartData value="50" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="150" color="Critical" />-->
+					<!--<micro:BulletMicroChartData value="200" color="Error" />-->
+					<!--                                                                                   </micro:thresholds>-->
+					<!--                                                                    </micro:BulletMicroChart>-->
+					<!--                                                     </FlexBox>-->
+					<!--                                      </cells>-->
+					<!--                       </ColumnListItem>-->
+					<!--        </items>-->
+					<!--</Table>-->
+				</IconTabFilter>
+				<IconTabSeparator icon=""/>
+				<IconTabFilter text="Receiving" key="Receive">
+					<customData>
+						<core:CustomData key="myTextColor" value="red" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idReceiveTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true"
+						ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="14em">
+								<Label textAlign="Center" text="Week" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Week}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Full Name" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Guser}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em" visible="false">
+								<Label textAlign="Center" text="P4 Comp" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>P4Comp}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<!--<micro:thresholds>-->
+											<!--	<micro:BulletMicroChartData value="0" color="Error"/>-->
+											<!--	<micro:BulletMicroChartData value="50" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="150" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="200" color="Error"/>-->
+											<!--</micro:thresholds>-->
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="7-8" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket1}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket1}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="{ReportModel>Totalcount/2}" color="Error"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="8-9" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket2}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket2}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="9-10" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket3}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket3}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="10-11" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket4}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket4}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="11-12" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket5}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket5}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="12-1" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket6}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket6}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="1-2" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket7}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket7}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="2-3" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket8}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket8}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="3-4" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket9}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket9}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="4-5" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket10}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket10}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon=""/>
+				<IconTabFilter text="Verification" key="Verify">
+					<customData>
+						<core:CustomData key="myTextColor" value="red" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idVerifyTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true"
+						ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="14em">
+								<Label textAlign="Center" text="Week" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Week}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Full Name" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Guser}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em" visible="false">
+								<Label textAlign="Center" text="P4 Comp" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>P4Comp}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<!--<micro:thresholds>-->
+											<!--	<micro:BulletMicroChartData value="0" color="Error"/>-->
+											<!--	<micro:BulletMicroChartData value="50" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="150" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="200" color="Error"/>-->
+											<!--</micro:thresholds>-->
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="7-8" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket1}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket1}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="{ReportModel>Totalcount/2}" color="Error"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="8-9" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket2}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket2}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="9-10" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket3}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket3}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="10-11" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket4}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket4}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="11-12" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket5}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket5}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="12-1" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket6}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket6}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="1-2" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket7}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket7}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="2-3" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket8}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket8}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="3-4" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket9}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket9}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="4-5" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket10}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket10}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon=""/>
+				<IconTabFilter text="Encapsulation Slabbed" key="Slab">
+					<customData>
+						<core:CustomData key="myTextColor" value="red" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idSlabTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true"
+						ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="14em">
+								<Label textAlign="Center" text="Week" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Week}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Full Name" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Guser}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em" visible="false">
+								<Label textAlign="Center" text="P4 Comp" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>P4Comp}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<!--<micro:thresholds>-->
+											<!--	<micro:BulletMicroChartData value="0" color="Error"/>-->
+											<!--	<micro:BulletMicroChartData value="50" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="150" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="200" color="Error"/>-->
+											<!--</micro:thresholds>-->
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="7-8" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket1}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket1}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="{ReportModel>Totalcount/2}" color="Error"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="8-9" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket2}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket2}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="9-10" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket3}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket3}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="10-11" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket4}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket4}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="11-12" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket5}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket5}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="12-1" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket6}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket6}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="1-2" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket7}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket7}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="2-3" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket8}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket8}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="3-4" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket9}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket9}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="4-5" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket10}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket10}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon=""/>
+				<IconTabFilter text="Encapsulation Imaged" key="Image">
+					<customData>
+						<core:CustomData key="myTextColor" value="red" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idImageTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true"
+						ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="14em">
+								<Label textAlign="Center" text="Week" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Week}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Full Name" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Guser}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em" visible="false">
+								<Label textAlign="Center" text="P4 Comp" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>P4Comp}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<!--<micro:thresholds>-->
+											<!--	<micro:BulletMicroChartData value="0" color="Error"/>-->
+											<!--	<micro:BulletMicroChartData value="50" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="150" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="200" color="Error"/>-->
+											<!--</micro:thresholds>-->
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="7-8" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket1}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket1}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="{ReportModel>Totalcount/2}" color="Error"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="8-9" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket2}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket2}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="9-10" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket3}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket3}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="10-11" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket4}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket4}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="11-12" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket5}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket5}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="12-1" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket6}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket6}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="1-2" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket7}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket7}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="2-3" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket8}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket8}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="3-4" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket9}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket9}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="4-5" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket10}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket10}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon=""/>
+				<IconTabFilter text="QC" key="Qc">
+					<customData>
+						<core:CustomData key="myTextColor" value="red" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idQCTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true" ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="14em">
+								<Label textAlign="Center" text="Week" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Week}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Full Name" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Guser}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em" visible="false">
+								<Label textAlign="Center" text="P4 Comp" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>P4Comp}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<!--<micro:thresholds>-->
+											<!--	<micro:BulletMicroChartData value="0" color="Error"/>-->
+											<!--	<micro:BulletMicroChartData value="50" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="150" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="200" color="Error"/>-->
+											<!--</micro:thresholds>-->
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="7-8" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket1}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket1}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="{ReportModel>Totalcount/2}" color="Error"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="8-9" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket2}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket2}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="9-10" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket3}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket3}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="10-11" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket4}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket4}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="11-12" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket5}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket5}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="12-1" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket6}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket6}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="1-2" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket7}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket7}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="2-3" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket8}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket8}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="3-4" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket9}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket9}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="4-5" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket10}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket10}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon=""/>
+				<IconTabFilter text="Finalization" key="Final">
+					<customData>
+						<core:CustomData key="myTextColor" value="red" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idFinalTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true"
+						ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="14em">
+								<Label textAlign="Center" text="Week" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Week}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Full Name" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Guser}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em" visible="false">
+								<Label textAlign="Center" text="P4 Comp" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>P4Comp}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<!--<micro:thresholds>-->
+											<!--	<micro:BulletMicroChartData value="0" color="Error"/>-->
+											<!--	<micro:BulletMicroChartData value="50" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="150" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="200" color="Error"/>-->
+											<!--</micro:thresholds>-->
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="7-8" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket1}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket1}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="{ReportModel>Totalcount/2}" color="Error"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="8-9" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket2}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket2}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="9-10" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket3}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket3}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="10-11" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket4}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket4}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="11-12" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket5}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket5}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="12-1" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket6}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket6}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="1-2" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket7}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket7}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="2-3" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket8}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket8}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="3-4" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket9}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket9}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="4-5" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket10}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket10}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</IconTabFilter>
+				<IconTabSeparator icon=""/>
+				<IconTabFilter text="Shipping" key="Ship">
+					<customData>
+						<core:CustomData key="myTextColor" value="red" writeToDom="true"/>
+					</customData>
+					<ui:Table id="idShipTable" selectionMode="None" rows="{ProductivityModel>/}" paste="onPaste" alternateRowColors="true"
+						ariaLabelledBy="title">
+						<ui:columns>
+							<ui:Column width="4em">
+								<Label textAlign="Center" text="Sl.No" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Line}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em">
+								<Label textAlign="Center" text="Date" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Gdateto}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="14em">
+								<Label textAlign="Center" text="Week" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Week}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Full Name" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>Guser}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="6em" visible="false">
+								<Label textAlign="Center" text="P4 Comp" design="Bold"/>
+								<ui:template>
+									<Text text="{ProductivityModel>P4Comp}" wrapping="false"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<Label textAlign="Center" text="Total" design="Bold"/>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Totalcount}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Error"/>
+											</micro:actual>
+											<!--<micro:thresholds>-->
+											<!--	<micro:BulletMicroChartData value="0" color="Error"/>-->
+											<!--	<micro:BulletMicroChartData value="50" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="150" color="Critical"/>-->
+											<!--	<micro:BulletMicroChartData value="200" color="Error"/>-->
+											<!--</micro:thresholds>-->
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="7-8" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket1}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket1}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="{ReportModel>Totalcount/2}" color="Error"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="8-9" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket2}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket2}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="9-10" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket3}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket3}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="10-11" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket4}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket4}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="11-12" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket5}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket5}" color="Good"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Good"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="12-1" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket6}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket6}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="1-2" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket7}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket7}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="2-3" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket8}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket8}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="3-4" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket9}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket9}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+							<ui:Column width="8em">
+								<ui:multiLabels>
+									<Label textAlign="Center" text="Count" design="Bold"/>
+									<Label textAlign="Center" text="4-5" design="Bold"/>
+								</ui:multiLabels>
+								<ui:template>
+									<FlexBox height="30px" width="70px" renderType="Bare">
+										<micro:BulletMicroChart size="S" targetValue="{ProductivityModel>Timebucket10}" forecastValue="{ProductivityModel>Totalcount}"
+											app:name="bullet" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData value="{ProductivityModel>Timebucket10}" color="Critical"/>
+											</micro:actual>
+											<micro:thresholds>
+												<micro:BulletMicroChartData value="0" color="Error"/>
+												<!--<micro:BulletMicroChartData value="50" color="Critical"/>-->
+												<!--<micro:BulletMicroChartData value="150" color="Critical"/>-->
+												<micro:BulletMicroChartData value="{ProductivityModel>Totalcount}" color="Critical"/>
+											</micro:thresholds>
+										</micro:BulletMicroChart>
+									</FlexBox>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</IconTabFilter>
+				<!--Weekly Status Report-->
+				<IconTabSeparator icon=""/>
+			</items>
+		</IconTabBar>
+	</Panel>
+</mvc:View>

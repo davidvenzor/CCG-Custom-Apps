@@ -1,0 +1,120 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar" xmlns:tbl="sap.ui.table" 	xmlns:form="sap.ui.layout.form">
+<Dialog
+        id="oDialogSignature"
+		title="Invoice " 
+        contentWidth = "970px"
+		contentHeight = "550px"
+        verticalScrolling="false"
+        horizontalScrolling="false"
+        >
+
+         <fb:FilterBar useToolbar="false" showGoOnFB="false" showClearOnFB="false" showRestoreButton="false" showFilterConfiguration="false" showRestoreOnFB="false">
+        <fb:filterItems>
+            <fb:FilterItem name="Signature Type" label="{i18n>SignatureType}">
+                <fb:control>
+                    <Select forceSelection="false" selectedKey="{}" items="">
+                        <core:Item key="{}" text="{}" />
+				    </Select>
+                </fb:control>
+            </fb:FilterItem>
+
+
+            <fb:FilterItem name="Artist Name" label="{i18n>ArtistName}">
+                <fb:control>
+                   <Select forceSelection="false" selectedKey="{}" items="">
+                        <core:Item key="{}" text="{}" />
+				    </Select>
+                </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="Date" label="{i18n>Date}">
+                <fb:control>
+                     <DatePicker placeholder="Enter Date" change="handleChange"/>
+                </fb:control>
+            </fb:FilterItem>
+            <fb:FilterItem name="Add?" label="{i18n>Add}" >
+                <fb:control>
+                    <Input  value="" />
+                </fb:control>
+            </fb:FilterItem>
+             
+        </fb:filterItems>
+    </fb:FilterBar>
+
+    
+         
+        
+       
+    <Panel class="sapUiSmallMargin">
+        <tbl:Table id="SignatureTbl"
+				rows="{}"
+                selectionMode="None"
+				visibleRowCount="6"
+				ariaLabelledBy="title">
+				
+				<tbl:columns>
+					<tbl:Column >
+						<Label text="Signature" />
+						<tbl:template>
+							<Text text="{}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					<tbl:Column >
+						<Label text="First Name" />
+						<tbl:template>
+							<Text text="{}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Signed On" />
+						<tbl:template>
+							<Text text="{}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Added by" />
+						<tbl:template>
+							<Text text="{}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Date Added" />
+						<tbl:template>
+							<Text text="{}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+				</tbl:columns>
+			</tbl:Table>
+        </Panel>
+        <Panel >
+         <form:SimpleForm 
+				editable="true"
+				layout="ResponsiveGridLayout" >
+                <VBox >
+                <VBox >
+				<Label text="Signature Label Lines" />
+				<TextArea value="" growing="true" width="100%"/>
+                </VBox>
+                <VBox >
+				<Label text="Overflow Signature Lines Data Not Sent To Label" />
+				<TextArea value="" growing="true" width="100%"/>
+                </VBox>
+                </VBox>
+			</form:SimpleForm>
+           
+        </Panel>
+    	<footer>
+			<OverflowToolbar id="otbFooter">
+            <ToolbarSpacer/>
+            <Button text="Exit" type="Accept" press="onExitPress"></Button>
+             <Button text="Build Sig Line" type="Accept"></Button>
+              <Button text="Build Use Abbr" type="Accept"></Button>
+               <Button text="Remove Sig" type="Reject"></Button>
+                <Button text="Signature Maintain" type="Accept"></Button>
+                <Button text="Copy Signatures" type="Accept"></Button>
+            
+          	</OverflowToolbar>
+		</footer>
+</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,108 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="filterDialog"
+		title="{i18n>FILTER_DIALOG_TITLE}"
+		resizable="true"
+		draggable="true"
+		contentHeight="auto">
+		<content>
+			<f:SimpleForm id="filterDialogSimpleForm"
+				layout="ResponsiveGridLayout"
+				labelSpanM="5"
+				editable="true">
+				<f:content>
+					<Label 
+						labelFor="switchMandatoryOnly"
+						text="{i18n>CHAR_FILTER_MAND_ONLY}"
+						tooltip="{i18n>CHAR_FILTER_MAND_ONLY}" />
+					<Switch id="switchMandatoryOnly"
+						state="{filterModel>/isRequired}" />
+					<Label 
+						labelFor="selectValueAssignment"
+						text="{i18n>CHAR_FILTER_VALUE_ASSIGNMENT}"
+						tooltip="{i18n>CHAR_FILTER_VALUE_ASSIGNMENT}" />
+					<Select id="selectValueAssignment" 
+							change="onCsticValueAssignmentSelection"
+							selectedKey="{filterModel>/valueAssignedSelectedKey}">
+						<core:Item key="notValuated" />
+						<core:Item id="valueAssigned"
+							key="ValueAssigned"
+							text="{i18n>VALUE_ASSIGNED}" />
+						<core:Item id="noValueAssigned"
+							key="NoValueAssigned"
+							text="{i18n>NO_VALUE_ASSIGNED}" />
+					</Select>
+					<Label 
+						labelFor="switchHideReadOnly"
+						text="{i18n>CHAR_FILTER_HIDE_READONLY}"
+						tooltip="{i18n>CHAR_FILTER_HIDE_READONLY}" />
+					<Switch id="switchHideReadOnly" 
+						state="{filterModel>/changeable}"/>
+					<Label 
+						labelFor="switchAdditionalValuesOnly"
+						text="{i18n>CHAR_FILTER_ADD_VALUES_ONLY}"
+						tooltip="{i18n>CHAR_FILTER_ADD_VALUES_ONLY}" />
+					<Switch id="switchAdditionalValuesOnly" 
+						state="{filterModel>/addValues}"/>
+					<Label 
+						labelFor="selectIsSingleValued"
+						text="{i18n>CHAR_FILTER_IS_SINGLE_VALUED}"
+						tooltip="{i18n>CHAR_FILTER_IS_SINGLE_VALUED}" />
+					<Select id="selectIsSingleValued" 
+							change="onIsSingleValuedSelection"
+							selectedKey="{filterModel>/singleMultiValuedSelectedKey}">
+						<core:Item key="notValuated" />
+						<core:Item id="singleValuedItem"
+							key="SingleValued"
+							text="{i18n>CHAR_FILTER_SINGLE_VALUE_ASSIGNMENT}" />
+						<core:Item id="multiValuedItem"
+							key="MultiValued"
+							text="{i18n>CHAR_FILTER_MULTI_VALUE_ASSIGNMENT}" />
+					</Select>
+					<Label 
+						labelFor="selectCsticFormat"
+						text="{i18n>CHAR_FILTER_CSTIC_FORMAT}"
+						tooltip="{i18n>CHAR_FILTER_CSTIC_FORMAT}" />
+					<Select id="selectCsticFormat" 
+							change="onCsticFormatSelection"
+							selectedKey="{filterModel>/formatSelectedKey}">
+						<core:Item key="noFormat" />
+						<core:Item id="charFormatItem"
+							key="CharacterFormat"
+							text="{i18n>VALUE_FORMAT_CHARACTER}" />
+						<core:Item id="numFormatItem"
+							key="NumericFormat"
+							text="{i18n>VALUE_FORMAT_NUMERIC}" />
+						<core:Item id="dateFormatItem"
+							key="DateFormat"
+							text="{i18n>VALUE_FORMAT_DATE}" />
+						<core:Item id="timeFormatItem"
+							key="TimeFormat"
+							text="{i18n>VALUE_FORMAT_TIME}" />
+					</Select>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button id="executeFilter"
+				text="{i18n>GO_FILTER}" 
+				type="Emphasized"
+				press="onFilter"/>
+			<Button id="resetFilter"
+				text="{i18n>RESET_FILTER}"
+				enabled="{filterModel>/resetButtonEnabled}"
+				press="onResetFilter"/>
+			<Button id="cancelFilter"
+				text="{i18n>CANCEL_FILTER}"
+				press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

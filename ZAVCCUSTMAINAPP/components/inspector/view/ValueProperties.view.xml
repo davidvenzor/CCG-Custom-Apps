@@ -1,0 +1,83 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns="sap.m"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.ValueProperties">
+	<f:SimpleForm
+		maxContainerCols="1"
+		minWidth="300"
+		editable="false"
+		layout="ResponsiveGridLayout"
+		labelSpanXL="4"
+		labelSpanL="4"
+		labelSpanM="5"
+		labelSpanS="12"
+		breakpointL="800"
+		breakpointM="400"
+		columnsL="2"
+		columnsM="1">
+		<f:content>
+			<core:Title
+				text="{i18n>vchclf_insp_common_basic_info_title}"/>
+			<Label
+				labelFor="idValueName"
+				text="{
+					parts: [
+						{ path: 'properties>/HasHighPrecision' }
+					],
+					formatter: '._formatter.getLabelForValueName'
+				}"/>
+			<Text
+				id="idValueName"
+				text="{
+					parts: [
+						{ path: 'properties>/HasHighPrecision' },
+						{ path: 'properties>/FormattedValueFrom' },
+						{ path: 'properties>/FormattedValueTo' },
+						{ path: 'properties>/TechnicalValueDisplay' }
+					],
+					formatter: '._formatter.getTextForValueName'
+				}"/>
+			<Label
+				labelFor="idValueDescription"
+				text="{i18n>vchclf_insp_values_properties_description}"
+				visible="{= ${properties>/Description} ? true : false }"/>
+			<Text
+				id="idValueDescription"
+				text="{properties>/Description}"  
+				visible="{= ${properties>/Description} ? true : false }"/>
+			<Label
+				labelFor="idValueSelected"
+				text="{
+					path: 'properties>/IntervalType',
+					formatter: '._formatter.selectedLabelForValue'
+				}"/>
+			<Text
+				id="idValueSelected"
+				text="{
+					path: 'properties>/IsSelected',
+					formatter: '._formatter.selectedTextForValue'
+				}"
+			 />
+			<Label
+				labelFor="idValueSelectable"
+				text="{
+					path: 'properties>/IntervalType',
+					formatter: '._formatter.selectableLabelForValue'
+				}"/>
+			<Text
+				id="idValueSelectable"
+				text="{
+					path: 'properties>/ExclusionType',
+					formatter: '._formatter.selectableTextForValue'
+				}"
+			 />
+		</f:content>
+	</f:SimpleForm>
+</mvc:View>

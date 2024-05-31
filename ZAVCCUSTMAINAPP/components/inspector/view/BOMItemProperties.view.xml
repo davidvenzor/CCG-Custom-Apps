@@ -1,0 +1,335 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns="sap.m"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.BOMItemProperties">
+	<f:SimpleForm
+		maxContainerCols="1"
+		minWidth="300"
+		editable="false"
+		layout="ResponsiveGridLayout"
+		labelSpanXL="4"
+		labelSpanL="4"
+		labelSpanM="5"
+		labelSpanS="12"
+		breakpointL="800"
+		breakpointM="400"
+		columnsL="2"
+		columnsM="1">
+		<f:toolbar>
+			<core:Fragment
+				fragmentName="sap.i2d.lo.lib.zvchclfz.components.inspector.fragment.ShowMasterData"
+				type="XML"/>
+		</f:toolbar>
+		<f:content>
+			<core:Title
+				text="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.getSubtitleOfBOMItem'
+				}"/>
+			<Label
+				labelFor="idBOMCategory"
+				visible="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.isBOMHeaderVisible'
+				}"
+				text="{i18n>vchclf_insp_bomitem_bom_category}" />
+			<Text
+				id="idBOMCategory"
+				visible="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.isBOMHeaderVisible'
+				}"
+				text="{
+					parts: [
+						{ path: 'properties>/to_BOMHeader/BOMCategory' },
+						{ path: 'properties>/to_BOMHeader/BOMCategoryDescription' }
+					],
+					formatter: '._generalFormatter.concatenateIdAndDescription'
+				}"/>
+			<Label
+				labelFor="idBOMUsage"
+				visible="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.isBOMHeaderVisible'
+				}"
+				text="{i18n>vchclf_insp_bomitem_bom_usage}" />
+			<Text
+				id="idBOMUsage"
+				visible="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.isBOMHeaderVisible'
+				}"
+				text="{
+					parts: [
+						{ path: 'properties>/to_BOMHeader/BOMVariantUsage' },
+						{ path: 'properties>/to_BOMHeader/BOMVariantUsageDescription' }
+					],
+					formatter: '._generalFormatter.concatenateIdAndDescription'
+				}"/>
+			<Label
+				labelFor="idAlternativeBOM"
+				visible="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.isBOMHeaderVisible'
+				}"
+				text="{i18n>vchclf_insp_bomitem_alternative_bom}" />
+			<Text
+				id="idAlternativeBOM"
+				visible="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.isBOMHeaderVisible'
+				}"
+				text="{properties>/to_BOMHeader/BOMVariant}"/>
+			<Label
+				labelFor="idBOMStatus"
+				visible="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.isBOMHeaderVisible'
+				}"
+				text="{i18n>vchclf_insp_bomitem_bom_status}" />
+			<Text
+				id="idBOMStatus"
+				visible="{
+					path: 'properties>/to_BOMHeader/ComponentId',
+					formatter: '._generalFormatter.isBOMHeaderVisible'
+				}"
+				text="{
+					parts: [
+						{ path: 'properties>/to_BOMHeader/BOMStatus' },
+						{ path: 'properties>/to_BOMHeader/BOMStatusDescription' }
+					],
+					formatter: '._generalFormatter.concatenateIdAndDescription'
+				}"/>
+			<Label
+				labelFor="idBOMItemComponent"
+				text="{i18n>vchclf_insp_bomitem_component}"
+				visible="{= ${properties>/BOMComponentName} !== ''}"/>
+			<FormattedText
+				id="idBOMItemComponent"
+				visible="{= ${properties>/BOMComponentName} !== ''}"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/BOMComponentName' },
+						{ path: 'properties>/to_Super/BOMComponentName' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatValue'
+				}"/>
+			<Label
+				labelFor="idBOMItemDescription"
+				text="{i18n>vchclf_insp_bomitem_description}"/>
+			<FormattedText
+				id="idBOMItemDescription"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/ProductName' },
+						{ path: 'properties>/to_Super/ProductName' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatValue'
+				}"/>
+			<Label
+				labelFor="idBOMItemPlant"
+				text="{i18n>vchclf_insp_bomitem_plant}"/>
+			<FormattedText
+				id="idBOMItemPlant"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/Plant' },
+						{ path: 'properties>/to_Super/Plant' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatValue'
+				}"/>
+			<Label
+			    id="idBOMItemConfigurationProfileLabel"
+				labelFor="idBOMItemConfigurationProfile"
+				text="{i18n>vchclf_insp_bomitem_configprofile}"
+				visible="{
+					parts: [
+						{ path: 'properties>/IsConfigurableItem' },
+						{ path: 'properties>/to_Super/IsConfigurableItem' }
+					],
+					formatter: '._superInspectorFormatter.getValueForFlagProperty'
+				}"/>
+			<Link
+				id="idBOMItemConfigurationProfile"
+				text="{
+					parts: [
+						{ path: 'properties>/ConfigurationProfileName' },
+						{ path: 'properties>/to_Super/ConfigurationProfileName' }
+					],
+					formatter: '._superInspectorFormatter.formatValueWithoutMix'
+				}"
+				enabled="{
+					parts: [
+						{ path: 'properties>/ConfigurationProfileName' },
+						{ path: 'properties>/to_Super/ConfigurationProfileName' }
+					],
+					formatter: '._superInspectorFormatter.isNotMixedValueNotEmpty'
+				}"
+				press="onConfigurationProfilePressed"
+				visible="{
+					parts: [
+						{ path: 'properties>/IsConfigurableItem' },
+						{ path: 'properties>/to_Super/IsConfigurableItem' }
+					],
+					formatter: '._superInspectorFormatter.getValueForFlagProperty'
+				}"/>
+			<Label
+				labelFor="idBOMItemQuantity"
+				text="{i18n>vchclf_insp_bomitem_quantity}"/>
+			<FormattedText 
+				id="idBOMItemQuantity"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/Quantity' },
+						{ path: 'properties>/Unit' },
+						{ path: 'properties>/to_Super/Quantity' },
+						{ path: 'properties>/to_Super/Unit' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatQtyWithUom'
+				}"/>
+			<Label
+				labelFor="idBOMItemNumber"
+				text="{i18n>vchclf_insp_bomitem_itemnumber}"
+				visible="{= !${__viewData>/isRoot}}"/>
+			<FormattedText
+				id="idBOMItemNumber"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/ItemNumber' },
+						{ path: 'properties>/to_Super/ItemNumber' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatValue'
+				}"
+				visible="{= !${__viewData>/isRoot}}"/>
+			<Label
+				labelFor="idBOMItemCategory"
+				text="{i18n>vchclf_insp_bomitem_item_category}"
+				visible="{= !${__viewData>/isRoot}}"/>
+			<FormattedText
+				id="idBOMItemCategory"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/ItemCategoryDescription' },
+						{ path: 'properties>/to_Super/ItemCategoryDescription' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatValue'
+				}"
+				visible="{= !${__viewData>/isRoot}}"/>
+			<Label
+				labelFor="idBOMClassName"
+				text="{i18n>vchclf_insp_bomitem_class}"
+				visible="{
+					parts: [
+						{ path: 'properties>/ClassType' },
+						{ path: 'properties>/Class' },
+						{ path: 'properties>/to_Super/ClassType' },
+						{ path: 'properties>/to_Super/Class' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.isConcatenatedValueNotEmpty'
+				}"/>
+			<FormattedText
+				id="idBOMClassName"
+				visible="{
+					parts: [
+						{ path: 'properties>/ClassType' },
+						{ path: 'properties>/Class' },
+						{ path: 'properties>/to_Super/ClassType' },
+						{ path: 'properties>/to_Super/Class' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.isConcatenatedValueNotEmpty'
+				}"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/ClassType' },
+						{ path: 'properties>/Class' },
+						{ path: 'properties>/to_Super/ClassType' },
+						{ path: 'properties>/to_Super/Class' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.concatenateIdAndDescription'
+				}"/>
+			<Label
+				labelFor="idBOMItemRelevance"
+				text="{i18n>vchclf_insp_bomitem_relevance}"
+				visible="{= !${__viewData>/isRoot}}"/>
+			<FormattedText
+				id="idBOMItemRelevance"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/Relevance' },
+						{ path: 'properties>/to_Super/Relevance' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatValue'
+				}"
+				visible="{= !${__viewData>/isRoot}}"/>
+			<Label
+				labelFor="idBOMItemChangedBy"
+				text="{i18n>vchclf_insp_dependecydtl_changedby}"/>
+			<FormattedText
+				id="idBOMItemChangedBy"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/LastChangedByUser' },
+						{ path: 'properties>/LastChangedByUserDescription' },
+						{ path: 'properties>/to_Super/LastChangedByUser' },
+						{ path: 'properties>/to_Super/LastChangedByUserDescription' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.concatenateIdAndDescription'
+				}"/>
+			<Label
+				labelFor="idBOMItemChangedOn"
+				text="{i18n>vchclf_insp_dependecydtl_changedon}"/>
+			<FormattedText
+				id="idBOMItemChangedOn"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/LastChangeDate' },
+						{ path: 'properties>/to_Super/LastChangeDate' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatDate'
+				}"/>
+		</f:content>
+	</f:SimpleForm>
+	<HBox
+		alignItems="Start"
+		justifyContent="End"
+		visible="{__visibility>/navToBOMVisibility}">
+		<items>
+			<Link
+				id="idBOMItemLink"
+				text="{i18n>vchclf_insp_bomitem_nav_to_bom}"
+				class="sapUiTinyMargin"
+				press="onNavigateToBOM"/>
+		</items>
+	</HBox>
+</mvc:View>

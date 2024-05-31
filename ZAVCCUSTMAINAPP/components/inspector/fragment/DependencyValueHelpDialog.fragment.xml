@@ -1,0 +1,60 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<vh:ValueHelpDialog
+	xmlns="sap.m"
+	xmlns:vh="sap.ui.comp.valuehelpdialog"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core"
+	title="{i18n>vchclf_trace_objdep_value_help_title}"
+	descriptionKey="ObjectDependencyName"
+	key="ObjectDependency"
+	tokenDisplayBehaviour="descriptionOnly"
+	ok="onOkPressed"
+	cancel="onCancelPressed">
+	<vh:filterBar>
+		<fb:FilterBar
+			search="onSearchPressed"
+			advancedMode="true">
+			<fb:filterGroupItems>
+				<fb:FilterGroupItem
+					name="objectdependencyFilter"
+					label="{i18n>vchclf_trace_objdep_value_help_filter_objdep}"
+					groupName="objectdependencyValueHelpFilterGroup">
+					<fb:control>
+						<Input
+							id="idDependencyNameFilter"
+							submit="onSearchPressed"
+							name="objectdependencyValueHelpFilterChar"
+							value="{columns>/filters/name}"/>
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem
+					name="objectdependencyDescFilter"
+					label="{i18n>vchclf_trace_objdep_value_help_filter_objdepdesc}"
+					groupName="objectdependencyValueHelpFilterGroup">
+					<fb:control>
+						<Input
+							id="idDependencyDescFilter"
+							submit="onSearchPressed"
+							name="objectdependencyValueHelpFilterDesc"
+							value="{columns>/filters/description}"/>
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem
+ 					name="isContainedInConfignModel"
+ 					label="{i18n>vchclf_trace_generic_value_help_in_conf_model_label}"
+ 					groupName="objectdependencyValueHelpFilterGroup">
+ 					<fb:control>
+						<CheckBox
+							id="idIsContainedInConfignModel"
+							selected="{columns>/filters/isContainedInConfignModel}"
+							select="onSearchPressed"/>
+ 					</fb:control>
+ 				</fb:FilterGroupItem>
+			</fb:filterGroupItems>
+		</fb:FilterBar>
+	</vh:filterBar>
+</vh:ValueHelpDialog>

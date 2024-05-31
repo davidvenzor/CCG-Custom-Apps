@@ -1,0 +1,98 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View 
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.ConfProfileProperties">
+	<f:SimpleForm
+		maxContainerCols="1"
+		minWidth="300"
+		editable="false"
+		layout="ResponsiveGridLayout"
+		labelSpanXL="4"
+		labelSpanL="4"
+		labelSpanM="5"
+		labelSpanS="12"
+		breakpointL="800"
+		breakpointM="400"
+		columnsL="2"
+		columnsM="1">
+		<f:content>
+			<core:Title
+				text="{i18n>vchclf_insp_common_basic_info_title}"/>
+			<Label
+				labelFor="idConfProfileName"
+				text="{i18n>vchclf_insp_dependecydtl_name}"/>
+			<Text
+				id="idConfProfileName"
+				text="{properties>/ConfigurationProfileName}"/>
+			<Label
+				labelFor="idMaterial"
+				text="{i18n>vchclf_insp_properties_conf_profile_material}"/>
+			<Text
+				id="idMaterial"
+				text="{properties>/Product}"/>
+			<Label
+				labelFor="idConfProfileStatus"
+				text="{i18n>vchclf_insp_dependecydtl_status}"/>
+			<ObjectStatus
+				id="idConfProfileStatus"
+				class="sapUiNoMargin"
+				text="{
+					path:'properties>/ConfigurationProfileStatus',
+					formatter:'._formatter.statusTextForConfProfileFormatter'
+					}"
+				state="{
+					path:'properties>/ConfigurationProfileStatus',
+					formatter:'._generalFormatter.statusFormatter'
+					}" />
+			<Label
+				labelFor="idProcess"
+				text="{i18n>vchclf_insp_properties_conf_profile_process}"/>
+			<Text
+				id="idProcess"
+				text="{
+					path:'properties>/ConfigurationProfileProcess',
+					formatter:'._formatter.processTextFormatter'
+					}"/>
+			<Label
+				labelFor="idBOMExplosion"
+				text="{i18n>vchclf_insp_properties_conf_profile_bom_exp}"/>
+			<Text
+				id="idBOMExplosion"
+				text="{
+					path:'properties>/BOMExplosionLevel',
+					formatter:'._formatter.bomExplosionLevelFormatter'
+					}"/>
+			<Label
+				labelFor="idConfProfileChangedBy"
+				text="{i18n>vchclf_insp_dependecydtl_changedby}"/>
+			<Text
+				id="idConfProfileChangedBy"
+				text="{
+				parts: [
+					{ path: 'properties>/UserDescription' },
+					{ path: 'properties>/LastChangedByUser' }
+					],
+				formatter: '._generalFormatter.changedByFormatter'
+				}"/>
+			<Label
+				labelFor="idConfProfileChangedOn"
+				text="{i18n>vchclf_insp_dependecydtl_changedon}"/>
+			<Text
+				id="idConfProfileChangedOn" 
+				text="{
+				path: 'properties>/LastChangeDate',
+				type: 'sap.ui.model.type.Date',
+				formatOptions: {
+					style: 'medium'
+					}
+				}"/>
+		</f:content>
+	</f:SimpleForm>
+</mvc:View>

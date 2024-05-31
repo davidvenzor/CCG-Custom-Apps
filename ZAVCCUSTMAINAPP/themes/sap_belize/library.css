@@ -1,0 +1,4 @@
+.sapVchclfContainsDefaults.sapMInputBase.sapMInput,.sapVchclfContainsDefaults[role=combobox]{border-left-color:#427cac !important;border-left-style:solid !important;border-left-width:4px !important}.sapContrast.sapVchclfContainsDefaults.sapMInputBase.sapMInput,.sapContrast .sapVchclfContainsDefaults.sapMInputBase.sapMInput,.sapContrast.sapVchclfContainsDefaults[role=combobox],.sapContrast .sapVchclfContainsDefaults[role=combobox]{border-left-color:#91c8f6 !important;border-left-style:solid !important;border-left-width:4px !important;}
+
+/* Inline theming parameters */
+#sap-ui-theme-sap\.i2d\.lo\.lib\.zvchclfz{background-image:url('data:text/plain;utf-8,%7B%22default%22%3A%7B%7D%2C%22scopes%22%3A%7B%22sapContrast%22%3A%7B%7D%7D%7D')}

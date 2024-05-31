@@ -1,0 +1,149 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout.form" xmlns:ui="sap.ui.table">
+	<Dialog id="colDialog" contentWidth="1400px" contentHeight="600px" title="Collectibles">
+		<content>
+			<l:SimpleForm editable="true">
+				<l:content>
+					<VBox>
+						<FlexBox id="_IDGenFlexBox1" height="80px" alignItems="Start" justifyContent="Start" class="cllblflexgrad1">
+							<VBox>
+								<HBox>
+									<Label text="Material" class="clLabelViewcol"/>
+									<Input id="idMaterialf" value="{oMaraTempModel>/Matnr}" width="130px" class="clInputFieldc" submit="handleGoDlogPress"/>
+									<!--<Input id="idSetCodef" class="clInputFieldc" type="Text" enabled="true" width="130px" editable="true"-->
+									<!--       showValueHelp="true"	valueHelpRequest="handleValueHelp"/>									-->
+									<Label text="Maker Text" class="clLabelViewcol sapUiSmallMarginBegin"/>
+									<ComboBox id="idInputManuff" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCsgMakerCode}" width="130px" items="{MakerModel>/}"
+										change="handleGoDlogPress" class="clInputFieldc">
+										<items>
+											<core:ListItem text="{MakerModel>CsgCardMakerName}" additionalText="{MakerModel>CsgCardMakerCode}" key="{MakerModel>CsgCardMakerName}"/>
+										</items>
+									</ComboBox>
+									<Label text="Set Year" class=" clLabelViewcol sapUiSmallMarginBegin"/>
+									<ComboBox id="idInputYearf" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCardYear}" width="130px" items="{YearModel>/}"
+										change="handleGoDlogPress" class="clInputFieldc">
+										<items>
+											<core:ListItem text="{YearModel>ZCardYear}" key="{YearModel>ZCardYear}"/>
+										</items>
+									</ComboBox>
+									<Label text="Attribute1" class=" sapUiSmallMarginBegin clLabelViewcol"/>
+									<Input id="idInputAttr1f" value="{oMaraTempModel>/ZCsgCardAttrib1Descr}" width="130px" class="clInputFieldc" submit="handleGoDlogPress"/>
+								</HBox>
+								<HBox class="sapUiTinyMarginTop">
+									<Label text="Sports Text" class="clLabelViewcol"/>
+									<ComboBox id="idSportsCardf" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCsgSportsCode}" width="130px"
+										items="{SportsCardModel>/}" change="handleGoDlogPress" class="clInputFieldc">
+										<items>
+											<core:ListItem text="{SportsCardModel>CsgSportName}" additionalText="{SportsCardModel>CsgSportCode}" key="{SportsCardModel>CsgSportName}"/>
+										</items>
+									</ComboBox>
+									<Label text="Set Text" class="sapUiSmallMarginBegin clLabelViewcol"/>
+									<ComboBox id="idSetCodef" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCsgSetCode}" width="130px" items="{SetCodeModel>/}"
+										change="handleGoDlogPress" class="clInputFieldc">
+										<items>
+											<core:ListItem text="{SetCodeModel>CsgCardSetName}" additionalText="{SetCodeModel>CsgCardSetCode}" key="{SetCodeModel>CsgCardSetName}"/>
+										</items>
+									</ComboBox>
+									<Label text="Player" class=" sapUiSmallMarginBegin clLabelViewcol"/>
+									<Input id="idPlayerf" value="{oMaraTempModel>/ZPlayer}" width="130px" class="clInputFieldc" submit="handleGoDlogPress"/>
+									<!--<Input id="idSetCodef" value="{SetCodeModel>CsgCardSetName}" showValueHelp="true" showSuggestion="true" width="130px" class="clInputFieldc"-->
+									<!--	valueHelpOnly="true" valueHelpRequest=".handleAddTaskButtonPressed"-->
+									<!--	suggestionItems="{ path: 'SetCodeModel>/', sorter: { path: 'CsgCardSetCode' } }">-->
+									<!--	<suggestionItems>-->
+									<!--		<core:Item key="{SetCodeModel>CsgCardSetName}"/>-->
+									<!--	</suggestionItems>-->
+									<!--</Input>-->
+									<Label text="Attribute2" class=" sapUiSmallMarginBegin clLabelViewcol"/>
+									<Input id="idInputAttr2f" value="{oMaraTempModel>/ZCsgCardAttrib2Descr}" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress"/>
+									<Button text="Refresh" press="handleRefreshPress" width="6rem" class="sapUiLargeMarginBegin clGridFooterBtncol"/>
+								</HBox>
+							</VBox>
+						</FlexBox>
+						<ui:Table id="idGradeTablef" selectionMode="Single" rows="{CollectibleModel>/}" paste="onPaste" alternateRowColors="true"
+							ariaLabelledBy="title" class="sapUiTinyMarginTop sapUiTinyMarginBottom" rowSelectionChange="action" visibleRowCount="8">
+							<!--<ui:extension>-->
+							<!--	<OverflowToolbar style="Clear">-->
+							<!--		<Title id="title" text="Products"/>-->
+							<!--		<ui:ToolbarSpacer/>-->
+							<!--		<Button icon="sap-icon://decline" tooltip="Clear all filters" press="clearAllFilters"/>-->
+							<!--<ToolbarSeparator/>-->
+							<!--		<SearchField placeholder="Filter" value="{ui>/globalFilter}" search="filterGlobally" width="15rem"/>-->
+							<!--	</OverflowToolbar>-->
+							<!--</ui:extension>-->
+							<ui:columns>
+								<ui:Column width="8em">
+									<Label text="Material"/>
+									<ui:template>
+										<Text text="{CollectibleModel>Matnr}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<!--<ui:Column width="8em">-->
+								<!--	<Label text="Material Description"/>-->
+								<!--	<ui:template>-->
+								<!--		<Text text="{CollectibleModel>Maktx}" wrapping="false"/>-->
+								<!--	</ui:template>-->
+								<!--</ui:Column>-->
+								<ui:Column width="8em">
+									<Label text="Sports Text"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZSportscodeText}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Maker Text"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZMakercodeText}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Set Text"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZCardsetText}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Set Year"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZCardYear}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Player List"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZSubjectDescription}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="12em">
+									<Label text="Attribute1"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZCsgCardAttrib1Descr}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Attribute2"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZCsgCardAttrib2Descr}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Prnt Flag"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZPrntdAutographFlag}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<!--<HBox>-->
+							<Button text="OK" press="handleOkDlogPress" width="8rem" class="clGridFooterBtncol sapUiLargeMarginBegin sapUiSmallMarginEnd"/>
+							<Button text="Close" width="8rem" press="onCloseDialog" class="sapUiTinyMarginBegin sapUiSmallMarginEnd clGridFooterBtncol"/>
+							<!--</HBox>-->
+						</Toolbar>
+					</VBox>
+				</l:content>
+			</l:SimpleForm>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

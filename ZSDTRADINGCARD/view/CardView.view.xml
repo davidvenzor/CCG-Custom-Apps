@@ -1,0 +1,1130 @@
+<mvc:View controllerName="ccgtradingcards.controller.CardView" xmlns:mvc="sap.ui.core.mvc" xmlns:fb="sap.ui.comp.filterbar" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns:core="sap.ui.core">
+    <Page id="page" showHeader="false">
+		<dependents>
+			<!-- <core:CommandExecution id="CE_PRE" command="Previous1" enabled="true" execute="onPrevious"/>
+			<core:CommandExecution id="CE_NEXT" command="Next1" enabled="true" execute=".onNext"/> -->
+			<core:CommandExecution id="CE_Collect" command="Collect" enabled="true" execute=".onValueHelpRequested"/>
+			<core:CommandExecution id="CE_Exit" command="Exits" enabled="true" execute="onExitCust"/>
+			<core:CommandExecution id="CE_Grade" command="Grade" enabled="true" execute="onExit"/>
+			<core:CommandExecution id="CE_Vlabel" command="Vlabel" enabled="true" execute="onPrintLabel"/>
+			<core:CommandExecution id="CE_PrBox" command="PrBox" enabled="true" execute="onPrintBox"/>
+			<core:CommandExecution id="CE_cancel" command="cancel" enabled="true" execute="onCancel"/>
+		</dependents>
+        <dependents>
+			<core:CommandExecution id="SC_CE_PRE" command="Previous" enabled="true" execute="SC_onPrevious"/>
+			<core:CommandExecution id="SC_CE_NEXT" command="Next" enabled="true" execute=".SC_onNext"/>
+			<core:CommandExecution id="SC_CE_Collect" command="Collect" enabled="true" execute=".SC_onValueHelpRequested"/>
+			<core:CommandExecution id="SC_CE_Exit" command="Exits" enabled="true" execute="SC_onExitCust"/>
+			<core:CommandExecution id="SC_CE_Grade" command="Grade" enabled="true" execute="onExit"/>
+			<core:CommandExecution id="SC_CE_Vlabel" command="Vlabel" enabled="true" execute="SC_onPrintLabel"/>
+			<core:CommandExecution id="SC_CE_PrBox" command="PrBox" enabled="true" execute="SC_onPrintBox"/>
+			<core:CommandExecution id="SC_CE_cancel" command="cancel" enabled="true" execute="SC_onCancel"/>
+		</dependents>    
+        <content>
+            <FlexBox id="_IDGenFlexBox4" height="40px" alignItems="Start" justifyContent="Start" class="cllblflexgrad1 clPageformat1">
+                <Label id="_IDGenLabel51f" text="{i18n>lblSalesOrd}" width="100px" class="sapUiTinyMarginTop sapUiTinyMarginBegin clLabelView" />
+                <ComboBox id="idSalesOrder" showSecondaryValues="true" width="150px" items="{InitModel>/}" change="onLineitemFetch">
+                    <items>
+                        <core:ListItem id="_IDGenListItem10" text="{InitModel>Vbeln}" />
+                    </items>
+                </ComboBox>
+                <Label id="_IDGenLabel52f" text="{i18n>lblLineItm}" width="100px" class="sapUiTinyMarginTop sapUiTinyMarginBegin clLabelView" />
+                <ComboBox id="idLineItem" showSecondaryValues="true" width="150px" items="{path: 'olineItem>/',length : '500'}">
+                    <items>
+                        <core:ListItem id="_IDGenListItem11f" text="{olineItem>ExtRefItemId}" />
+                    </items>
+                </ComboBox>
+                <Button id="idSalesOrderDisplay" text="{i18n>btnFetchInit}" type="Accept" press="onFetchDetails" class=" sapUiMediumMarginBegin clInitBtn" />
+                <Button id="idRefresh" text="{i18n>btnClearInit}" type="Default" press="onRefreshSo" class=" sapUiTinyMarginBegin clInitBtn" />
+            </FlexBox>
+            <!-- <Panel id="IDPan1" class="clPan1css">
+                <Label id="_IDGenLabel1" text="{i18n>lblSalesOrd}" class="sapUiTinyMarginTop sapUiTinyMarginEnd clLabelView" />
+                <ComboBox id="idSalesOrder" showSecondaryValues="true" width="150px" items="{InitModel>/}" change="onLineitemFetch" class="sapUiSmallMarginEnd clinpfield">
+                    <items>
+                        <core:ListItem id="_IDGenListItem1" text="{InitModel>Vbeln}" />
+                    </items>
+                </ComboBox>
+                <Label id="_IDGenLabel2" text="{i18n>lblLineItm}" class="sapUiTinyMarginTop sapUiTinyMarginEnd clLabelView" />
+                <ComboBox id="idLineItem" showSecondaryValues="true" width="150px" items="{InitModel>/}" class="sapUiSmallMarginEnd clinpfield">
+                    <items>
+                        <core:ListItem id="_IDGenListItem2" text="{InitModel>Posnr}" />
+                    </items>
+                </ComboBox>
+                <Button id="idSalesOrderDisplay" text="{i18n>btnFetchInit}" type="Emphasized" press="onFetchDetails" class="clInitBtn" />
+                <Button id="idRefresh" text="{i18n>btnClearInit}" press="onRefreshSo" type="Emphasized" class="clInitBtn sapUiTinyMarginBegin" />
+            </Panel> -->
+            <!-- <FlexBox id="TC_HdrTbr" height="50px" alignItems="Start" justifyContent="End" visible="false" class="cllblflexgrad1"> -->
+            <Toolbar id="TC_HdrTbr" visible="false" height="50px">
+                <Label id="TC_IDGenLabel51"  text="" class="cllblflexgrad sapUiSmallMarginTop sapUiTinyMarginEnd sapUiMediumMarginBegin" />
+                <!-- <Button id="idbtngrade" text="{MainModel>/Grade}-{MainModel>/KeyComment1}" type="Reject" class="sapUiTinyMarginEnd sapUiTinyMarginTop " /> -->
+                <ToolbarSpacer />
+                <Label id="_IDGenLabel7" text="Sales Order:" class="cllblflexgrad sapUiSmallMarginBegin sapUiTinyMarginEnd sapUiSmallMarginTop " />
+                <Text id="idGradSales" text="{MainModel>/Vbeln}" class="clGradInputField sapUiSmallMarginTop sapUiSmallMarginEnd clLabelChkBox " />
+                <Label id="_IDGenLabel8" text="Line Item No :" class="cllblflexgrad sapUiTinyMarginEnd sapUiSmallMarginTop " />
+                <Text id="idGradLine" text="{MainModel>/ExtRefItemId}" width="70px" class="clGradInputField sapUiSmallMarginTop clLabelChkBox " />
+                <Label id="_IDGenLabel5" text="Certification No:" class="cllblflexgrad sapUiSmallMarginTop sapUiTinyMarginEnd " />
+                <Text id="idTxtcollid" text="{MainModel>/Certificateno}" width="150px" class="clGradInputField sapUiSmallMarginTop clCollIdtext " />
+            </Toolbar>
+            <!-- </FlexBox> -->
+            <!-- <FlexBox id="SC_HdrTbr" height="50px" alignItems="Start" justifyContent="End" visible="false" class="cllblflexgrad1"> -->
+			<Toolbar id="SC_HdrTbr" visible="false" height="50px">
+                <Label id="SC_IDGenLabel6" text="" class="cllblflexgrad sapUiSmallMarginTop sapUiTinyMarginEnd sapUiMediumMarginBegin"/>
+				<!-- <Button id="SC_idbtngrade" text="{SC_MaraDataModel>/Grade}-{SC_MaraDataModel>/ErrorMessage}" type="Reject" class="clGradInputField2 sapUiSmallMarginTop sapUiSmallMarginEnd clLabelChkBox"/> -->
+				<ToolbarSpacer/>
+				<Label id="SC_IDGenLabel7" text="{i18n>lblSalesOrd}" class="cllblflexgrad sapUiSmallMarginBegin sapUiTinyMarginEnd sapUiSmallMarginTop"/>
+				<Text id="SC_idGradSales" text="" class="clGradInputField sapUiSmallMarginTop sapUiSmallMarginEnd clLabelChkBox"/>
+				<Label id="SC_IDGenLabel8" text="{i18n>lblLineItem}" class="cllblflexgrad sapUiTinyMarginEnd sapUiSmallMarginTop "/>
+				<Text id="SC_idGradLine" text="{SC_MaraDataModel>/ExtRefItemId}" width="70px" class="clGradInputField sapUiSmallMarginTop clLabelChkBox"/>
+				<Text id="SC_idGradLine1" text="{SC_MaraDataModel>/LvPosnr}" width="70px" visible="false" class="clGradInputField sapUiSmallMarginTop clLabelChkBox"/>
+				<Label id="SC_IDGenLabel5" text="{i18n>lblCertNo}" class="cllblflexgrad sapUiSmallMarginTop sapUiTinyMarginEnd"/>
+				<Text id="SC_idTxtcollid" text="{SC_MaraDataModel>/CertificateNo}" width="150px" class="clGradInputField sapUiSmallMarginTop clCollIdtext"/>
+			</Toolbar>
+            <!-- </FlexBox> -->
+
+            <Panel id="tradingCardIdPanel" visible="false">
+
+            <f:Card id="_IDGenBlockLayoutCell3" class="sapUiTinyMargin sapUiSmallMarginBegin clPageformat" width="600px" height="320px">
+                <!-- <f:header>
+                    <card:Header id="_IDGenHeader33" title="Grading Details"  subtitle=" " iconSrc="sap-icon://my-sales-order" />
+                </f:header> -->
+                <f:content>
+                    <l:HorizontalLayout id="IDGenTitle1" class="sapUiTinyMarginBegin">
+                        <l:VerticalLayout id="_IDGenVerticalLayout3" class="sapUiTinyMarginEnd sapUiTinyMarginBegin">
+                            <Title id="_IDGenTitle1" text="Manual Grading" class="sapUiSmallMarginBottom sapUiLargeMarginBegin sapUiTinyMarginTop clGradingTitle" />
+                            <l:HorizontalLayout>
+                                <Label text="" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                
+                                <Toolbar class="ToolbarGrde">
+                                <Label id="idbtngrade" width="115px" design="Bold" text="{MainModel>/Grade}-{MainModel>/Gradedec}" class="sapUiTinyMarginEnd sapUiTinyMarginTop " />
+                                </Toolbar>
+                                
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout2">
+                                <Label id="_IDGenLabel011" text="Grade" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idGrade" showSecondaryValues="true" selectedKey="{MainModel>/Gradedec}" items="{GradeSetModel>/}" change="OnGradeSel_TC" selectionChange="OnGradeSel" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem3" text="{GradeSetModel>CharValue}" additionalText="{GradeSetModel>DescrCval}" key="{GradeSetModel>DescrCval}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout8">
+                                <Label id="_IDGenLabel017" text="Auto Grade" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idAutoGrade" showSecondaryValues="true" selectedKey="{MainModel>/ZVcAutograph}" items="{AutoGradeModel>/}" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem9" text="{AutoGradeModel>CharValue}" additionalText="{AutoGradeModel>DescrCval}" key="{AutoGradeModel>CharValue}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout3">
+                                <Label id="_IDGenLabel012" text="No Grade" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idNoGrade" showSecondaryValues="true" selectedKey="{MainModel>/Nograde}" items="{NoGradeModel>/}" change="onNoGradeChange" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem4" text="{NoGradeModel>DescrCval}" additionalText="{NoGradeModel>CharValue}" key="{NoGradeModel>CharValue}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                             
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout4" visible="false">
+                                <Label id="_IDGenLabel013" text="Centering" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idCenter" showSecondaryValues="true" selectedKey="{MainModel>/Center}" items="{CenterModel>/}" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem5" text="{CenterModel>DescrCval}" additionalText="{CenterModel>CharValue}" key="{CenterModel>CharValue}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout5" visible="false">
+                                <Label id="_IDGenLabel014" text="Corner" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idCorner" showSecondaryValues="true" selectedKey="{MainModel>/Corner}" items="{CornerModel>/}" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem6" text="{CornerModel>DescrCval}" additionalText="{CornerModel>CharValue}" key="{CornerModel>CharValue}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout6" visible="false">
+                                <Label id="_IDGenLabel015" text="Edge" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idEdge" showSecondaryValues="true" selectedKey="{MainModel>/Edge}" items="{EdgeModel>/}" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem7" text="{EdgeModel>DescrCval}" additionalText="{EdgeModel>CharValue}" key="{EdgeModel>CharValue}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout7" visible="false">
+                                <Label id="_IDGenLabel016" text="Surface" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idSurface" showSecondaryValues="true" selectedKey="{MainModel>/Surface}" items="{SurfaceModel>/}" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem8" text="{SurfaceModel>DescrCval}" additionalText="{SurfaceModel>CharValue}" key="{SurfaceModel>CharValue}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHbox10">
+                                <Label id="_IDGenLabel18" text="Pedigree" class="sapUiTinyMarginTop clLabelView" />
+                                <TextArea id="idInputNota" value="{MainModel>/Pedigree}" width="140px" height="30px" class="clInputField" />
+                            </l:HorizontalLayout>
+                            <!-- <l:HorizontalLayout id="_IDGenHorizontalLayout21">
+                                <CheckBox id="idPerChk" select="onPerSelect" class="sapUiTinyMarginTop"/>
+                                <Label id="_IDGenLabel018" text="Perfect 10" class="sapUiSmallMarginTop clLabelChkBox" />
+                            </l:HorizontalLayout> -->
+                            <l:HorizontalLayout id="TC_Bump">
+                                	<Label text="{i18n>grdVwlblBump}" class="sapUiTinyMarginTop clLabelView"/>
+										<ComboBox id="TC_idBump" selectedKey="{MainModel>/Bump}" showSecondaryValues="true" width="140px" items="{SC_BumpModel>/}"
+											class=" clInputField">
+											<items>
+												<core:ListItem text="{SC_BumpModel>DescrCval}" additionalText="{SC_BumpModel>CharValue}" key="{SC_BumpModel>CharValue}"/>
+											</items>
+										</ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout21p">
+                                <CheckBox id="idFinish" select="onGradCompleteSelect" class="sapUiTinyMarginTop" />
+                                <Label id="_IDGenLabel19" text="Grading Complete" class="sapUiSmallMarginTop clLabelChkBox" />
+                            </l:HorizontalLayout>
+                           <!--  <l:HorizontalLayout id="_IDGenHorizontalLayout21i">
+								<CheckBox id="idPristineChk" select="TC_onPristineSelect" class="sapUiTinyMarginTop"/>
+								<Label text="{i18n>grdVwlblPristinef10}" class="sapUiSmallMarginTop "/>
+							</l:HorizontalLayout>     -->  
+                            <!-- <l:HorizontalLayout id="_IDGenHorizontalLayout8">
+                                <Label id="_IDGenLabel017" text="Autograph Grade" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idAutoGrade" showSecondaryValues="true" selectedKey="{MainModel>/AutoGrade}" items="{AutoGradeModel>/}" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem9" text="{AutoGradeModel>DescrCval}" additionalText="{AutoGradeModel>CharValue}" key="{AutoGradeModel>CharValue}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout9">
+                                <Label id="idCrossOverl" text="Cross Over" class="sapUiTinyMarginTop clLabelView" visible="false" />
+                                <Input id="idCrossOver" value="{MaraDataModel>/VcScCrossover}" class="clInputField1" visible="false" />
+                            </l:HorizontalLayout> -->
+                        </l:VerticalLayout>
+                        <l:VerticalLayout id="_IDGenVerticalLayout4" class="sapUiTinyMarginEnd sapUiMediumMarginBegin">
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout10">
+                                <Title id="_IDGenTitle2" text="AI Grading" class="sapUiSmallMarginBottom sapUiLargeMarginBegin sapUiTinyMarginTop clGradingTitle" />
+                                <Text id="_IDGenText1" text=" " class="sapUiMediumMarginBegin" />
+                            </l:HorizontalLayout>
+                            <!-- <l:HorizontalLayout id="_IDGenHorizontalLayout21">
+                                <CheckBox id="idPerChk" select="onPerSelect" />
+                                <Label id="_IDGenLabel018" text="Perfect 10" class="sapUiTinyMarginTop clLabelChkBox" />
+                                <CheckBox id="idFinish" select="onGradCompleteSelect" class="sapUiTinyMarginBegin" />
+                                <Label id="_IDGenLabel19" text="Grading Complete" class="sapUiTinyMarginTop clLabelChkBox" />
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout>
+										<CheckBox id="idPristineChk" select="TC_onPristineSelect" class="sapUiTinyMarginTop "/>
+										<Label text="{i18n>grdVwlblPristinef10}" class="sapUiSmallMarginTop "/>
+							</l:HorizontalLayout> -->
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout13">
+                                <Label id="_IDGenLabel20" text="Centering" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idAiCenter" value="{MainModel>/ScAiSubgradeCentre}" width="110px" class="clInputField11" editable="false" />
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout14">
+                                <Label id="_IDGenLabel21" text="Corner" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idAiCorner" value="{MainModel>/ScAiSubgradeCorner}" width="110px" class="clInputField11" editable="false" />
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout15">
+                                <Label id="_IDGenLabel22" text="Edge" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idAiEdge" value="{MainModel>/ScAiSubgradeEdge}" width="110px" class="clInputField11" editable="false" />
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout16">
+                                <Label id="_IDGenLabel23" text="Surface" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idAiSurface" value="{MainModel>/ScAiSubgradeSurface}" width="110px" class="clInputField11" editable="false" />
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout17">
+                                <Label id="_IDGenLabel24" text="AI Auto Grade" width="100px" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idAiAutoGrade" value="{MainModel>/ScAiSubgradeAuto}" width="110px" class="clInputField11" editable="false" />
+                            </l:HorizontalLayout>
+                        </l:VerticalLayout>
+                    </l:HorizontalLayout>
+                </f:content>
+            </f:Card>
+
+            <f:Card id="_IDGenCard1" class="sapUiTinyMargin clPageformat" width="870px" height="320px">
+                <!-- <f:header>
+                    <card:Header id="_IDGenHeader1" title="Collectible Details" subtitle=" " iconSrc="sap-icon://form" />
+                </f:header> -->
+                <f:content>
+                    <l:VerticalLayout id="_IDGenHbox3" class="sapUiSmallMarginBegin">
+                        <!-- <Title id="_IDGenTitleCol" text="Collectible Details" class="sapUiSmallMarginBottom sapUiLargeMarginBegin sapUiTinyMarginTop clGradingTitle" /> -->
+                        <l:HorizontalLayout id="_IDGenHbox3c" class="sapUiSmallMarginBegin">
+                            <l:VerticalLayout id="_IDGenHbox1" class="sapUiSmallMarginBegin sapUiSmallMarginBottom">
+                                <!-- <l:HorizontalLayout id="_IDGenHbox1" class="sapUiSmallMarginBegin"> -->
+                                <Label id="_IDGenLabel9q" text="Collectible ID" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idMatnr"      value="{=parseInt(${MainModel>/Matnr})}" width="160px" class="clInputField" editable="true" showValueHelp="true"
+											valueHelpRequest="onValueTCCollectable"/>                                
+
+                                <Label id="_IDGenLabel9" text="Game" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idGameCode"   value="{MainModel>/Gamedescription}" width="160px" class="clInputField" editable="false" />
+                                <!-- </l:HorizontalLayout> -->
+                                <!-- <l:HorizontalLayout id="_IDGenHbox2" class="sapUiSmallMarginBegin"> -->
+                                <Label id="_IDGenLabel10" text="Language" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idInputLangCode" value="{MainModel>/Langdescription}" width="160px" class="clInputField" editable="false" />
+                                <!-- </l:HorizontalLayout>
+                        <l:HorizontalLayout id="_IDGenHbox3" class="sapUiSmallMarginBegin"> -->
+                                <Label id="_IDGenLabel11" text="Set" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idSetCode" value="{MainModel>/Setdescription}" width="160px" class="clInputField" editable="false" />
+                                <!-- </l:HorizontalLayout>
+                        <l:HorizontalLayout id="_IDGenHbox4" class="sapUiSmallMarginBegin"> -->
+                                <Label id="_IDGenLabel12" text="Series" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idInputSeries" value="{MainModel>/Series}" width="160px" class="clInputField" editable="false" />
+                                <!-- </l:HorizontalLayout>
+                        <l:HorizontalLayout id="_IDGenHbox5" class="sapUiSmallMarginBegin"> -->
+                            </l:VerticalLayout>
+                            <l:VerticalLayout id="_IDGenHbox4" class="sapUiSmallMarginBegin">
+                                <!-- </l:HorizontalLayout>
+                        <l:HorizontalLayout id="_IDGenHbox6" class="sapUiSmallMarginBegin"> -->
+                                <Label id="_IDGenLabel13" text="Card Name" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idCardName" value="{MainModel>/CardName}" width="160px" class="clInputField" editable="false" />
+                                                  
+                                <Label id="_IDGenLabel14" text="Card Number" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idCollectNum" value="{MainModel>/CollectorNum}" width="160px" class="clInputField" editable="false" />
+                                <!-- </l:HorizontalLayout>
+                        <l:HorizontalLayout id="_IDGenHbox7" class="sapUiSmallMarginBegin"> -->
+                                <Label id="_IDGenLabel15" text="Variant 1" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idInputVariantCd1" value="{MainModel>/Variant1desc}" width="160px" class="clInputField" editable="false" />
+                                <!-- </l:HorizontalLayout>
+                        <l:HorizontalLayout id="_IDGenHbox8" class="sapUiSmallMarginBegin"> -->
+                                <Label id="_IDGenLabel16" text="Variant 2" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idInputVariantCd2" value="{MainModel>/Variant2desc}" width="160px" class="clInputField" editable="false" />
+                                <!-- </l:HorizontalLayout>
+                        <l:HorizontalLayout id="_IDGenHbox9" class="sapUiSmallMarginBegin"> -->
+                                <Label id="_IDGenLabel17" text="Rarity" class="sapUiTinyMarginTop clLabelView" />
+                                <Input id="idInputRarity" value="{MainModel>/Raritydescription}" width="160px" class="clInputField" editable="false" />
+                                <!-- </l:HorizontalLayout>
+                        <l:HorizontalLayout id="_IDGenHbox10" class="sapUiSmallMarginBegin"> -->
+                                <!-- <Label id="_IDGenLabel18" text="Pedigree" class="sapUiTinyMarginTop clLabelView" />
+                                <TextArea id="idInputNota" value="{MainModel>/Pedigree}" width="160px" height="30px" class="clInputField" /> -->
+                                <!-- </l:HorizontalLayout> -->
+                            </l:VerticalLayout>
+                             <l:VerticalLayout id="_IDGenHbox1q" class="sapUiSmallMarginBottom">
+                            <l:HorizontalLayout id="_IDGenVerticalLayout5" class="sapUiMediumMarginBegin sapUiTinyMarginTop sapUiMediumMarginEnd">
+                                <Image id="idFrontUrl"  height="232px" width="220px" densityAware="false" />
+                                <Image id="idBackUrl"  height="232px" width="220px" densityAware="false" class="sapUiTinyMarginBegin" />
+                            </l:HorizontalLayout>
+							<l:HorizontalLayout id="_IDGenHbox1r" class="sapUiLargeMarginBottom sapUiSmallMarginBegin">
+                                <l:VerticalLayout>
+                                <Label  text="Year"/>
+                                <Input id="idInputYear" value="{MainModel>/Aicenter}" width="160px" class="clInputField" editable="false" />
+                                </l:VerticalLayout>
+								<Button id="idMoreImage" text="More Images.." type="Accept" width="130px" class="sapUiSmallMarginTop sapUiSmallMarginBegin clBtnMoreImage" press="SC_onMoreImages"/>
+							</l:HorizontalLayout>                            
+                            </l:VerticalLayout>
+                        </l:HorizontalLayout>
+                    </l:VerticalLayout>
+                </f:content>
+            </f:Card>
+
+            <!-- <f:Card id="_IDGenCard2" class="sapUiTinyMargin" width="600px" height="430px">
+                <f:header>
+                    <card:Header id="_IDGenHeader2" title="Collectible Images" subtitle=" " iconSrc="sap-icon://card" />
+                </f:header>
+                <f:content>
+                    <l:HorizontalLayout id="_IDGenVerticalLayout5" class="sapUiMediumMarginBegin sapUiMediumMarginTop sapUiMediumMarginEnd">
+                        <Image id="_IDGenImage1" src="https://ccg-imaging-cgc-comics-production.s3.amazonaws.com/5dd43eaf-18af-4ced-86be-3ebdba50b0e6/CGC4092222-002_REV@500x688.jpg" height="280px" width="250px" densityAware="false" />
+                        <Image id="_IDGenImage2" src="https://ccg-imaging-cgc-comics-production.s3.amazonaws.com/5dd43eaf-18af-4ced-86be-3ebdba50b0e6/CGC4092222-002_REV@500x688.jpg" height="280px" width="250px" densityAware="false" class="sapUiSmallMarginBegin" />
+                    </l:HorizontalLayout>
+                </f:content>
+            </f:Card> -->
+
+            <f:Card id="_IDGenBlockLayoutCell2" class=" clPageformat sapUiTinyMargin sapUiSmallMarginBegin" width="600px" height="370px">
+                <!-- <f:header>
+                    <card:Header id="_IDGenHeader22" title="Pokemon Card Attributes" subtitle=" " iconSrc="sap-icon://map-2" />
+                </f:header> -->
+                <f:content>
+                    <l:VerticalLayout id="_IDGenVerticalLayoutp5" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiMediumMarginEnd">
+                         <l:HorizontalLayout id="_IDGenVerticalLayoutp5c" class="sapUiTinyMarginBegin sapUiMediumMarginEnd">
+                            <l:VerticalLayout id="_IDGenHorizontalLayout010" class="sapUiTinyMarginBegin sapUiTinyMarginBottom">
+                                <HBox >
+                                <Title id="_IDGenTitle3" text="Card Error(s)" class="sapUiSmallMarginTop" />
+                               
+                                <!-- <Label id="_IDGenLabel9e" text=""/>
+                                <Label id="_IDGenLabel9w" text=""/> -->
+                                    <RadioButtonGroup class="sapUiTinyMarginTop" select="onCardErrorFlag" id="CardErrorFlag" columns="3" valueState="Success">
+                                        <RadioButton id="CardErrorYes" text="Yes"/>
+                                        <RadioButton id="CardErrorNo" text="No"/>
+                                    </RadioButtonGroup>
+                                </HBox>
+                                <HBox id="_IDGenVerticalLayout8">
+                                    <Label text="Error:" class="sapUiTinyMarginTop sapUiTinyMarginBegin clLabelView" />
+                                    <ComboBox id="idError1" showSecondaryValues="true" selectionChange="onErrorSelected" selectedKey="{MainModel>/CardLabeltext}" width="200px" items="{ErrorModel>/}" class="clInputField">
+                                        <items>
+                                            <core:ListItem id="_IDGenListItem11" text="{ErrorModel>NameChar}" additionalText="{ErrorModel>CharValue}" key="{ErrorModel>DescrCval}" />
+                                        </items>
+                                    </ComboBox>
+                                </HBox>
+                                <HBox>
+                                    <Label text="Error Label Text" class="sapUiTinyMarginTop sapUiTinyMarginBegin clLabelView" />
+                                    <Input id="errorLblTxt" value="{MainModel>/CardLabeltext}" width="200px"></Input>
+                                </HBox>
+                                <Title id="_IDGenTitle4" text="Card Defect(s)" class="sapUiTinyMarginTop" />
+                                <HBox id="_IDGenVerticalLayout9">
+                                    <Label id="_IDGenLabel020" text="Defect:" class="sapUiSmallMarginTop sapUiTinyMarginBegin clLabelView" />
+                                    <ComboBox id="idError2" showSecondaryValues="true" selectedKey="{MainModel>/CardDefect}" width="200px" items="{DefectModel>/}" class="clInputField">
+                                        <items>
+                                            <core:ListItem id="_IDGenListItem12" text="{DefectModel>DescrCval}" additionalText="{DefectModel>CharValue}" key="{DefectModel>CharValue}" />
+                                        </items>
+                                    </ComboBox>
+                                </HBox>     
+                                
+                                 <Title id="_IDGenHeader22" text="Pokemon Card Attributes:" class="sapUiTinyMarginBottom sapUiSmallMarginTop clGradingTitle ClPokeColor" />  
+                                <l:HorizontalLayout id="_IDGenHorizontalLayout11">
+                                    <l:VerticalLayout id="_IDGenHorizontalLayout014">
+                                        <Label id="_IDGenLabel30" text="Greek Prefix" class="sapUiTinyMarginTop clLabelView" />
+                                        <Input id="_IDGenInput1" value="{MainModel>/GreekPrefix}" width="140px" class="clInputField" enabled="false" />
+                                    </l:VerticalLayout>
+                                    <l:VerticalLayout id="_IDGenHorizontalLayout013" class="sapUiSmallMarginBegin">
+                                        <Label id="_IDGenLabel32" text="Star Symbol" class="sapUiTinyMarginTop clLabelView" />
+                                        <Input id="_IDGenInput3" value="{MainModel>/StarSymbol}" width="140px" class="clInputField" enabled="false" />
+                                    </l:VerticalLayout>
+                                </l:HorizontalLayout>
+                                <l:HorizontalLayout id="_IDGenVerticalLayout6">
+                                    <l:VerticalLayout id="_IDGenHorizontalLayout015">
+                                        <Label id="_IDGenLabel31" text="Greek Suffix" class="sapUiTinyMarginTop clLabelView" />
+                                        <Input id="_IDGenInput2" value="{MainModel>/GreekSuffix}" width="140px" class="clInputField" enabled="false"/>
+                                    </l:VerticalLayout>
+                                    <l:VerticalLayout id="_IDGenHorizontalLayout016" class="sapUiSmallMarginBegin">
+                                        <Label id="_IDGenLabel33" text="Gender Symbol" class="sapUiTinyMarginTop clLabelView" />
+                                        <Input id="_IDGenInput4" value="{MainModel>/GenderSymbol}" width="140px" class="clInputField" enabled="false" />
+                                    </l:VerticalLayout>
+                                </l:HorizontalLayout>
+
+                            </l:VerticalLayout>
+                            <l:VerticalLayout id="_IDGenHorizontalLayout017">
+                                <VBox id="_IDGenVerticalLayout10" class="sapUiMediumMarginBegin">
+                                    <Label id="_IDGenLabel022" text="Card Info for Card #" class="sapUiSmallMarginTop" />
+                                    <TextArea id="idTxtIntInfo4" value="{MainModel>/CardInfoCmt}" width="220px" height="50px" class="clTextAreaField" />
+                                    <Label id="_IDGenLabel023" text="Internal Notes" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                                    <TextArea id="idTxtIntInfo5" value="{MainModel>/InternalNote}" width="220px" height="50px" class="clTextAreaField" />
+                                                              
+                                    <Label id="_IDGenLabel021" text="Key Comments for Card #" class="sapUiMediumMarginTop" />
+                                    <TextArea id="idTxtIntInfo1" value="{MainModel>/KeyComment1}" width="220px" height="30px" editable="true" class="clTextAreaField" />
+                                    <TextArea id="idTxtIntInfo2" value="{MainModel>/KeyComment2}" width="220px" height="30px" editable="true" class="clTextAreaField" />
+                                    <TextArea id="idTxtIntInfo3" value="{MainModel>/KeyComment3}" width="220px" height="30px" editable="true" class="clTextAreaField" />
+                                </VBox>
+                            </l:VerticalLayout>
+                        </l:HorizontalLayout>
+                    </l:VerticalLayout>
+                </f:content>
+            </f:Card>
+
+            <f:Card id="_IDGenBlockLayoutCell4" class="sapUiTinyMargin clPageformat " width="870px" height="370px">
+                <!-- <f:header>
+                    <card:Header id="_IDGenHeader23" title="Grading History and Others" subtitle=" " iconSrc="sap-icon://work-history" />
+                </f:header> -->
+                <f:content>
+                    <!-- <l:HorizontalLayout id="_IDGenHorizontalLayout12" class="sapUiTinyMarginBegin sapUiTinyMarginBottom"> -->
+                    <IconTabBar id="idIconTabBarNoIcons" class="classPanelGrading clPageformat1 sapUiSmallMarginBegin sapUiSmallMarginTop sapUiMediumMarginEnd " select=".onFilterSelect">
+                        <items>
+                            <IconTabFilter id="_IDGenIconTabFilter1" text="Grading History" key="info" class="clIconbar">
+                                <!--<Panel headerText="Grading History" class="classPanelGrading sapUiSmallMarginBegin sapUiSmallMarginEnd">-->
+                                <!--<content>-->
+                                <ui:Table id="idGradeTable" rows="{GradHistModel>/}" selectionMode="None" visibleRowCount="7" paste="onPaste" alternateRowColors="true" ariaLabelledBy="title">
+                                    <ui:columns>
+                                        <ui:Column id="_IDGenColumn1" width="8em">
+                                            <Label id="_IDGenLabelg31" text="Grader" />
+                                            <ui:template>
+                                                <Text id="_IDGenText3" text="{GradHistModel>Guser}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn2" width="8em">
+                                            <Label id="_IDGenLabelg32" text="Grade" />
+                                            <ui:template>
+                                                <Text id="_IDGenText4" text="{GradHistModel>Grade}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumnG" width="8em">
+                                            <Label id="_IDGenLabelg32G" text="Grade Description" />
+                                            <ui:template>
+                                                <Text id="_IDGenText4g" text="{GradHistModel>gradedec}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn3" width="8em">
+                                            <Label id="_IDGenLabelg33" text="No Grade" />
+                                            <ui:template>
+                                                <Text id="_IDGenText5" text="{GradHistModel>Nograde}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn4" width="8em">
+                                            <Label id="_IDGenLabel34" text="Center" />
+                                            <ui:template>
+                                                <Text id="_IDGenText6" text="{GradHistModel>Center}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn5" width="8em">
+                                            <Label id="_IDGenLabel35" text="Corner" />
+                                            <ui:template>
+                                                <Text id="_IDGenText7" text="{GradHistModel>Corner}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn6" width="8em">
+                                            <Label id="_IDGenLabel36" text="Edge" />
+                                            <ui:template>
+                                                <Text id="_IDGenText8" text="{GradHistModel>Edge}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn7" width="8em">
+                                            <Label id="_IDGenLabel37" text="Surface" />
+                                            <ui:template>
+                                                <Text id="_IDGenText9" text="{GradHistModel>Surface}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn8" width="8em">
+                                            <Label id="_IDGenLabel38" text="Auto" />
+                                            <ui:template>
+                                                <Text id="_IDGenText10" text="{GradHistModel>Auto}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn9" width="8em">
+                                            <Label id="_IDGenLabel39" text="Action" />
+                                            <ui:template>
+                                                <Text id="_IDGenText11" text="{GradHistModel>Action}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn10" width="12em">
+                                            <Label id="_IDGenLabel40" text="Time" />
+                                            <ui:template>
+                                            	<!-- <TimePicker
+                                                    
+                                                    value="{path : 'GradHistModel>Gtime/ms', formatter: '.formatter.timeConverted'}"
+                                                    /> -->
+                                                 <Text id="_IDGenText12" text="{path : 'GradHistModel>Gtime/ms', formatter: '.formatter.timeConverted'}" wrapping="false" />
+                                                <!--<Text text="{ path: '{GradHistModel>Gtime}', type: 'TimeType', formatOptions: { style: 'long' } }"/>-->
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn11" width="12em">
+                                            <Label id="_IDGenLabel41" text="Date" />
+                                            <ui:template>
+                                            <!-- <DatePicker enabled="false" value="{'path' : 'GradHistModel>Gdate',
+                                                                        'type':'sap.ui.model.type.Date', 
+                                                                       'formatOptions': {
+                                                                                        'pattern': 'yyyy-MM-dd'
+                                                                                    }}"/> -->
+                                                 <Text text="{path : 'GradHistModel>Gdate', formatter: '.formatter.dateConverted'}" wrapping="false"/>                                   
+                                                
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn12" width="8em">
+                                            <Label id="_IDGenLabel42" text="Sequence No" />
+                                            <ui:template>
+                                                <Text id="_IDGenText14" text="{GradHistModel>SeqNo}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn13" width="8em">
+                                            <Label id="_IDGenLabel43" text="Sales Order" />
+                                            <ui:template>
+                                                <Text id="_IDGenText15" text="{GradHistModel>Vbeln}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn14" width="8em">
+                                            <Label id="_IDGenLabel44" text="Sales Order Line" />
+                                            <ui:template>
+                                                <Text id="_IDGenText16" text="{GradHistModel>Posnr}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn15" width="8em">
+                                            <Label id="_IDGenLabel45" text="Collectible ID" />
+                                            <ui:template>
+                                                <Text id="_IDGenText17" text="{GradHistModel>CollectibleId}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn16" width="8em">
+                                            <Label id="_IDGenLabel46" text="Final Grade" />
+                                            <ui:template>
+                                                <Text id="_IDGenText18" text="{GradHistModel>FinalGrade}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                    </ui:columns>
+                                </ui:Table>
+                            </IconTabFilter>
+                            <IconTabSeparator id="_IDGenIconTabSeparator1" icon="" />
+                            <IconTabFilter id="idMsdGradTab" text="" class="clIconbar">
+                                <ui:Table id="idMissedTable" rows="{InitModel>/}" selectionMode="None" visibleRowCount="7" alternateRowColors="false" ariaLabelledBy="title">
+                                    <!--<extension>-->
+                                    <!--	<m:OverflowToolbar >-->
+                                    <!--		<Button text="Click to Grade" />-->
+                                    <!--	</m:OverflowToolbar>-->
+                                    <!--</extension>-->
+                                    <ui:columns>
+                                        <ui:Column id="_IDGenColumn17" width="8em">
+                                            <Label id="_IDGenLabel47" text="Sales Order" />
+                                            <ui:template>
+                                                <Text id="_IDGenText19" text="{InitModel>Vbeln}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn18" width="8em">
+                                            <Label id="_IDGenLabel48" text="Line Item" />
+                                            <ui:template>
+                                                <Text id="_IDGenText20" text="{InitModel>Posnr}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn19" width="8em">
+                                            <Label id="_IDGenLabel49" text="Grade" />
+                                            <ui:template>
+                                                <Text id="_IDGenText21" text="{InitModel>Grade}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="GrdDec_TC" width="10em">
+                                            <Label id="GrdLbl_TC" text="Grade Description" />
+                                            <ui:template>
+                                                <Text id="GrdTxt_TC" text="{InitModel>Status}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column id="_IDGenColumn20" width="8em">
+                                            <Label id="_IDGenLabel50" text="NoGrade" />
+                                            <ui:template>
+                                                <Text id="_IDGenText22" text="{InitModel>Nograde}" wrapping="false" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <!--<ui:Column width="8em">-->
+                                        <!--	<Label text="Status"/>-->
+                                        <!--	<ui:template>-->
+                                        <!--		<Link text="Click to Grade" wrapping="false" press = "handleActionPress"/>-->
+                                        <!--	</ui:template>-->
+                                        <!--</ui:Column>-->
+                                    </ui:columns>
+                                </ui:Table>
+                            </IconTabFilter>
+                            <IconTabSeparator id="_IDGenIconTabSeparator2" icon="" />
+                            <IconTabFilter id="idServiceTab" text="Services Requested" class="clIconbar">
+                                <l:HorizontalLayout id="_IDGenVerticalLayout11">
+                                    <l:VerticalLayout id="_IDGenHorizontalLayoutg11" class="sapUiTinyMarginBottom">
+                                        <Label id="_IDGenLabel51" text="{i18n>grdVwlblSubmission}" width="100px" />
+                                        <Input id="idInputSub" value="{MainModel>/VcScSubmission}" class=" clInputField1" editable="false" />
+                                        <Label id="_IDGenLabel52" text="{i18n>grdVwlblTradeshow}" width="100px" />
+                                        <Input id="idInputTradeshow" value="{MainModel>/ZVcTradeShow}" width="250px" class=" clInputField1" editable="false" />
+                                        <Label id="_IDGenLabel53" text="{i18n>grdVwlblGradingTiers}" width="100px" />
+                                        <Input id="idInputGradTier" value="{MainModel>/ZVcTier}" width="250px" class="clInputField1" editable="false" />
+                                        <Label id="_IDGenLabel54" text="{i18n>grdVwlblServices}" width="100px" />
+                                        <Input id="idInputServ" value="{MainModel>/ZVcServices}" width="250px" class=" clInputField1" editable="false" />
+                                        <Label id="_IDGenLabel55" text="{i18n>grdVwlblAddOn}" width="100px" />
+                                        <Input id="idInputAddOn" value="{MainModel>/VcScAddOn}" width="250px" class=" clInputField1" editable="false" />
+                                    </l:VerticalLayout>
+                                    <l:VerticalLayout id="_IDGenHorizontalLayout12" class="sapUiTinyMarginBottom sapUiMediumMarginBegin">
+                                        <Label id="_IDGenLabel56" text="{i18n>grdVwlblImagingType}" width="100px" />
+                                        <Input id="idInputImagingType" value="{MainModel>/ZVcScImagingType}" width="250px" class=" clInputField1" editable="false" />
+                                        <Label id="_IDGenLabel57" text="{i18n>grdVwlblCrossover2}" width="100px" />
+                                        <Input id="idInputCrossover2" value="{MainModel>/ZVcCrossType}" width="250px" class=" clInputField1" editable="false" />
+                                        <Label id="_IDGenLabel58" text="{i18n>grdVwlblCrossoverCo}" width="100px" />
+                                        <Input id="idInputCrossoverCo" value="{MainModel>/ZVcScCrossoverCo}" width="250px" class=" clInputField1" editable="false" />
+                                        <Label id="_IDGenLabel59" text="{i18n>grdVwlblCrossoverGr}" width="100px" />
+                                        <Input id="idInputCrossoverGr" value="{MainModel>/ZVcScCrossoverGr}" width="250px" class=" clInputField1" editable="false" />
+                                    </l:VerticalLayout>
+                                </l:HorizontalLayout>
+                            </IconTabFilter>
+                            <IconTabSeparator id="_IDGenIconTabSeparator3" icon="" />
+                        </items>
+                    </IconTabBar>                 
+                    <!-- </l:HorizontalLayout> -->
+                </f:content>
+            </f:Card>
+
+   <f:Card id="_IDGenPanel2r" class="sapUiTinyMargin sapUiSmallMarginBegin clPageformat " width="1490px" height="60px">
+   <f:content>
+        
+                <HBox id="_IDGenVBox2" class="sapUiTinyMarginBegin sapUiTinyMarginTop" >
+				<Label id="_IDGenLabel6" text="Signature Label Lines"  />
+				<TextArea id="SigLblLinesID_TC" value="" growing="true" enabled="false" height="40px" width="1000px" class="sapUiTinyMarginBegin"/>
+                <Button class="sapUiSmallMarginBegin sapUiTinyMarginTop" text="Refresh label" type="Accept" press="onRefreshLblLns"/>
+                </HBox>
+      
+           </f:content>
+        </f:Card>
+
+            </Panel>
+
+            <Panel id="SportsCardIdPanel" visible="false" class="sapUiTinyMargin">
+            <l:HorizontalLayout>
+            <l:VerticalLayout>
+            <f:Card id="SportsCard_card1" class="sapUiTinyMargin sapUiSmallMarginBegin clPageformat" width="380px" height="320px">
+                <!-- <f:header>
+                    <card:Header id="_IDGenHeader33" title="Grading Details"  subtitle=" " iconSrc="sap-icon://my-sales-order" />
+                </f:header> -->
+                <f:content>
+                    <l:HorizontalLayout id="SC_HorizontalLayoutID1" class="sapUiTinyMarginBegin">
+                        <l:VerticalLayout id="SC_VerticalLayoutID1" class="sapUiTinyMarginEnd sapUiTinyMarginBegin">
+                            <Title id="SC_ManualGdTxtID" text="Manual Grading" class=" sapUiLargeMarginBegin sapUiTinyMarginTop clGradingTitle" />
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID2">
+                                	<!-- <CheckBox id="SC_idPerChk" select="SC_onPerSelect" class="sapUiTinyMarginTop "/>
+										<Label text="{i18n>grdVwlblPerf10}" class="sapUiSmallMarginTop "/> -->
+										<CheckBox id="SC_idFinish" select="SC_onGradCompleteSelect" class="sapUiTinyMarginTop"/>
+										<Label text="{i18n>grdVwlblGradCompl}" class="sapUiSmallMarginTop"/>
+                                        <Toolbar class="ToolbarGrde sapUiTinyMarginBegin sapUiTinyMarginTop">
+                                        <Label id="SC_idbtngrade" design="Bold" text="{SC_MaraDataModel>/Grade}-{SC_MaraDataModel>/ErrorMessage}" class="clGradInputField2 clLabelChkBox"/>
+                                        </Toolbar>
+                            </l:HorizontalLayout>
+                            <!-- <l:HorizontalLayout>
+										<CheckBox id="SC_idPristineChk" select="onPristineSelect" class="sapUiTinyMarginTop "/>
+										<Label text="{i18n>grdVwlblPristinef10}" class="sapUiSmallMarginTop "/>
+							</l:HorizontalLayout> -->
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID3">
+                                	<Label text="{i18n>grdVwlblsgrade}" class="sapUiTinyMarginTop clLabelView"/>
+										<ComboBox id="SC_idGrade" showSecondaryValues="true" selectedKey="{SC_MaraDataModel>/ErrorMessage}" width="170px" items="{GradeSetModel>/}"
+											change="SC_OnGradeSel" selectionChange="OnGradeSelCng" class="clInputField">
+											<items>
+												<core:ListItem text="{GradeSetModel>CharValue}" additionalText="{GradeSetModel>DescrCval}" key="{GradeSetModel>DescrCval}"/>
+											</items>
+										</ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID4">
+                                	<Label text="{i18n>grdVwlblAutograde}" class="sapUiTinyMarginTop clLabelView"/>
+										<ComboBox id="SC_idAutoGrade" showSecondaryValues="true" selectedKey="{SC_MaraDataModel>/AutoGrade}" width="170px" items="{SC_AutoGradeModel>/}"
+											class="clInputField">
+											<items>
+												<core:ListItem text="{SC_AutoGradeModel>CharValue}" additionalText="{SC_AutoGradeModel>DescrCval}" key="{SC_AutoGradeModel>CharValue}"/>
+											</items>
+										</ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID5">
+                                	<Label text="{i18n>grdVwlblNograde}" class="sapUiTinyMarginTop clLabelView"/>
+										<ComboBox id="SC_idNoGrade" showSecondaryValues="true" selectedKey="{SC_MaraDataModel>/NoGrade}" width="170px" items="{SC_NoGradeModel>/}"
+											change="SC_onNoGradeChange" class="clInputField">
+											<items>
+												<core:ListItem text="{SC_NoGradeModel>CharValue}" additionalText="{SC_NoGradeModel>DescrCval}" key="{SC_NoGradeModel>CharValue}"/>
+											</items>
+										</ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID6">
+                                	<Label text="{i18n>grdVwlblNotation}" class="sapUiTinyMarginTop clLabelView"/>
+										<Input id="SC_idInputNota" value="{SC_MaraDataModel>/Notation}" width="170px" maxLength="37" class="clInputField"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID7">
+                               <Label text="{i18n>grdVwlblPedigree}" class="sapUiTinyMarginTop clLabelView"/>
+										<Input id="SC_idInputPedig" value="{SC_MaraDataModel>/Pedigree}" width="170px" class="clInputField"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID8">
+                                <Label text="{i18n>grdVwlblInternalNote}" class="sapUiTinyMarginTop clLabelView"/>
+										<TextArea id="SC_idTxtIntInfo" value="{SC_MaraDataModel>/InternalNote}" width="170px" height="40px" class=" clInputField"/>
+                            </l:HorizontalLayout>
+
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID9">
+                                	<Label text="{i18n>grdVwlblBump}" class="sapUiTinyMarginTop clLabelView"/>
+										<ComboBox id="SC_idBump" selectedKey="{SC_MaraDataModel>/Bump}" showSecondaryValues="true" width="170px" items="{SC_BumpModel>/}"
+											class=" clInputField">
+											<items>
+												<core:ListItem text="{SC_BumpModel>DescrCval}" additionalText="{SC_BumpModel>CharValue}" key="{SC_BumpModel>CharValue}"/>
+											</items>
+										</ComboBox>
+                            </l:HorizontalLayout>
+                                                      
+                            <!-- <l:HorizontalLayout id="_IDGenHorizontalLayout8">
+                                <Label id="_IDGenLabel017" text="Autograph Grade" class="sapUiTinyMarginTop clLabelView" />
+                                <ComboBox id="idAutoGrade" showSecondaryValues="true" selectedKey="{MainModel>/AutoGrade}" items="{SC_AutoGradeModel>/}" class="clInputField1">
+                                    <items>
+                                        <core:ListItem id="_IDGenListItem9" text="{SC_AutoGradeModel>DescrCval}" additionalText="{SC_AutoGradeModel>CharValue}" key="{SC_AutoGradeModel>CharValue}" />
+                                    </items>
+                                </ComboBox>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="_IDGenHorizontalLayout9">
+                                <Label id="idCrossOverl" text="Cross Over" class="sapUiTinyMarginTop clLabelView" visible="false" />
+                                <Input id="idCrossOver" value="{SC_MaraDataModel>/VcScCrossover}" class="clInputField1" visible="false" />
+                            </l:HorizontalLayout> -->
+                        </l:VerticalLayout>
+                        
+                    </l:HorizontalLayout>
+                </f:content>
+            </f:Card>
+            <f:Card id="SportsCard_card21" class="sapUiTinyMargin sapUiSmallMarginBegin clPageformat" width="380px" height="320px">
+            <f:content>
+                                        <l:HorizontalLayout id="SC_HorizontalLayoutID34">
+                                                <l:VerticalLayout id="SC_VerticalLayoutID7" class="sapUiSmallMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop">
+                                                    <Label id="SC_IDGenLabel51" text="{i18n>grdVwlblSubmission}" />
+                                                    <Input id="SC_idInputSub" value="{SC_MaraDataModel>/VcScSubmission}" class=" clInputField1" enabled="false"/>
+                                                    <Label id="SC_IDGenLabel52" text="{i18n>grdVwlblTradeshow}"  />
+                                                    <Input id="SC_idInputTradeshow" value="{SC_MaraDataModel>/VcTradeshow}" class=" clInputField1" enabled="false"/>
+                                                    <Label id="SC_IDGenLabel53" text="{i18n>grdVwlblGradingTiers}" />
+                                                    <Input id="SC_idInputGradTier" value="{SC_MaraDataModel>/VcScGradingTiers}" class="clInputField1" enabled="false"/>
+                                                    <Label id="SC_IDGenLabel54" text="{i18n>grdVwlblServices}" />
+                                                    <Input id="SC_idInputServ" value="{SC_MaraDataModel>/VcScServices}" class=" clInputField1" enabled="false"/>
+                                                    <Label id="SC_IDGenLabel55" text="{i18n>grdVwlblAddOn}" />
+                                                    <Input id="SC_idInputAddOn" value="{SC_MaraDataModel>/VcScAddOn}" class=" clInputField1" enabled="false"/>
+                                                </l:VerticalLayout>
+                                                <l:VerticalLayout id="SC_VerticalLayoutID8" class="sapUiTinyMarginBottom sapUiTinyMarginBegin sapUiSmallMarginTop">
+                                                    <Label id="SC_IDGenLabel56" text="{i18n>grdVwlblImagingType}" />
+                                                    <Input id="SC_idInputImagingType" value="{SC_MaraDataModel>/VcScImagingType}" class=" clInputField1" enabled="false"/>
+                                                    <Label id="SC_IDGenLabel57" text="{i18n>grdVwlblCrossover2}" />
+                                                    <Input id="SC_idInputCrossover2" value="{SC_MaraDataModel>/VcScCrossover2}" class=" clInputField1" enabled="false"/>
+                                                    <Label id="SC_IDGenLabel58" text="{i18n>grdVwlblCrossoverCo}" />
+                                                    <Input id="SC_idInputCrossoverCo" value="{SC_MaraDataModel>/VcScCrossoverCo}" class=" clInputField1" enabled="false"/>
+                                                    <Label id="SC_IDGenLabel59" text="{i18n>grdVwlblCrossoverGr}" />
+                                                    <Input id="SC_idCrossOver" value="{SC_MaraDataModel>/VcScCrossoverGr}" class=" clInputField1" enabled="false"/>
+                                                </l:VerticalLayout>
+                                            </l:HorizontalLayout>
+                                            </f:content>
+            </f:Card>
+            </l:VerticalLayout>
+
+            <f:Card id="SportsCard_card3" class="sapUiTinyMargin sapUiSmallMarginBegin clPageformat" width="310px" height="655px">
+                <!-- <f:header>
+                    <card:Header id="_IDGenHeader33" title="Grading Details"  subtitle=" " iconSrc="sap-icon://my-sales-order" />
+                </f:header> -->
+                <f:content>
+                    <l:HorizontalLayout id="SC_HorizontalLayoutID18" class="sapUiTinyMarginBegin">
+                        <l:VerticalLayout id="SC_VerticalLayoutID5" class="sapUiTinyMarginEnd sapUiTinyMarginBegin">
+                            <Title id="SC_ManualGdTxtID1" text="Collectible ID Details" class="sapUiSmallMarginBottom sapUiLargeMarginBegin sapUiTinyMarginTop clGradingTitle" />
+                            
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID21">
+                                		<Label text="{i18n>grdVwlblCollectibleID}" class="sapUiTinyMarginTop clLabelView"/>
+										<Input id="SC_idInputCollId" value="{SC_MaraDataModel>/CollectibleId}" submit="onCollectEnter" showSuggestion="true" showValueHelp="true"
+											valueHelpRequest="cmd:Collect" width="170px" class="clInputField"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID22">
+                                	<Label text="{i18n>grdVwlblSport}" class="sapUiTinyMarginTop clLabelView"/>
+									<Input id="SC_idSportsCard" value="{SC_MaraDataModel>/ZCsgSportsName}" width="170px" class="clInputField" enabled="false"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID23">
+                                	<Label text="{i18n>grdVwlblYear}" class="sapUiTinyMarginTop clLabelView"/>
+									<Input id="SC_idInputYear" value="{SC_MaraDataModel>/ZCardYear}" width="170px" class="clInputField" enabled="false"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID24">
+                                	<Label text="{i18n>grdVwlblManuf}" class="sapUiTinyMarginTop clLabelView"/>
+									<Input id="SC_idInputManuf" value="{SC_MaraDataModel>/ZCsgMakerName}" width="170px" class=" clInputField" enabled="false"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID25">
+                               <Label text="{i18n>grdVwlblSet}" class="sapUiTinyMarginTop clLabelView"/>
+								<Input id="SC_idSetCode" value="{SC_MaraDataModel>/ZCsgSetName}" width="170px" class=" clInputField" enabled="false"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID26">
+                                <Label text="{i18n>grdVwlblSubset}" class="sapUiTinyMarginTop clLabelView"/>
+								<TextArea id="SC_idSubset" value="{SC_MaraDataModel>/ZCsgSubsetName}"  height="40px" width="170px" enabled="false" class=" clInputField"/>
+                            </l:HorizontalLayout>
+
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID27">
+                                	<Label text="{i18n>grdVwlblCardNo}" class="sapUiTinyMarginTop clLabelView"/>
+									<Input id="SC_idInputCardNo" value="{SC_MaraDataModel>/ZCardNumber}" width="170px" class=" clInputField" enabled="false"/>
+                            </l:HorizontalLayout>
+                                                      
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID127">
+										<Label text="{i18n>grdVwlblPlayer}" class="sapUiTinyMarginTop clLabelView"/>
+										<!--<Input id="idPlayer" value="{SC_MaraDataModel>/ZSubjectDescription}" width="180px" class="clInputField" editable="false"/>-->
+										<TextArea id="SC_idPlayer" value="{SC_MaraDataModel>/ZSubjectDescription}"  height="40px" width="170px" enabled="false" class=" clInputField"/>	
+							</l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID28">
+                                		<Label text="{i18n>grdVwlblAttribute1}" class="sapUiTinyMarginTop clLabelView"/>
+										<TextArea id="SC_idInputAttr1" value="{SC_MaraDataModel>/ZCsgCardAttrib1Descr}"  height="40px" width="170px" enabled="false"
+											class=" clInputField"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID29">
+                             	<Label text="{i18n>grdVwlblAttribute2}" class="sapUiTinyMarginTop clLabelView"/>
+								<Input id="SC_idInputAttr2" value="{SC_MaraDataModel>/ZCsgCardAttrib2Descr}" width="170px" class=" clInputField" enabled="false"/>
+                            </l:HorizontalLayout>
+                            <!-- <l:HorizontalLayout id="_IDGenHorizontalLayoutt0">
+                                <Text id="_IDGenTextt4" text="" class="classTopGrade" />
+                            </l:HorizontalLayout> -->
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID30">
+                                	<Label text="{i18n>grdVwlblCardComments}" class=" sapUiTinyMarginTop clLabelView"/>
+									<TextArea id="SC_idTxtComments" value="{SC_MaraDataModel>/ZTeamDescription}" height="40px" width="170px" class=" clInputField" enabled="false"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID31">
+                                	<Label text="{i18n>grdVwlblCardInfo}" class=" sapUiTinyMarginTop clLabelView"/>
+									<TextArea id="SC_idTxtCinfo" value="{SC_MaraDataModel>/ZDateFreetext}"  height="40px" width="170px" class=" clInputField" enabled="false"/>
+                            </l:HorizontalLayout>
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID32">
+										<Label text="{i18n>grdVwlblFactory}" class="sapUiTinyMarginTop clLabelView"/>
+										<CheckBox id="SC_idInputAuto" enabled="false" class="sapUiTinyMarginEnd"/>
+										<!--<Input id="idInputAuto" value="{SC_MaraDataModel>/FactoryAutograph}" width="180px" class="sapUiTinyMarginTop clInputField" editable="false"/>-->
+										<!--</l:HorizontalLayout>-->
+										<!--<l:HorizontalLayout>-->
+										<Label text="{i18n>grdVwlblThickHolder}" class="sapUiTinyMarginTop clLabelView"/>
+										<CheckBox id="SC_idTH" enabled="false" class="sapUiTinyMarginEnd"/>
+									</l:HorizontalLayout>
+                            
+                        </l:VerticalLayout>
+                    </l:HorizontalLayout>
+                </f:content>
+            </f:Card>
+
+             <l:VerticalLayout>
+
+                <f:Card id="SportsCard_card2" class="sapUiTinyMargin clPageformat" width="750px" height="320px">
+                <!-- <f:header>
+                    <card:Header id="_IDGenHeader1" title="Collectible Details" subtitle=" " iconSrc="sap-icon://form" />
+                </f:header> -->
+                <f:content>
+                    <l:VerticalLayout id="SC_VerticalLayoutID3" class="sapUiSmallMarginBegin">
+                        <!-- <Title id="_IDGenTitleCol" text="Collectible Details" class="sapUiSmallMarginBottom sapUiLargeMarginBegin sapUiTinyMarginTop clGradingTitle" /> -->
+                        <l:HorizontalLayout id="SC_HorizontalLayoutID15">
+                        
+                        <l:VerticalLayout id="SC_VerticalLayoutID2">
+                        <l:HorizontalLayout id="SC_HorizontalLayoutID14">
+										<Title text="{i18n>grdVwlblAIGradLbl}" class="sapUiSmallMarginBottom sapUiTinyMarginTop sapUiLargeMarginBegin clGradingTitle"/> 
+                                        <Text text=" " class="
+											sapUiMediumMarginBegin"/> <!--<Text text=" {SC_MaraDataModel>/Grade}" class="classTopGrade"/>-->
+							</l:HorizontalLayout>
+                            	<l:HorizontalLayout>
+											<Label text="{i18n>grdVwlblAICenter}" class="sapUiTinyMarginTop clLabelView"/>
+											<Input id="SC_idAiCenter" value="{SC_MaraDataModel>/ScAiSubgradeCentre}" width="130px" class="clInputField" editable="false"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout >
+											<Label text="{i18n>grdVwlblAICorner}" class="sapUiTinyMarginTop clLabelView"/>
+											<Input id="SC_idAiCorner" value="{SC_MaraDataModel>/ScAiSubgradeCorner}" width="130px" class="clInputField" editable="false"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout >
+											<Label text="{i18n>grdVwlblAIEdge}" class="sapUiTinyMarginTop clLabelView"/>
+											<Input id="SC_idAiEdge" value="{SC_MaraDataModel>/ScAiSubgradeEdge}" width="130px" class="clInputField" editable="false"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout >
+											<Label text="{i18n>grdVwlblAISurface}" class="sapUiTinyMarginTop clLabelView"/>
+											<Input id="SC_idAiSurface" value="{SC_MaraDataModel>/ScAiSubgradeSurface}" width="130px" class="clInputField" editable="false"/>
+										</l:HorizontalLayout>
+                            
+                        </l:VerticalLayout>
+
+                             <l:VerticalLayout id="SC_VerticalLayoutID4" class="sapUiSmallMarginBottom">
+                            <l:HorizontalLayout id="SC_HorizontalLayoutID16" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiMediumMarginEnd">
+                                <Image id="SC_idFrontUrl" height="240px" width="250px" densityAware="false"/>
+										
+								<Image id="SC_idBackUrl" height="240px" width="220px" densityAware="false" class="sapUiTinyMarginBegin"/>
+                            </l:HorizontalLayout>
+							<l:HorizontalLayout id="SC_HorizontalLayoutID17">
+								<Button id="SC_idMoreImage" text="More Images.." type="Accept" width="130px" class="sapUiTinyMarginTop clBtnMoreImage" press="SC_onMoreImages"/>
+							</l:HorizontalLayout>                            
+                            </l:VerticalLayout>
+                        </l:HorizontalLayout>
+                    </l:VerticalLayout>
+                </f:content>
+            </f:Card>
+
+
+
+            <f:Card id="SportsCard_card4" class="sapUiTinyMargin" width="750px" height="315px">
+							<!--	<f:header>-->
+							<!--		<card:Header id="_IDGenHeader23" title="Grading History and Others" subtitle=" " iconSrc="sap-icon://work-history"/>-->
+							<!--	</f:header>-->
+							<f:content>
+								<IconTabBar id="SC_idIconTabBarNoIcons" class="classPanelGrading sapUiSmallMarginBegin sapUiMediumMarginEnd " select=".onFilterSelect">
+									<items>
+										<IconTabFilter text="{i18n>grdVwlblGradHistLbl}" key="info" class="clIconbar">
+											<!--<Panel headerText="Grading History" class="classPanelGrading sapUiSmallMarginBegin sapUiSmallMarginEnd">-->
+											<!--<content>-->
+											<ui:Table id="SC_idGradeTable" rows="{SC_GradHistModel>/}" selectionMode="None" visibleRowCount="6" paste="onPaste" alternateRowColors="true"
+												ariaLabelledBy="title">
+												<ui:columns>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblGraderlbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Guser}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblGradetbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Grade}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+                                                    <ui:Column width="8em">
+														<Label text="{i18n>grdVwlblGradetblDec}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>gradedec}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblNoGradetbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Nograde}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblcentertbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Center}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblcornertbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Corner}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblEdgetbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Edge}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblSurfacetbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Surface}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblAutotbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Auto}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblActiontbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Action}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="12em">
+														<Label text="{i18n>grdVwlblTimetbl}"/>
+														<ui:template>
+															<Text text="{path : 'SC_GradHistModel>Gtime/ms', formatter: '.formatter.timeConverted'}" wrapping="false"/>
+															<!--<Text text="{ path: '{SC_GradHistModel>Gtime}', type: 'TimeType', formatOptions: { style: 'long' } }"/>-->
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="12em">
+														<Label text="{i18n>grdVwlblDatetbl}"/>
+														<ui:template>
+                                                        <!--  <DatePicker enabled="false" value="{'path' : 'SC_GradHistModel>Gdate',
+                                                                        'type':'sap.ui.model.type.Date', 
+                                                                       'formatOptions': {
+                                                                                        'pattern': 'yyyy-MM-dd'
+                                                                                    }}"/> -->
+															<Text text="{path : 'SC_GradHistModel>Gdate', formatter: '.formatter.dateConverted'}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblSeqNotbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>SeqNo}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblSalesOrdtbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Vbeln}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblSalesOrdLintbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>Posnr}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblCollIDtbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>CollectibleId}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblFinaltbl}"/>
+														<ui:template>
+															<Text text="{SC_GradHistModel>FinalGrade}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+												</ui:columns>
+											</ui:Table>
+										</IconTabFilter>
+										<IconTabSeparator icon=""/>
+										<IconTabFilter id="SC_idMsdGradTab" text="Missed Grading" class="clIconbar">
+											<ui:Table id="SC_idMissedTable" rows="{SC_InitModel>/}" selectionMode="None" visibleRowCount="8" alternateRowColors="false" ariaLabelledBy="title">
+												<!--<extension>-->
+												<!--	<m:OverflowToolbar >-->
+												<!--		<Button text="Click to Grade" />-->
+												<!--	</m:OverflowToolbar>-->
+												<!--</extension>-->
+												<ui:columns>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblMSales}"/>
+														<ui:template>
+															<Text text="{SC_InitModel>Vbeln}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblMLineitm}"/>
+														<ui:template>
+															<Text text="{SC_InitModel>Posnr}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblMGrade}"/>
+														<ui:template>
+															<Text text="{SC_InitModel>Grade}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+                                                    <ui:Column id="GrdDec_SC" width="10em">
+                                                        <Label id="GrdLbl_SC" text="Grade Description" />
+                                                        <ui:template>
+                                                            <Text id="GrdTxt_SC" text="{SC_InitModel>Status}" wrapping="false" />
+                                                        </ui:template>
+                                                    </ui:Column>
+													<ui:Column width="8em">
+														<Label text="{i18n>grdVwlblMNoGrade}"/>
+														<ui:template>
+															<Text text="{SC_InitModel>Nograde}" wrapping="false"/>
+														</ui:template>
+													</ui:Column>
+													
+												</ui:columns>
+											</ui:Table>
+										</IconTabFilter>
+                                        
+									</items>
+								</IconTabBar>
+								<!--</FlexBox>-->
+							</f:content>
+						</f:Card>
+
+
+             </l:VerticalLayout>
+
+
+            </l:HorizontalLayout>
+
+               <f:Card id="_IDGenPanel2s" class="sapUiTinyMargin sapUiSmallMarginBegin clPageformat " width="1480px" height="60px">
+              <f:content>
+        
+                <HBox id="_IDGenVBox2s" class="sapUiTinyMarginBegin sapUiTinyMarginTop" >
+				<Label id="_IDGenLabel6s" text="Signature Label Lines"  />
+				<TextArea id="SigLblLinesID_SC" value="" growing="true" enabled="false" height="40px" width="1000px" class="sapUiTinyMarginBegin"/>
+                <Button class="sapUiSmallMarginBegin sapUiTinyMarginTop" text="Refresh label" type="Accept" press="onRefreshLblLns"/>
+                </HBox>
+      
+           </f:content>
+        </f:Card>
+
+            </Panel>
+
+            <!-- <f:Card id="_IDGenBlockLayoutCell5" class="sapUiTinyMargin sapUiSmallMarginBottom" width="600px" height="450px">
+                <f:header>
+                    <card:Header id="_IDGenHeader24" title="Comments and Notes" subtitle=" " iconSrc="sap-icon://discussion-2" />
+                </f:header>
+                <f:content>
+
+                </f:content>
+            </f:Card> -->
+        </content>
+        <footer>
+        <OverflowToolbar id="OverFloTlbBar" visible="true">
+                <l:HorizontalLayout id="TC_HozLayout1" visible="false">
+                    <Button id="idPrevious" text="Save + Prev" type="Success" press="onPrevious" width="8rem" class="clGridFooterBtn sapUiTinyMarginEnd" icon="sap-icon://close-command-field" />
+                    <Button id="idNext" text="Save + Next" type="Success" press="onNext" width="8rem" class="clGridFooterBtn" icon="sap-icon://open-command-field" />
+                </l:HorizontalLayout>
+                <ToolbarSpacer id="TC_Toolbar1" visible="false"/>
+                <!--<content>-->
+                <l:HorizontalLayout id="TC_HozLayout2" class="sapUiSmallMarginBegin" visible="false">
+                    <Button id="TC_idSignature" type="Accept" text="Signature" class="clGridFooterBtn sapUiTinyMarginEnd" press="onSignaturePress"></Button>
+                    <Button id="idCancel" type="Reject" text="Cancel" class="clGridFooterBtn sapUiTinyMarginEnd" press="cmd:cancel" icon="sap-icon://cancel" />
+                    <Button id="idStatus" type="Accept" text="User Status" class="clGridFooterBtn sapUiTinyMarginEnd" press="onDispStatus" />
+                    <Button id="idGrader" text="Grader Info" type="Accept" class="clGridFooterBtn sapUiTinyMarginEnd" press="onGraderInfoClik" />
+                    <!--<Button id="idCImage" text="Collectible Info" type="Accept" class="clGridFooterBtn sapUiTinyMarginEnd" press="onPrintLabel"/>-->
+                    <Button id="idPrint" text="View Label" type="Accept" class="clGridFooterBtn sapUiTinyMarginEnd" press="onPrintLabel" />
+                    <Button id="idPrintBox" class="clGridFooterBtn sapUiTinyMarginEnd" type="Accept" text="Print Box Label" press="cmd:PrBox" />
+                    <Button id="idExit" text="Exit" type="Negative" class="clGridFooterBtn sapUiTinyMarginEnd" press="cmd:Exits" />
+                    <!--<Button id="idSave" type="Accept" press="onSave" class="clGridFooterBtn" text="Save"/>-->
+                </l:HorizontalLayout>
+                <!--</content>-->
+                <l:HorizontalLayout id="SC_HozLayout1" visible="false">
+						<Button id="SC_idPrevious" text="Save + Prev" type="Accept" press="cmd:Previous" width="8rem" class="clGridFooterBtn sapUiTinyMarginEnd"
+							icon="sap-icon://close-command-field"/>
+						<Button id="SC_idNext" text="Save + Next" type="Accept" press="cmd:Next" width="8rem" class="clGridFooterBtn"
+							icon="sap-icon://open-command-field"/>
+					</l:HorizontalLayout>
+					<ToolbarSpacer id="SC_Toolbar1" visible="false"/>
+					<!--<content>-->
+					<l:HorizontalLayout id="SC_HozLayout2" class="sapUiSmallMarginBegin" visible="false">
+                    <Button id="SC_idSignature" type="Accept" text="Signature" class="clGridFooterBtn sapUiTinyMarginEnd" press="onSignaturePress"></Button>
+						<Button id="SC_idCancel" type="Reject" text="Cancel" class="clGridFooterBtn sapUiTinyMarginEnd" press="cmd:cancel" icon="sap-icon://cancel"/>
+						<Button id="SC_idStatus" type="Accept" text="User Status" class="clGridFooterBtn sapUiTinyMarginEnd" press="onDispStatus"/>
+						<Button id="SC_idGrader" text="Grader Info" type="Accept" class="clGridFooterBtn sapUiTinyMarginEnd" press="SC_onGraderInfoClik"/>
+						<!--<Button id="idCImage" text="Collectible Info" type="Accept" class="clGridFooterBtn sapUiTinyMarginEnd" press="onPrintLabel"/>-->
+						<Button id="SC_idPrint" text="View Label" type="Accept" class="clGridFooterBtn sapUiTinyMarginEnd" press="cmd:Vlabel"/>
+						<Button id="SC_idPrintBox" class="clGridFooterBtn sapUiTinyMarginEnd" type="Accept" text="Print Box Label" press="cmd:PrBox"/>
+						<Button id="SC_idExit" text="Exit" type="Reject" class="clGridFooterBtn sapUiTinyMarginEnd" press="cmd:Exits"/>
+						<!--<Button id="idSave" type="Accept" press="onSave" class="clGridFooterBtn" text="Save"/>-->
+					</l:HorizontalLayout>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
+

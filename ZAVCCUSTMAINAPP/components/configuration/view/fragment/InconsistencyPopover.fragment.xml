@@ -1,0 +1,75 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+	xmlns="sap.m" xmlns:core="sap.ui.core" 
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:layout="sap.ui.layout">
+	<Popover 
+		id="InconsistencyInformationPopover" 
+		class="sapVchclfPopoverMaxWidth"
+		contentMinWidth="300px" 
+		placement="Auto">
+		<content>
+			<layout:VerticalLayout 
+				id="MultiDocumentationLayout" 
+				width="100%"
+				visible="{ parts: [{ path: 'constants>/INCONSISTENCY_INFORMATION/MULTI_DOCU' }, { path: 'vchclf>InconsistencyInformation' }], formatter: '.oInconsistencyInformationFormatter.getDocumentationVisibility'}"
+				content="{ path: 'vchclf>InconsistencyInformation', filters: [{ path: 'DependencyId', operator: 'NE', value1: '' }] }">
+				<layout:content>
+					<Panel 
+						width="auto" 
+						expandable="true" 
+						expanded="false"
+						headerText="{vchclf>DependencyDescription}">
+						<content>
+							<layout:VerticalLayout width="100%">
+								<Title 
+									text="{vchI18n>INCONSISTENCY_INFORMATION_DOCUMENTATION_TITLE}" 
+									visible="{vchclf>HasDocumentation}" 
+									class="sapVchclfBold"/>
+								<VBox 
+									visible="{vchclf>HasDocumentation}" 
+									class="sapUiTinyMargin sapVchclfPopoverVBoxWordBreak sapUiSmallMarginBottom">
+									<core:HTML 
+										binding="{ path: 'vchclf>Documentation' }" 
+										content="{ path: 'vchclf>Html'}"/>
+								</VBox>
+								<core:Fragment 
+									fragmentName="sap.i2d.lo.lib.zvchclfz.components.configuration.view.fragment.InconsistencyInformationDetails" 
+									type="XML"/>
+							</layout:VerticalLayout>
+						</content>
+					</Panel>
+				</layout:content>
+			</layout:VerticalLayout>
+			<layout:VerticalLayout 
+				id="SingleDocumentationLayout"
+				visible="{ parts: [{ path: 'constants>/INCONSISTENCY_INFORMATION/SINGLE_DOCU' }, {path: 'vchclf>InconsistencyInformation' }], formatter: '.oInconsistencyInformationFormatter.getDocumentationVisibility'}"
+				class="sapUiContentPadding"
+				width="100%"
+				content="{ path: 'vchclf>InconsistencyInformation', filters: [{ path: 'DependencyId', operator: 'NE', value1: '' }] }">
+				<layout:content>
+					<layout:VerticalLayout width="100%">
+						<Title 
+							text="{vchI18n>INCONSISTENCY_INFORMATION_DOCUMENTATION_TITLE}" 
+							visible="{vchclf>HasDocumentation}" 
+							class="sapVchclfBold"/>
+						<VBox 
+							visible="{vchclf>HasDocumentation}" 
+							class="sapUiTinyMargin sapVchclfPopoverVBoxWordBreak sapUiSmallMarginBottom">
+							<core:HTML 
+								binding="{ path: 'vchclf>Documentation' }" 
+								content="{ path: 'vchclf>Html'}"/>
+						</VBox>
+						<core:Fragment 
+							fragmentName="sap.i2d.lo.lib.zvchclfz.components.configuration.view.fragment.InconsistencyInformationDetails"
+							type="XML"/>
+					</layout:VerticalLayout>
+				</layout:content>
+			</layout:VerticalLayout>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,171 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "CCGSDGRADINGAPP.ZSD_GRADINGAPP",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponentForManifest",
+            "version": "0.0.0",
+            "toolsId": "17e72d70-9b98-4b2c-b864-d235745431dd"
+        },
+        "dataSources": {
+            "ZODATA_CHARACTERISTCS_GRADEAPP_SRV": {
+                "uri": "/sap/opu/odata/sap/ZODATA_CHARACTERISTCS_GRADEAPP_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize",
+            "sap_bluecrystal"
+        ],
+        "fullWidth": true
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "CCGSDGRADINGAPP.ZSD_GRADINGAPP.view.App",
+            "type": "XML",
+            "async": true
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": false
+        },
+        "commands": {
+            "Previous": {
+                "shortcut": "Ctrl+2"
+            },
+            "Next": {
+                "shortcut": "Ctrl+3"
+            },
+            "Collect": {
+                "shortcut": "Ctrl+1"
+            },
+            "Exits": {
+                "shortcut": "Ctrl+4"
+            },
+            "Grade": {
+                "shortcut": "Ctrl+5"
+            },
+            "Vlabel": {
+                "shortcut": "Ctrl+6"
+            },
+            "PrBox": {
+                "shortcut": "Ctrl+7"
+            },
+            "cancel": {
+                "shortcut": "Ctrl+8"
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "CCGSDGRADINGAPP.ZSD_GRADINGAPP.i18n.i18n"
+                }
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZODATA_CHARACTERISTCS_GRADEAPP_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "CCGSDGRADINGAPP.ZSD_GRADINGAPP.view",
+                "controlAggregation": "pages",
+                "controlId": "idApp",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "initial",
+                    "pattern": "",
+                    "target": [
+                        "initial"
+                    ]
+                },
+                {
+                    "name": "grading",
+                    "pattern": "grading/{SalesId},{LineId}",
+                    "target": [
+                        "grading"
+                    ]
+                }
+            ],
+            "targets": {
+                "grading": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "grading",
+                    "viewLevel": 1
+                },
+                "initial": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "initial",
+                    "viewLevel": 0
+                },
+                "App": {
+                    "viewType": "XML",
+                    "viewName": "App"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zsd_gradingapp/webapp",
+        "_version": "1.1.0"
+    }
+}

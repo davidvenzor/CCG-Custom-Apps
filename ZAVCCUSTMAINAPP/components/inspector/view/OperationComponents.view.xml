@@ -1,0 +1,31 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.OperationComponents"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m">
+	<List
+		id="idOperationComponentsList"
+		class="sapUiNoContentPadding"
+		items="{components>/results}">
+		<ObjectListItem
+			title="{components>ProductName}"
+			type="Active"
+			press="onComponentItemPress">
+			<attributes>
+				<ObjectAttribute
+					text="{components>BOMComponentName}" />
+			</attributes>
+			<firstStatus>
+				<ObjectStatus
+					text="{i18n>vchclf_insp_component_automatically_assigned}"
+					visible="{components>IsAutoAssigned}"
+					state="Warning" />
+			</firstStatus>
+		</ObjectListItem>
+	</List>
+</mvc:View>

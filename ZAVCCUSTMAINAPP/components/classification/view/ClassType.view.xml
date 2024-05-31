@@ -1,0 +1,255 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View id="classTypeView"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.classification.controller.ClassType" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m" 
+	visible="{localClassificationModel>IsVisible}">
+		<!-- Adds top margin to every class type but the first one -->
+		<Panel
+			class="sapUiMediumMarginBottom"
+			backgroundDesign="Transparent"
+			visible="{= !${localClassificationModel>FirstVisible} }" />
+		<OverflowToolbar 
+			class="classificationToolbar sapUiHideOnPhone">
+			<Text id="classTypeDescription" 
+				class="sapUxAPObjectPageSubSectionHeaderTitle sapUiMediumMarginEnd"
+				text="{ 
+					parts: [{ 
+						path: 'localClassificationModel>ClassType' 
+					}, { 
+						path: 'localClassificationModel>Description' 
+					}],
+					formatter: '.formatter.formatClassType'}">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						priority="High" />
+				</layoutData>
+			</Text>
+			<Label id="assignedClassesTextLabel"
+				class="classFilterLabel sapUiHideOnPhone"
+				visible="{= !${localClassificationModel>AssignedClasses/1}}" 
+				text="{i18n>ASSIGNED_CLASSES_SELECT_LABEL}" 
+				labelFor="assignedClassesText">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						priority="Low" 
+						group="1" />
+				</layoutData>
+			</Label>
+			<Text id="assignedClassesText"
+				visible="{= !${localClassificationModel>AssignedClasses/1}}" 
+				text="{localClassificationModel>AssignedClasses/0/ClassName}"
+				class="vchclfCommonheaderMargin sapUiMediumMarginEnd">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						priority="Low" 
+						group="1" />
+				</layoutData>
+			</Text>
+			<Label id="assignedClassesSelectLabel"
+				class="classFilterLabel sapUiHideOnPhone"
+				visible="{= ${localClassificationModel>AssignedClasses}.length &gt; 1}" 
+				text="{i18n>ASSIGNED_CLASSES_SELECT_LABEL}" 
+				labelFor="assignedClassesSelect">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						priority="Low" 
+						group="1" />
+				</layoutData>
+			</Label>
+			<Select id="assignedClassesSelect"
+				visible="{= ${localClassificationModel>AssignedClasses}.length &gt; 1}" 
+				class="vchclfCommonheaderMargin sapUiMediumMarginEnd"
+				items="{
+					path: 'localClassificationModel>AssignedClasses',
+					events: {
+						change: '.callUpdateBinding'
+					}
+				}"
+				selectedKey="{localClassificationModel>SelectedInstanceKey}"
+				change="onClassSelectionChange">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						priority="Low" 
+						shrinkable="false" />
+				</layoutData>
+				<core:ListItem 
+					key="{localClassificationModel>InstanceId}" 
+					text="{localClassificationModel>ClassName}" />
+			</Select>
+			<ObjectStatus id="classTypeStatus"
+				class="sapUiMediumMarginBeginEnd"
+				visible="{= !${localClassificationModel>Status/IsReleased} }"
+				state="{
+					path: 'localClassificationModel>Status/StatusSeverity',
+					formatter: '.formatter.formatStatusState'
+				}"
+				text="{
+					path: 'localClassificationModel>Status', 
+					formatter: '.formatter.formatStatusText'
+				}">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						priority="Low" 
+						shrinkable="true" />
+				</layoutData>
+			</ObjectStatus>
+			<ToolbarSpacer/>
+			<Button id="proposeClassificationButton"
+				class="sapUiTinyMarginBegin"
+				text="{i18n>PROPOSE_CLASSIFICATION_BUTTON}"
+				type="Transparent"
+				visible="{= ${component>/editable} &amp;&amp; ${component>/enableProposals} &amp;&amp; ${localClassificationModel>EnableProposals} }"
+				press="onProposeClassificationButtonPress" />
+			<Button id="assignClassButton"  
+				class="vchclfCommonheaderMargin sapUiVisibleOnlyOnDesktop"
+				text="{i18n>ASSIGN_CLASS}"
+				enabled="{= !${localClassificationModel>/DisableAddAssignment} }"
+				type="Transparent"
+				press="onAssignClassButtonPress"
+				visible="{= ${component>/editable} &amp;&amp; !${component>/disableAddAssignment} }">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						closeOverflowOnInteraction="false"
+						priority="Low" 
+						group="2" />
+				</layoutData>
+			</Button>
+			<Button id="assignClassButtonTablet"  
+				class="vchclfCommonheaderMargin sapUiVisibleOnlyOnTablet"
+				text="{i18n>ASSIGN_CLASS}"
+				type="Transparent"
+				enabled="{= !${localClassificationModel>/DisableAddAssignment} }"
+				press="onAssignClassButtonPress"
+				visible="{= ${component>/editable} &amp;&amp; !${component>/disableAddAssignment} }">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						closeOverflowOnInteraction="false"
+						priority="Low" 
+						group="2" />
+				</layoutData>
+			</Button>
+			<Button id="unassignClassButton" 
+				class="vchclfCommonheaderMargin"
+				text="{i18n>UNASSIGN_CLASS}" 
+				enabled="{= !${localClassificationModel>DisableRemoveAssignment} }"
+				type="Transparent"
+				press="onUnassignClassButtonPress"
+				visible="{= ( ${component>/editable} &amp;&amp; !${component>/disableRemoveAssignment} ) || ${localClassificationModel>/IsRemoveOnly} }">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						closeOverflowOnInteraction="false"
+						priority="Low" 
+						group="2" />
+				</layoutData>
+			</Button>
+			<Button id="filterButton" 
+				class="vchclfCommonheaderMargin"
+				tooltip="{i18nval>FILTER_DIALOG_TITLE}"
+				icon="sap-icon://filter"
+				type="Transparent"
+				press="onFilterButtonPress">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						closeOverflowOnInteraction="false"
+						priority="Low" 
+						group="2" />
+				</layoutData>
+			</Button>
+		</OverflowToolbar>
+		<!-- PHONE -->
+		<Text id="classTypeDescriptionMobile" 
+			class="sapUxAPObjectPageSubSectionHeaderTitle sapUiVisibleOnlyOnPhone"
+			text="{ 
+				parts: [{ 
+					path: 'localClassificationModel>ClassType' 
+				}, { 
+					path: 'localClassificationModel>Description' 
+				}],
+				formatter: '.formatter.formatClassType'}">
+		</Text>
+		<VBox alignContent="Center">
+			<ObjectStatus id="classTypeStatusMobile"
+				class="sapUiVisibleOnlyOnPhone"
+				visible="{= !${localClassificationModel>Status/IsReleased} }"
+				state="{
+					path: 'localClassificationModel>Status/StatusSeverity',
+					formatter: '.formatter.formatStatusState'
+				}"
+				text="{
+					path: 'localClassificationModel>Status', 
+					formatter: '.formatter.formatStatusText'
+				}">
+			</ObjectStatus>
+		</VBox>
+		<OverflowToolbar class="sapUiTinyMarginTop sapUiVisibleOnlyOnPhone">
+			<Text id="assignedClassesTextMobile"
+				visible="{= !${localClassificationModel>AssignedClasses/1}}" 
+				text="{localClassificationModel>AssignedClasses/0/ClassName}"
+				class="vchclfCommonheaderMargin sapUiMediumMarginEnd">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						priority="High" 
+						group="3" />
+				</layoutData>
+			</Text>
+			<Select id="assignedClassesSelectMobile"
+				visible="{= ${localClassificationModel>AssignedClasses}.length &gt; 1}" 
+				class="vchclfCommonheaderMargin sapUiMediumMarginEnd"
+				items="{
+					path: 'localClassificationModel>AssignedClasses',
+					events: {
+						change: '.callUpdateBinding'
+					}
+				}"
+				selectedKey="{localClassificationModel>SelectedInstanceKey}"
+				change="onClassSelectionChange">
+				<core:ListItem 
+					key="{localClassificationModel>InstanceId}" 
+					text="{localClassificationModel>ClassName}" />
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						priority="High" 
+						group="3" />
+				</layoutData>
+			</Select>
+			<ToolbarSpacer/>
+			<Button id="assignClassButtonMobile"  
+				class="vchclfCommonheaderMargin"
+				text="{i18n>ASSIGN_CLASS}" 
+				type="Transparent"
+				enabled="{= !${localClassificationModel>/DisableAddAssignment} }"
+				press="onAssignClassButtonPress"
+				visible="{= ${component>/editable} &amp;&amp; !${component>/disableAddAssignment} }">
+				<layoutData>
+					<OverflowToolbarLayoutData 
+						closeOverflowOnInteraction="false"
+						priority="Low" 
+						group="2" />
+				</layoutData>
+			</Button>
+			<Button id="unassignClassButtonMobile" 
+				class="vchclfCommonheaderMargin"
+				text="{i18n>UNASSIGN_CLASS}"
+				enabled="{= !${localClassificationModel>DisableRemoveAssignment} }"
+				type="Transparent"
+				press="onUnassignClassButtonPress"
+				visible="{= ${component>/editable} &amp;&amp; !${component>/disableRemoveAssignment} }">
+				<layoutData>
+					<OverflowToolbarLayoutData
+						closeOverflowOnInteraction="false"
+						priority="Low" 
+						group="2" />
+				</layoutData>
+			</Button>
+		</OverflowToolbar>
+		<!-- PHONE END -->
+		<core:ComponentContainer id="valuationComponentContainer"
+			name="sap.i2d.lo.lib.zvchclfz.components.valuation" 
+			propagateModel="true" />
+</mvc:View>

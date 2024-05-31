@@ -1,0 +1,165 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout.form" xmlns:ui="sap.ui.table"> 
+	<Dialog id="colDialog" contentWidth="1300px" contentHeight="600px" title="Collectibles">
+		<content>
+			<l:SimpleForm editable="true">
+				<l:content>
+					<VBox>
+						<!--<Panel expandable="true" width="auto" class="sapUiResponsiveMargin">-->
+						<HBox>
+							<VBox class="sapUiTinyMarginEnd">
+								<HBox>
+									<Label text="Sport" class="sapUiTinyMarginTop clLabelView"/>
+									<!--<Input value="{MaraDataModel>/ZCsgSportsCode}" width="150px" class="clInputSportsCardModelSportsCardModelSportsCardModelField"/>-->
+									<ComboBox id="idSportsCardf" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCsgSportsCode}" width="200px"
+										items="{SportsCardModel>/}" change="handleGoDlogPress" class="clInputFieldc">
+										<items>
+											<core:ListItem text="{SportsCardModel>CsgSportName}" additionalText="{SportsCardModel>CsgSportCode}" key="{SportsCardModel>CsgSportName}"/>
+										</items>
+									</ComboBox>
+								</HBox>
+								<HBox class="sapUiTinyMarginTop">
+									<Label text="Year" class="sapUiTinyMarginTop clLabelView"/>
+									<ComboBox id="idInputYearf" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCardYear}" width="200px" items="{YearModel>/}"
+										change="handleGoDlogPress" class="clInputFieldc">
+										<items>
+											<core:ListItem text="{YearModel>ZCardYear}" key="{YearModel>ZCardYear}"/>
+										</items>
+									</ComboBox>
+									<!--<Input id="idInputYearf" value="{oMaraTempModel>/ZCardYear}" width="350px" class="clInputField"/>-->
+								</HBox>
+								</VBox>
+								<VBox>
+									<HBox>
+										<Label text="Manufacturer" class="sapUiTinyMarginTop clLabelView"/>
+										<ComboBox id="idInputManuff" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCsgMakerCode}" width="200px" items="{MakerModel>/}"
+											change="handleGoDlogPress" class="clInputFieldc">
+											<items>
+												<core:ListItem text="{MakerModel>CsgCardMakerName}" additionalText="{MakerModel>CsgCardMakerCode}" key="{MakerModel>CsgCardMakerName}"/>
+											</items>
+										</ComboBox>
+									</HBox>
+									<HBox class="sapUiTinyMarginTop">
+										<Label text="Set" class="sapUiTinyMarginTop clLabelView"/>
+										<!--<Input value="{MaraDataModel>/ZCsgSetCode}" width="150px" class="clInputField"/>-->
+										<ComboBox id="idSetCodef" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCsgSetCode}" width="200px" items="{SetCodeModel>/}"
+											change="handleGoDlogPress" class="clInputFieldc">
+											<items>
+												<core:ListItem text="{SetCodeModel>CsgCardSetName}" additionalText="{SetCodeModel>CsgCardSetCode}" key="{SetCodeModel>CsgCardSetName}"/>
+											</items>
+										</ComboBox>
+									</HBox>
+								</VBox>
+								<!--<HBox>-->
+								<!--	<Label text="Collectible ID" class="sapUiMediumMarginTop clLabelView"/>-->
+								<!--	<Input id="idCollectIDf" value=" " width="350px" class="sapUiSmallMarginTop"/>-->
+								<!--</HBox>-->
+							<!--</VBox>-->
+							<VBox class="sapUiTinyMarginEnd">
+								<!--<HBox>-->
+								<!--	<Label text="Player" class="sapUiTinyMarginTop sapUiMediumMarginBegin clLabelView"/>-->
+								<!--	<ComboBox id="idPlayerf" showSecondaryValues="true" selectedKey="{oMaraTempModel>/ZCsgSportPlayerCode}" width="350px"-->
+								<!--		items="{PlayerModel>/}" change="handleGoDlogPress">-->
+								<!--		<items>-->
+								<!--			<core:ListItem text="{PlayerModel>ZPlayer}" key="{PlayerModel>ZPlayer}"/>-->
+								<!--		</items>-->
+								<!--	</ComboBox>-->
+								<!--</HBox>-->
+								<HBox>
+									<Label text="Attribute1" class="sapUiTinyMarginTop sapUiMediumMarginBegin clLabelView"/>
+									<Input id="idInputAttr1f" value="{oMaraTempModel>/ZCsgCardAttrib1Descr}" width="200px" class="clInputFieldc"/>
+								</HBox>
+								<HBox>
+									<Label text="Attribute2" class="sapUiTinyMarginTop sapUiMediumMarginBegin clLabelView"/>
+									<Input id="idInputAttr2f" value="{oMaraTempModel>/ZCsgCardAttrib2Descr}" width="200px" class="clInputFieldc"/>
+									<Button text="Refresh" icon="sap-icon://refresh" press="handleRefreshPress" width="6rem"
+										class="sapUiSmallMarginBegin sapUiSmallMarginTop clGridFooterBtn"/>									
+								</HBox>
+								<!--<HBox>-->
+								<!--	<Label text="" width="200px" class="sapUiTinyMarginTop "/>-->
+									<!--<Button text="Go" press="handleGoDlogPress" width="6rem" class="sapUiLargeMarginBegin sapUiSmallMarginTop clGridFooterBtn"/>-->
+									<!--<Button text="Refresh" icon="sap-icon://refresh" press="handleRefreshPress" width="6rem"-->
+									<!--	class="sapUiSmallMarginBegin sapUiSmallMarginTop clGridFooterBtn"/>-->
+								<!--</HBox>-->
+							</VBox>
+						</HBox>
+						<!--</Panel>-->
+						<ui:Table id="idGradeTablef" selectionMode="Single" rows="{CollectibleModel>/}" paste="onPaste" alternateRowColors="true" 
+							ariaLabelledBy="title" class="sapUiMediumMarginTop sapUiMediumMarginBottom" rowSelectionChange="action">
+							<ui:columns>
+								<ui:Column width="8em">
+									<Label text="Material"/>
+									<ui:template>
+										<Text text="{CollectibleModel>Matnr}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<!--<ui:Column width="8em">-->
+								<!--	<Label text="Material Description"/>-->
+								<!--	<ui:template>-->
+								<!--		<Text text="{CollectibleModel>Maktx}" wrapping="false"/>-->
+								<!--	</ui:template>-->
+								<!--</ui:Column>-->
+								<ui:Column width="8em">
+									<Label text="Sports Text"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZSportscodeText}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Maker Text"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZMakercodeText}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Set Text"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZCardsetText}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Set Year"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZCardYear}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Player List"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZSubjectDescription}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Prnt Flag"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZPrntdAutographFlag}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="12em">
+									<Label text="CSGCardAttr1Desc"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZCsgCardAttrib1Descr}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="CSGCardAttr2Desc"/>
+									<ui:template>
+										<Text text="{CollectibleModel>ZCsgCardAttrib2Descr}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<HBox>
+								<Button text="OK" press="handleOkDlogPress" width="8rem" class="sapUiLargeMarginBegin sapUiSmallMarginEnd sapUiLargeMarginBelow"/>
+								<Button text="Close" icon="sap-icon://sys-cancel" width="8rem" press="onCloseDialog"
+									class="sapUiTinyMarginBegin sapUiSmallMarginEnd sapUiLargeMarginBelow"/>
+							</HBox>
+						</Toolbar>
+					</VBox>
+				</l:content>
+			</l:SimpleForm>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

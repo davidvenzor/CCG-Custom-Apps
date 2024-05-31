@@ -1,0 +1,20 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Toolbar
+		style="Clear"
+		visible="{global>/isSuperInspectorAvailable}">
+		<ToolbarSpacer />
+		<ToggleButton
+			type="Transparent"
+			enabled="{__viewData>/isSuperInspectorEnabled}"
+			text="{i18n>vchclf_insp_show_super}"
+			tooltip="{i18n>vchclf_insp_show_super}"
+			pressed="{__viewData>/isSuperInspectorShown}"/>
+	</Toolbar>
+</core:FragmentDefinition>

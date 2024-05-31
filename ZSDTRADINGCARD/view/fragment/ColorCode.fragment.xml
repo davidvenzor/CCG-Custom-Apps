@@ -1,0 +1,130 @@
+<core:FragmentDefinition 
+xmlns="sap.m" 
+xmlns:fb="sap.ui.comp.filterbar" 
+xmlns:core="sap.ui.core" 
+xmlns:u="sap.ui.unified"
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form" 
+xmlns:tbl="sap.ui.table">
+	<Dialog id="Color" contentWidth="1050px" title="Color Code">
+		<content>
+
+		<Panel >
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+                                               
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Color Code" />
+                                                    <Input id="ColorCode_CC"></Input>
+                                                </l:VerticalLayout>
+                                               
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Game Code" />
+                                                    <Input id="GameCode_CC"></Input>
+                                                </l:VerticalLayout>
+
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginEnd">
+                                                    <Label  text="Language Code" />
+                                                    <Input id="LangCode_CC"></Input>
+                                                </l:VerticalLayout>
+                                                 
+
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Color Active" />
+                                                    <Input id="ColorActive_CC"></Input>
+                                                </l:VerticalLayout>
+												
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Color Name" />
+                                                    <Input id="ColorName_CC"></Input>
+                                                </l:VerticalLayout>
+												
+                                                </l:HorizontalLayout>
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Color Label Text" />
+                                                    <Input id="ColorLblTxt_CC"></Input>
+                                                </l:VerticalLayout>
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Name Search" />
+                                                    <Input id="ColorNameSearch_CC"></Input>
+                                                </l:VerticalLayout>
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+												<Button  class="sapUiTinyMarginTop" type="Accept" text="Search" press="onButtonColorSearch"></Button>
+												</l:VerticalLayout>
+                                                  </l:HorizontalLayout>
+
+
+            </Panel> 
+    <Panel>
+        <tbl:Table 
+				rows="{ColorModel>/}"
+				visibleRowCount="6"
+				selectionMode="Single"
+                rowSelectionChange="ColorCode_rowSelected"
+				ariaLabelledBy="title">
+				
+				<tbl:columns>
+                    <tbl:Column >
+						<Label text="Color Code" />
+						<tbl:template>
+							<Text text="{ColorModel>ColorCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Game Code" />
+						<tbl:template>
+							<Text text="{ColorModel>GameCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					<tbl:Column >
+						<Label text="Lang Code" />
+						<tbl:template>
+							<Text text="{ColorModel>LangCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+                    
+                    <tbl:Column >
+						<Label text="Color Active" />
+						<tbl:template>
+							<Text text="{ColorModel>ColorActive}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                   
+                    <tbl:Column >
+						<Label text="Color Name" />
+						<tbl:template>
+							<Text text="{ColorModel>ColorName}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Color Label Text" />
+						<tbl:template>
+							<Text text="{ColorModel>ColorLabelText}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Name Searc" />
+						<tbl:template>
+							<Text text="{ColorModel>ColorNameSrch}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+				</tbl:columns>
+			</tbl:Table>
+			</Panel>
+			
+		</content>
+		<Toolbar>
+							<ToolbarSpacer/>
+							<!--<HBox>-->
+							
+							<Button text="Close" type="Reject" press="CancelColorCode"/>
+							<!--</HBox>-->
+						</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

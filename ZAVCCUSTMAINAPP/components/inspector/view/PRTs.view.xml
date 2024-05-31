@@ -1,0 +1,37 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.PRTs"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m">
+	<List
+		id="idPRTsList"
+		class="sapUiNoContentPadding"
+		items="{prts>/results}">
+		<ObjectListItem
+			title="{
+				parts: [
+					{ path: 'prts>Description' },
+					{ path: 'prts>ProductionResourceTool' }
+				],
+				formatter: '._prtFormatter.prtTitleFormatter'
+			}"
+			type="Active"
+			press="onPRTItemPress">
+			<attributes>
+				<ObjectAttribute
+					text="{
+						parts: [
+							{ path: 'prts>Description' },
+							{ path: 'prts>ProductionResourceTool' }
+						],
+						formatter: '._prtFormatter.prtSubtitleFormatter'
+					}" />
+			</attributes>
+		</ObjectListItem>
+	</List>
+</mvc:View>

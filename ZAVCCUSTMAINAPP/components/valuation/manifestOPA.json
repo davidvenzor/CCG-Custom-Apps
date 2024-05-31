@@ -1,0 +1,86 @@
+{
+    "_version": "1.1.0",
+    "sap.app": {
+        "_version": "1.1.0",
+        "id": "sap.i2d.lo.lib.zvchclfz.components.valuation",
+        "type": "application",
+        "resources": "resources.json",
+        "i18n": "i18n/messagebundle.properties",
+        "title": "{{FULLSCREEN_TITLE}}",
+        "ach": "CA-CL",
+        "embeddedBy": "../../",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/SAP/LO_VCHCLF",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "_version": "1.1.0",
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.1.0",
+        "dependencies": {
+            "libs": {
+                "sap.m": {
+                    "minUI5Version": "1.30.0"
+                },
+                "sap.ui.layout": {
+                    "minUI5Version": "1.30.0"
+                },
+                "sap.ui.core": {
+                }
+            }
+        },
+        
+        "resources": {
+            "js": [],
+            "css": [{ "uri": "css/style.css"}]
+        },
+        
+        "contentDensities": {
+            "compact": true,
+            "cozy": false
+        },
+        
+        "models": {
+            "": {
+				"dataSource": "mainService",
+				"settings": {
+					"metadataUrlParams": {
+						"sap-documentation": "heading"
+					},
+					"refreshAfterChange": false,
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline"
+				}
+			},
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "sap.i2d.lo.lib.zvchclfz.components.valuation.i18n.messagebundle"
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+		"_version": "1.1.0",
+		"registrationIds": ["F2189"],
+		"archeType": "reusecomponent"
+    }
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZODATA_TRADINGCARDS_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="GetInitialItems" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vbeln"/>
+                    <PropertyRef Name="Posnr"/>
+                </Key>
+                <Property Name="ExCount" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Char15" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nograde" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Char. Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ImFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"/>
+                <Property Name="Grade" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Char. Value" sap:filterable="false"/>
+                <Property Name="Remarks" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag" sap:filterable="false"/>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sales document"/>
+                <Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Status" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Grades" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ImFlag"/>
+                    <PropertyRef Name="LvPosnr"/>
+                    <PropertyRef Name="LvVbeln"/>
+                </Key>
+                <Property Name="ImFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Flag" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="LvPosnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item"/>
+                <Property Name="LvVbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sales Document"/>
+                <Property Name="NameChar" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Characteristic" sap:filterable="false"/>
+                <Property Name="CharValue" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Char. Value" sap:filterable="false"/>
+                <Property Name="DescrCval" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Description" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Tradingcard" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vbeln"/>
+                    <PropertyRef Name="Posnr"/>
+                </Key>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sales Document" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GameCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Game Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LangCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Language Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SetCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Set Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CardName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Card Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VariantCode1" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Variant Code1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VariantCode2" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Variant Code2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RarityCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Rarity Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pedigree" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Pedigree" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GreekPrefix" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Greek Prefix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GreekSuffix" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Greek Suffix" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StarSymbol" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Star Symbol" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GenderSymbol" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Gender Symbol" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InternalNote" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Internal Note" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CardError" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Internal Note" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CardDefect" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Internal Note" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FinalGrade" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Center" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Surface" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Corner" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Edge" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nograde" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aicenter" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aicorner" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aiedge" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aisurface" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Graded Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZODATA_TRADINGCARDS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="GetInitialItemsSet" EntityType="ZODATA_TRADINGCARDS_SRV.GetInitialItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="GradesSet" EntityType="ZODATA_TRADINGCARDS_SRV.Grades" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="TradingcardSet" EntityType="ZODATA_TRADINGCARDS_SRV.Tradingcard" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="https://webidecp-iw6p64tuj5.dispatcher.us4.hana.ondemand.com/destinations/DS4/sap/opu/odata/sap/ZODATA_TRADINGCARDS_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://webidecp-iw6p64tuj5.dispatcher.us4.hana.ondemand.com/destinations/DS4/sap/opu/odata/sap/ZODATA_TRADINGCARDS_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

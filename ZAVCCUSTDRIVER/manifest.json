@@ -1,0 +1,162 @@
+{
+	"_version": "1.9.0",
+	"sap.app": {
+		"id": "i2d.lo.app.zvchclfz.config.legacyintegration",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "9.0.1"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"ach": "LO-VCH-FIO",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.32.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/SAP/LO_VCHCLF_INTEGRATION_LEGACY_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"fullWidth": true,
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "i2d.lo.app.zvchclfz.config.legacyintegration.view.App",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {
+					"lazy": false
+				},
+				"sap.m": {
+					"lazy": false
+				},
+				"sap.ui.layout": {
+					"lazy": false
+				},
+				"sap.i2d.lo.lib.zvchclfz": {
+					"lazy": false
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": false
+		},
+		"componentUsages": {
+			"configurationComponent": {
+				"name": "sap.i2d.lo.lib.zvchclfz.components.configuration",
+				"settings": {}
+			}
+		},
+		"models": {
+			"configStartI18n": {
+				"preload": false,
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "i2d.lo.app.zvchclfz.config.legacyintegration.i18n.i18n"
+				}
+			},
+			"appModel": {
+				"preload": false,
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"startAppHeaderConfiguration": {
+				"preload": false,
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"": {
+				"preload": true,
+				"dataSource": "mainService",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"refreshAfterChange": false
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"async": true,
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "i2d.lo.app.zvchclfz.config.legacyintegration.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": "error"
+				}
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "appHome",
+					"target": "config"
+				},
+				{
+					"pattern": "error",
+					"name": "error",
+					"target": "error"
+				}
+			],
+			"targets": {
+				"config": {
+					"viewName": "Config",
+					"viewId": "configView",
+					"viewLevel": 1
+				},
+				"error": {
+					"viewName": "Error",
+					"transition": "show",
+					"viewLevel": 2
+				}
+			}
+		},
+		"resources": {
+			"js": [],
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		}
+	},
+	"sap.fiori": {
+		"registrationIds": [
+			"F2819"
+		],
+		"archeType": "transactional"
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zavccustdriver",
+		"_version": "1.1.0"
+	}
+}

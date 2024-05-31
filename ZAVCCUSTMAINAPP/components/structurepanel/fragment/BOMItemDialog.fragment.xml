@@ -1,0 +1,368 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m">
+	<Dialog 
+		id="BOMItemDialog"
+		title="{= ${BOMItemDialog>/IsBOMItemInsert} ? ${i18n>vchclf_structpnl_insert_bom_item} : ${i18n>vchclf_structpnl_change_bom_item}}"
+		draggable="true" 
+		contentWidth="36rem" 
+		resizable="true"
+		busyIndicatorDelay="0">
+		<content>
+			<VBox>
+				<f:SimpleForm 
+					id="BOMItemDialogForm"
+					ariaLabelledBy="BOMItemDialogForm" 
+					editable="true"
+					layout="ResponsiveGridLayout" 
+					breakpointM="400"
+					columnsM="9" 
+					columnsL="2"
+					columnsXL="2" 
+					labelSpanS="12"
+					labelSpanM="3" 
+					labelSpanL="2"
+					labelSpanXL="2">
+					<f:content>
+						<!-- BOM item category -->
+						<Label
+							labelFor="BOMItemCategoryDisplay"
+							text="{i18n>vchclf_structpnl_bom_item_category_label}"
+							visible="{= !${BOMItemDialog>/IsBOMItemInsert}}"/>
+						<Input 
+							id="BOMItemCategoryDisplay"
+							editable="false"
+							tooltip="{i18n>vchclf_structpnl_bom_item_category_label}"
+							value="{SelectedBOMItem>/ItemCategoryDescription}"
+							visible="{= !${BOMItemDialog>/IsBOMItemInsert}}"/>
+						<Label
+							labelFor="BOMItemCategory"
+							text="{i18n>vchclf_structpnl_bom_item_category_label}" 
+							visible="{BOMItemDialog>/IsBOMItemInsert}"/>
+						<Select
+							id="BOMItemCategory"
+							tooltip="{i18n>vchclf_structpnl_bom_item_category_label}"
+							forceSelection="false" 
+							selectedKey="{BOMItemDialog>/SelectedItemKey}"
+							items="{BOMItemDialog>/BOMItemCategory}"
+							busyIndicatorDelay="0"
+							change="onItemCategoryChange"
+							visible="{BOMItemDialog>/IsBOMItemInsert}">
+							<core:Item 
+								key="{BOMItemDialog>BillOfMaterialItemCategory}" 
+								text="{BOMItemDialog>BillOfMaterialItemCategoryDesc}"/>
+						</Select>
+						<!-- Stock & Variable-size items -->
+						<Label
+							labelFor="BOMItemNameForInsert"	
+							required="true"
+						    text="{i18n>vchclf_structpnl_bom_item_label}"
+						    visible="{= !${BOMItemDialog>/SelectedBOMItemCategory/D} &amp;&amp; !${BOMItemDialog>/SelectedBOMItemCategory/T} &amp;&amp; ${BOMItemDialog>/IsBOMItemInsert}}"/>
+						<Input
+							id="BOMItemNameForInsert"
+							tooltip="{i18n>vchclf_structpnl_bom_item_label}"
+							showValueHelp="true"
+							autocomplete="false"
+							busyIndicatorDelay="0"
+							value="{SelectedBOMItem>/BOMComponentName}"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidproduct}"
+							valueHelpRequest="onBOMMaterialVHPressed"
+							visible="{= !${BOMItemDialog>/SelectedBOMItemCategory/D} &amp;&amp; !${BOMItemDialog>/SelectedBOMItemCategory/T} &amp;&amp; ${BOMItemDialog>/IsBOMItemInsert}}"
+							showSuggestion="true"
+							change="onProductChange"
+							maxLength="40"
+							suggest="onProductSuggest"
+							suggestionItems="{BOMItemDialogVH>/C_VarConfignProductPlantVH}"
+							maxSuggestionWidth="auto">
+							<suggestionItems>
+								<core:ListItem text="{BOMItemDialogVH>Material}" additionalText="{BOMItemDialogVH>MaterialDescription}" />
+							</suggestionItems>			
+						</Input>
+						<Label
+							labelFor="BOMItemNameForChange"	
+							required="true"
+						    text="{i18n>vchclf_structpnl_bom_item_label}"
+						    visible="{= !${BOMItemDialog>/SelectedBOMItemCategory/D} &amp;&amp; !${BOMItemDialog>/SelectedBOMItemCategory/T} &amp;&amp; !${BOMItemDialog>/IsBOMItemInsert}}"/>
+						<Input
+							id="BOMItemNameForChange"
+							tooltip="{i18n>vchclf_structpnl_bom_item_label}"
+							value="{SelectedBOMItem>/BOMComponentName}"
+							editable="false"
+							visible="{= !${BOMItemDialog>/SelectedBOMItemCategory/D} &amp;&amp; !${BOMItemDialog>/SelectedBOMItemCategory/T} &amp;&amp; !${BOMItemDialog>/IsBOMItemInsert}}" />							
+					    <!--mode: 'sap.ui.model.BindingMode.OneWay' -->
+						<!-- Stock item -->
+						<Label 
+							labelFor="BOMItemPosition"
+							required="true"
+							text="{i18n>vchclf_structpnl_bom_item_position_label}" />
+						<Input 
+							id="BOMItemPosition"
+							maxLength="4"
+							tooltip="{i18n>vchclf_structpnl_bom_item_position_label}"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidposition}"
+							change="onChange"
+							value="{SelectedBOMItem>/ItemNumber}"/>			
+						<!-- Variabale-size item -->					
+						<Label 
+							required="true"
+							labelFor="BOMItemSize1"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}"
+							text="{i18n>vchclf_structpnl_bom_item_size_1}" />
+						<Input
+							id="BOMItemSize1"
+							change="onChange"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidvarsize1}"
+							tooltip="{i18n>vchclf_structpnl_bom_item_size_1}"
+							value="{SelectedBOMItem>/VarItemSize1}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}" />
+						<Label 
+							labelFor="BOMItemSize2"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}" 
+							text="{i18n>vchclf_structpnl_bom_item_size_2}" />
+						<Input
+							id="BOMItemSize2"
+							tooltip="{i18n>vchclf_structpnl_bom_item_size_2}"
+							value="{SelectedBOMItem>/VarItemSize2}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}" />
+						<Label 
+							labelFor="BOMItemSize3"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}" 
+							text="{i18n>vchclf_structpnl_bom_item_size_3}" />
+						<Input
+							id="BOMItemSize3"
+							tooltip="{i18n>vchclf_structpnl_bom_item_size_3}" 
+							value="{SelectedBOMItem>/VarItemSize3}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}" />
+						<Label 
+							labelFor="BOMItemFormula"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}" 
+							text="{i18n>vchclf_structpnl_bom_item_formula}" />
+						<Input
+							id="BOMItemFormula"
+							maxLength="2"
+							change="onFormulaChange"
+							autocomplete="false"	
+							valueHelpRequest="onBOMFormulaVHPressed"
+							showValueHelp="true"								
+							busyIndicatorDelay="0"	
+							showSuggestion="true"
+							suggest="onFormulaSuggest"	
+							tooltip="{i18n>vchclf_structpnl_bom_item_formula}"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidformulakey}"
+							value="{SelectedBOMItem>/VarItemFormula}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}" 
+							suggestionItems="{BOMItemDialogVH>/I_BillOfMaterialFormulaVH}"
+							maxSuggestionWidth="auto">
+								<suggestionItems>
+									<core:ListItem text="{BOMItemDialogVH>VariableSizeCompFormulaKey}" additionalText="{BOMItemDialogVH>VariableSizeCompFormulaText}" />
+								</suggestionItems>	
+							</Input>
+						<Label 
+							required="true"
+							labelFor="BOMItemNumber"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}"
+							text="{i18n>vchclf_structpnl_bom_item_number}" />
+						<Input
+							id="BOMItemNumber" 
+							change="onChange"
+							value="{SelectedBOMItem>/VarItemNumber}"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidvarnumber}"
+							tooltip="{i18n>vchclf_structpnl_bom_item_number}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}" />	
+						<Label
+							required="true"
+							labelFor="BOMItemVarQuantityAndUnitOfMeasure"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}"
+							text="{i18n>vchclf_structpnl_bom_item_quantity_label}" />
+						<HBox id="BOMItemVarQuantityAndUnitOfMeasure" 
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/R}">
+							<Input
+								id="BOMItemVarQuantity" 
+								tooltip="{i18n>vchclf_structpnl_bom_item_quantity_label}"
+								width="3rem"
+								change="onChange"
+								type="Number"
+								valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidquantity}"
+								value="{SelectedBOMItem>/VarItemQuantity}"/>
+							<Input 
+								id="BOMItemVarUnitOfMeasure"
+								class="sapUiTinyMarginBegin"
+								maxLength="3"
+								autocomplete="false"	
+								showSuggestion="true"				
+								showValueHelp="true"			
+								busyIndicatorDelay="0"							
+								change="onUoMChange"							
+								suggest="onUoMSuggest"
+								valueHelpRequest="onVarUoMValueHelpPressed"
+								valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidunit}"
+								tooltip="{i18n>vchclf_structpnl_bom_item_unit_tooltip}"
+								value="{SelectedBOMItem>/VarItemUnit}"
+								width="40%"
+								suggestionItems="{BOMItemDialogVH>/I_UnitOfMeasureStdVH}"
+								maxSuggestionWidth="auto">
+								<suggestionItems>
+									<core:ListItem text="{BOMItemDialogVH>UnitOfMeasure}" additionalText="{BOMItemDialogVH>UnitOfMeasureLongName}" />
+								</suggestionItems>	
+							</Input>
+						</HBox>			
+						<!-- Stock, Non-Stock and Variable-size items -->
+						<Label
+							required="true"
+							labelFor="BOMItemQuantityAndUnitOfMeasure"
+							visible="{= ${BOMItemDialog>/SelectedBOMItemCategory/L} || ${BOMItemDialog>/SelectedBOMItemCategory/N}}"
+							text="{i18n>vchclf_structpnl_bom_item_quantity_label}" />
+						<HBox id="BOMItemQuantityAndUnitOfMeasure" 
+							visible="{= ${BOMItemDialog>/SelectedBOMItemCategory/L} || ${BOMItemDialog>/SelectedBOMItemCategory/N}}">
+							<Input
+								id="BOMItemQuantity" 
+								tooltip="{i18n>vchclf_structpnl_bom_item_quantity_label}"
+								width="3rem"
+								change="onChange"
+								type="Number"
+								valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidquantity}"
+								value="{SelectedBOMItem>/Quantity}"/>
+							<Input 
+								id="BOMItemUnitOfMeasure"
+								class="sapUiTinyMarginBegin" 
+								showValueHelp="true"
+								maxLength="3"
+								change="onUoMChange"
+								busyIndicatorDelay="0"
+								valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invalidunit}"
+								tooltip="{i18n>vchclf_structpnl_bom_item_unit_tooltip}"
+								valueHelpRequest="onUoMValueHelpPressed"
+								value="{SelectedBOMItem>/Unit}"
+								width="40%"
+								autocomplete="false"	
+								showSuggestion="true"
+								suggest="onUoMSuggest"
+								suggestionItems="{BOMItemDialogVH>/I_UnitOfMeasureStdVH}"
+								maxSuggestionWidth="auto">
+								<suggestionItems>
+									<core:ListItem text="{BOMItemDialogVH>UnitOfMeasure}" additionalText="{BOMItemDialogVH>UnitOfMeasureLongName}" />
+								</suggestionItems>	
+							</Input>
+						</HBox>
+						<!--Text item -->
+						<Label 
+							labelFor="BOMItemText"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/T}"
+							text="{i18n>vchclf_structpnl_bom_item_text}" />
+						<VBox id="BOMItemText"  
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/T}">
+							<Input 
+								id="BOMItemTextLine1"
+								maxLength="40"
+								tooltip="{i18n>vchclf_structpnl_bom_item_line_1}"
+								value="{SelectedBOMItem>/TxtItemTextLine1}"
+								visible="{BOMItemDialog>/SelectedBOMItemCategory/T}"
+								placeholder="{i18n>vchclf_structpnl_bom_item_line_1}"  />
+							<Input
+								id="BOMItemTextLine2"							
+								maxLength="40"
+								value="{SelectedBOMItem>/TxtItemTextLine2}"
+								tooltip="{i18n>vchclf_structpnl_bom_item_line_2}"
+								placeholder="{i18n>vchclf_structpnl_bom_item_line_2}"  
+								visible="{BOMItemDialog>/SelectedBOMItemCategory/T}" />
+						</VBox>					
+						<!-- Document item -->
+						<Label 
+							required="true"
+							labelFor="BOMItemDocument"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/D}"
+							text="{i18n>vchclf_structpnl_bom_item_document}" />
+						<Input
+							id="BOMItemDocument"
+							showValueHelp="true"
+							maxLength="25"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invaliddocument}"
+							change="onDocumentChange"
+							autocomplete="false"
+							busyIndicatorDelay="0"
+							value="{SelectedBOMItem>/DocItemName}"
+							valueHelpRequest="onDocumentValueHelpPressed"
+							tooltip="{i18n>vchclf_structpnl_bom_item_document}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/D}"
+							showSuggestion="true"
+							suggest="onDocumentSuggest"
+							suggestionItems="{BOMItemDialogVH>/I_DocumentInfoRecordDocPrtVH}"
+							maxSuggestionWidth="auto">
+							<suggestionItems>
+								<core:ListItem text="{BOMItemDialogVH>DocumentInfoRecordDocNumber}" additionalText="{BOMItemDialogVH>DocumentDescription}" />
+							</suggestionItems>	
+						</Input>
+						<Label 
+							required="true"
+							labelFor="BOMItemDocumentType"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/D}"
+							text="{i18n>vchclf_structpnl_bom_item_document_type}" />
+						<Input
+							id="BOMItemDocumentType"
+							tooltip="{i18n>vchclf_structpnl_bom_item_document_type}"
+							value="{SelectedBOMItem>/DocItemType}"
+							maxLength="3"
+							change="onDocumentTypeChange"
+							showValueHelp="true"
+							autocomplete="false"
+							busyIndicatorDelay="0"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invaliddocumenttype}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/D}"
+							valueHelpRequest="onDocumentValueHelpPressed" />
+						<Label 
+							required="true"
+							labelFor="BOMItemDocumentPart"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/D}"
+							text="{i18n>vchclf_structpnl_bom_item_document_part}" />
+						<Input
+							id="BOMItemDocumentPart"
+							showValueHelp="true"
+							change="onDocumentPartChange"
+							busyIndicatorDelay="0"
+							maxLength="3"						
+							valueHelpRequest="onDocumentValueHelpPressed"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invaliddocumentpart}"
+							tooltip="{i18n>vchclf_structpnl_bom_item_document_part}"
+							value="{SelectedBOMItem>/DocItemPart}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/D}" />
+						<Label 
+							required="true"
+							labelFor="BOMItemDocumentVersion"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/D}"
+							text="{i18n>vchclf_structpnl_bom_item_document_version}" />
+						<Input
+							id="BOMItemDocumentVersion"
+							maxLength="2"
+							busyIndicatorDelay="0"
+							change="onDocumentVersionChange"
+							valueStateText="{i18n>vchclf_structpnl_bom_item_validation_invaliddocumentversion}" 
+							tooltip="{i18n>vchclf_structpnl_bom_item_document_version}"
+							value="{SelectedBOMItem>/DocItemVersion}"
+							visible="{BOMItemDialog>/SelectedBOMItemCategory/D}"
+							showValueHelp="true"
+							valueHelpRequest="onDocumentValueHelpPressed" />
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<buttons>
+			<Button
+				id="saveAndClose"
+				text="{i18n>vchclf_structpnl_bom_item_dialog_ok}"
+				tooltip="{i18n>vchclf_structpnl_bom_item_dialog_ok}"
+				press="onOk" />
+			<Button 
+				id="cancel" 
+				tooltip="{i18n>vchclf_structpnl_bom_item_dialog_cancel}"
+				text="{i18n>vchclf_structpnl_bom_item_dialog_cancel}"
+				press="onCancel" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

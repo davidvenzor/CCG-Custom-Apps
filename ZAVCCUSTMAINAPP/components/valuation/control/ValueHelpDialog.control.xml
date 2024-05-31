@@ -1,0 +1,88 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns:vchclf="sap.i2d.lo.lib.zvchclfz.components.valuation.control"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout">
+	<SelectDialog id="valueHelpDialog"
+		title="{parts: [
+					'view>', 
+					'valuationSettings>/descriptionModeCharacteristics', 
+					'i18n>CSTIC_LABEL_BOTH'
+					], 
+				formatter: '.formatter.getCharacteristicDescriptionWithName'}"
+		multiSelect="{= !${view>IsSingleValued} }"
+		search="onSearchInSelectDialog"
+        confirm="onSelectDialogConfirm"
+        growingThreshold="150"
+        contentHeight="auto"
+        items="{
+			path: 'view>DomainValues',
+			sorter: [ {
+				path: 'IsMasterDataValue',
+				group: true,
+				descending: true
+			}, {
+				path: 'SortKey'
+			} ],
+			groupHeaderFactory: '.getGroupHeader',
+			templateShareable: false
+		}"
+		rememberSelections="true">
+		<vchclf:SelectDialogListItem id="selectDialogItem"
+			readonly="{= ( ${view>IsReadonly} || ${view>IsSetByObjectDependency} ) }"
+			selected="{path:'view>', formatter:'.isListItemSelected'}"
+			assigned="{path:'view>', formatter:'.isListItemAssigned'}"
+			intervalDomainValue="{= ${view>FormattedValueTo} === '' ? false : true}"
+			class="sapVchclfCheckboxMarginLeft sapVchclfSDListItem">
+			<vchclf:content>
+				<VBox class="sapVchclfSDOuterVBoxPadding sapUiSmallMarginBegin">
+					<HBox>
+						<VBox class="sapVchclfSDLabelTop sapUiLargeMarginEnd">
+							<Label 
+								text="{parts: [
+											'valuationSettings>/descriptionModeCharacteristics',
+											'view>',
+											'i18n>VALUE_LABEL_NO_VALUE',
+											'i18n>ROUNDED_VALUE_PREFIX',
+											'i18n>INTERVAL_REPRESENTATION',
+											'i18n>PROPOSAL_LABEL'
+											],
+										formatter:'.formatter.getSelectDialogListItemLabel'}"
+								class="sapMSLITitle"/>
+							<Text 
+								visible="{parts:[
+												'valuationSettings>/descriptionModeCharacteristics',
+												'view>' 
+											], 
+											formatter:'.formatter.isSelectDialogListItemTextVisible'}"
+								text="{parts:[
+											'view>',
+											'i18n>ROUNDED_VALUE_PREFIX',
+											'i18n>INTERVAL_REPRESENTATION'
+											],
+										formatter:'.formatter.getSelectDialogListItemText'}"
+								class="sapMSLIDescription" />
+						</VBox>
+					</HBox>
+					<HBox class="sapUiTinyMarginBottom">
+						<Input id="intervalInput" 
+							width="200px"
+							placeholder="{i18n>SELECT_DIALOG_ASSIGN_INPUT_PLACEHOLDER}"/>
+						<Button id="assignmentButton" 
+							class="sapUiTinyMarginBegin"
+							text="{i18n>SELECT_DIALOG_ASSIGN_BUTTON_INTERVAL}"/>
+					</HBox>
+				</VBox>
+				<core:Icon 
+					visible="{path: 'view>', formatter: '.isIntervalDomain'}"
+					class="sapVchclfIntervalArrowClosed" 
+					src="sap-icon://slim-arrow-down"/>
+			</vchclf:content>
+		</vchclf:SelectDialogListItem>
+	</SelectDialog>
+</core:FragmentDefinition>

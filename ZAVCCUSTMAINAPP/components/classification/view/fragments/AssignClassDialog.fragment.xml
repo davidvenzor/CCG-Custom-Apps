@@ -1,0 +1,62 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+	xmlns:core="sap.ui.core"
+	xmlns:filterBar="sap.ui.comp.filterbar"
+	xmlns:m="sap.m"
+	xmlns="sap.ui.comp.valuehelpdialog">
+	<ValueHelpDialog id="assignClassDialog"
+		title="{i18n>ADD_CLASS_TITLE}"
+		supportMultiselect="false"
+		resizable="true"
+		key="InstanceId"
+		descriptionKey="ClassName"
+		ok="onAssignClassDialogOk"
+		cancel="onAssignClassDialogCancel"
+		afterClose="onAssignClassDialogAfterClose">
+		<filterBar>
+			<filterBar:FilterBar
+				advancedMode="true"
+				search="onAssignClassDialogSearch">
+				<filterBar:filterItems>
+					<filterBar:FilterItem 
+						name="ClassType" 
+						label="{i18n>CLASS_TYPE}">
+						<filterBar:control>
+							<m:Select id="classTypeSelectField"
+								forceSelection="false"
+								selectedKey="{assignClassDialogViewModel>/SelectedClassType}"
+								items="{localClassificationModel>/AvailableClassTypes}">
+									<core:Item 
+										key="{localClassificationModel>ClassType}"
+										text="{
+											parts: [
+												'localClassificationModel>ClassType',
+												'localClassificationModel>ClassTypeName' 
+											], 
+											formatter: '.formatter.formatClassType' }" />
+							</m:Select>
+						</filterBar:control>
+					</filterBar:FilterItem>
+					<filterBar:FilterItem 
+						name="ClassName" 
+						label="{i18n>CLASS_NAME}">
+						<filterBar:control>
+							<m:Input id="classNameSearchField" />
+						</filterBar:control>
+					</filterBar:FilterItem>
+					<filterBar:FilterItem
+						name="Description" 
+						label="{i18n>CLASS_DESCRIPTION}">
+						<filterBar:control>
+							<m:Input id="classDescriptionSearchField" />
+						</filterBar:control>
+					</filterBar:FilterItem>
+				</filterBar:filterItems>
+			</filterBar:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

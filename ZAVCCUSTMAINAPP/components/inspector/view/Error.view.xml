@@ -1,0 +1,19 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m">
+
+	<MessagePage
+		showHeader="false"
+		text="{i18n>vchclf_objectheader_title_object_not_found}"
+		icon="sap-icon://message-warning"
+		id="InspectErrorPage"
+		description="{i18n>vchclf_objectheader_subtitle_object_not_found}">
+	</MessagePage>
+
+</mvc:View>

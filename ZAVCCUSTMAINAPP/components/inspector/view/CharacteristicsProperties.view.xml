@@ -1,0 +1,165 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m"
+    busyIndicatorDelay="0"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.CharacteristicsProperties">
+	<f:Form
+		id="idCharacteristicsForm"
+		editable="false">
+		<f:layout>
+			<f:ResponsiveGridLayout
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="5"
+				labelSpanS="12"
+				breakpointL="800"
+				breakpointM="400"
+				columnsL="2"
+				columnsM="1"/>
+		</f:layout>
+		<f:formContainers>
+			<f:FormContainer
+				title="{i18n>vchclf_insp_common_basic_info_title}">
+				<f:formElements>
+					<f:FormElement
+						label="{i18n>vchclf_insp_dependecydtl_name}">
+						<f:fields>
+							<Text
+								id="idCsticsName"
+								text="{properties>/Name}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_dependecydtl_status}">
+						<f:fields>
+							<ObjectStatus
+								id="idCsticsStatus"
+								text="{properties>/StatusText}"
+								class="sapUiNoMargin"
+								state="{
+									path:'properties>/Status',
+									formatter:'._generalFormatter.statusFormatter'
+								}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_dependecydtl_changedby}">
+						<f:fields>
+							<Text
+								id="idCsticsChangedBy"
+								text="{
+									parts: [
+										{ path: 'properties>/LastChangedByUserDescription' },
+										{ path: 'properties>/LastChangedByUser' }
+									],
+									formatter: '._generalFormatter.changedByFormatter'
+								}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_dependecydtl_changedon}">
+						<f:fields>
+							<Text
+								id="idCsticsChangedOn"
+								text="{
+									path: 'properties>/LastChangeDate',
+									type: 'sap.ui.model.type.Date',
+									formatOptions: {
+										style: 'medium'
+										}
+								}"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer
+				title="{i18n>vchclf_insp_cstics_format_title}">
+				<f:formElements>
+					<f:FormElement
+						label="{i18n>vchclf_insp_cstics_properties_datatype}">
+						<f:fields>
+							<Text
+								id="idCsticsDataType"
+								text="{properties>/DataTypeText}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_cstics_properties_length}">
+						<f:fields>
+							<Text
+								id="idCsticsLength"
+								text="{properties>/Length}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_cstics_properties_casesensitive}">
+						<f:fields>
+							<Text
+								id="idCsticsCaseSensitive"
+								text="{
+									path: 'properties>/CaseSensitive',
+									formatter: '._generalFormatter.convertBoolToYesorNoFormatter'
+								}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_cstics_properties_template}">
+						<f:fields>
+							<Text
+								id="idCsticsTemplate"
+								text="{properties>/Template}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_cstics_properties_values}">
+						<f:fields>
+							<Text
+								id="idCsticsValues"
+								text="{properties>/ValueAssignmentType}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_cstics_properties_required}">
+						<f:fields>
+						<Text
+							id="idCsticsRequired"
+							text="{
+								path: 'properties>/IsRequired',
+								formatter: '._generalFormatter.convertBoolToYesorNoFormatter'
+							}"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer
+				title="{i18n>vchclf_insp_cstics_property_ref_table_title}"
+				visible="{= ${properties>/CharcReferenceTable} ? true : false }">
+				<f:formElements>
+					<f:FormElement
+						label="{i18n>vchclf_insp_cstics_property_ref_table}">
+						<f:fields>
+						<Text
+							id="idCsticsRefTable"
+							text="{properties>/CharcReferenceTable}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_cstics_property_ref_table_field}">
+						<f:fields>
+						<Text
+							id="idCsticsRefTableField"
+							text="{properties>/CharcReferenceTableField}"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+</mvc:View>

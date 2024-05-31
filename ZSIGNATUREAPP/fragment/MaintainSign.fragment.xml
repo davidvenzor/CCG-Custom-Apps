@@ -1,0 +1,109 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="oDialogMaintainSign"
+		title="Maintain Signature "
+        contentWidth = "450px"
+		contentHeight = "400px"
+        verticalScrolling="false"
+        horizontalScrolling="false" 
+        >
+    <IconTabBar
+		id="idIconTabBarSeparatorNoIcon"
+		expanded="true"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter
+				key="SignType"
+                
+                text="Maintain Signature type"
+				iconColor="Positive">
+                
+				<f:SimpleForm id="MS_SformSign"
+                    editable="false"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" >
+                    <f:content>
+                        <Label text="Signature Type Code" />
+                        <Input id="CG_SignTypeCode"></Input>
+
+                        <Label text="Signature Description" />
+                        <Input id="SignDesc" ></Input>
+                        
+                        <Label text="Signature Display Sort"/>
+                        <Input id="CG_SignDisplaySort"></Input>
+                        
+                        <Label text="Signature Print Sort"/>
+                        <Input id="CG_SignPrintSort" ></Input>
+                       
+                       
+                    </f:content>
+                </f:SimpleForm>
+                <Toolbar >
+                <ToolbarSpacer />
+                <Button class="sapUiMediumMargin" text="Submit" type="Default" press="onBtnSignMntPress"></Button>
+                </Toolbar>
+                
+			</IconTabFilter>
+			<IconTabSeparator icon=""/>
+			<IconTabFilter
+				key="attachments"
+                text="Maintain Artist Name"
+				iconColor="Neutral"
+				>
+
+                <f:SimpleForm id="MS_SformArtistName"
+                    editable="false"
+                    layout="ResponsiveGridLayout"
+                    title=""
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" >
+                    <f:content>
+                        <Label text="Fisrst Name" />
+                        <Input id="FirstNameID_MS" liveChange="onNameChnage"></Input>
+                        <Label text="Last Name" />
+                        <Input id="LastNameID_MS" liveChange="onNameChnage"></Input>
+                        <Label text="Full Name" />
+                        <Input id="FullNameID_MS"></Input>
+                        <Label text="Abbreviation" />
+                        <Input id="AbbreviationID_MS"></Input>
+                       
+                    </f:content>
+                </f:SimpleForm>
+                <Toolbar >
+                <ToolbarSpacer />
+                <Button class="sapUiMediumMargin" text="Submit" type="Default" press="onBtnArtNamePress"></Button>
+                </Toolbar>
+				
+			</IconTabFilter>
+            	</items>
+	</IconTabBar>
+
+        <buttons>
+        <Button icon="sap-icon://decline" press="handleCloseMntSignPress" ></Button>
+        </buttons>
+        
+    </Dialog>
+</core:FragmentDefinition>

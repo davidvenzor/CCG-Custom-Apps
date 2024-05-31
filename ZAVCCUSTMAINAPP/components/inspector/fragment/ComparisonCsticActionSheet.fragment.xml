@@ -1,0 +1,27 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ActionSheet
+		placement="VerticalPreferredBottom"
+		title="{i18n>vchclf_comparison_action_sheet_title}">
+		<buttons>
+			<Button
+				text="{i18n>vchclf_comparison_inspect}"
+				visible="{= ${comparisonActionSheet>/diffItemType} !== 1}"
+				press="onActionSheetInspectPressed">
+			</Button>
+			<Button
+				text="{i18n>vchclf_comparison_show_in_config}"
+				press="onActionSheetShowInConfigPressed">
+			</Button>
+		</buttons>
+	</ActionSheet>
+</core:FragmentDefinition>

@@ -1,0 +1,130 @@
+<mvc:View controllerName="SS.signaturescan.controller.SignatureMain"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:fb="sap.ui.comp.filterbar" xmlns:tbl="sap.ui.table" 	xmlns:form="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}" titleAlignment="Center">
+        <content>       
+                                           <Panel width="93%" class="Panel1 sapUiLargeMarginBegin sapUiLargeMarginTop sapUiLargeMarginEnd">
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop sapUiLargeMarginEnd">
+                                                    <Label  text="Signature Type" />
+                                                    <ComboBox id="sigTypeID" selectedKey="" showSecondaryValues="true" change="onSigTypeDdSelected" items="{SignedModel>/}" width="200px">
+                                                        <core:ListItem key="{SignedModel>DescrCval}" additionalText="{SignedModel>CharValue}" text="{SignedModel>NameChar}" />
+                                                    </ComboBox>
+                                                </l:VerticalLayout>
+                                                <l:VerticalLayout class="sapUiLargeMarginEnd sapUiLargeMarginTop">
+                                                  <Label text="By"> </Label>
+                                                </l:VerticalLayout>
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop sapUiLargeMarginEnd">
+                                                    <Label  text="Artist Name" />
+                                                    
+                                                    <Input id="artistNameID" selectedKey="" textFormatMode="Value" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onVHArtist" suggestionItems="{ArtistName>/}" suggestionItemSelected=".onArtNameSelected">
+			                                            <suggestionItems>
+				                                            <core:ListItem
+					                                            key="{ArtistName>Name}"
+					                                            text="{ArtistName>CharValue}"
+					                                        />
+			                                            </suggestionItems>
+		                                            </Input>
+                                                   <!--<Select id="artistNameID" forceSelection="false" selectedKey="{}" items="{ path:'ArtistName>/', length:5000}" width="200px" change="onArtNameSelected">
+                                                        <core:Item key="{ArtistName>Name}" text="{ArtistName>CharValue}" />
+                                                    </Select>-->
+                                                </l:VerticalLayout>
+                                                 <l:VerticalLayout class="sapUiLargeMarginEnd sapUiLargeMarginTop">
+                                                  <Label text="On"> </Label>
+                                                </l:VerticalLayout>
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop sapUiLargeMarginEnd">
+                                                    <Label  text="Date" />
+                                                   <DatePicker id="DateId" placeholder="Enter Date" valueFormat="MM/dd/YYYY" change="handleChange" width="200px"/>
+                                                </l:VerticalLayout>
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop sapUiLargeMarginEnd">
+                                                    <Label  text="Add" />
+                                                   <Input id="addId"  value="" width="20px" submit="onAddEnter"/>
+                                                </l:VerticalLayout>
+                                                </l:HorizontalLayout>
+
+
+            </Panel>
+    
+         
+        
+       
+    <Panel width="93%" class="sapUiLargeMarginBegin sapUiTinyMarginTop sapUiLargeMarginEnd">
+        <tbl:Table id="SignatureTbl"
+				rows="{osignatureTbldata>/}"
+                selectionMode="MultiToggle"
+				visibleRowCount="6"
+				ariaLabelledBy="title">
+				
+				<tbl:columns>
+					<tbl:Column >
+						<Label text="Signature Type" />
+						<tbl:template>
+							<Text text="{osignatureTbldata>SignatureType}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					<tbl:Column >
+						<Label text="Artist Name" />
+						<tbl:template>
+							<Text text="{osignatureTbldata>ArtistName}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Signed On" />
+						<tbl:template>
+							<Text text="{osignatureTbldata>SignedOn}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Added by" />
+						<tbl:template>
+							<Text text="{osignatureTbldata>AddedBy}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Date Added" />
+						<tbl:template>
+							<Text text="{osignatureTbldata>AddedDate}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+				</tbl:columns>
+			</tbl:Table>
+             <Panel id="_IDGenPanel2" >
+            <form:SimpleForm id="_IDGenSimpleForm1"
+				editable="true"
+				layout="ResponsiveGridLayout" >
+                <VBox id="_IDGenVBox1" >
+                <VBox id="_IDGenVBox2" >
+				<Label id="_IDGenLabel6" text="Signature Label Lines" />
+				<TextArea id="SigLblLinesID" value="" growing="true" height="80px" width="100%"/>
+                </VBox>
+                <VBox id="_IDGenVBox3" >
+				<Label id="_IDGenLabel7" text="Overflow Signature Lines Data Not Sent To Label" />
+				<TextArea id="SigOverLblLines2ID" value="" growing="true" width="100%"/>
+                </VBox>
+                </VBox>
+			</form:SimpleForm>
+           
+        </Panel>
+        </Panel>
+        </content>
+
+            <footer>
+            <OverflowToolbar id="otbFooter" class="sapUiMediumMargin">
+            <ToolbarSpacer/>
+            <Button text="Exit" type="Accept" press="onExitPress"></Button>
+             <Button text="Build Sign Line" type="Accept" press="onBuildSignLine"></Button>
+              <Button text="Build Use Abbraviation" type="Accept" press="onBuildAbbr"></Button>
+               <Button text="Remove Sign" type="Reject" press="onSignRemovePress"></Button>
+               <Button text="Clear Sign" type="Accept" press="onSignClearPress"></Button>
+                <Button text="Signature Maintain" type="Accept" press="onSignatureMaintain"></Button>
+                <Button text="Scan invoices" type="Accept" press="onScanInvoicesPress"></Button>
+            
+          	</OverflowToolbar>
+            </footer>
+    </Page>
+</mvc:View>
+

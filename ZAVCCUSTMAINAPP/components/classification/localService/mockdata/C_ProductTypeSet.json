@@ -1,0 +1,9 @@
+[{
+	"Product": "Product",
+	"DraftUUID": "186f88c7-b51f-4cf0-9dd4-be34f33ca20f",
+	"ClassificationSideEffect": "",
+	"__metadata": {
+		"uri": "C_ProductTypeSet(Product='Product%201',DraftUUID=guid'186f88c7-b51f-4cf0-9dd4-be34f33ca20f')",
+		"type": "LO_VCHCLF.C_ProductType"
+	}
+}]

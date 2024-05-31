@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout.form" xmlns:ui="sap.ui.table">
+	<Dialog id="GradDialog" contentWidth="1000px" title="Grader Information">
+		<content>
+			<l:SimpleForm  editable="true">
+				<l:content>
+					<VBox >
+						<HBox >
+							<Label  text="No of Collectibles Graded Today" class="sapUiTinyMarginTop"/>
+							<Input  value="{GraderInfoModel>/0/ExCount}" width="200px" class="sapUiSmallMarginBegin" editable="false" />
+						</HBox>
+						<ui:Table  selectionMode="None" rows="{GraderInfoModel>/}" paste="onPaste" alternateRowColors="true"
+							ariaLabelledBy="title" class="sapUiMediumMarginTop sapUiMediumMarginBottom">
+							<ui:columns>
+								<ui:Column  width="8em">
+									<Label  text="Sales Order"/>
+									<ui:template>
+										<Text  text="{GraderInfoModel>Vbeln}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column  width="8em">
+									<Label  text="Item No"/>
+									<ui:template>
+										<Text  text="{GraderInfoModel>Posnr}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column  width="8em">
+									<Label  text="Collectible ID"/>
+									<ui:template>
+										<Text  text="{GraderInfoModel>CollectibleId}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column  width="8em">
+									<Label  text="Grader"/>
+									<ui:template>
+										<Text  text="{GraderInfoModel>Guser}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column  width="8em">
+									<Label  text="Grade"/>
+									<ui:template>
+										<Text  text="{GraderInfoModel>Grade}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+						<Toolbar >
+							<ToolbarSpacer />
+							<HBox >
+								<Button  text="Close" icon="sap-icon://sys-cancel" width="8rem" press="OnGraderClose"
+									class="sapUiTinyMarginBegin sapUiSmallMarginEnd sapUiLargeMarginBelow"/>
+							</HBox>
+						</Toolbar>
+					</VBox>
+				</l:content>
+			</l:SimpleForm>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

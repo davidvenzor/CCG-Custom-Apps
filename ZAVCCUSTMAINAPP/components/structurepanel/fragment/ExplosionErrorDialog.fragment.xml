@@ -1,0 +1,32 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition	
+	xmlns:core="sap.ui.core" 
+	xmlns="sap.m">
+	<Dialog	id="explosionError" 
+		type="Message"
+		state="Error"
+		title="{i18n>vchclf_structpnl_explosion_error_dialog_title}"
+		escapeHandler=".onEscape"
+		verticalScrolling="false">
+		<beginButton>
+			<Button id="explosionErrorDialogNavToBomAppButton" 
+					type="Emphasized"
+					text="{i18n>vchclf_structpnl_explosion_error_dialog_nav_button}"
+					tooltip="{i18n>vchclf_structpnl_explosion_error_dialog_nav_button}"
+					press=".onNavigateToBOMApp"/>
+		</beginButton>
+		<endButton>
+			<Button id="explosionErrorDialogCancelButton" 
+					text="{i18n>vchclf_structpnl_explosion_error_dialog_cancel_button}"
+					tooltip="{i18n>vchclf_structpnl_explosion_error_dialog_cancel_button}"
+					press=".onCancelDraft"/>
+		</endButton>
+		<content>
+			<Text text="{i18n>vchclf_structpnl_explosion_error_dialog_content}"/>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

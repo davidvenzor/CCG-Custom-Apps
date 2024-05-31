@@ -1,0 +1,28 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+		xmlns="sap.ui.comp.valuehelpdialog"
+		xmlns:m="sap.m"
+		xmlns:fb="sap.ui.comp.filterbar"
+		xmlns:core="sap.ui.core">
+	<ValueHelpDialog id="BOMItemBaseVH"
+			title="{BOMItemVHDialogConfig>/title}"
+			ok=".onOk"
+			cancel=".onCancel"
+			busyIndicatorDelay="0"
+			busy="true"
+			afterClose=".onAfterClose"
+			supportMultiselect="false"
+			key="{BOMItemVHDialogConfig>/key}"
+			descriptionKey="{BOMItemVHDialogConfig>/descriptionKey}">
+		<filterBar>
+			<fb:FilterBar id="BOMItemVHFilterBar" 
+				advancedMode="true" 
+				search=".onSearch" 
+				filterGroupItems="{path: 'BOMItemVHDialogConfig>/filters', factory: '.createFilterGroupItems'}"/>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

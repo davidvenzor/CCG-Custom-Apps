@@ -1,0 +1,35 @@
+div .vchDynamicPageContentWithoutPadding .sapFDynamicPageContentFitContainer {
+    padding: 0;
+}
+
+.sapVchlClfInstanceHeader.sapMBar .sapMText {
+    font-size: 0.875rem;
+}
+
+.sapVchlClfInstanceHeader {
+    box-shadow: none!important;
+    line-height: 1!important;
+}
+
+.sapiconfont .sapMText {
+	display: inline-block;
+	line-height: normal;
+    font-family: "72",Arial,Helvetica,sans-serif,'SAP-icons' !important;
+}
+
+.sapVchclfBold {
+	font-weight: bold;
+}
+
+.sapVchclfGroupHeaderListItem {
+	padding-top: 0rem!important;
+	height: auto!important;
+}
+
+.sapVchclfPopoverMaxWidth {
+	max-width: 700px;
+}
+
+.sapVchclfPopoverVBoxWordBreak {
+	word-break: break-all;
+}

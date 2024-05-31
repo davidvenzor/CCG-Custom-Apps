@@ -1,0 +1,690 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": "Component-dbg.js",
+			"size": 8479,
+			"isDebug": true
+		},
+		{
+			"name": "Component.js",
+			"size": 3999
+		},
+		{
+			"name": "config/BOMColumnConfig-dbg.js",
+			"size": 46688,
+			"isDebug": true
+		},
+		{
+			"name": "config/BOMColumnConfig.js",
+			"size": 22921
+		},
+		{
+			"name": "config/BOMItemDialogConfig.json",
+			"size": 2587
+		},
+		{
+			"name": "config/UiConfig-dbg.js",
+			"size": 2198,
+			"isDebug": true
+		},
+		{
+			"name": "config/UiConfig.js",
+			"size": 701
+		},
+		{
+			"name": "control/IconText-dbg.js",
+			"size": 3802,
+			"isDebug": true
+		},
+		{
+			"name": "control/IconText.js",
+			"size": 1986
+		},
+		{
+			"name": "controller/MainFrame-dbg.controller.js",
+			"size": 1120,
+			"isDebug": true
+		},
+		{
+			"name": "controller/MainFrame.controller.js",
+			"size": 756
+		},
+		{
+			"name": "controller/RoutingFrame-dbg.controller.js",
+			"size": 3303,
+			"isDebug": true
+		},
+		{
+			"name": "controller/RoutingFrame.controller.js",
+			"size": 1480
+		},
+		{
+			"name": "controller/RoutingTree-dbg.controller.js",
+			"size": 9947,
+			"isDebug": true
+		},
+		{
+			"name": "controller/RoutingTree.controller.js",
+			"size": 4950
+		},
+		{
+			"name": "controller/StructureFrame-dbg.controller.js",
+			"size": 13917,
+			"isDebug": true
+		},
+		{
+			"name": "controller/StructureFrame.controller.js",
+			"size": 6957
+		},
+		{
+			"name": "controller/StructureTree-dbg.controller.js",
+			"size": 32136,
+			"isDebug": true
+		},
+		{
+			"name": "controller/StructureTree.controller.js",
+			"size": 14789
+		},
+		{
+			"name": "css/style.css",
+			"size": 202
+		},
+		{
+			"name": "dao/BOMNodeSetDAO-dbg.js",
+			"size": 12667,
+			"isDebug": true
+		},
+		{
+			"name": "dao/BOMNodeSetDAO.js",
+			"size": 4311
+		},
+		{
+			"name": "dao/RoutingNodeSetDAO-dbg.js",
+			"size": 3538,
+			"isDebug": true
+		},
+		{
+			"name": "dao/RoutingNodeSetDAO.js",
+			"size": 1285
+		},
+		{
+			"name": "dialog/BOMItemBaseVH-dbg.js",
+			"size": 8475,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/BOMItemBaseVH.js",
+			"size": 3368
+		},
+		{
+			"name": "dialog/BOMItemDialog-dbg.js",
+			"size": 23162,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/BOMItemDialog.js",
+			"size": 9564
+		},
+		{
+			"name": "dialog/BOMItemDocumentBaseVH-dbg.js",
+			"size": 3663,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/BOMItemDocumentBaseVH.js",
+			"size": 1918
+		},
+		{
+			"name": "dialog/BOMItemFormulaVH-dbg.js",
+			"size": 2629,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/BOMItemFormulaVH.js",
+			"size": 1363
+		},
+		{
+			"name": "dialog/BOMItemProductVH-dbg.js",
+			"size": 2556,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/BOMItemProductVH.js",
+			"size": 1290
+		},
+		{
+			"name": "dialog/BOMItemUoMVH-dbg.js",
+			"size": 2435,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/BOMItemUoMVH.js",
+			"size": 1192
+		},
+		{
+			"name": "dialog/BOMItemVariableUoMVH-dbg.js",
+			"size": 1513,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/BOMItemVariableUoMVH.js",
+			"size": 694
+		},
+		{
+			"name": "dialog/ExplosionError-dbg.js",
+			"size": 3060,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/ExplosionError.js",
+			"size": 1327
+		},
+		{
+			"name": "dialog/ReexplodeBOM-dbg.js",
+			"size": 1422,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/ReexplodeBOM.js",
+			"size": 481
+		},
+		{
+			"name": "dialog/SelectRouting-dbg.js",
+			"size": 3793,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/SelectRouting.js",
+			"size": 1777
+		},
+		{
+			"name": "formatter/RoutingFrameFormatter-dbg.js",
+			"size": 3401,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/RoutingFrameFormatter.js",
+			"size": 1127
+		},
+		{
+			"name": "formatter/RoutingTreeFormatter-dbg.js",
+			"size": 7568,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/RoutingTreeFormatter.js",
+			"size": 3770
+		},
+		{
+			"name": "formatter/StructureTreeFormatter-dbg.js",
+			"size": 5491,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/StructureTreeFormatter.js",
+			"size": 2347
+		},
+		{
+			"name": "fragment/BOMItemBaseVHDialog.fragment.xml",
+			"size": 824
+		},
+		{
+			"name": "fragment/BOMItemDialog.fragment.xml",
+			"size": 14935
+		},
+		{
+			"name": "fragment/BOMSelectorPopoverContent.fragment.xml",
+			"size": 406
+		},
+		{
+			"name": "fragment/ExplosionErrorDialog.fragment.xml",
+			"size": 1031
+		},
+		{
+			"name": "fragment/ReexplodeBOMDialog.fragment.xml",
+			"size": 844
+		},
+		{
+			"name": "fragment/SelectRouting.fragment.xml",
+			"size": 895
+		},
+		{
+			"name": "fragment/StructureFrameETOActions.fragment.xml",
+			"size": 4634
+		},
+		{
+			"name": "fragment/TablePersonalizationDialog.fragment.xml",
+			"size": 1099
+		},
+		{
+			"name": "i18n/i18n.properties",
+			"size": 24706,
+			"locale": "",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ar.properties",
+			"size": 38010,
+			"locale": "ar",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_bg.properties",
+			"size": 44365,
+			"locale": "bg",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ca.properties",
+			"size": 26276,
+			"locale": "ca",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_cs.properties",
+			"size": 26788,
+			"locale": "cs",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_da.properties",
+			"size": 25150,
+			"locale": "da",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_de.properties",
+			"size": 25909,
+			"locale": "de",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_el.properties",
+			"size": 41814,
+			"locale": "el",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_en.properties",
+			"size": 24603,
+			"locale": "en",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_en_US_sappsd.properties",
+			"size": 47099,
+			"locale": "en_US_sappsd",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_en_US_saptrc.properties",
+			"size": 29102,
+			"locale": "en_US_saptrc",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_es.properties",
+			"size": 26444,
+			"locale": "es",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_et.properties",
+			"size": 25113,
+			"locale": "et",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_fi.properties",
+			"size": 25439,
+			"locale": "fi",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_fr.properties",
+			"size": 26402,
+			"locale": "fr",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_hi.properties",
+			"size": 39075,
+			"locale": "hi",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_hr.properties",
+			"size": 25535,
+			"locale": "hr",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_hu.properties",
+			"size": 27480,
+			"locale": "hu",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_it.properties",
+			"size": 25672,
+			"locale": "it",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_iw.properties",
+			"size": 34643,
+			"locale": "iw",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ja.properties",
+			"size": 29812,
+			"locale": "ja",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_kk.properties",
+			"size": 41013,
+			"locale": "kk",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ko.properties",
+			"size": 28472,
+			"locale": "ko",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_lt.properties",
+			"size": 26390,
+			"locale": "lt",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_lv.properties",
+			"size": 27239,
+			"locale": "lv",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ms.properties",
+			"size": 24906,
+			"locale": "ms",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_nl.properties",
+			"size": 24931,
+			"locale": "nl",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_no.properties",
+			"size": 25035,
+			"locale": "no",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_pl.properties",
+			"size": 26911,
+			"locale": "pl",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_pt.properties",
+			"size": 26245,
+			"locale": "pt",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ro.properties",
+			"size": 26592,
+			"locale": "ro",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ru.properties",
+			"size": 43291,
+			"locale": "ru",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_sh.properties",
+			"size": 25588,
+			"locale": "sh",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_sk.properties",
+			"size": 26805,
+			"locale": "sk",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_sl.properties",
+			"size": 25625,
+			"locale": "sl",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_sv.properties",
+			"size": 25277,
+			"locale": "sv",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_th.properties",
+			"size": 40932,
+			"locale": "th",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_tr.properties",
+			"size": 26998,
+			"locale": "tr",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_uk.properties",
+			"size": 43271,
+			"locale": "uk",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_vi.properties",
+			"size": 31898,
+			"locale": "vi",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_zh_CN.properties",
+			"size": 27553,
+			"locale": "zh_CN",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_zh_TW.properties",
+			"size": 27176,
+			"locale": "zh_TW",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "logic/Constants-dbg.js",
+			"size": 3801,
+			"isDebug": true
+		},
+		{
+			"name": "logic/Constants.js",
+			"size": 3087
+		},
+		{
+			"name": "logic/EventProvider-dbg.js",
+			"size": 1840,
+			"isDebug": true
+		},
+		{
+			"name": "logic/EventProvider.js",
+			"size": 1150
+		},
+		{
+			"name": "logic/FeatureToggle-dbg.js",
+			"size": 3361,
+			"isDebug": true
+		},
+		{
+			"name": "logic/FeatureToggle.js",
+			"size": 1825
+		},
+		{
+			"name": "logic/NavigationManager-dbg.js",
+			"size": 14630,
+			"isDebug": true
+		},
+		{
+			"name": "logic/NavigationManager.js",
+			"size": 6205
+		},
+		{
+			"name": "logic/StructurePanelModel-dbg.js",
+			"size": 26227,
+			"isDebug": true
+		},
+		{
+			"name": "logic/StructurePanelModel.js",
+			"size": 9471
+		},
+		{
+			"name": "manifest.json",
+			"size": 1263
+		},
+		{
+			"name": "model/RoutingTreeModel-dbg.js",
+			"size": 8902,
+			"isDebug": true
+		},
+		{
+			"name": "model/RoutingTreeModel.js",
+			"size": 3433
+		},
+		{
+			"name": "model/StructureTreeModel-dbg.js",
+			"size": 23913,
+			"isDebug": true
+		},
+		{
+			"name": "model/StructureTreeModel.js",
+			"size": 9522
+		},
+		{
+			"name": "util/BOMItemActions-dbg.js",
+			"size": 666,
+			"isDebug": true
+		},
+		{
+			"name": "util/BOMItemActions.js",
+			"size": 199
+		},
+		{
+			"name": "util/HashGenerator-dbg.js",
+			"size": 2483,
+			"isDebug": true
+		},
+		{
+			"name": "util/HashGenerator.js",
+			"size": 822
+		},
+		{
+			"name": "util/MessageManager-dbg.js",
+			"size": 811,
+			"isDebug": true
+		},
+		{
+			"name": "util/MessageManager.js",
+			"size": 486
+		},
+		{
+			"name": "util/ODataModelHelper-dbg.js",
+			"size": 3471,
+			"isDebug": true
+		},
+		{
+			"name": "util/ODataModelHelper.js",
+			"size": 1266
+		},
+		{
+			"name": "util/RoutingSelectionUtil-dbg.js",
+			"size": 1064,
+			"isDebug": true
+		},
+		{
+			"name": "util/RoutingSelectionUtil.js",
+			"size": 239
+		},
+		{
+			"name": "util/RoutingUtil-dbg.js",
+			"size": 3233,
+			"isDebug": true
+		},
+		{
+			"name": "util/RoutingUtil.js",
+			"size": 1478
+		},
+		{
+			"name": "util/StructureFrameETOHandler-dbg.js",
+			"size": 8867,
+			"isDebug": true
+		},
+		{
+			"name": "util/StructureFrameETOHandler.js",
+			"size": 2978
+		},
+		{
+			"name": "util/StructureTreeETOHandler-dbg.js",
+			"size": 20519,
+			"isDebug": true
+		},
+		{
+			"name": "util/StructureTreeETOHandler.js",
+			"size": 10476
+		},
+		{
+			"name": "util/TablePersonalization-dbg.js",
+			"size": 12371,
+			"isDebug": true
+		},
+		{
+			"name": "util/TablePersonalization.js",
+			"size": 4466
+		},
+		{
+			"name": "util/i18n-dbg.js",
+			"size": 1629,
+			"isDebug": true
+		},
+		{
+			"name": "util/i18n.js",
+			"size": 512
+		},
+		{
+			"name": "view/MainFrame.view.xml",
+			"size": 756
+		},
+		{
+			"name": "view/RoutingFrame.view.xml",
+			"size": 3132
+		},
+		{
+			"name": "view/RoutingTree.view.xml",
+			"size": 3423
+		},
+		{
+			"name": "view/StructureFrame.view.xml",
+			"size": 3870
+		},
+		{
+			"name": "view/StructureTree.view.xml",
+			"size": 1046
+		}
+	]
+}

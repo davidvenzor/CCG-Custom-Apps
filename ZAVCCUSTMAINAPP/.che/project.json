@@ -1,0 +1,1 @@
+{"type":"sap.web","builders":{"configs":{}},"runners":{"configs":{}},"attributes":{"sap.watt.common.setting":["{\"deploy\":{\"destination\":\"DS4\",\"name\":\"ZAVCCUSTMAINAPP\"},\"mockpreview\":{\"mockUri\":\"\",\"metadataFilePath\":\"\",\"loadJSONFiles\":false,\"loadCustomRequests\":false,\"mockRequestsFilePath\":\"\"}}"]},"mixinTypes":[]}

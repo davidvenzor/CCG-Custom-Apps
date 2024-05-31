@@ -1,0 +1,27 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" >
+	<f:DynamicPageHeader
+		pinnable="false"
+		backgroundDesign="Solid"
+		class="vchclfinspectorHeaderNoBoxShadow vchclfinspectorHeaderTitleWithPadding">
+		<f:content>
+			<VBox>
+				<Title
+					text="{__viewData>/title}"
+					level="H3"
+					titleStyle="H3"
+					tooltip="{__viewData>/title}"/>
+				<Text
+					text="{__viewData>/subTitle}"/>
+			</VBox>
+		</f:content>
+	</f:DynamicPageHeader>
+</core:FragmentDefinition>

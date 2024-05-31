@@ -1,0 +1,7 @@
+/* Disable unnecessary the scrollbar for the formatted texts used in structure tree */
+
+.vchclfOverflowHiddenFormattedText {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

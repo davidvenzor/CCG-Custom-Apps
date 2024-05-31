@@ -1,0 +1,17 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+	<MessagePage 
+		showHeader="false"
+		text="{vchI18n>NOT_CONFIGURABLE_ITEM_SELECTED}"
+		description=""
+		icon="">
+	</MessagePage>
+</mvc:View>

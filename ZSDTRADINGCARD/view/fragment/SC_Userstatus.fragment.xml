@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout.form" xmlns:ui="sap.ui.table">
+	<Dialog id="SC_UserDialog" contentWidth="700px" title="User Status">
+		<content>
+			<l:SimpleForm editable="true">
+				<l:content>
+					<VBox>
+						<HBox>
+							<Label text="List of Changes" class="sapUiTinyMarginTop"/>
+						</HBox>
+						<ui:Table id="SC_idUserStatusTable" selectionMode="None" rows="{SC_userStatusModel>/}" alternateRowColors="true" ariaLabelledBy="title"
+							class="sapUiMediumMarginTop sapUiMediumMarginBottom clUserTable">
+							<ui:columns>
+								<ui:Column width="8em">
+									<Label text="Type"/>
+									<ui:template>
+										<Text text="{SC_userStatusModel>TYPE}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="9em">
+									<Label text="Description"/>
+									<ui:template>
+										<Text text="{SC_userStatusModel>STATUS}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="User"/>
+									<ui:template>
+										<Text text="{SC_userStatusModel>USER}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Date"/>
+									<ui:template>
+										<Text text="{SC_userStatusModel>DATE}" wrapping="false"/>
+										<!--<Text text="{ path: 'SC_userStatusModel>DATE', type:'sap.ui.model.type.Date', formatOptions:{ pattern: 'yyyy/MM/dd' } }"/>-->
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="8em">
+									<Label text="Time"/>
+									<ui:template>
+										<Text text="{SC_userStatusModel>TIME}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<HBox>
+								<Button text="Close" icon="sap-icon://sys-cancel" width="8rem" press="SC_OnUserClose"
+									class="sapUiTinyMarginBegin sapUiSmallMarginEnd sapUiLargeMarginBelow"/>
+							</HBox>
+						</Toolbar>
+					</VBox>
+				</l:content>
+			</l:SimpleForm>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

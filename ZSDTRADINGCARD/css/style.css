@@ -1,0 +1,115 @@
+/* Enter your custom styles here */
+.clPan1css {
+    height: 65px;
+    padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+    border-bottom: 0.2rem solid #ffccbc;
+    /* background-color: rgba(211, 180, 217, 0.047); */
+}
+
+.ClPokeColor{
+    font-size: 16px;
+    color: #bd816f;
+}
+
+.cllblflexgrad1 {
+    border-bottom: 0.2rem solid #ffccbc;
+}
+
+.sapMPanelContent {
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+}
+
+.clinpfield {
+    height: 20px;
+    width: 45px;
+}
+
+.sapMBtnInner {
+    font-size: 0.75rem;
+    height: 1.8rem;
+    min-width: 2rem;
+}
+
+.clLabelView{
+    font-size: 13px;
+    width: 100px;
+}
+
+.sapMBtnContent {
+    line-height: 1.8rem;
+}
+
+.cllblflexgrad {
+    font-family: "100", "72full", Arial, Helvetica, sans-serif !important;
+}
+
+.clGradInputField {
+    color: rgb(27, 20, 220);
+}
+
+.equalColumns .columns {
+    min-height: 400px;
+    background-color: white !important;
+}
+
+.equalColumns .columns .sapMFlexItem {
+    padding: 0.5rem;
+}
+
+.cllblflexHdrText {
+    font-size: 18px;
+    color: rgb(12, 76, 97);
+}
+
+.clCollPanels {
+    background-color: white;
+    box-shadow: 0 0.5px 0.5px 0 rgb(0 0 0 / 2%), 0 1px 1px 0 rgb(0 0 0 / 2%), 0 1px 15px 0 rgb(0 0 0 / 3%) !important;
+}
+
+.clInputField {
+    height: 30px;
+
+}
+
+.ClBlockSize {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.clPageformat {
+    /* background-color: rgb(255, 255, 255); */
+    background-color: white !important;
+}
+
+.clPageformat1 {
+    background-color: #ffccbc;
+    color: white !important;
+}
+
+.clInputField11 {
+    width: 50px;
+}
+
+.clInputField1 {
+    width: 140px;
+    height: 30px;
+}
+
+.sapMLabel {
+    color: #0f0f0f;
+}
+
+.sapFCard {
+    border: 0.0625rem solid #b8c160;
+}
+
+html.sap-desktop:not(.sapUiNativeScrollbars) ::-webkit-scrollbar-thumb {
+    background-color: #ffccbc;
+}
+.ToolbarGrde{
+    height: 2.75rem;
+    padding: 0 0.5rem 0 0.25rem;
+    background: #e76500;
+}

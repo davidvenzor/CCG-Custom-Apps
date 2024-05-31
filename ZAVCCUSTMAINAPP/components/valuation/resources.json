@@ -1,0 +1,585 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": "Component-dbg.js",
+			"size": 24104,
+			"isDebug": true
+		},
+		{
+			"name": "Component.js",
+			"size": 12019
+		},
+		{
+			"name": "control/SelectDialogListItem-dbg.js",
+			"size": 7853,
+			"isDebug": true
+		},
+		{
+			"name": "control/SelectDialogListItem.js",
+			"size": 4373
+		},
+		{
+			"name": "control/ValueHelpDialog-dbg.js",
+			"size": 10132,
+			"isDebug": true
+		},
+		{
+			"name": "control/ValueHelpDialog.control.xml",
+			"size": 2958
+		},
+		{
+			"name": "control/ValueHelpDialog.js",
+			"size": 3861
+		},
+		{
+			"name": "control/characteristic/Characteristic-dbg.js",
+			"size": 15211,
+			"isDebug": true
+		},
+		{
+			"name": "control/characteristic/Characteristic.js",
+			"size": 6735
+		},
+		{
+			"name": "control/characteristic/CharacteristicValueProcessor-dbg.js",
+			"size": 23358,
+			"isDebug": true
+		},
+		{
+			"name": "control/characteristic/CharacteristicValueProcessor.js",
+			"size": 8660
+		},
+		{
+			"name": "control/characteristic/CharacteristicValueProcessorManager-dbg.js",
+			"size": 5929,
+			"isDebug": true
+		},
+		{
+			"name": "control/characteristic/CharacteristicValueProcessorManager.js",
+			"size": 1809
+		},
+		{
+			"name": "control/characteristic/type/Base-dbg.js",
+			"size": 20199,
+			"isDebug": true
+		},
+		{
+			"name": "control/characteristic/type/Base.js",
+			"size": 10896
+		},
+		{
+			"name": "control/characteristic/type/Input-dbg.js",
+			"size": 2504,
+			"isDebug": true
+		},
+		{
+			"name": "control/characteristic/type/Input.js",
+			"size": 1499
+		},
+		{
+			"name": "control/characteristic/type/MultiInput-dbg.js",
+			"size": 7099,
+			"isDebug": true
+		},
+		{
+			"name": "control/characteristic/type/MultiInput.js",
+			"size": 3274
+		},
+		{
+			"name": "control/characteristic/type/Select-dbg.js",
+			"size": 6014,
+			"isDebug": true
+		},
+		{
+			"name": "control/characteristic/type/Select.js",
+			"size": 3471
+		},
+		{
+			"name": "control/characteristic/type/Text-dbg.js",
+			"size": 2013,
+			"isDebug": true
+		},
+		{
+			"name": "control/characteristic/type/Text.js",
+			"size": 1149
+		},
+		{
+			"name": "controller/Valuation-dbg.controller.js",
+			"size": 5072,
+			"isDebug": true
+		},
+		{
+			"name": "controller/Valuation.controller.js",
+			"size": 2236
+		},
+		{
+			"name": "controller/fragment/Base-dbg.js",
+			"size": 2012,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/Base.js",
+			"size": 1177
+		},
+		{
+			"name": "controller/fragment/filter/Filter-dbg.js",
+			"size": 12985,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/filter/Filter.js",
+			"size": 6391
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupBase-dbg.js",
+			"size": 4408,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupBase.js",
+			"size": 1988
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupEmbedded-dbg.js",
+			"size": 3418,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupEmbedded.js",
+			"size": 1529
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupFullScreen-dbg.js",
+			"size": 6078,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupFullScreen.js",
+			"size": 2420
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupsBase-dbg.js",
+			"size": 10082,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupsBase.js",
+			"size": 4463
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupsEmbedded-dbg.js",
+			"size": 1191,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupsEmbedded.js",
+			"size": 552
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupsFullScreen-dbg.js",
+			"size": 3497,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/group/CharacteristicGroupsFullScreen.js",
+			"size": 1603
+		},
+		{
+			"name": "css/style.css",
+			"size": 2027
+		},
+		{
+			"name": "dao/ValuationDAO-dbg.js",
+			"size": 20919,
+			"isDebug": true
+		},
+		{
+			"name": "dao/ValuationDAO.js",
+			"size": 9066
+		},
+		{
+			"name": "factory/CharacteristicFactory-dbg.js",
+			"size": 5049,
+			"isDebug": true
+		},
+		{
+			"name": "factory/CharacteristicFactory.js",
+			"size": 2391
+		},
+		{
+			"name": "factory/FactoryBase-dbg.js",
+			"size": 1430,
+			"isDebug": true
+		},
+		{
+			"name": "factory/FactoryBase.js",
+			"size": 685
+		},
+		{
+			"name": "factory/GroupFactory-dbg.js",
+			"size": 1403,
+			"isDebug": true
+		},
+		{
+			"name": "factory/GroupFactory.js",
+			"size": 765
+		},
+		{
+			"name": "factory/GroupsFactory-dbg.js",
+			"size": 1768,
+			"isDebug": true
+		},
+		{
+			"name": "factory/GroupsFactory.js",
+			"size": 881
+		},
+		{
+			"name": "formatter/CharacteristicFormatter-dbg.js",
+			"size": 21160,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/CharacteristicFormatter.js",
+			"size": 5214
+		},
+		{
+			"name": "i18n/messagebundle.properties",
+			"size": 7872,
+			"locale": "",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ar.properties",
+			"size": 12915,
+			"locale": "ar",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_bg.properties",
+			"size": 15704,
+			"locale": "bg",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ca.properties",
+			"size": 8266,
+			"locale": "ca",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_cs.properties",
+			"size": 8461,
+			"locale": "cs",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_da.properties",
+			"size": 7937,
+			"locale": "da",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_de.properties",
+			"size": 7877,
+			"locale": "de",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_el.properties",
+			"size": 15218,
+			"locale": "el",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en.properties",
+			"size": 7776,
+			"locale": "en",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en_US_sappsd.properties",
+			"size": 17312,
+			"locale": "en_US_sappsd",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en_US_saptrc.properties",
+			"size": 9557,
+			"locale": "en_US_saptrc",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_es.properties",
+			"size": 8256,
+			"locale": "es",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_et.properties",
+			"size": 8395,
+			"locale": "et",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_fi.properties",
+			"size": 8086,
+			"locale": "fi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_fr.properties",
+			"size": 8368,
+			"locale": "fr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hi.properties",
+			"size": 13258,
+			"locale": "hi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hr.properties",
+			"size": 8165,
+			"locale": "hr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hu.properties",
+			"size": 9022,
+			"locale": "hu",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_it.properties",
+			"size": 8061,
+			"locale": "it",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_iw.properties",
+			"size": 11846,
+			"locale": "iw",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ja.properties",
+			"size": 9056,
+			"locale": "ja",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_kk.properties",
+			"size": 13801,
+			"locale": "kk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ko.properties",
+			"size": 8864,
+			"locale": "ko",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_lt.properties",
+			"size": 8456,
+			"locale": "lt",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_lv.properties",
+			"size": 8761,
+			"locale": "lv",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ms.properties",
+			"size": 7711,
+			"locale": "ms",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_nl.properties",
+			"size": 7861,
+			"locale": "nl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_no.properties",
+			"size": 7779,
+			"locale": "no",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_pl.properties",
+			"size": 8386,
+			"locale": "pl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_pt.properties",
+			"size": 8295,
+			"locale": "pt",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ro.properties",
+			"size": 8196,
+			"locale": "ro",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ru.properties",
+			"size": 14817,
+			"locale": "ru",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sh.properties",
+			"size": 8119,
+			"locale": "sh",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sk.properties",
+			"size": 8428,
+			"locale": "sk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sl.properties",
+			"size": 7986,
+			"locale": "sl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sv.properties",
+			"size": 8062,
+			"locale": "sv",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_th.properties",
+			"size": 13335,
+			"locale": "th",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_tr.properties",
+			"size": 8483,
+			"locale": "tr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_uk.properties",
+			"size": 14518,
+			"locale": "uk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_vi.properties",
+			"size": 10394,
+			"locale": "vi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_zh_CN.properties",
+			"size": 8498,
+			"locale": "zh_CN",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_zh_TW.properties",
+			"size": 8435,
+			"locale": "zh_TW",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "manifest.json",
+			"size": 1988
+		},
+		{
+			"name": "manifestOPA.json",
+			"size": 2202
+		},
+		{
+			"name": "model/AppStateModel-dbg.js",
+			"size": 6360,
+			"isDebug": true
+		},
+		{
+			"name": "model/AppStateModel.js",
+			"size": 2908
+		},
+		{
+			"name": "model/ViewModel-dbg.js",
+			"size": 23592,
+			"isDebug": true
+		},
+		{
+			"name": "model/ViewModel.js",
+			"size": 10523
+		},
+		{
+			"name": "type/Characteristic-dbg.js",
+			"size": 330,
+			"isDebug": true
+		},
+		{
+			"name": "type/Characteristic.js",
+			"size": 225
+		},
+		{
+			"name": "type/GroupRepresentation-dbg.js",
+			"size": 296,
+			"isDebug": true
+		},
+		{
+			"name": "type/GroupRepresentation.js",
+			"size": 193
+		},
+		{
+			"name": "util/GroupState-dbg.js",
+			"size": 3764,
+			"isDebug": true
+		},
+		{
+			"name": "util/GroupState.js",
+			"size": 1027
+		},
+		{
+			"name": "util/MessageManager-dbg.js",
+			"size": 936,
+			"isDebug": true
+		},
+		{
+			"name": "util/MessageManager.js",
+			"size": 420
+		},
+		{
+			"name": "view/Valuation.view.xml",
+			"size": 1431
+		},
+		{
+			"name": "view/fragment/filter/FilterDialog.fragment.xml",
+			"size": 3653
+		},
+		{
+			"name": "view/fragment/group/CharacteristicGroupEmbedded.fragment.xml",
+			"size": 1924
+		},
+		{
+			"name": "view/fragment/group/CharacteristicGroupFullScreen.fragment.xml",
+			"size": 2842
+		},
+		{
+			"name": "view/fragment/group/CharacteristicGroupsEmbedded.fragment.xml",
+			"size": 503
+		},
+		{
+			"name": "view/fragment/group/CharacteristicGroupsFullScreen.fragment.xml",
+			"size": 647
+		}
+	]
+}

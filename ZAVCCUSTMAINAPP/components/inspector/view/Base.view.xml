@@ -1,0 +1,19 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View xmlns="sap.m" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" busyIndicatorDelay="0"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.Base">
+	<f:DynamicPage toggleHeaderOnTitleClick="false">
+		<f:header>
+			<core:Fragment fragmentName="sap.i2d.lo.lib.zvchclfz.components.inspector.fragment.Header" type="XML"/>
+		</f:header>
+
+		<f:content>
+			<IconTabBar id="idInspectorTabs" class="sapUiNoContentPadding" stretchContentHeight="true" expandable="false"
+				selectedKey="{global>/selectedTab}" select="onTabChanged" tabDensityMode="Compact"></IconTabBar>
+		</f:content>
+
+	</f:DynamicPage>
+</mvc:View>

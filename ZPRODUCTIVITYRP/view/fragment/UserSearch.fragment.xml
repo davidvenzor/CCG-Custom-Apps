@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout.form" xmlns:ui="sap.ui.table">
+	<Dialog id="colDialog" contentWidth="550px" title="UserNames">
+		<content>
+			<l:SimpleForm editable="true">
+				<!--</Panel>-->
+				<l:content>
+					<VBox>
+						<!--<Panel expandable="true" width="auto" class="sapUiResponsiveMargin">-->
+						<HBox>
+							<VBox class="sapUiTinyMarginEnd">
+								<HBox>
+									<Label text="UserName" class="sapUiTinyMarginTop clLabelView"/>
+									<!--<Input value="{MaraDataModel>/ZCsgSportsCode}" width="150px" class="clInputSportsCardModelSportsCardModelSportsCardModelField"/>-->
+									<ComboBox id="idUser" showSecondaryValues="true" selectedKey="{UserModel>/Bname}" width="300px" items="{UserModel>/}"
+										change="handleGoDlogPress">
+										<items>
+											<core:ListItem text="{UserModel>Bname}" key="{UserModel>Bname}"/>
+										</items>
+									</ComboBox>
+								</HBox>
+							</VBox>
+						</HBox>
+						<ui:Table id="idUserSearch" selectionMode="Single" rows="{UserModel>/}" paste="onPaste" alternateRowColors="true" ariaLabelledBy="title"
+							class="sapUiMediumMarginTop sapUiMediumMarginBottom" rowSelectionChange="action">
+							<ui:columns>
+								<ui:Column width="20em">
+									<Label text="Username"/>
+									<ui:template>
+										<Text text="{UserModel>Bname}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<HBox>
+								<Button text="OK" press="handleOkUserPress" width="8rem" class="sapUiLargeMarginBegin sapUiSmallMarginEnd sapUiLargeMarginBelow"/>
+								<Button text="Close" icon="sap-icon://sys-cancel" width="8rem" press="onCloseDialog"
+									class="sapUiTinyMarginBegin sapUiSmallMarginEnd sapUiLargeMarginBelow"/>
+							</HBox>
+						</Toolbar>
+					</VBox>
+				</l:content>
+			</l:SimpleForm>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

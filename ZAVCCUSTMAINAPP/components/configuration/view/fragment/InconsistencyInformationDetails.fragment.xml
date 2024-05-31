@@ -1,0 +1,100 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" 
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<l:VerticalLayout width="100%">
+		<Title text="{vchI18n>INCONSISTENCY_INFORMATION_DETAILS_TITLE}" class="sapUiTinyMarginTop sapUiSmallMarginBottom sapVchclfBold"></Title>
+		<Table 
+			inset="false"
+			items="{
+				path: 'vchclf>Details',
+				templateShareable: 'false',
+				sorter: {
+					path: 'Material',
+					descending: false,
+					group: true
+				},
+				groupHeaderFactory: '.getGroupHeader'
+			}">
+			<columns>
+				<Column width="16rem">
+					<Text text="{vchI18n>CHARACTERISTIC}" />
+				</Column>
+				<Column
+					width="16rem"
+					demandPopin="true">
+					<Text text="{vchI18n>VALUES}" />
+				</Column>
+				<Column
+					width="4rem"
+					demandPopin="true">
+					<Text text="{vchI18n>INSPECT}" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text
+							text="{ parts: [ { path:'vchI18n>DESCRIPTION_MODE_TEXT_BOTH' },
+										   { path:'vchclf>CsticName' },
+										   { path:'vchclf>CsticDescription' },
+										   { path:'vchSettings>/descriptionMode' } ], 	
+										   formatter:'.oInconsistencyInformationFormatter.combineDescriptionAndValue' }"/>
+						<VBox items="{
+							path: 'vchclf>AssignedCsticValues', 
+							templateShareable: 'false'
+							}">
+							<Text 
+								text="{parts: [{ path:'vchI18n>DESCRIPTION_MODE_TEXT_BOTH' }, 
+												{ path:'vchclf>FormattedValueFrom' }, 
+												{ path:'vchclf>FormattedValueTo' },
+												{ path:'vchclf>Description' }, 
+												{ path:'vchI18n>INTERVAL_REPRESENTATION'},
+												{ path:'vchSettings>/descriptionMode' } ],
+												formatter: '.oInconsistencyInformationFormatter.formatCsticValue'}"/>
+						</VBox>
+						<core:Icon src="sap-icon://inspection" tooltip="{vchI18n>SHOW_IN_INSPECTOR}" class="sapUiTinyMarginBegin" press="onInconsistencyInfoDetailTextForCsticPress"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<Title text="{vchI18n>DEPENDENCY}" class="sapUiMediumMarginTop sapUiSmallMarginBottom sapVchclfBold"/>
+		<Table 
+			inset="false"
+			items="{
+				path: 'configurationSettings>/triggerForDependencyLinkFactory',
+				templateShareable: 'false'
+			}">
+			<columns>
+				<Column width="16rem">
+					<Text text="{vchI18n>DEPENDENCY_DESCRIPTION}" />
+				</Column>
+				<Column
+					width="12rem"
+					demandPopin="true">
+					<Text text="{vchI18n>DEPENDENCY_ID}" />
+				</Column>
+				<Column
+					width="8rem"
+					demandPopin="true">
+					<Text text="{vchI18n>DEPENDENCY_TYPE_DESCRIPTION}" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{= ${vchclf>DependencyDescription} ? ${vchclf>DependencyDescription} : '\u2013' }" />
+						<Link text="{vchclf>DependencyId}" press="onDependencyClicked" />
+						<Text text="{vchclf>DependencyTypeDescr}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

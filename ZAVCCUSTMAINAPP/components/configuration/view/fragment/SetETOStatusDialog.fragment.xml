@@ -1,0 +1,29 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition	
+	xmlns:core="sap.ui.core" 
+	xmlns="sap.m">
+	<Dialog	id="setETOStatus" 
+		type="Message"
+		state="Information"
+		title="{vchI18n>SET_ETO_STATUS}"
+		contentWidth="432px"
+		verticalScrolling="false">
+		<beginButton>
+			<Button id="setETOStatusDialogOkButton" 
+			type="Emphasized"
+			text="{vchI18n>SET_ETO_STATUS_OK_BUTTON}"
+			press=".onConfirmSetETOStatus"/>
+		</beginButton>
+		<endButton>
+			<Button id="setETOStatusDialogCancelButton" 
+			text="{vchI18n>SET_ETO_STATUS_CANCEL_BUTTON}"/>
+		</endButton>
+		<content>
+			<Text text="{vchI18n>SET_ETO_STATUS_DIALOG_CONTENT}"/>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

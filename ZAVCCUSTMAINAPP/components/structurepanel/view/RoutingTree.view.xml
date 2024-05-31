@@ -1,0 +1,112 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.structurepanel.controller.RoutingTree"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:table="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:customControl="sap.i2d.lo.lib.zvchclfz.components.structurepanel.control">
+	<table:TreeTable
+		id="idRoutingTree"
+		selectionMode="Single"
+		selectionBehavior="RowOnly"
+		enableSelectAll="false"
+		visibleRowCountMode="Auto"
+		rows="{
+			path: 'routingTree>/routingNodes',
+			parameters: {
+				arrayNames: ['items']
+			}
+		}"
+		cellClick="onCellClicked"
+		rowActionCount="1"
+		rowSelectionChange="onRowSelectionChange">
+		<table:columns>
+			<table:Column
+				id="idRoutingColumn"
+				hAlign="Left"
+				resizable="false"
+				tooltip="{i18n>vchclf_structpnl_routing_tree_routing_column_tt}">
+				<Label
+					text="{i18n>vchclf_structpnl_routing_tree_routing_column_title}"/>
+				<table:template>
+					<customControl:IconText
+						isGreyedOut="{routingTree>IsExcludedItem}"
+						text="{
+							parts: [
+								{ path: 'routingTree>NodeType' },
+								{ path: 'routingTree>BillOfOperationsGroup' },
+								{ path: 'routingTree>BillOfOperationsSequence' },
+								{ path: 'routingTree>BillOfOperationsNode' },
+								{ path: 'routingTree>BillOfOperationsOperation' },
+								{ path: 'routingTree>Description' }
+							],
+							formatter: '._formatter.getDescription'
+						}"
+						firstIconURI="{
+							path: 'routingTree>NodeType',
+							formatter: '._formatter.getNodeTypeIcon'
+						}"
+						firstIconTooltip="{
+							path: 'routingTree>NodeType',
+							formatter: '._formatter.getNodeTypeTooltip'
+						}"
+						secondIconURI="{
+							parts: [
+								{ path: 'routingTree>BOOSequenceBranchOperation' },
+								{ path: 'routingTree>BOOSequenceReturnOperation' }
+							],
+							formatter: '._formatter.getNodeBranchReturnIcon'
+						}"
+						secondIconTooltip="{
+							parts: [
+								{ path: 'routingTree>BOOSequenceBranchOperation' },
+								{ path: 'routingTree>BOOSequenceReturnOperation' }
+							],
+							formatter: '._formatter.getNodeBranchReturnTooltip'
+						}"/>
+				</table:template>
+			</table:Column>
+			<table:Column
+				id="idDependenciesColumn"
+				width="2.5rem"
+				hAlign="Center"
+				resizable="false"
+				tooltip="{i18n>vchclf_structpnl_tree_dependencies_column_tt}">
+				<core:Icon
+					src="sap-icon://share-2"
+					decorative="false"
+					alt="{i18n>vchclf_structpnl_tree_dependencies_column_tt}"/>
+				<table:template>
+					<core:Icon
+						src="sap-icon://share-2"
+						tooltip="{i18n>vchclf_structpnl_tree_dependencies_column_tt}"
+						alt="{i18n>vchclf_structpnl_tree_dependencies_column_tt}"
+						press="onDependencyPressed"
+						visible="{
+							path: 'routingTree>ObjectDependencyAssgmtNumber',
+							formatter: '._formatter.returnObjDepIconVisibility'
+						}"/>
+				</table:template>
+			</table:Column>
+		</table:columns>
+		<table:rowActionTemplate>
+			<table:RowAction>
+				<table:RowActionItem
+					type="Navigation"
+					press="onNavigationPressed"
+					visible="{
+						parts: [
+							{ path: 'routingTree>BOOSequenceBranchOperation' },
+							{ path: 'routingTree>BOOSequenceReturnOperation' }
+						],
+						formatter: '._formatter.checkRoutingNavigationVisibility'
+					}"/>
+			</table:RowAction>
+	  </table:rowActionTemplate>
+	</table:TreeTable>
+</mvc:View>

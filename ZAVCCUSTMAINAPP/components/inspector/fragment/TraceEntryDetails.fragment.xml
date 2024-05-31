@@ -1,0 +1,289 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:ictr="sap.i2d.lo.lib.zvchclfz.components.inspector.control">
+	<ScrollContainer
+		height="100%"
+		width="100%"
+		horizontal="false"
+		vertical="false"
+		focusable="true"
+		class="sapUiTinyMarginBegin" > <!-- The detail content should be focusable because of accessibility -->
+		<HBox
+			class="sapUiTinyMarginBottom"
+			visible="{= ${trace>to_TraceBAdI} !== null &amp;&amp; ${trace>to_TraceBAdI/ErrorMessage} !== ''}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://message-error"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_error_message}"
+				decorative="false" />
+			<Text
+				text="{trace>to_TraceBAdI/ErrorMessage}" />
+		</HBox>
+		<HBox
+			class="sapUiTinyMarginBottom"
+			visible="{= ${trace>to_TraceBAdI} !== null &amp;&amp; ${trace>to_TraceBAdI/Solution} !== ''}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://message-information"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_solution}"
+				decorative="false" />
+			<Text
+				text="{trace>to_TraceBAdI/Solution}" />
+		</HBox>
+		<HBox
+			class="sapUiTinyMarginBottom"
+			visible="{= ${trace>to_TraceBAdI} !== null &amp;&amp; ${trace>to_TraceBAdI/BAdIName} !== '' }">
+			<core:Icon
+				color="Default"
+				src="sap-icon://project-definition-triangle"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_badi_definition}"
+				decorative="false" />
+			<Text
+				text="{trace>to_TraceBAdI/BAdIName}" />
+		</HBox>
+		<HBox
+			class="sapUiTinyMarginBottom"
+			visible="{= ${trace>to_TraceBAdI} !== null &amp;&amp; ${trace>to_TraceBAdI/BAdIImplementation} !== '' }">
+			<core:Icon
+				color="Default"
+				src="sap-icon://project-definition-triangle-2"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_badi_implementation}"
+				decorative="false" />
+			<Text
+				text="{trace>to_TraceBAdI/BAdIImplementation}" />
+		</HBox>
+		<HBox
+			visible="{= ${trace>to_InputTraceObjectDependencies}.length > 0}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://share-2"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_dependency}"
+				decorative="false" />
+			<VBox
+				items="{trace>to_InputTraceObjectDependencies}"
+				width="100%">
+				<ictr:TraceEntryText
+					metaText="{
+						path: '',
+						formatter: '._formatter.formatMetatextOfObjectDependencyDetail'
+					}"
+					styleClass="sapUiTinyMarginBottom"
+					filter="onFilterTraceEntryItem"
+					inspect="onInspectTraceEntryItem"/>
+			</VBox>
+		</HBox>
+		<HBox
+			class="sapUiTinyMarginBottom"
+			visible="{= ${trace>to_VariantTables}.length > 0}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://table-view"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_variant_tables}"
+				decorative="false" />
+			<Text
+				text="{
+					path: 'trace>to_VariantTables',
+					formatter: '._formatter.formatVariantTables'
+				}" />
+		</HBox>
+		<HBox
+			visible="{= ${trace>to_TraceBeforeCharacteristics}.length > 0}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://BusinessSuiteInAppSymbols/icon-effects"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_before_characteristics}"
+				decorative="false" />
+			<VBox
+				items="{trace>to_TraceBeforeCharacteristics}"
+				width="100%">
+				<ictr:TraceEntryText
+					metaText="{
+						parts: [
+							{ path: 'trace>to_TraceCharacteristicValues' },
+							{ path: 'global>/showPreciseNumbers' }
+						],
+						formatter: '._formatter.formatMetatextOfCharacteristicDetail'
+					}"
+					styleClass="sapUiTinyMarginBottom"
+					showPreciseNumbers="{global>/showPreciseNumbers}"
+					filter="onFilterTraceEntryItem"
+					inspect="onInspectTraceEntryItem"
+					whereWasValueSet="onWhereWasValueSet"
+					whereWasCsticUsed="onWhereWasCsticUsed"/>
+			</VBox>
+		</HBox>
+		<HBox
+			visible="{= ${trace>to_BeforeCharacteristicResults}.length > 0}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://BusinessSuiteInAppSymbols/icon-effects"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_before_cstic_results}"
+				decorative="false" />
+			<VBox
+				items="{trace>to_BeforeCharacteristicResults}"
+				width="100%">
+				<ictr:TraceEntryText
+					metaText="{
+						path: 'trace>',
+						formatter: '._formatter.formatMetatextOfCharacteristicResultsDetail'
+					}"
+					styleClass="sapUiTinyMarginBottom"
+					filter="onFilterTraceEntryItem"
+					inspect="onInspectTraceEntryItem"
+					whereWasValueSet="onWhereWasValueSet"
+					whereWasCsticUsed="onWhereWasCsticUsed"/>
+			</VBox>
+		</HBox>
+		<HBox
+			visible="{= ${trace>to_BeforeDependencyResults}.length > 0}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://BusinessSuiteInAppSymbols/icon-effects"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_before_dependency_results}"
+				decorative="false" />
+			<VBox
+				items="{trace>to_BeforeDependencyResults}"
+				width="100%">
+				<ictr:TraceEntryText
+					metaText="{
+						path: 'trace>',
+						formatter: '._formatter.formatMetatextOfDependencyResultDetail'
+					}"
+					styleClass="sapUiTinyMarginBottom"
+					filter="onFilterTraceEntryItem"
+					inspect="onInspectTraceEntryItem"
+					whereWasDepSet="onWhereWasDepSet"
+					whereWasDepUsed="onWhereWasDepUsed"/>
+			</VBox>
+		</HBox>
+		<HBox
+			visible="{= ${trace>to_TraceResultCharacteristics}.length > 0}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://BusinessSuiteInAppSymbols/icon-causes"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_result_characteristics}"
+				decorative="false" />
+			<VBox
+				items="{trace>to_TraceResultCharacteristics}"
+				width="100%">
+				<ictr:TraceEntryText
+					metaText="{
+						parts: [
+							{ path: 'trace>to_TraceCharacteristicValues' },
+							{ path: 'global>/showPreciseNumbers' }
+						],
+						formatter: '._formatter.formatMetatextOfCharacteristicDetail'
+					}"
+					styleClass="sapUiTinyMarginBottom"
+					showPreciseNumbers="{global>/showPreciseNumbers}"
+					filter="onFilterTraceEntryItem"
+					inspect="onInspectTraceEntryItem"
+					whereWasValueSet="onWhereWasValueSet"
+					whereWasCsticUsed="onWhereWasCsticUsed"/>
+			</VBox>
+		</HBox>
+		<HBox
+			visible="{= ${trace>to_ResultCharacteristicResults}.length > 0}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://BusinessSuiteInAppSymbols/icon-causes"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_result_cstic_results}"
+				decorative="false" />
+			<VBox
+				items="{trace>to_ResultCharacteristicResults}"
+				width="100%">
+				<ictr:TraceEntryText
+					metaText="{
+						path: 'trace>',
+						formatter: '._formatter.formatMetatextOfCharacteristicResultsDetail'
+					}"
+					styleClass="sapUiTinyMarginBottom"
+					filter="onFilterTraceEntryItem"
+					inspect="onInspectTraceEntryItem"
+					whereWasValueSet="onWhereWasValueSet"
+					whereWasCsticUsed="onWhereWasCsticUsed"/>
+			</VBox>
+		</HBox>
+		<HBox
+			visible="{= ${trace>to_ResultDependencyResults}.length > 0}">
+			<core:Icon
+				color="Default"
+				src="sap-icon://BusinessSuiteInAppSymbols/icon-causes"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_result_dependency_results}"
+				decorative="false" />
+			<VBox
+				items="{trace>to_ResultDependencyResults}"
+				width="100%">
+				<ictr:TraceEntryText
+					metaText="{
+						path: 'trace>',
+						formatter: '._formatter.formatMetatextOfDependencyResultDetail'
+					}"
+					styleClass="sapUiTinyMarginBottom"
+					filter="onFilterTraceEntryItem"
+					inspect="onInspectTraceEntryItem"
+					whereWasDepSet="onWhereWasDepSet"
+					whereWasDepUsed="onWhereWasDepUsed"/>
+			</VBox>
+		</HBox>
+		<HBox
+			class="sapUiTinyMarginBottom"
+			visible="{=
+				${trace>to_TracePricingFactor} !== null &amp;&amp;
+				${trace>to_TracePricingFactor/VariantConditionValue} !== '' &amp;&amp;
+				${trace>to_TracePricingFactor/ViewRelevance} !== '2' }">
+			<core:Icon
+				color="Default"
+				src="sap-icon://payment-approval"
+				class="sapUiTinyMarginEnd"
+				tooltip="{i18n>vchclf_trace_detail_pricing_factor_result}"
+				decorative="false" />
+			<Text
+				text="{
+					parts: [
+						{ path: 'trace>' },
+						{ path: 'global>/showPreciseNumbers' }
+					],
+					formatter: '._formatter.formatPricingFactorDetails'
+				}" />
+		</HBox>
+		<TextArea
+			visible="{trace>_isDependencySourceCodeVisible}"
+			value="{
+				path: 'trace>to_ObjectDependencyCodes',
+				formatter: '._dependencyFormatter.formatDependencySourceCode'
+			}"
+			tooltip="{i18n>vchclf_trace_detail_dependency_source_code}"
+			width="100%"
+			wrapping="Soft"
+			growing="true"
+			growingMaxLines="13"
+			editable="false"/>
+		<Link
+			visible="{trace>_isToggleDepSourceCodeLinkVisible}"
+			busyIndicatorDelay="0"
+			text="{= ${trace>to_ObjectDependencyCodes}.length > 3 ?
+						${i18n>vchclf_trace_detail_show_less_lines} :
+						${i18n>vchclf_trace_detail_show_more_lines} }"
+			press="toggleDependencySourceCodeFromCache"
+			class="sapUiTinyMarginTop"/>
+	</ScrollContainer>
+</core:FragmentDefinition>

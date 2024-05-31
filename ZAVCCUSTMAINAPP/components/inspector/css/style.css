@@ -1,0 +1,41 @@
+@media all and (min-width: 601px) {
+    .vchclfinspectorHeaderTitleWithPadding {
+        padding-left: 1.75rem !important;
+    }
+
+    .vchclfinspectorHeaderNoBoxShadow {
+        box-shadow: none !important;
+    }
+
+    .vchclfTraceEntryRemoveBorder > * {
+        border-bottom: none !important;
+    }
+
+    .vchclfTraceEntryHideExpandIcon > header > .sapUiIcon {
+        visibility: hidden;
+    }
+    .vchclfTraceEntryHideExpandIcon > header > button {
+        visibility: hidden;
+    }
+
+    .vchclfTraceEntryTextItem {
+        display: inline;
+    }
+}
+
+.vchclfDiffObjectState {
+	margin-top: 0.1rem;
+}
+
+.vchclfComparisonLink {
+	display: initial;
+}
+
+.vchclfComparisonTableVLayout {
+	height: 100%;
+	width: 100%;
+}
+
+.vchclfComparisonTableVLayout .sapUiVltCell {
+	height: calc(100% - 5rem);
+}

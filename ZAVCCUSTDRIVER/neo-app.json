@@ -1,0 +1,51 @@
+{
+  "welcomeFile": "index.html",
+  "routes": [
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "DS4",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "DS4"
+    },
+    {
+      "path": "/sap/bc/ui5_ui5",
+      "target": {
+        "type": "destination",
+        "name": "DS4",
+        "entryPath": "/sap/bc/ui5_ui5"
+      },
+      "description": "DS4"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/resources/sap/i2d/lo/lib/zvchclfz",
+      "target": {
+        "type": "destination",
+        "name": "DS4",
+        "entryPath": "/sap/bc/ui5_ui5/sap/zavccustmainapp",
+        "preferLocal": true
+      },
+      "description": "sap/i2d/lo/lib/zvchclfz Reuse Library"
+    }
+  ]
+}

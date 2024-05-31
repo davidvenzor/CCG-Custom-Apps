@@ -1,0 +1,120 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+    xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:ictr="sap.i2d.lo.lib.zvchclfz.components.inspector.control"
+	busyIndicatorDelay="0"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.DependencyTrace">
+	<Page
+		id="idTraceContainer"
+		enableScrolling="true"
+		showSubHeader="{= ${trace>/filterText} !== '' }"
+		class="sapUiResponsivePadding">
+		<headerContent>
+			<FlexBox
+				height="100%"
+				alignItems="Center"
+				justifyContent="Center"
+				renderType="Bare">
+				<items>
+					<Button
+						id="idTraceFilterButton"
+						icon="sap-icon://filter"
+						tooltip="{i18n>vchclf_objectheader_trace_filter_tt}"
+						press="onFilterPressed">
+						<layoutData>
+							<FlexItemData growFactor="0" />
+						</layoutData>
+					</Button>
+					<SearchField
+						id="idQuickSearch"
+						value="{ui>/searchText}"
+						tooltip = "{i18n>vchclf_objectheader_trace_quick_filter_tt}"
+						placeholder="{i18n>vchclf_objectheader_trace_filter_placeholder}"
+						liveChange="onSearchLiveChanged"
+						search="onSearchTriggered"
+						width="auto">
+						<layoutData>
+							<FlexItemData growFactor="1" />
+						</layoutData>
+					</SearchField>
+				</items>
+			</FlexBox>
+		</headerContent>
+		<subHeader>
+			<OverflowToolbar
+				active="true"
+				design="Info"
+				visible="{= ${trace>/filterText} !== '' }"
+				ariaLabelledBy="idOverflowToolbarText"
+				press="onOverflowToolbarPressed">
+				<Text
+					id="idOverflowToolbarText"
+					text="{trace>/filterText}"
+					tooltip="{trace>/filterText}"
+					wrapping="false"/>
+				<ToolbarSpacer/>
+				<core:Icon
+					src="sap-icon://sys-cancel"
+					press="onResetFilterPressed"
+					decorative="false"
+					tooltip="{i18n>vchclf_trace_reset_filter_tt}"/>
+			</OverflowToolbar>
+		</subHeader>
+		<content>
+			<List
+				id="idTraceList"
+				items="{
+					path: 'trace>/entries',
+					key: '_id'
+				}"
+				growing="true"
+				growingScrollToLoad="true"
+				growingThreshold="50"
+				updateStarted="onListUpdateStarted"
+				class="sapUiNoContentPadding"
+				noDataText="{= ${global>/isTraceOn} ? ${i18n>vchclf_nodata_trace_on} : ${i18n>vchclf_nodata_trace_off} }">
+				<CustomListItem
+					highlight="{= ${trace>_isHighlighted} ? 'Information' : 'None' }"
+					highlightText="{= ${trace>_isHighlighted} ? ${i18n>vchclf_trace_entry_highlighted} : ''}">
+					<ictr:TraceEntry
+						expandable="true"
+						expand="onExpandTraceEntryPressed"
+						expanded="{trace>_isExpanded}"
+						busyIndicatorDelay="0"
+						class="vchclfTraceEntryRemoveBorder"
+						hasContent="{trace>HasDetail}"
+						clicked="onTraceEntryClicked"
+						accessibleRole="Region">
+						<ictr:headerToolbar>
+							<Toolbar
+								height="auto"
+								class="sapUiTinyMarginTopBottom">
+								<ictr:TraceEntryText
+									metaText="{trace>MetaText}"
+									showPreciseNumbers="{global>/showPreciseNumbers}"
+									filter="onFilterTraceEntryItem"
+									inspect="onInspectTraceEntryItem"
+									whereWasValueSet="onWhereWasValueSet"
+									whereWasCsticUsed="onWhereWasCsticUsed"
+									whereWasDepSet="onWhereWasDepSet"
+									whereWasDepUsed="onWhereWasDepUsed"/>
+								<ToolbarSpacer />
+								<Text
+									textAlign="End"
+									text="{trace>EntryNo}"
+									class="sapUiTinyMarginEnd" />
+							</Toolbar>
+						</ictr:headerToolbar>
+					</ictr:TraceEntry>
+					<!-- The content of the TraceEntry is dynamically set by the controller during the expand -->
+				</CustomListItem>
+			</List>
+		</content>
+	</Page>
+</mvc:View>

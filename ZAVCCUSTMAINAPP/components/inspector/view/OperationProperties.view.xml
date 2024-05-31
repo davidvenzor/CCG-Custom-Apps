@@ -1,0 +1,194 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.OperationProperties">
+	<f:Form
+		id="idOperationForm"
+		editable="false">
+		<f:layout>
+			<f:ResponsiveGridLayout
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="5"
+				labelSpanS="12"
+				breakpointL="800"
+				breakpointM="400"
+				columnsL="2"
+				columnsM="1"/>
+		</f:layout>
+		<f:toolbar>
+			<core:Fragment
+				fragmentName="sap.i2d.lo.lib.zvchclfz.components.inspector.fragment.ShowMasterData"
+				type="XML"/>
+		</f:toolbar>
+		<f:formContainers>
+			<f:FormContainer
+				title="{i18n>vchclf_insp_common_basic_info_title}">
+				<f:formElements>
+					<f:FormElement
+						label="{i18n>vchclf_insp_operations_operation_number}">
+						<f:fields>
+							<FormattedText
+								id="idOperationsOperationNumber"
+								htmlText="{
+									parts: [
+										{ path: 'properties>/BillOfOperationsOperation' },
+										{ path: 'properties>/to_Super/BillOfOperationsOperation' },
+										{ path: 'properties>/to_Super/IsExcludedItem' },
+										{ path: '__viewData>/isSuperInspectorShown' }
+									],
+									formatter: '._superInspectorFormatter.formatValue'
+								}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement
+						label="{i18n>vchclf_insp_operations_workcenter}">
+						<f:fields>
+							<FormattedText
+								id="idOperationsWorkcenter"
+								htmlText="{
+									parts: [
+										{ path: 'properties>/WorkCenter' },
+										{ path: 'properties>/WorkCenterDescription' },
+										{ path: 'properties>/to_Super/WorkCenter' },
+										{ path: 'properties>/to_Super/WorkCenterDescription' },
+										{ path: 'properties>/to_Super/IsExcludedItem' },
+										{ path: '__viewData>/isSuperInspectorShown' }
+									],
+									formatter: '._superInspectorFormatter.concatenateIdAndDescription'
+								}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="{i18n>vchclf_insp_operations_std_value_key}">
+						<f:fields>
+							<FormattedText
+								id="idOperationsStdValueKey"
+								htmlText="{
+									parts: [
+										{ path: 'properties>/StandardValueKey' },
+										{ path: 'properties>/to_Super/StandardValueKey' },
+										{ path: 'properties>/to_Super/IsExcludedItem' },
+										{ path: '__viewData>/isSuperInspectorShown' }
+									],
+									formatter: '._superInspectorFormatter.formatValue'
+								}"/>
+						</f:fields>
+					</f:FormElement>
+					<!-- This is not in the scope of 1808/1809 release -->
+					<!--<f:FormElement label="{i18n>vchclf_insp_operations_origin}">-->
+					<!--	<f:fields>-->
+					<!--		<FormattedText-->
+					<!--			id="idOperationsOrigin"-->
+					<!--			htmlText="{-->
+					<!--				parts: [-->
+					<!--					{ path: 'properties>/Origin' },-->
+					<!--					{ path: 'properties>/to_Super/Origin' },-->
+					<!--					{ path: 'properties>/to_Super/IsExcludedItem' },-->
+					<!--					{ path: '__viewData>/isSuperInspectorShown' }-->
+					<!--				],-->
+					<!--				formatter: '._superInspectorFormatter.formatValue'-->
+					<!--			}/>-->
+					<!--	</f:fields>-->
+					<!--</f:FormElement>-->
+					<f:FormElement label="{i18n>vchclf_insp_operations_control_key}">
+						<f:fields>
+							<FormattedText
+								id="idOperationsControlKey"
+								htmlText="{
+									parts: [
+										{ path: 'properties>/ControlKey' },
+										{ path: 'properties>/to_Super/ControlKey' },
+										{ path: 'properties>/to_Super/IsExcludedItem' },
+										{ path: '__viewData>/isSuperInspectorShown' }
+									],
+									formatter: '._superInspectorFormatter.formatValue'
+								}"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer
+				title="{i18n>vchclf_insp_common_standard_values_title}"
+				formElements="{properties>/to_StandardValues}"
+				visible="{__viewData>/hasStandardValues}">
+				<f:FormElement
+					label="{
+						parts: [
+							{ path: 'properties>Label' },
+							{ path: 'properties>to_Super/Label' }
+						],
+						formatter: '._routingFormatter.getLabelOfStandardValue'
+					}"
+					visible="{
+						parts: [
+							{ path: 'properties>Value' },
+							{ path: '__viewData>/isSuperInspectorShown' }
+						],
+						formatter: '._routingFormatter.getVisibilityOfStandardValue'
+					}">
+					<f:fields>
+						<FormattedText
+							htmlText="{
+								parts: [
+									{ path: 'properties>Value' },
+									{ path: 'properties>UnitOfMeasure' },
+									{ path: 'properties>to_Super/Value' },
+									{ path: 'properties>to_Super/UnitOfMeasure' },
+									{ path: 'properties>/to_Super/IsExcludedItem' },
+									{ path: '__viewData>/isSuperInspectorShown' }
+								],
+								formatter: '._superInspectorFormatter.formatQtyWithUom'
+							}"/>
+					</f:fields>
+				</f:FormElement>
+			</f:FormContainer>
+			<f:FormContainer
+				title="{i18n>vchclf_insp_common_ref_operation_set_title}"
+				visible="{
+					path: '__viewData>/objectType',
+					formatter: '._routingFormatter.visibilityOfReferenceOperationSet'
+				}">
+				<f:FormElement
+					label="{i18n>vchclf_insp_operations_ref_oper_set}">
+					<f:fields>
+						<FormattedText
+							htmlText="{
+								parts: [
+									{ path: 'properties>/BillOfOperationsRefGroup' },
+									{ path: 'properties>/BillOfOperationsRefDesc' },
+									{ path: 'properties>/to_Super/BillOfOperationsRefGroup' },
+									{ path: 'properties>/to_Super/BillOfOperationsRefDesc' },
+									{ path: 'properties>/to_Super/IsExcludedItem' },
+									{ path: '__viewData>/isSuperInspectorShown' }
+								],
+								formatter: '._superInspectorFormatter.concatenateIdAndDescription'
+							}"/>
+					</f:fields>
+				</f:FormElement>
+				<f:FormElement
+					label="{i18n>vchclf_insp_operations_ref_oper_group_counter}">
+					<f:fields>
+						<FormattedText
+							htmlText="{
+								parts: [
+									{ path: 'properties>/BillOfOperationsRefVariant' },
+									{ path: 'properties>/to_Super/BillOfOperationsRefVariant' },
+									{ path: 'properties>/to_Super/IsExcludedItem' },
+									{ path: '__viewData>/isSuperInspectorShown' }
+								],
+								formatter: '._superInspectorFormatter.formatValue'
+							}" />
+					</f:fields>
+				</f:FormElement>
+			</f:FormContainer>
+		</f:formContainers>
+	</f:Form>
+</mvc:View>

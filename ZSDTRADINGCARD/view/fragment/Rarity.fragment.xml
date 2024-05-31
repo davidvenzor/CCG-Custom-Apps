@@ -1,0 +1,131 @@
+<core:FragmentDefinition 
+xmlns="sap.m" 
+xmlns:fb="sap.ui.comp.filterbar" 
+xmlns:core="sap.ui.core" 
+xmlns:u="sap.ui.unified"
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form" 
+xmlns:tbl="sap.ui.table">
+	<Dialog id="Rarity" contentWidth="1050px" title="Rarity Code">
+		<content>
+
+		<Panel >
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+                                               
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Rarity Code1" />
+                                                    <Input id="RarityCode_RC"></Input>
+                                                </l:VerticalLayout>
+                                               
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Game Code" />
+                                                    <Input id="GameCode_RC"></Input>
+                                                </l:VerticalLayout>
+
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginEnd">
+                                                    <Label  text="Language Code" />
+                                                    <Input id="LangCode_RC"></Input>
+                                                </l:VerticalLayout>
+                                                 
+
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Rarity Active" />
+                                                    <Input id="RarityActive_RC"></Input>
+                                                </l:VerticalLayout>
+												
+												
+                                                </l:HorizontalLayout>
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+
+                                                                              
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Rarity Name" />
+                                                    <Input id="RarityName_RC"></Input>
+                                                </l:VerticalLayout>
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Rarity Label Text" />
+                                                    <Input id="RarityLblTxt_RC"></Input>
+                                                </l:VerticalLayout>
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Name Search" />
+                                                    <Input id="RarityNameSearch_RC"></Input>
+                                                </l:VerticalLayout>
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiMediumMarginTop">
+												<Button class="sapUiTinyMarginTop" type="Accept" text="Search" press="onButtonRaritySearch"></Button>
+												</l:VerticalLayout>
+                                                  </l:HorizontalLayout>
+
+
+            </Panel> 
+    <Panel>
+        <tbl:Table 
+				rows="{RarityModel>/}"
+				visibleRowCount="6"
+				rowSelectionChange="RarityCode_rowSelected"
+				selectionMode="Single"
+				ariaLabelledBy="title">
+				
+				<tbl:columns>
+                    <tbl:Column >
+						<Label text="Rarity Code" />
+						<tbl:template>
+							<Text text="{RarityModel>RarityCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Game Code" />
+						<tbl:template>
+							<Text text="{RarityModel>GameCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					<tbl:Column >
+						<Label text="Lang Code" />
+						<tbl:template>
+							<Text text="{RarityModel>LangCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+                    
+                    <tbl:Column >
+						<Label text="Rarity Active" />
+						<tbl:template>
+							<Text text="{RarityModel>RarityActive}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                   
+                    <tbl:Column >
+						<Label text="Rarity Name" />
+						<tbl:template>
+							<Text text="{RarityModel>RarityName}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Rarity Label Text" />
+						<tbl:template>
+							<Text text="{RarityModel>RarityLabelText}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Name Search" />
+						<tbl:template>
+							<Text text="{RarityModel>RaritySearchTxt}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+				</tbl:columns>
+			</tbl:Table>
+			</Panel>
+			
+		</content>
+		<Toolbar>
+							<ToolbarSpacer/>
+							<!--<HBox>-->
+							
+							<Button text="Close" type="Reject" press="CancelRarityCode"/>
+							<!--</HBox>-->
+						</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,98 @@
+{
+    "resources": [
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "model/columnsModel.json"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "controller/initial.controller.js"
+        },
+        {
+            "name": "controller/grading.controller.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "model/models-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/initial-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/grading-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/App-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "../../sap-ui-version.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "view/fragment/collectible.fragment.xml"
+        },
+        {
+            "name": "view/fragment/Userstatus.fragment.xml"
+        },
+        {
+            "name": "view/fragment/PrintLabel.fragment.xml"
+        },
+        {
+            "name": "view/fragment/GraderInfo.fragment.xml"
+        },
+        {
+            "name": "view/initial.view.xml"
+        },
+        {
+            "name": "view/grading.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "Image/No_image.png"
+        },
+        {
+            "name": "index.html"
+        }
+    ]
+}

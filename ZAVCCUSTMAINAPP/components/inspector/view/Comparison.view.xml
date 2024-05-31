@@ -1,0 +1,78 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View 
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.Comparison"
+	displayBlock="true"
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m"
+	xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core">
+	
+		<m:MessageStrip
+			text="{i18n>vchclf_comparison_config_change_info_msg}"
+			type="Warning"
+			visible="{= ${/hasError} ? false : true}">
+		</m:MessageStrip>
+		<m:MessageStrip
+			text="{i18n>vchclf_comparison_model_change_calc_err}"
+			type="Error" visible="{/hasError}">
+		</m:MessageStrip>
+		<m:SearchField 
+			search=".onSearchPressed"
+			visible="{= ${/hasError} ? false : true}">
+		</m:SearchField>
+		<l:VerticalLayout class="vchclfComparisonTableVLayout">
+		<m:ScrollContainer width="100%" height="100%" vertical="true">												
+			<m:Tree id="diffTree" mode="None" visible="{= ${/hasError} ? false : true}" width="100%"
+				items="{path:'/items', 
+	  					parameters: {
+	  						arrayNames:['items'],
+	   						numberOfExpandedLevels: 2}
+	   					}"
+	   			>
+				<m:CustomTreeItem>
+					<l:HorizontalLayout allowWrapping="true">
+						<core:Icon 
+							src="{parts: ['DiffItemType'],
+				        		 formatter: '._formatter.getIconForDiffItemType'}"
+				        	class="sapUiTinyMarginEnd">
+				       	</core:Icon>
+                      	<m:Link
+                      		class="sapUiTinyMarginEnd vchclfComparisonLink"
+                      		text="{ComputedItemDescription}"
+                      		press="onItemDescriptionPressed">
+                      	</m:Link>
+                      	<m:ObjectStatus
+                      		class="sapUiTinyMarginEnd vchclfDiffObjectState"
+                      		text="{ComputedDiffTypeText}" 
+			        		state="{parts: ['DiffType'],
+			        			formatter: '._formatter.getStateForDiffType'}">
+			        	</m:ObjectStatus>
+                      	<m:Text
+                      		text="{ComputedValueFromText}"
+			        		visible="{parts: ['Values'],
+			        		      formatter: '._formatter.getValuesFromVisible'}"
+			        		class="sapUiTinyMarginEnd">
+			        	</m:Text>
+				        <core:Icon
+				        	src="sap-icon://arrow-right"
+				        	visible="{parts: ['DiffType','Values'],
+				        			 formatter: '._formatter.getValuesArrowVisible'}"
+				        	class="sapUiTinyMarginEnd">
+				        </core:Icon>
+				        <m:Text
+				        	text="{ComputedValueToText}"
+				        	visible="{parts: ['Values'],
+				        			  formatter: '._formatter.getValuesToVisible'}">
+				        </m:Text>
+                 	</l:HorizontalLayout>
+				</m:CustomTreeItem>
+			</m:Tree>
+		</m:ScrollContainer>
+	</l:VerticalLayout>
+</mvc:View>

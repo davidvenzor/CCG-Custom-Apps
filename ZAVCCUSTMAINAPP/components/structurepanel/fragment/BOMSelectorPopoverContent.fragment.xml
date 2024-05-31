@@ -1,0 +1,20 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<List
+		items="{ui>/bomViews}"
+		class="sapUiLargeMarginEnd">
+		<items>
+			<StandardListItem
+				type="Active"
+				title="{ui>text}"
+				tooltip="{ui>text}"
+				press="onBOMViewSelectionChange"/>
+		</items>
+	</List>
+</core:FragmentDefinition>

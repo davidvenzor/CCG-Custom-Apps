@@ -1,0 +1,132 @@
+<core:FragmentDefinition 
+xmlns="sap.m" 
+xmlns:fb="sap.ui.comp.filterbar" 
+xmlns:core="sap.ui.core" 
+xmlns:u="sap.ui.unified"
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form" 
+xmlns:tbl="sap.ui.table">
+	<Dialog id="VariantCode" contentWidth="1050px" title="Variant Code">
+		<content>
+
+		<Panel >
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+                                               
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Variant Code1" />
+                                                    <Input id="VariantCode_VC"></Input>
+                                                </l:VerticalLayout>
+                                               
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Game Code" />
+                                                    <Input id="GameCode_VC"></Input>
+                                                </l:VerticalLayout>
+
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginEnd">
+                                                    <Label  text="Language Code" />
+                                                    <Input id="LangCode_VC"></Input>
+                                                </l:VerticalLayout>
+                                                 
+
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Variant Active" />
+                                                    <Input id="VariantActive_VC"></Input>
+                                                </l:VerticalLayout>
+												
+												<l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Variant Name" />
+                                                    <Input id="VariantName_VC"></Input>
+                                                </l:VerticalLayout>
+												
+                                                </l:HorizontalLayout>
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+
+                                                                              
+                                                 
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Variant Label Text" />
+                                                    <Input id="VariantLblTxt_VC"></Input>
+                                                </l:VerticalLayout>
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Name Search" />
+                                                    <Input id="VariantNameSearch_VC"></Input>
+                                                </l:VerticalLayout>
+
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginTop">
+												<Button  class="sapUiSmallMarginTop" type="Accept" text="Search" press="onButtonVariantSearch"></Button>
+												</l:VerticalLayout>
+                                                  </l:HorizontalLayout>
+
+
+            </Panel> 
+    <Panel>
+        <tbl:Table 
+				rows="{VariantModel>/}"
+				visibleRowCount="6"
+				rowSelectionChange="variantCode1_rowSelected"
+				selectionMode="Single"
+				ariaLabelledBy="title">
+				
+				<tbl:columns>
+                    <tbl:Column >
+						<Label text="Variant Code" />
+						<tbl:template>
+							<Text text="{VariantModel>VariantCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Game Code" />
+						<tbl:template>
+							<Text text="{VariantModel>GameCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					<tbl:Column >
+						<Label text="Lang Code" />
+						<tbl:template>
+							<Text text="{VariantModel>LangCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+                    
+                    <tbl:Column >
+						<Label text="Variant Active" />
+						<tbl:template>
+							<Text text="{VariantModel>VariantActive}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                   
+                    <tbl:Column >
+						<Label text="Variant Name" />
+						<tbl:template>
+							<Text text="{VariantModel>VariantName}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Variant Label Text" />
+						<tbl:template>
+							<Text text="{VariantModel>VariantLabelTxt}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Name Search" />
+						<tbl:template>
+							<Text text="{VariantModel>VariantNameSrch}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+				</tbl:columns>
+			</tbl:Table>
+			</Panel>
+			
+		</content>
+		<Toolbar>
+							<ToolbarSpacer/>
+							<!--<HBox>-->
+							
+							<Button text="Close" type="Reject" press="CancelVariantCode"/>
+							<!--</HBox>-->
+						</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

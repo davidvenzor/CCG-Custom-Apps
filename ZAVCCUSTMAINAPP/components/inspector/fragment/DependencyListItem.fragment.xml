@@ -1,0 +1,31 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<ObjectListItem
+	xmlns="sap.m"
+	title="{
+		parts: [{
+			path: 'ObjectDependency'
+		}, {
+			path: 'Name'
+		}, {
+			path: 'Description'
+		}],
+			formatter: '._dependencyFormatter.dependencyTitleFormatter'
+		}"
+	type="Navigation"
+	press=".onDependencyItemPress">
+	<attributes>
+		<ObjectAttribute
+			text="{
+				parts: [{
+					path: 'ObjectDependency'
+				}, {
+					path: 'Name'
+				}, {
+					path: 'Description'
+				}], formatter: '._dependencyFormatter.dependencySubtitleFormatter'}"/>
+	</attributes>
+</ObjectListItem>

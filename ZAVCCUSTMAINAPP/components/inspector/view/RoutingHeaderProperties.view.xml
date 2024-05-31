@@ -1,0 +1,96 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form" 
+    xmlns="sap.m"
+    busyIndicatorDelay="0"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.RoutingHeaderProperties">
+	<f:SimpleForm
+		maxContainerCols="1"
+		minWidth="300"
+		editable="false"
+		layout="ResponsiveGridLayout"
+		labelSpanXL="4"
+		labelSpanL="4"
+		labelSpanM="5"
+		labelSpanS="12"
+		breakpointL="800"
+		breakpointM="400"
+		columnsL="2"
+		columnsM="1">
+		<f:toolbar>
+			<core:Fragment
+				fragmentName="sap.i2d.lo.lib.zvchclfz.components.inspector.fragment.ShowMasterData"
+				type="XML"/>
+		</f:toolbar>
+		<f:content>
+			<core:Title
+				text="{i18n>vchclf_insp_common_basic_info_title}"/>
+			<Label
+				labelFor="idRoutingHeaderComponent"
+				text="{i18n>vchclf_insp_routing_header_component}"/>
+			<FormattedText
+				id="idRoutingHeaderComponent"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/Product' },
+						{ path: 'properties>/ProductName' },
+						{ path: 'properties>/to_Super/Product' },
+						{ path: 'properties>/to_Super/ProductName' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.concatenateIdAndDescription'
+				}"/>
+			<Label
+				labelFor="idRoutingHeaderID"
+				text="{i18n>vchclf_insp_routing_header_id}"/>
+			<FormattedText
+				id="idRoutingHeaderID"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/BillOfOperationsGroup' },
+						{ path: 'properties>/to_Super/BillOfOperationsGroup' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatValue'
+				}"/>
+			<Label
+				labelFor="idRoutingHeaderGroupCount"
+				text="{i18n>vchclf_insp_routing_header_group_counter}"/>
+			<FormattedText
+				id="idRoutingHeaderGroupCount"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/BillOfOperationsVariant' },
+						{ path: 'properties>/to_Super/BillOfOperationsVariant' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatValue'
+				}"/>
+			<Label
+				labelFor="idRoutingHeaderUsage"
+				text="{i18n>vchclf_insp_routing_header_usage}"/>
+			<FormattedText
+				id="idRoutingHeaderUsage"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/BillOfOperationsUsage' },
+						{ path: 'properties>/BillOfOperationsUsageDesc' },
+						{ path: 'properties>/to_Super/BillOfOperationsUsage' },
+						{ path: 'properties>/to_Super/BillOfOperationsUsageDesc' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.concatenateIdAndDescription'
+				}"/>
+		</f:content>
+	</f:SimpleForm>
+</mvc:View>

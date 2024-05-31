@@ -1,0 +1,122 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.DependencyDetails"
+	busyIndicatorDelay="0">
+	<f:DynamicPage
+		toggleHeaderOnTitleClick="false">
+		<f:header>
+			<core:Fragment
+				fragmentName="sap.i2d.lo.lib.zvchclfz.components.inspector.fragment.Header"
+				type="XML"/>
+		</f:header>
+		<f:content>
+			<ScrollContainer
+				height="100%"
+				width="100%"
+				horizontal="false"
+				focusable= "true"
+				vertical="true">
+				<form:SimpleForm
+					maxContainerCols="1"
+					minWidth="300"
+					editable="false"
+					layout="ResponsiveGridLayout"
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="5"
+					labelSpanS="12"
+					breakpointL="800"
+					breakpointM="400"
+					columnsL="2"
+					columnsM="1" >
+					<form:content>
+						<core:Title
+							text="{i18n>vchclf_insp_common_basic_info_title}"/>
+						<Label
+							labelFor="idDetailsName"
+							text="{i18n>vchclf_insp_dependecydtl_name}"/>
+						<Text
+							id="idDetailsName"
+							text="{details>/Name}"/>
+						<Label
+							labelFor="idDetailsStatus"
+							text="{i18n>vchclf_insp_dependecydtl_status}"/>
+						<ObjectStatus
+							id="idDetailsStatus"
+							class="sapUiNoMargin"
+							text="{details>/StatusText}"
+							state="{ 
+								path:'details>/Status',
+								formatter:'._formatter.status'
+							}" />
+						<Label
+							labelFor="idDetailsChangedBy"
+							text="{i18n>vchclf_insp_dependecydtl_changedby}"/>
+						<Text
+							id="idDetailsChangedBy"
+							text="{
+							parts: [
+								{ path: 'details>/LastChangedByUserDescription' },
+								{ path: 'details>/LastChangedByUser' }
+							],
+							formatter: '._generalFormatter.changedByFormatter' }"/>
+						<Label
+							labelFor="idDetailsChangedOn"
+							text="{i18n>vchclf_insp_dependecydtl_changedon}"/>
+						<Text
+							id="idDetailsChangedOn"
+							text="{
+								path: 'details>/LastChangeDate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									style: 'medium'
+								}
+							}"/>
+						<Label 
+							labelFor="idDetailsProcessingMode"
+							text="{i18n>vchclf_insp_dependencydtl_processing_mode}"/>
+						<Text 
+							id="idDetailsProcessingMode"
+							text="{
+								path: 'details>/ProcessingMode',
+								formatter: '._formatter.dependencyProcessingModeFormatter'
+							}"/>
+						<core:Title
+							text="{i18n>vchclf_insp_dependecydtl_code_title}"/>
+						<VBox>	
+							<TextArea
+								id="idDependencySourceCode"
+								visible="true"
+								value="{
+									path: 'details>/to_ObjectDependencyCodes',
+									formatter: '._formatter.formatDependencySourceCode'
+								}"
+								tooltip="{i18n>vchclf_trace_detail_dependency_source_code}"
+								width="100%"
+								wrapping="Soft"
+            					growing="true"
+								editable="false"/>
+							<Link
+								visible="{__viewData>/_isToggleDepSourceCodeLinkVisible}"
+								busyIndicatorDelay="0"
+								text="{= ${details>/to_ObjectDependencyCodes}.length > 3 ?
+												${i18n>vchclf_trace_detail_show_less_lines} :
+												${i18n>vchclf_trace_detail_show_more_lines} }"
+								press="onToggleDependencyCodeLinesPressed"
+								class="sapUiTinyMarginTop"/>
+						</VBox>
+					</form:content>
+				</form:SimpleForm>
+			</ScrollContainer>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

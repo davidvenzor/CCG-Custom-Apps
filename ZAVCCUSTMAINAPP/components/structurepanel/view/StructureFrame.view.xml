@@ -1,0 +1,112 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:variants="sap.ui.comp.variants"
+	height="100%"
+	busy="{ui>/isStructurePanelLoading}"
+	busyIndicatorDelay="0"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.structurepanel.controller.StructureFrame">
+	<Page
+		id="idStructureFramePage">
+		<customHeader>
+			<OverflowToolbar
+				style="Clear">
+				<HBox
+					class="sapUiSmallMarginBegin"
+					renderType="Bare"
+					alignItems="Center">
+					<Label
+						class="sapMH3Style"
+						labelFor="idSelectBOMTypeButton"
+						text="{ui>/selectedBOMViewTitle}"/>
+					<Button
+						id="idSelectBOMTypeButton"
+						type="Transparent"
+						icon="sap-icon://arrow-down"
+						visible="{ui>/selectBOMViewVisibility}"
+						tooltip="{i18n>vchclf_structpnl_viewselector_title_tt}"
+						press="onBOMViewSelectionTriggered" />
+				</HBox>
+				<ToolbarSpacer />
+				<Button
+					class="sapUiTinyMarginEnd"
+					icon="sap-icon://decline"
+					tooltip="{i18n>vchclf_structpnl_close_tt}"
+					press="onClosePanelPressed" />
+			</OverflowToolbar>
+		</customHeader>
+		<subHeader>
+			<OverflowToolbar>
+				<variants:VariantManagement
+					id="idVariantManagement"
+					class="sapUiSmallMarginBegin"
+					variantItems="{ui>/BOMColumnsVariant/variantItems}"
+					manage="onVariantManaged"
+					save="onVariantSaved"
+					select="onVariantSelected"
+					initialSelectionKey="{ui>/BOMColumnsVariant/initialSelectionKey}"
+					defaultVariantKey="{ui>/BOMColumnsVariant/defaultKey}"
+					standardItemText="{i18n>vchclf_structpnl_variant_mangement_standard_title}">
+					<variants:variantItems>
+						<variants:VariantItem
+							text="{ui>name}"
+							key="{ui>key}"
+							author="{ui>author}" />
+					</variants:variantItems>
+				</variants:VariantManagement>
+				<ToolbarSpacer />
+				<core:Fragment fragmentName="sap.i2d.lo.lib.zvchclfz.components.structurepanel.fragment.StructureFrameETOActions" type="XML"/>
+				<OverflowToolbarToggleButton
+					icon="sap-icon://example"
+					type="Transparent"
+					press="onShowSuperBOMChanged"
+					class="sapUiTinyMarginEnd"
+					pressed="{ui>/isSuperTreeShown}"
+					visible="{= ${ui>/selectedBOMView} === 'BOM' &amp;&amp; ${ui>/isSuperBOMAvailable} ? true : false}"
+					text="{i18n>vchclf_structpnl_treetoolbar_show_super_bom_tt}"
+					tooltip="{i18n>vchclf_structpnl_treetoolbar_show_super_bom_tt}"/>
+				<OverflowToolbarButton
+					id="idReExplodeBOMButton"
+					type="Transparent"
+					icon="sap-icon://refresh"
+					class="sapUiTinyMarginEnd"
+					press="onStructureTreeRefresh"
+					visible="{ui>/isStructurePanelEditable}"
+					text="{i18n>vchclf_structpnl_treetoolbar_reexplode_tt}"
+					tooltip="{i18n>vchclf_structpnl_treetoolbar_reexplode_tt}"/>
+				<OverflowToolbarButton
+					icon="sap-icon://expand-all"
+					type="Transparent"
+					press="onStructureTreeExpandAllNodes"
+					class="sapUiTinyMarginEnd"
+					text="{i18n>vchclf_structpnl_treetoolbar_expand_tt}"
+					tooltip="{i18n>vchclf_structpnl_treetoolbar_expand_tt}"/>
+				<OverflowToolbarButton
+					icon="sap-icon://collapse-all"
+					type="Transparent"
+					class="sapUiTinyMarginEnd"
+					press="onStructureTreeCollapseAllNodes"
+					text="{i18n>vchclf_structpnl_treetoolbar_collapse_tt}"
+					tooltip="{i18n>vchclf_structpnl_treetoolbar_collapse_tt}"/>
+				<OverflowToolbarButton
+					icon="sap-icon://action-settings"
+					type="Transparent"
+					class="sapUiTinyMarginEnd"
+					press="onOpenTablePersonalizationDialog"
+					text="{i18n>vchclf_structpnl_treetoolbar_settings}"
+					tooltip="{i18n>vchclf_structpnl_treetoolbar_settings}"/>
+			</OverflowToolbar>
+		</subHeader>
+		<content>
+			<mvc:XMLView
+				height="100%"
+				viewName="sap.i2d.lo.lib.zvchclfz.components.structurepanel.view.StructureTree" />
+		</content>
+	</Page>
+</mvc:View>

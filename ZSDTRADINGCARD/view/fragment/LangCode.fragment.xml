@@ -1,0 +1,100 @@
+<core:FragmentDefinition 
+xmlns="sap.m" 
+xmlns:fb="sap.ui.comp.filterbar" 
+xmlns:core="sap.ui.core" 
+xmlns:u="sap.ui.unified"
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form" 
+xmlns:tbl="sap.ui.table">
+	<Dialog id="LangCode" contentWidth="1050px" title="Language Code">
+		<content>
+
+		<Panel >
+                                                <l:HorizontalLayout class="sapUiLargeMarginEnd">
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin sapUiTinyMarginEnd">
+                                                    <Label  text="Language Code" />
+                                                    <Input id="LangCode_LC"></Input>
+                                                </l:VerticalLayout>
+                                               
+                                                <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Game Code" />
+                                                    <Input id="GameCode_LC"></Input>
+                                                </l:VerticalLayout>
+                                                 
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Language Active Flag" />
+                                                    <Input id="LAF_LC"></Input>
+                                                </l:VerticalLayout>
+                                                 <l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Language Name?" />
+                                                    <Input id="Language_name_LC"></Input>
+                                                </l:VerticalLayout>
+												<l:VerticalLayout  class="sapUiSmallMarginBegin">
+                                                    <Label  text="Language Search" />
+                                                    <Input id="LanguageSearch"></Input>
+                                                </l:VerticalLayout>
+												<l:VerticalLayout  class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+												<Button class="sapUiTinyMarginTop" type="Accept" text="Search" press="onButtonLangSearch"></Button>
+												</l:VerticalLayout>
+                                                </l:HorizontalLayout>
+
+
+            </Panel>
+    
+         
+        
+       
+    <Panel>
+        <tbl:Table 
+				rows="{LangModel>/}"
+				visibleRowCount="6"
+				selectionMode="Single"
+				rowSelectionChange="LangCode_rowSelected"
+				ariaLabelledBy="title">
+				
+				<tbl:columns>
+                    <tbl:Column >
+						<Label text="Lang Code" />
+						<tbl:template>
+							<Text text="{LangModel>LangCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					<tbl:Column >
+						<Label text="Game Code" />
+						<tbl:template>
+							<Text text="{LangModel>GameCode}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					<tbl:Column >
+						<Label text="Active" />
+						<tbl:template>
+							<Text text="{LangModel>LanguageActive}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Name" />
+						<tbl:template>
+							<Text text="{LangModel>LanguageName}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+                    <tbl:Column >
+						<Label text="Name Search" />
+						<tbl:template>
+							<Text text="{LangModel>LanguageSearchTxt}" wrapping="false" />
+						</tbl:template>
+					</tbl:Column>
+					
+				</tbl:columns>
+			</tbl:Table>
+			</Panel>
+			
+		</content>
+		<Toolbar>
+							<ToolbarSpacer/>
+							<!--<HBox>-->
+							
+							<Button text="Close" type="Reject" press="CancelLangCode"/>
+							<!--</HBox>-->
+						</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

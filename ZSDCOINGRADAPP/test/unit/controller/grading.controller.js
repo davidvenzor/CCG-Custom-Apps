@@ -1,0 +1,1 @@
+sap.ui.define(["CCGSDGRADINGAPP/ZSD_GRADINGAPP/controller/grading.controller"],function(n){"use strict";QUnit.module("grading Controller");QUnit.test("I should test the grading controller",function(t){var o=new n;o.onInit();t.ok(o)})});

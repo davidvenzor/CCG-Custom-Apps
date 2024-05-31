@@ -1,0 +1,9 @@
+[{
+	"ContextId": "CLF(12)SEMANTIC_OBJ(7)PRODUCT(10)OBJECT_KEY(19)NL_TEST_MATERIAL_10",
+	"ClassType": "001",
+	"ClassTypeName": "Material type"
+}, {
+	"ContextId": "CLF(12)SEMANTIC_OBJ(7)PRODUCT(10)OBJECT_KEY(19)NL_TEST_MATERIAL_10",
+	"ClassType": "023",
+	"ClassTypeName": "Other class type"
+}]

@@ -1,0 +1,403 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": "Component-dbg.js",
+			"size": 9784,
+			"isDebug": true
+		},
+		{
+			"name": "Component.js",
+			"size": 4381
+		},
+		{
+			"name": "controller/ClassType-dbg.controller.js",
+			"size": 18736,
+			"isDebug": true
+		},
+		{
+			"name": "controller/ClassType.controller.js",
+			"size": 8578
+		},
+		{
+			"name": "controller/Classification-dbg.controller.js",
+			"size": 18467,
+			"isDebug": true
+		},
+		{
+			"name": "controller/Classification.controller.js",
+			"size": 7926
+		},
+		{
+			"name": "css/style.css",
+			"size": 965
+		},
+		{
+			"name": "i18n/messagebundle.properties",
+			"size": 3339,
+			"locale": "",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ar.properties",
+			"size": 5251,
+			"locale": "ar",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_bg.properties",
+			"size": 6792,
+			"locale": "bg",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ca.properties",
+			"size": 3478,
+			"locale": "ca",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_cs.properties",
+			"size": 3741,
+			"locale": "cs",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_da.properties",
+			"size": 3328,
+			"locale": "da",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_de.properties",
+			"size": 3457,
+			"locale": "de",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_el.properties",
+			"size": 6942,
+			"locale": "el",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en.properties",
+			"size": 3219,
+			"locale": "en",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en_US_sappsd.properties",
+			"size": 7612,
+			"locale": "en_US_sappsd",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en_US_saptrc.properties",
+			"size": 3985,
+			"locale": "en_US_saptrc",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_es.properties",
+			"size": 3521,
+			"locale": "es",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_et.properties",
+			"size": 3366,
+			"locale": "et",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_fi.properties",
+			"size": 3395,
+			"locale": "fi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_fr.properties",
+			"size": 3531,
+			"locale": "fr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hi.properties",
+			"size": 6150,
+			"locale": "hi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hr.properties",
+			"size": 3280,
+			"locale": "hr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hu.properties",
+			"size": 3882,
+			"locale": "hu",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_it.properties",
+			"size": 3407,
+			"locale": "it",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_iw.properties",
+			"size": 5031,
+			"locale": "iw",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ja.properties",
+			"size": 4561,
+			"locale": "ja",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_kk.properties",
+			"size": 6363,
+			"locale": "kk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ko.properties",
+			"size": 4106,
+			"locale": "ko",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_lt.properties",
+			"size": 3503,
+			"locale": "lt",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_lv.properties",
+			"size": 3640,
+			"locale": "lv",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ms.properties",
+			"size": 3239,
+			"locale": "ms",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_nl.properties",
+			"size": 3353,
+			"locale": "nl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_no.properties",
+			"size": 3315,
+			"locale": "no",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_pl.properties",
+			"size": 3453,
+			"locale": "pl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_pt.properties",
+			"size": 3584,
+			"locale": "pt",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ro.properties",
+			"size": 3454,
+			"locale": "ro",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ru.properties",
+			"size": 6618,
+			"locale": "ru",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sh.properties",
+			"size": 3269,
+			"locale": "sh",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sk.properties",
+			"size": 3576,
+			"locale": "sk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sl.properties",
+			"size": 3328,
+			"locale": "sl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sv.properties",
+			"size": 3363,
+			"locale": "sv",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_th.properties",
+			"size": 6187,
+			"locale": "th",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_tr.properties",
+			"size": 3915,
+			"locale": "tr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_uk.properties",
+			"size": 6323,
+			"locale": "uk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_vi.properties",
+			"size": 4253,
+			"locale": "vi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_zh_CN.properties",
+			"size": 3539,
+			"locale": "zh_CN",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_zh_TW.properties",
+			"size": 3641,
+			"locale": "zh_TW",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "localService/metadata.xml",
+			"size": 28674
+		},
+		{
+			"name": "localService/mockdata/C_ProductTypeSet.json",
+			"size": 276
+		},
+		{
+			"name": "localService/mockdata/ClassTypeValueHelpSet.json",
+			"size": 291
+		},
+		{
+			"name": "localService/mockdata/ClassificationContextSet.json",
+			"size": 224
+		},
+		{
+			"name": "localService/mockdata/ClassificationInstanceSet.json",
+			"size": 4977
+		},
+		{
+			"name": "localService/mockdata/ToggleSet.json",
+			"size": 3
+		},
+		{
+			"name": "localService/mockserver-dbg.js",
+			"size": 4215,
+			"isDebug": true
+		},
+		{
+			"name": "localService/mockserver.js",
+			"size": 1871
+		},
+		{
+			"name": "manifest.json",
+			"size": 2279
+		},
+		{
+			"name": "manifestOPA.json",
+			"size": 2217
+		},
+		{
+			"name": "service/AssignClassDialogService-dbg.js",
+			"size": 8438,
+			"isDebug": true
+		},
+		{
+			"name": "service/AssignClassDialogService.js",
+			"size": 3701
+		},
+		{
+			"name": "service/ClassificationService-dbg.js",
+			"size": 17536,
+			"isDebug": true
+		},
+		{
+			"name": "service/ClassificationService.js",
+			"size": 7614
+		},
+		{
+			"name": "service/EnhancementService-dbg.js",
+			"size": 2186,
+			"isDebug": true
+		},
+		{
+			"name": "service/EnhancementService.js",
+			"size": 767
+		},
+		{
+			"name": "utils/Constants-dbg.js",
+			"size": 214,
+			"isDebug": true
+		},
+		{
+			"name": "utils/Constants.js",
+			"size": 192
+		},
+		{
+			"name": "utils/Formatter-dbg.js",
+			"size": 2138,
+			"isDebug": true
+		},
+		{
+			"name": "utils/Formatter.js",
+			"size": 484
+		},
+		{
+			"name": "utils/PropertyBindingHandler-dbg.js",
+			"size": 461,
+			"isDebug": true
+		},
+		{
+			"name": "utils/PropertyBindingHandler.js",
+			"size": 332
+		},
+		{
+			"name": "view/ClassType.view.xml",
+			"size": 8663
+		},
+		{
+			"name": "view/Classification.view.xml",
+			"size": 2401
+		},
+		{
+			"name": "view/fragments/AssignClassActionSheet.fragment.xml",
+			"size": 751
+		},
+		{
+			"name": "view/fragments/AssignClassDialog.fragment.xml",
+			"size": 1955
+		},
+		{
+			"name": "view/fragments/UnassignClassPopover.fragment.xml",
+			"size": 1172
+		}
+	]
+}

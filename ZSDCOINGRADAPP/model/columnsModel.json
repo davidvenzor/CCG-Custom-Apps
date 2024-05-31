@@ -1,0 +1,34 @@
+{
+	"cols": [{
+		"label": "Material",
+		"template": "Matnr",
+		"width": "5rem"
+	}, {
+		"label": "Material Description",
+		"template": "Maktx"
+	}, {
+		"label": "Sports Code",
+		"template": "ZCsgSportsCode"
+	}, {
+		"label": "Maker Code",
+		"template": "ZCsgMakerCode"
+	}, {
+		"label": "Set Code",
+		"template": "ZCsgSetCode"
+	}, {
+		"label": "Card Year",
+		"template": "ZCardYear"
+	}, {
+		"label": "Player",
+		"template": "ZPlayer"
+	}, {
+		"label": "Printed Flag",
+		"template": "ZPrntdAutographFlag"
+	}, {
+		"label": "CsgCardAttrib1Descr",
+		"template": "ZCsgCardAttrib1Descr"
+	}, {
+		"label": "CsgCardAttrib1Descr",
+		"template": "ZCsgCardAttrib1Descr"
+	}]
+}

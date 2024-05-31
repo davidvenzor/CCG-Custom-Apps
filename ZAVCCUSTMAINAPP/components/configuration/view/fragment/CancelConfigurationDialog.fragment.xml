@@ -1,0 +1,30 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition	
+	xmlns:core="sap.ui.core" 
+	xmlns="sap.m">
+	<Dialog	id="cancelConfiguration" 
+		contentWidth="20%"
+		contentHeight="auto"
+		state="Warning"
+		type="Message"
+		title="{vchI18n>CANCEL_CONFIGURATION}" >
+		<beginButton>
+			<Button id="okButton" 
+			text="{vchI18n>YES}"/>
+		</beginButton>
+		<endButton>
+			<Button id="cancelButton" 
+			text="{vchI18n>NO}"
+			press="onCancelExitDialog"/>
+		</endButton>
+		<content>
+			<Text id="cancelDialogText" 
+				text="{vchI18n>CANCEL_CONFIGURATION_TEXT}" 
+				class="sapUiResponsiveMargin"/>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

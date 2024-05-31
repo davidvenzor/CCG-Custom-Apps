@@ -1,0 +1,84 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+	xmlns:core="sap.ui.core" 
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	xmlns:fb="sap.ui.comp.filterbar">
+	<Dialog id="variantMatchingDialog"
+		title="{vchI18n>VARIANT_MATCHING_DIALOG_TITLE_DISPLAY}"
+		resizable="true" 
+		draggable="true"
+		contentWidth="40%"
+		contentHeight="50%"
+		verticalScrolling="false">
+		<l:FixFlex minFlexSize="5">
+			<l:fixContent>
+				<OverflowToolbar id="OverflowToolBar" class="sapUiSmallMarginBeginEnd">
+					<Title	id="TableHeader" level="H3" 
+							text="{vchI18n>VARIANT_MATCHING_TABLE_TITLE}" />
+					<ToolbarSpacer/>
+					<SearchField id="SearchString" search="onSearch" 
+								 placeholder="{vchI18n>VARIANT_SEARCH_TEXT}" width="15rem" />
+<!--  add tooltip when button is disabled to indicate the reason  why disabled -->
+					<Button id="ValueDiffBtn" text="{vchI18n>LOAD_VAL_DIFF}" 
+							press="determineValueDiff" enabled="{variantsSettings>/partMatchExist}"/>
+				</OverflowToolbar>
+			</l:fixContent>
+			<l:flexContent>
+				<Table	id="MatchingVariantsTable" 
+						ariaLabelledBy="TableHeader"
+						noDataText="{vchI18n>NO_MATCHING_VARIANTS_FOUND}"
+						width="auto"
+						busyIndicatorDelay="0"
+						class="sapUiSmallMarginBeginEnd"
+						items="{
+							path: 'variants>/',
+							templateShareable: true,
+							sorter : [ { path: 'IsFullMatch', descending: true, group: '.fnGroupVariants' }, 
+									   { path: 'CsticDiffCount', descending: false } ],
+							parameters: { countMode: 'sap.ui.model.odata.CountMode.InlineRepeat' }
+						}"
+						growing="true"
+						growingScrollToLoad="true" 
+						growingThreshold="30"
+						mode="{= ${configurationSettings>/variantMatchingMode} === 3 ? 'SingleSelectMaster' : 'None'}"
+						selectionChange="onSelectionChange">
+					<ColumnListItem id="MatchingVariantsTableTemplate">
+						<cells>
+							<ObjectIdentifier
+								title="{variants>ProductDescription}"
+								text="{variants>Product}"/>
+							<Link id="ValDiffCell"
+								  text="{path: 'variants>CsticDiffCount', formatter: '.csticDiffCountFactory'}"
+								  press="onLoadValDiff"
+								  visible="{= !${variants>IsFullMatch} }"/>
+						</cells>
+					</ColumnListItem>
+					<columns>
+						<Column id="Product" hAlign="Left" width="60%">
+							<Text 
+								text="{vchI18n>VARIANT_MATCHING_PRODUCT} " 
+								textAlign="Left"/>
+						</Column>
+						<Column id="ValDiff" hAlign="Left" width="auto" minScreenWidth="Tablet" demandPopin="true">
+							<Text 
+								text="{vchI18n>VALUATION_DIFFERENCE}" 
+								textAlign="Left"/>
+						</Column>
+					</columns>
+				</Table>
+			</l:flexContent>
+		</l:FixFlex>
+		<beginButton>
+			<Button id="closeDialog" 
+				text="{vchI18n>CLOSE_VARIANT_MATCHING_DIALOG}" 
+				press="onVariantMatchingDialogClose"/>
+		</beginButton>
+	</Dialog>
+	
+</core:FragmentDefinition>

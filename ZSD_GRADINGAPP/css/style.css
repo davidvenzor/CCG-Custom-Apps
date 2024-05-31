@@ -1,0 +1,337 @@
+/* Enter your custom styles here */
+.clLabelView {
+    font-size: 13px;
+    width: 100px;
+}
+
+.clLabelViewcol {
+    font-size: 13px;
+    width: 100px;
+}
+
+.clLabelViewc {
+    font-size: 13px;
+    width: 80px;
+}
+
+.clLabelView1 {
+    width: 120px;
+}
+
+.clKeyDisp {
+    font-size: 12px;
+    color: #286eb4d1;
+}
+
+.sapMCbHoverable:hover {
+    border-color: #0854a0;
+    background: #0854a033;
+}
+
+.clLabelChkBox {
+    width: 140px;
+    font-size: 16px;
+    color: #004d99;
+}
+
+.clLabelChkBoxTH {
+    width: 140px;
+    font-size: 14px;
+    color: #004d99;
+}
+
+.clTextAreaField {
+    height: 20px;
+    margin: 0 auto;
+    border-radius: 15px important;
+}
+
+.sapMSlt {
+    margin: 0;
+}
+
+.sapMInputBaseHeightMargin {
+    margin: 0;
+}
+
+.sapMInput .sapMInputBaseContentWrapper {
+    display: inline-flex;
+    border: solid 1px #0a0c0f70;
+    margin: 0;
+    border-radius: 2px;
+}
+
+.clGradInputField {
+    height: 40px;
+    margin: 0 auto;
+    font-size: 16px;
+    color: #1c4e7a !important;
+}
+
+.clGradInputField2 {
+    height: 40px;
+    /*margin: 1px auto;*/
+    font-size: 16px;
+    font-weight: bold;
+    color: #d21010 !important;
+}
+
+.clGradInputField1 {
+    height: 40px;
+    margin: 0 auto;
+    font-size: 20px;
+    color: #ffff !important;
+}
+
+.clGridBtn {
+    border: none;
+    color: white;
+    padding: 15px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    width: 30px;
+    height: 37px;
+}
+
+.clGridFooterBtncol{
+	height: 10px;
+}
+.clGridFooterBtn {
+    /*border: none;*/
+    /*color: white;*/
+    /*padding: 15px 8px;*/
+    /*text-align: center;*/
+    /*text-decoration: none;*/
+    /*font-size: 18px !important;*/
+    /*width: 8rem !important;*/
+    /*height: 10px;*/
+    /*background-color: #f5faff;*/
+}
+
+.clBtnMoreImage {
+    /*box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2), 0 2px 10px 0 rgba(0,0,0,0.19);*/
+    font-size: 12px;
+    color: white;
+    width: 10rem;
+}
+
+.clBtnMoreImage:hover {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+    font-size: 12px;
+    color: white;
+    width: 10rem;
+}
+
+.sapMBtnInner.sapMBtnText {
+    border-block-color: #0d79e4;
+    background-color: #0d79e4;
+}
+
+.clGridBtn:hover {
+    width: 14rem;
+    height: 40px;
+    margin-top: 0;
+}
+
+.clInitBtn {
+    width: 100px;
+}
+
+.clPanelText {
+    color: #0854a0;
+}
+
+.sapMPanelHdr {
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: none;
+    height: 3rem;
+    line-height: 3rem;
+    margin: 0;
+    -webkit-text-size-adjust: none;
+    font-weight: normal;
+    font-size: 1.125rem;
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
+    color: #0854a0;
+    background-color: #b0e0e62b;
+}
+
+.clIconbar {
+    background-color: #b0e0e62b;
+}
+
+.clGradingTitle {
+    font-weight: bold;
+}
+
+.clGradingTitle {}
+
+.sapUiSmallMarginBottom {
+    margin-bottom: 2rem !important;
+}
+
+.sapMBtnInner.sapMBtnText {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    border-block-color: #286eb4;
+    background-color: white;
+
+}
+
+.classPanelGrading {
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 3%), 0 1px 2px 0 rgb(0 0 0 / 3%), 0 2px 15px 0 rgb(0 0 0 / 15%);
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #397cc5;
+    border-color: #397cc5;
+}
+
+.btn-sm {
+    padding: 3px 10px;
+    font-size: 11px;
+    height: 24px;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+.sapMTB {
+    height: 2.75rem;
+    padding: 0 0.5rem 0 0.25rem;
+    background: rgb(46 107 169);
+}
+
+.addTableClass {
+    background: #b0c4de !important;
+}
+
+.clCollectInput {
+    background-color: #286eb473;
+}
+
+.classCollectId {
+    span.sapMBtnInner.sapMBtnReject {
+        background-image: none;
+        background-color: #f7f7f7;
+        border-color: #b00;
+        color: #b00;
+    }
+}
+
+.sapMBtnIcon {
+    width: 1rem;
+    font-size: 18px;
+    line-height: 2.125rem;
+    color: #107e3e;
+    border: 0.0625rem solid #0854a0;
+}
+
+.classCntrlTxt {
+    color: #c1c4c8;
+}
+
+.cllblflexgrad1 {
+    border-bottom: 0.2rem solid #d9d9d9;
+}
+
+.clGradInputField {
+    color: rgb(27, 20, 220);
+    font-weight: bold;
+}
+
+.sapFCard {
+    background: #f3f7f9 !important;
+}
+
+.classTopGrade {
+    background-color: #bb000030;
+    background-color: #fafafa;
+    color: #0854a0;
+    align-content: center;
+    width: 5rem;
+    height: 4.5rem;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    vertical-align: middle;
+    padding-top: 0.55rem;
+    padding-left: 2rem;
+}
+
+.clInputField {
+    /*width: 160px;*/
+    height: 25px;
+    font-size: 10px !important;
+    /*border-block: none;*/
+    /*background-color: #f5faff;*/
+}
+
+.clInputFieldc {
+    /*width: 260px;*/
+    height: 25px;
+    font-size: 12px !important;
+    /*border-block: none;*/
+    /*background-color: #f5faff;*/
+}
+
+.clInputFieldhdr {
+    border-radius: 0.1rem solid #d9d9d9;
+}
+
+.clInputField1 {
+    /*width: 100%;*/
+    height: 20px;
+    /*border-block: none;*/
+    /*background-color: #f5faff;*/
+}
+
+.sapMInputBaseInner {
+    font-size: .80rem !important;
+}
+
+.clCollectInput {
+    background: #fdeab0 !important;
+    height: 35px;
+}
+
+.sapMLabel {
+    color: #000000;
+}
+
+.clCollectInput.sapMInput .sapMInputBaseContentWrapper {
+    display: inline-flex;
+    border: solid 2px #1db42a;
+    margin: 0;
+    border-radius: 2px;
+}
+
+.sapMBtnInner {
+    font-size: .800rem;
+    height: 2rem;
+}
+/*.clCollectInput.sapMInputBaseContentWrapper {*/
+/*    background: #fdeab0 !important;*/
+/*}*/

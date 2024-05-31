@@ -1,0 +1,67 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns="sap.m"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.PRTProperties">
+	<f:SimpleForm
+		maxContainerCols="1"
+		minWidth="300"
+		editable="false"
+		layout="ResponsiveGridLayout"
+		labelSpanXL="4"
+		labelSpanL="4"
+		labelSpanM="5"
+		labelSpanS="12"
+		breakpointL="800"
+		breakpointM="400"
+		columnsL="2"
+		columnsM="1">
+		<f:toolbar>
+			<core:Fragment
+				fragmentName="sap.i2d.lo.lib.zvchclfz.components.inspector.fragment.ShowMasterData"
+				type="XML"/>
+		</f:toolbar>
+		<f:content>
+			<core:Title
+				text="{i18n>vchclf_insp_common_basic_info_title}"/>
+			<Label
+				labelFor="idPRTItemQuantity"
+				text="{i18n>vchclf_insp_prtitem_quantity}"/>
+			<FormattedText
+				id="idPRTItemQuantity"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/Quantity' },
+						{ path: 'properties>/Unit' },
+						{ path: 'properties>/to_Super/Quantity' },
+						{ path: 'properties>/to_Super/Unit' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatQtyWithUom'
+				}"/>
+			<Label
+				labelFor="idPRTItemCategory"
+				text="{i18n>vchclf_insp_prtitem_categoryitem}"/>
+			<FormattedText
+				id="idPRTItemCategory"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/ProdnRsceToolCategory' },
+						{ path: 'properties>/ProdnRsceToolCategoryName' },
+						{ path: 'properties>/to_Super/ProdnRsceToolCategory' },
+						{ path: 'properties>/to_Super/ProdnRsceToolCategoryName' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.concatenateIdAndDescription'
+				}"/>
+		</f:content>
+	</f:SimpleForm>
+</mvc:View>

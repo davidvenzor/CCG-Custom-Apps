@@ -1,0 +1,39 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		resizable="true"
+		draggable="true"
+		title="{i18n>vchclf_structpnl_select_routing_dialog_title}">
+		<content>
+			<List
+				items="{ui>/routings}">
+				<ObjectListItem
+					title="{ui>Description}"
+					type="Active"
+					press="onRoutingSelected">
+					<attributes>
+						<ObjectAttribute
+							text="{
+								parts: [
+									{ path: 'ui>BillOfOperationsGroup' },
+									{ path: 'ui>BillOfOperationsVariant' }
+								],
+								formatter: '._formatter.formatRoutingKey'
+							}" />
+					</attributes>
+				</ObjectListItem>
+			</List>
+		</content>
+		<endButton>
+			<Button
+				text="{i18n>vchclf_structpnl_commons_cancel}" 
+				press="onCancelButtonPressed" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

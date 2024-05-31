@@ -1,0 +1,86 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition	xmlns="sap.m" 
+							xmlns:core="sap.ui.core" 
+							xmlns:l="sap.ui.layout">
+	<Dialog id="ChangeDocumentsDialog" title="{vchI18n>CHANGE_DOCUMENTS_DIALOG_TITLE}" 
+			resizable="true" draggable="true" contentWidth="50%" contentHeight="50%" verticalScrolling="false">
+		<l:FixFlex minFlexSize="5">
+			<l:fixContent>
+				<OverflowToolbar>
+					<Title	level="H3" 
+							text="{CHANGE_DOCUMENTS_TABLE_TITLE}" />
+        		</OverflowToolbar>
+			</l:fixContent>
+			
+			<l:flexContent>
+				<Table	id="ChangeDocumentsTable"
+						inset="false"
+						fixedLayout="false"
+						noDataText="{vchI18n>NO_CHANGE_DOCUMENTS}"
+						items="{
+							path: 'vchclf_bind_only>ChangeDocuments',
+							sorter: [{
+								path: 'ProductId',
+								group: true,
+								descending: false
+							},{
+								path: 'ChangedOn',
+								descending: true
+							},{
+								path: 'CsticName',
+								descending: false 
+							}],
+							groupHeaderFactory: '.getGroupHeader',
+							templateShareable: false }"
+						>
+					<columns>
+						<Column id="CsticNameColumn">
+							<Text text="{vchI18n>CHANGE_DOCUMENT_CSTIC_NAME}"/>
+						</Column>
+						<Column id="CsticNewValueColumn">
+							<Text text="{vchI18n>CHANGE_DOCUMENT_CSTIC_VALUE}"/>
+						</Column>
+						<Column id="ChangeTextColumn">
+							<Text text="{vchI18n>CHANGE_DOCUMENT_CHANGE_TEXT}"/>
+						</Column>
+						<Column id="ChangedByColumn">
+							<Text text="{vchI18n>CHANGE_DOCUMENT_CHANGED_BY}"/>
+						</Column>
+						<Column id="ChangedOnColumn">
+							<Text text="{vchI18n>CHANGE_DOCUMENT_CHANGED_ON}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text id="CsticNameCell" text="{vchclf_bind_only>CsticName}"/>
+								<Text id="CsticValueCell" text="{parts: [
+										'vchclf_bind_only>',
+										'vchSettings>/descriptionMode',
+										'vchI18n>VALUE_LABEL_BOTH'
+									],
+										formatter: '.formatter.getChangeDocumentValueTextDescriptionWithName'}
+									"/>
+								<Text id="ChangeTextCell" text="{vchclf_bind_only>ChangeText}"/>
+								<Text id="ChangedByCell" text="{vchclf_bind_only>ChangedBy}"/>
+								<ObjectNumber	id="ChangedOnCell"
+												number="{
+													path: 'vchclf_bind_only>ChangedOn',
+													type: 'sap.ui.model.type.DateTime'
+												}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</l:flexContent>
+		</l:FixFlex>
+		<buttons>
+			<Button id="closeChangeDocumentsDialog" text="{vchI18n>CLOSE_PRP}" press="closeChangeDocumentsDialog"/>
+		</buttons>
+
+	</Dialog>
+</core:FragmentDefinition>  

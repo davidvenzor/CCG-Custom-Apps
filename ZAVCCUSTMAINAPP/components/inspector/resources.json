@@ -1,0 +1,885 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": "Component-dbg.js",
+			"size": 16918,
+			"isDebug": true
+		},
+		{
+			"name": "Component.js",
+			"size": 6415
+		},
+		{
+			"name": "config/TraceEntryTextTypes-dbg.js",
+			"size": 24252,
+			"isDebug": true
+		},
+		{
+			"name": "config/TraceEntryTextTypes.js",
+			"size": 13797
+		},
+		{
+			"name": "config/TraceFilterDialogConfig-dbg.js",
+			"size": 13929,
+			"isDebug": true
+		},
+		{
+			"name": "config/TraceFilterDialogConfig.js",
+			"size": 6098
+		},
+		{
+			"name": "config/TraceFilterDialogConfigHelper-dbg.js",
+			"size": 5321,
+			"isDebug": true
+		},
+		{
+			"name": "config/TraceFilterDialogConfigHelper.js",
+			"size": 929
+		},
+		{
+			"name": "config/TraceFilterTypes-dbg.js",
+			"size": 2114,
+			"isDebug": true
+		},
+		{
+			"name": "config/TraceFilterTypes.js",
+			"size": 977
+		},
+		{
+			"name": "config/UiConfig-dbg.js",
+			"size": 25872,
+			"isDebug": true
+		},
+		{
+			"name": "config/UiConfig.js",
+			"size": 15526
+		},
+		{
+			"name": "config/ValueHelpConfig-dbg.js",
+			"size": 2347,
+			"isDebug": true
+		},
+		{
+			"name": "config/ValueHelpConfig.js",
+			"size": 1710
+		},
+		{
+			"name": "control/TraceEntry-dbg.js",
+			"size": 1860,
+			"isDebug": true
+		},
+		{
+			"name": "control/TraceEntry.js",
+			"size": 765
+		},
+		{
+			"name": "control/TraceEntryText-dbg.js",
+			"size": 13491,
+			"isDebug": true
+		},
+		{
+			"name": "control/TraceEntryText.js",
+			"size": 5282
+		},
+		{
+			"name": "controller/BOMItemProperties-dbg.controller.js",
+			"size": 3022,
+			"isDebug": true
+		},
+		{
+			"name": "controller/BOMItemProperties.controller.js",
+			"size": 1759
+		},
+		{
+			"name": "controller/Base-dbg.controller.js",
+			"size": 13132,
+			"isDebug": true
+		},
+		{
+			"name": "controller/Base.controller.js",
+			"size": 6478
+		},
+		{
+			"name": "controller/CharacteristicsProperties-dbg.controller.js",
+			"size": 481,
+			"isDebug": true
+		},
+		{
+			"name": "controller/CharacteristicsProperties.controller.js",
+			"size": 360
+		},
+		{
+			"name": "controller/Comparison-dbg.controller.js",
+			"size": 24433,
+			"isDebug": true
+		},
+		{
+			"name": "controller/Comparison.controller.js",
+			"size": 9677
+		},
+		{
+			"name": "controller/ConfProfileProperties-dbg.controller.js",
+			"size": 703,
+			"isDebug": true
+		},
+		{
+			"name": "controller/ConfProfileProperties.controller.js",
+			"size": 447
+		},
+		{
+			"name": "controller/Dependencies-dbg.controller.js",
+			"size": 2817,
+			"isDebug": true
+		},
+		{
+			"name": "controller/Dependencies.controller.js",
+			"size": 1729
+		},
+		{
+			"name": "controller/DependencyDetails-dbg.controller.js",
+			"size": 5205,
+			"isDebug": true
+		},
+		{
+			"name": "controller/DependencyDetails.controller.js",
+			"size": 2764
+		},
+		{
+			"name": "controller/DependencyTrace-dbg.controller.js",
+			"size": 19014,
+			"isDebug": true
+		},
+		{
+			"name": "controller/DependencyTrace.controller.js",
+			"size": 8408
+		},
+		{
+			"name": "controller/DiffSampleData.json",
+			"size": 3190
+		},
+		{
+			"name": "controller/InspectorFrame-dbg.controller.js",
+			"size": 4695,
+			"isDebug": true
+		},
+		{
+			"name": "controller/InspectorFrame.controller.js",
+			"size": 2461
+		},
+		{
+			"name": "controller/OperationComponents-dbg.controller.js",
+			"size": 3558,
+			"isDebug": true
+		},
+		{
+			"name": "controller/OperationComponents.controller.js",
+			"size": 2019
+		},
+		{
+			"name": "controller/OperationProperties-dbg.controller.js",
+			"size": 1306,
+			"isDebug": true
+		},
+		{
+			"name": "controller/OperationProperties.controller.js",
+			"size": 740
+		},
+		{
+			"name": "controller/PRTProperties-dbg.controller.js",
+			"size": 376,
+			"isDebug": true
+		},
+		{
+			"name": "controller/PRTProperties.controller.js",
+			"size": 318
+		},
+		{
+			"name": "controller/PRTs-dbg.controller.js",
+			"size": 3529,
+			"isDebug": true
+		},
+		{
+			"name": "controller/PRTs.controller.js",
+			"size": 2009
+		},
+		{
+			"name": "controller/RoutingHeaderProperties-dbg.controller.js",
+			"size": 386,
+			"isDebug": true
+		},
+		{
+			"name": "controller/RoutingHeaderProperties.controller.js",
+			"size": 328
+		},
+		{
+			"name": "controller/RoutingSequenceProperties-dbg.controller.js",
+			"size": 388,
+			"isDebug": true
+		},
+		{
+			"name": "controller/RoutingSequenceProperties.controller.js",
+			"size": 330
+		},
+		{
+			"name": "controller/SuperInspectorProperties-dbg.controller.js",
+			"size": 2231,
+			"isDebug": true
+		},
+		{
+			"name": "controller/SuperInspectorProperties.controller.js",
+			"size": 1270
+		},
+		{
+			"name": "controller/ValueProperties-dbg.controller.js",
+			"size": 476,
+			"isDebug": true
+		},
+		{
+			"name": "controller/ValueProperties.controller.js",
+			"size": 342
+		},
+		{
+			"name": "controller/Values-dbg.controller.js",
+			"size": 6847,
+			"isDebug": true
+		},
+		{
+			"name": "controller/Values.controller.js",
+			"size": 3267
+		},
+		{
+			"name": "css/style.css",
+			"size": 786
+		},
+		{
+			"name": "dao/DependencyTraceDAO-dbg.js",
+			"size": 13945,
+			"isDebug": true
+		},
+		{
+			"name": "dao/DependencyTraceDAO.js",
+			"size": 5121
+		},
+		{
+			"name": "dao/InspectorDAO-dbg.js",
+			"size": 5326,
+			"isDebug": true
+		},
+		{
+			"name": "dao/InspectorDAO.js",
+			"size": 1956
+		},
+		{
+			"name": "dialog/CsticsValueHelpDialog-dbg.js",
+			"size": 516,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/CsticsValueHelpDialog.js",
+			"size": 346
+		},
+		{
+			"name": "dialog/DependencyTraceFilterDialog-dbg.js",
+			"size": 26948,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/DependencyTraceFilterDialog.js",
+			"size": 9159
+		},
+		{
+			"name": "dialog/GenericValueHelpDialog-dbg.js",
+			"size": 6377,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/GenericValueHelpDialog.js",
+			"size": 3163
+		},
+		{
+			"name": "dialog/ObjectDependencyValueHelpDialog-dbg.js",
+			"size": 552,
+			"isDebug": true
+		},
+		{
+			"name": "dialog/ObjectDependencyValueHelpDialog.js",
+			"size": 351
+		},
+		{
+			"name": "formatter/ComparisonFormatter-dbg.js",
+			"size": 5121,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/ComparisonFormatter.js",
+			"size": 1640
+		},
+		{
+			"name": "formatter/ConfProfileFormatter-dbg.js",
+			"size": 2762,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/ConfProfileFormatter.js",
+			"size": 1569
+		},
+		{
+			"name": "formatter/DependencyFormatter-dbg.js",
+			"size": 2905,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/DependencyFormatter.js",
+			"size": 907
+		},
+		{
+			"name": "formatter/DependencyTraceFormatter-dbg.js",
+			"size": 5195,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/DependencyTraceFormatter.js",
+			"size": 1942
+		},
+		{
+			"name": "formatter/GeneralFormatter-dbg.js",
+			"size": 6474,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/GeneralFormatter.js",
+			"size": 2285
+		},
+		{
+			"name": "formatter/PRTFormatter-dbg.js",
+			"size": 1033,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/PRTFormatter.js",
+			"size": 241
+		},
+		{
+			"name": "formatter/RoutingFormatter-dbg.js",
+			"size": 2441,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/RoutingFormatter.js",
+			"size": 702
+		},
+		{
+			"name": "formatter/SuperInspectorFormatter-dbg.js",
+			"size": 13477,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/SuperInspectorFormatter.js",
+			"size": 2850
+		},
+		{
+			"name": "formatter/ValuesFormatter-dbg.js",
+			"size": 12025,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/ValuesFormatter.js",
+			"size": 4191
+		},
+		{
+			"name": "fragment/ComparisonCsticActionSheet.fragment.xml",
+			"size": 701
+		},
+		{
+			"name": "fragment/ComparisonSettingsPopover.fragment.xml",
+			"size": 722
+		},
+		{
+			"name": "fragment/CsticsValueHelpDialog.fragment.xml",
+			"size": 1806
+		},
+		{
+			"name": "fragment/DependencyListItem.fragment.xml",
+			"size": 612
+		},
+		{
+			"name": "fragment/DependencyTraceFilter.fragment.xml",
+			"size": 5300
+		},
+		{
+			"name": "fragment/DependencyValueHelpDialog.fragment.xml",
+			"size": 1876
+		},
+		{
+			"name": "fragment/Header.fragment.xml",
+			"size": 624
+		},
+		{
+			"name": "fragment/ShowMasterData.fragment.xml",
+			"size": 519
+		},
+		{
+			"name": "fragment/TraceEntryDetails.fragment.xml",
+			"size": 9131
+		},
+		{
+			"name": "fragment/TraceEntryTextActionSheet.fragment.xml",
+			"size": 2083
+		},
+		{
+			"name": "i18n/i18n.properties",
+			"size": 30832,
+			"locale": "",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ar.properties",
+			"size": 46834,
+			"locale": "ar",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_bg.properties",
+			"size": 54640,
+			"locale": "bg",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ca.properties",
+			"size": 32779,
+			"locale": "ca",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_cs.properties",
+			"size": 33413,
+			"locale": "cs",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_da.properties",
+			"size": 31397,
+			"locale": "da",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_de.properties",
+			"size": 31474,
+			"locale": "de",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_el.properties",
+			"size": 53167,
+			"locale": "el",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_en.properties",
+			"size": 30761,
+			"locale": "en",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_en_US_sappsd.properties",
+			"size": 59033,
+			"locale": "en_US_sappsd",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_en_US_saptrc.properties",
+			"size": 37320,
+			"locale": "en_US_saptrc",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_es.properties",
+			"size": 32686,
+			"locale": "es",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_et.properties",
+			"size": 31999,
+			"locale": "et",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_fi.properties",
+			"size": 31747,
+			"locale": "fi",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_fr.properties",
+			"size": 32996,
+			"locale": "fr",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_hi.properties",
+			"size": 46871,
+			"locale": "hi",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_hr.properties",
+			"size": 31874,
+			"locale": "hr",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_hu.properties",
+			"size": 34070,
+			"locale": "hu",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_it.properties",
+			"size": 31988,
+			"locale": "it",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_iw.properties",
+			"size": 42601,
+			"locale": "iw",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ja.properties",
+			"size": 35890,
+			"locale": "ja",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_kk.properties",
+			"size": 49533,
+			"locale": "kk",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ko.properties",
+			"size": 34509,
+			"locale": "ko",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_lt.properties",
+			"size": 32801,
+			"locale": "lt",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_lv.properties",
+			"size": 33498,
+			"locale": "lv",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ms.properties",
+			"size": 30868,
+			"locale": "ms",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_nl.properties",
+			"size": 31196,
+			"locale": "nl",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_no.properties",
+			"size": 31140,
+			"locale": "no",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_pl.properties",
+			"size": 32860,
+			"locale": "pl",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_pt.properties",
+			"size": 33082,
+			"locale": "pt",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ro.properties",
+			"size": 32657,
+			"locale": "ro",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_ru.properties",
+			"size": 52395,
+			"locale": "ru",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_sh.properties",
+			"size": 31860,
+			"locale": "sh",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_sk.properties",
+			"size": 33114,
+			"locale": "sk",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_sl.properties",
+			"size": 31741,
+			"locale": "sl",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_sv.properties",
+			"size": 31585,
+			"locale": "sv",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_th.properties",
+			"size": 49938,
+			"locale": "th",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_tr.properties",
+			"size": 33356,
+			"locale": "tr",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_uk.properties",
+			"size": 51920,
+			"locale": "uk",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_vi.properties",
+			"size": 39196,
+			"locale": "vi",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_zh_CN.properties",
+			"size": 33547,
+			"locale": "zh_CN",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "i18n/i18n_zh_TW.properties",
+			"size": 33178,
+			"locale": "zh_TW",
+			"raw": "i18n/i18n.properties"
+		},
+		{
+			"name": "logic/Constants-dbg.js",
+			"size": 5603,
+			"isDebug": true
+		},
+		{
+			"name": "logic/Constants.js",
+			"size": 4621
+		},
+		{
+			"name": "logic/DependencyTraceFilterManager-dbg.js",
+			"size": 8780,
+			"isDebug": true
+		},
+		{
+			"name": "logic/DependencyTraceFilterManager.js",
+			"size": 3404
+		},
+		{
+			"name": "logic/DependencyTraceModel-dbg.js",
+			"size": 23098,
+			"isDebug": true
+		},
+		{
+			"name": "logic/DependencyTraceModel.js",
+			"size": 7620
+		},
+		{
+			"name": "logic/EventProvider-dbg.js",
+			"size": 2657,
+			"isDebug": true
+		},
+		{
+			"name": "logic/EventProvider.js",
+			"size": 939
+		},
+		{
+			"name": "logic/FeatureToggle-dbg.js",
+			"size": 1403,
+			"isDebug": true
+		},
+		{
+			"name": "logic/FeatureToggle.js",
+			"size": 728
+		},
+		{
+			"name": "logic/InspectorModel-dbg.js",
+			"size": 18410,
+			"isDebug": true
+		},
+		{
+			"name": "logic/InspectorModel.js",
+			"size": 6336
+		},
+		{
+			"name": "logic/NavigationHandler-dbg.js",
+			"size": 4396,
+			"isDebug": true
+		},
+		{
+			"name": "logic/NavigationHandler.js",
+			"size": 1921
+		},
+		{
+			"name": "logic/NavigationManager-dbg.js",
+			"size": 7794,
+			"isDebug": true
+		},
+		{
+			"name": "logic/NavigationManager.js",
+			"size": 3420
+		},
+		{
+			"name": "logic/SuggestionListHandler-dbg.js",
+			"size": 7236,
+			"isDebug": true
+		},
+		{
+			"name": "logic/SuggestionListHandler.js",
+			"size": 2738
+		},
+		{
+			"name": "manifest.json",
+			"size": 1231
+		},
+		{
+			"name": "util/DependencyTraceMapper-dbg.js",
+			"size": 9365,
+			"isDebug": true
+		},
+		{
+			"name": "util/DependencyTraceMapper.js",
+			"size": 4544
+		},
+		{
+			"name": "util/ODataModelHelper-dbg.js",
+			"size": 16496,
+			"isDebug": true
+		},
+		{
+			"name": "util/ODataModelHelper.js",
+			"size": 4099
+		},
+		{
+			"name": "util/SuperInspector-dbg.js",
+			"size": 3987,
+			"isDebug": true
+		},
+		{
+			"name": "util/SuperInspector.js",
+			"size": 1214
+		},
+		{
+			"name": "util/TraceUtil-dbg.js",
+			"size": 1322,
+			"isDebug": true
+		},
+		{
+			"name": "util/TraceUtil.js",
+			"size": 527
+		},
+		{
+			"name": "util/i18n-dbg.js",
+			"size": 767,
+			"isDebug": true
+		},
+		{
+			"name": "util/i18n.js",
+			"size": 552
+		},
+		{
+			"name": "view/BOMItemProperties.view.xml",
+			"size": 10528
+		},
+		{
+			"name": "view/Base.view.xml",
+			"size": 771
+		},
+		{
+			"name": "view/CharacteristicsProperties.view.xml",
+			"size": 4533
+		},
+		{
+			"name": "view/Comparison.view.xml",
+			"size": 2769
+		},
+		{
+			"name": "view/ConfProfileProperties.view.xml",
+			"size": 2590
+		},
+		{
+			"name": "view/Dependencies.view.xml",
+			"size": 1096
+		},
+		{
+			"name": "view/DependencyDetails.view.xml",
+			"size": 3510
+		},
+		{
+			"name": "view/DependencyTrace.view.xml",
+			"size": 3616
+		},
+		{
+			"name": "view/Error.view.xml",
+			"size": 425
+		},
+		{
+			"name": "view/InspectorFrame.view.xml",
+			"size": 4040
+		},
+		{
+			"name": "view/OperationComponents.view.xml",
+			"size": 796
+		},
+		{
+			"name": "view/OperationProperties.view.xml",
+			"size": 6446
+		},
+		{
+			"name": "view/PRTProperties.view.xml",
+			"size": 1947
+		},
+		{
+			"name": "view/PRTs.view.xml",
+			"size": 844
+		},
+		{
+			"name": "view/RoutingHeaderProperties.view.xml",
+			"size": 3001
+		},
+		{
+			"name": "view/RoutingSequenceProperties.view.xml",
+			"size": 3424
+		},
+		{
+			"name": "view/ValueProperties.view.xml",
+			"size": 2090
+		},
+		{
+			"name": "view/Values.view.xml",
+			"size": 1453
+		}
+	]
+}

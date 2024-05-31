@@ -1,0 +1,73 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m">
+	<Dialog
+		id="configurationSettingsDialog" title="{vchI18n>SETTINGS_DIALOG_TITLE}" draggable="true" resizable="true">
+		<content>
+			<f:Form id="configurationSettingsForm"
+			    ariaLabelledBy="configurationSettings"
+				editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanXL="4"
+						labelSpanL="4"
+						labelSpanM="12"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="1"
+						columnsL="1"
+						columnsM="1"
+						singleContainerFullSize="false" />
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="{vchI18n>SETTINGS_DIALOG_DESCRIPTION_MODE}">
+								<f:fields>
+									<Select id="descriptionMode" forceSelection="false" selectedKey="{vchSettings>/descriptionMode}">
+										<core:Item key="both" text="{vchI18n>SETTINGS_DIALOG_DESCRIPTION_MODE_BOTH}" />
+										<core:Item key="technicalName" text="{vchI18n>SETTINGS_DIALOG_DESCRIPTION_MODE_TECHNICAL_NAME}" />
+										<core:Item key="description" text="{vchI18n>SETTINGS_DIALOG_DESCRIPTION_MODE_DESCRIPTION}" />
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="{vchI18n>SETTINGS_DIALOG_SHOW_HIDDEN_CSTICS}">
+								<f:fields>
+									<Switch id="showHiddenCharacteristicsSwitch" 
+										customTextOff="{vchI18n>SETTINGS_DIALOG_SHOW_HIDDEN_CSTICS_NO}"
+										customTextOn="{vchI18n>SETTINGS_DIALOG_SHOW_HIDDEN_CSTICS_YES}"
+										state="{vchSettings>/showHiddenCharacteristics}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement id="showPreciseNumbersFormElement" label="{vchI18n>SETTINGS_DIALOG_SHOW_PRECISE_NUMBERS}">
+								<f:fields>
+									<Switch id="showPreciseNumbersSwitch" 
+										customTextOff="{vchI18n>SETTINGS_DIALOG_SHOW_PRECISE_NUMBERS_NO}"
+										customTextOn="{vchI18n>SETTINGS_DIALOG_SHOW_PRECISE_NUMBERS_YES}"
+										state="{vchSettings>/showPreciseNumbers}" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</content>
+		<beginButton>
+			<Button id="saveAndClose" text="{vchI18n>SETTINGS_DIALOG_OK}" press="saveAndClose" />
+		</beginButton> 
+		<endButton>
+			<Button id="close" text="{vchI18n>SETTINGS_DIALOG_CANCEL}" press="close" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

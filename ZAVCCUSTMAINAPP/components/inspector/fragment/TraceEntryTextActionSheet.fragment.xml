@@ -1,0 +1,59 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		modal="false"
+		placement="VerticalPreferredBottom"
+		title="{traceEntryTextParameter>/headerText}">
+		<content class="sapUiNoMargin">
+			<ActionSheet
+				title="{i18n>vchclf_trace_actionsheet_title}"
+				showCancelButton="false"
+				placement="Bottom">
+				<buttons>
+					<Button
+						text="{traceEntryTextParameter>/filterText}"
+						tooltip="{traceEntryTextParameter>/filterText}"
+						visible="{= !!${traceEntryTextParameter>/filterText}}"
+						press="onFilter"
+						class="sapMFlexBox"/>
+					<Button
+						text="{traceEntryTextParameter>/whereWasValueSetText}"
+						tooltip="{traceEntryTextParameter>/whereWasValueSetText}"
+						visible="{= !!${traceEntryTextParameter>/whereWasValueSetText}}"
+						press="onWhereWasValueSet"
+						class="sapMFlexBox"/>
+					<Button
+						text="{traceEntryTextParameter>/whereWasCsticUsedText}"
+						tooltip="{traceEntryTextParameter>/whereWasCsticUsedText}"
+						visible="{= !!${traceEntryTextParameter>/whereWasCsticUsedText}}"
+						press="onWhereWasCsticUsed"
+						class="sapMFlexBox"/>
+					<Button
+						text="{traceEntryTextParameter>/whereWasDepSetText}"
+						tooltip="{traceEntryTextParameter>/whereWasDepSetText}"
+						visible="{= !!${traceEntryTextParameter>/whereWasDepSetText}}"
+						press="onWhereWasDepSet"
+						class="sapMFlexBox"/>
+					<Button
+						text="{traceEntryTextParameter>/whereWasDepUsedText}"
+						tooltip="{traceEntryTextParameter>/whereWasDepUsedText}"
+						visible="{= !!${traceEntryTextParameter>/whereWasDepUsedText}}"
+						press="onWhereWasDepUsed"
+						class="sapMFlexBox"/>
+					<Button
+						text="{traceEntryTextParameter>/inspectText}"
+						tooltip="{traceEntryTextParameter>/inspectText}"
+						visible="{= !!${traceEntryTextParameter>/inspectText}}"
+						press="onInspect"
+						class="sapMFlexBox"/>
+				</buttons>
+			</ActionSheet>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

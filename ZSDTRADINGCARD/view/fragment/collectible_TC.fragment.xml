@@ -1,0 +1,349 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout.form" xmlns:ui="sap.ui.table">
+	<Dialog id="TC_colDialog" contentWidth="1400px" contentHeight="600px" title="Collectibles">
+		<content>
+			<l:SimpleForm editable="true">
+				<l:content>
+					<VBox>
+						
+
+
+<fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search="handleGoDlogPress_TC" showFilterConfiguration="false" filterBarExpanded="false" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem name="Gmaecode" label="Game code" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_idInputGameCode" valueHelpRequest="onGameValueHelp"  showValueHelp="true" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Languagecode" label="Language code" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_idInputLanguage" value="" valueHelpRequest="onLangValueHelp"  showValueHelp="true" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="SetCode" label="Set code" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_idInputSetCode" value="" valueHelpRequest="onSetValueHelp"  showValueHelp="true" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<!-- <fb:FilterGroupItem name="Material" label="Material" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+	
+									<Input id="TC_idMaterialf" value="" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/>
+									
+									</fb:control>
+								</fb:FilterGroupItem> -->
+
+								<fb:FilterGroupItem name="Card_Number" label="Card Number" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="Card_Number" value="" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Card_Name" label="Card Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_Card_Name" value="" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Display_Name" label="Display Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_Display_Name" value="" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Label_Text" label="Label Text" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_Label_Text" value="" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Web_lookup" label="Web lookup" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_Web_lookup" value="" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Year" label="Year" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_Year" value="" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Varient1" label="Variant Code1" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_idInputVart1" value="" valueHelpRequest="onVariantValueHelp"  showValueHelp="true" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Varient2" label="Variant Code2" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_idInputVart2" value="" valueHelpRequest="onVariantValueHelp"  showValueHelp="true" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+                                <fb:FilterGroupItem name="Raritycode" label="Rarity code" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_idInputRarity" value="" valueHelpRequest="onRarityValueHelp"  showValueHelp="true" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Color_code" label="Color code" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_Color_code" value="" valueHelpRequest="onColorValueHelp"  showValueHelp="true" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Exclude_from_OSF" label="Exclude from OSF" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<!-- <Input id="TC_Exclude_from_OSF" value="" valueHelpRequest="onEFOValueHelp"  showValueHelp="false" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/> -->
+										 <Select id="TC_Exclude_from_OSF" forceSelection="false" width="130px" class="clInputFieldc" >
+											<core:Item key="Y" text="Yes" />
+											<core:Item key="N" text="No" />
+										</Select>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="Exclude_from_POP" label="Exclude from POP" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+									<Select id="TC_Exclude_from_POP" forceSelection="false" width="130px" class="clInputFieldc" >
+											<core:Item key="Y" text="Yes" />
+											<core:Item key="N" text="No" />
+										</Select> 
+									<!-- <Input id="TC_Exclude_from_POP" value="" valueHelpRequest="onEFPValueHelp"  showValueHelp="false" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/> -->
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="X_Plant_Mat_Status" label="X Plant Mat Status" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="TC_X_Plant_Mat_Status" value="" valueHelpRequest="onXPMSValueHelp"  showValueHelp="true" width="130px" class="clInputFieldc" submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+								
+								
+								
+								<!-- <fb:FilterGroupItem name="Card_Name" label="Card Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="Card_Name" value="" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem> 
+								<fb:FilterGroupItem name="Card_Number" label="Card Number" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="Card_Number" value="" width="130px" class="clInputFieldc sapUiSmallMarginEnd"
+										submit="handleGoDlogPress_TC"/>
+									</fb:control>
+								</fb:FilterGroupItem> -->
+
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+						<ScrollContainer
+							horizontal="true"
+							vertical="true"
+							focusable="true">
+						<ui:Table id="TC_idGradeTablef" selectionMode="Single" rows="{oDataCollectable_TC>/}" paste="onPaste" alternateRowColors="true"
+							ariaLabelledBy="title" class="sapUiTinyMarginTop sapUiTinyMarginBottom" rowSelectionChange="action_TC" visibleRowCount="8">
+							<!--<ui:extension>-->
+							<!--	<OverflowToolbar style="Clear">-->
+							<!--		<Title id="title" text="Products"/>-->
+							<!--		<ui:ToolbarSpacer/>-->
+							<!--		<Button icon="sap-icon://decline" tooltip="Clear all filters" press="clearAllFilters"/>-->
+							<!--<ToolbarSeparator/>-->
+							<!--		<SearchField placeholder="Filter" value="{ui>/globalFilter}" search="filterGlobally" width="15rem"/>-->
+							<!--	</OverflowToolbar>-->
+							<!--</ui:extension>-->
+							<ui:columns>
+								<ui:Column width="9rem">
+									<Label text="Material"/>
+									<ui:template>
+										<Text text="{= parseInt(${oDataCollectable_TC>MATNR})}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="4rem">
+									<Label text="Game"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>GAME_CODE}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="4rem">
+									<Label text="Lang"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>LANG_CODE}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+								
+								<ui:Column width="9rem">
+									<Label text="Set Name"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>SET_NAME}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								
+
+								<ui:Column width="9rem">
+									<Label text="Card Number"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>COLLECTOR_NUM}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="Card Name"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>CARD_NAME}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="4rem">
+									<Label text="Year"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>CARD_YEAR}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="Variant1 Name"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>VARIANT1_NAME}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="Variant2 name"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>VARIANT2_NAME}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="Rarity Name"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>RARITY_NAME}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="Color Name"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>COLOR_NAME}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="5rem">
+									<Label text="Set code"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>SET_CODE}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="5rem">
+									<Label text="Var code1"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>VARIANT_CODE1}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="5rem">
+									<Label text="Var code2"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>VARIANT_CODE2}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="5rem">
+									<Label text="Rarity code"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>RARITY_CODE}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="5rem">
+									<Label text="Color code"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>COLOR_CODE}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="Display Name"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>DISPLAY_NAME}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="Label Text"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>LABEL_TEXT}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="Web Lookup"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>WEBLOOKUP}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="ExcludeOSF"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>EXCLUDE_FROM_OSF}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="ExcludePOP"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>EXCLUDE_POP_REPORT}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="9rem">
+									<Label text="X plant Material Status"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>MSTAE}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+
+								<!--  <ui:Column>
+									<Label text="Card Number"/>
+									<ui:template>
+										<Text text="{oDataCollectable_TC>COLLECTOR_NUM}" wrapping="false"/>
+									</ui:template>
+								</ui:Column> -->
+
+
+								
+								
+								
+								
+								
+							</ui:columns>
+						</ui:Table>
+						</ScrollContainer>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<!--<HBox>-->
+							<Button text="OK" press="handleOkDlogPress_TC" width="8rem" class="clGridFooterBtncol sapUiLargeMarginBegin sapUiSmallMarginEnd"/>
+							<Button text="Close" width="8rem" press="onCloseDialog_TC" class="sapUiTinyMarginBegin sapUiSmallMarginEnd clGridFooterBtncol"/>
+							<!--</HBox>-->
+						</Toolbar>
+					</VBox>
+				</l:content>
+			</l:SimpleForm>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,102 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m"
+    busyIndicatorDelay="0"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.RoutingSequenceProperties">
+	<f:SimpleForm
+		maxContainerCols="1"
+		minWidth="300"
+		editable="false"
+		layout="ResponsiveGridLayout"
+		labelSpanXL="4"
+		labelSpanL="4"
+		labelSpanM="5"
+		labelSpanS="12"
+		breakpointL="800"
+		breakpointM="400"
+		columnsL="2"
+		columnsM="1">
+		<f:toolbar>
+			<core:Fragment
+				fragmentName="sap.i2d.lo.lib.zvchclfz.components.inspector.fragment.ShowMasterData"
+				type="XML"/>
+		</f:toolbar>
+		<f:content>
+			<core:Title
+				text="{i18n>vchclf_insp_common_basic_info_title}"/>
+			<Label
+				labelFor="idSequenceBranchOperation"
+				text="{i18n>vchclf_insp_sequence_branch_operation}"/>
+			<FormattedText
+				id="idSequenceBranchOperation"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/BOOSequenceBranchOperation' },
+						{ path: 'properties>/to_Super/BOOSequenceBranchOperation' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.setNoneIfNoTextIsPassed'
+				}"/>
+			<Label
+				labelFor="idSequenceReturnOperation"
+				text="{i18n>vchclf_insp_sequence_return_operation}"/>
+			<FormattedText
+				id="idSequenceReturnOperation"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/BOOSequenceReturnOperation' },
+						{ path: 'properties>/to_Super/BOOSequenceReturnOperation' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.setNoneIfNoTextIsPassed'
+				}"/>
+			<Label
+				labelFor="idSequenceLotSize"
+				text="{i18n>vchclf_insp_sequence_lot_size}"
+				visible="{= !${__viewData>/isParallelSequence}}"/>
+			<FormattedText
+				id="idSequenceLotSize"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/MinimumLotSizeQuantity' },
+						{ path: 'properties>/MaximumLotSizeQuantity' },
+						{ path: 'properties>/BillOfOperationsUnit' },
+						{ path: 'properties>/to_Super/MinimumLotSizeQuantity' },
+						{ path: 'properties>/to_Super/MaximumLotSizeQuantity' },
+						{ path: 'properties>/to_Super/BillOfOperationsUnit' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.formatQtyFromTo'
+				}"
+				visible="{= !${__viewData>/isParallelSequence}}"/>
+			<Label
+				labelFor="idSequenceAlignmentKey"
+				text="{i18n>vchclf_insp_sequence_alignment_key}"
+				visible="{__viewData>/isParallelSequence}"/>
+			<FormattedText
+				id="idSequenceAlignmentKey"
+				htmlText="{
+					parts: [
+						{ path: 'properties>/SequenceSchedulingAlignment' },
+						{ path: 'properties>/SequenceSchedulingAlignmentDesc' },
+						{ path: 'properties>/to_Super/SequenceSchedulingAlignment' },
+						{ path: 'properties>/to_Super/SequenceSchedulingAlignmentDesc' },
+						{ path: 'properties>/to_Super/IsExcludedItem' },
+						{ path: '__viewData>/isSuperInspectorShown' }
+					],
+					formatter: '._superInspectorFormatter.concatenateIdAndDescription'
+				}"
+				visible="{__viewData>/isParallelSequence}"/>
+		</f:content>
+	</f:SimpleForm>
+</mvc:View>

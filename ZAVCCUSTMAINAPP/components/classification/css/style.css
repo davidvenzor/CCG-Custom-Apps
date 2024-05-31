@@ -1,0 +1,45 @@
+.classificationToolbar{
+	border-bottom: none;
+}
+
+.classificationView{
+	min-height: 1rem;
+}
+
+.classificationForm{
+	margin-top: 1rem;
+}
+
+/*This to get rid of margins on the side - but not for Phone.*/
+/*Strangely One column is not linked to .sapUiMedia-Std-Phone*/
+/*Therefore media query needs to be added.*/
+@media screen and (min-width: 657px){
+	.sapUiMedia-StdExt-LargeDesktop .classificationForm,
+	.sapUiMedia-Std-Desktop .classificationForm,
+	.sapUiMedia-StdExt-Tablet .classificationForm,
+	.sapUiMedia-Std-Tablet .classificationForm {
+		margin-left: -0.75rem;
+		margin-right: -0.75rem;
+	}
+} 
+
+.classificationSubSection{
+    margin-bottom: 1rem;
+    padding-bottom: 4rem;
+}
+
+.classificationMarginTop{
+    margin-top: 0.15rem; /*This for accessibility compatibility with IE*/
+}
+
+.classificationToolbar .sapMBarChild:first-child{
+	margin-left: 0;
+}
+
+.classFilterLabel::after{
+	content: ":";
+}
+
+.singleClassificationOverflowToolbarHideLabels{
+	visibility:hidden;
+}

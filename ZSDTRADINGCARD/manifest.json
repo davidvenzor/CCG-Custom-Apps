@@ -1,0 +1,165 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "ccgtradingcards",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.9.1",
+            "toolsId": "0babdc2e-f836-4c55-ba3f-daf76634581a"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZODATA_CHARACTERISTCS_GRADENEW_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZODATA_CHARACTERISTCS_GRADENEW_SRV": {
+                "uri": "/sap/opu/odata/sap/ZODATA_CHARACTERISTCS_GRADENEW_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "fullWidth": true,
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.111.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "commands": {
+            "Previous": {
+                "shortcut": "Ctrl+2"
+            },
+            "Next": {
+                "shortcut": "Ctrl+3"
+            },
+            "Collect": {
+                "shortcut": "Ctrl+1"
+            },
+            "Exits": {
+                "shortcut": "Ctrl+4"
+            },
+            "Grade": {
+                "shortcut": "Ctrl+5"
+            },
+            "Vlabel": {
+                "shortcut": "Ctrl+6"
+            },
+            "PrBox": {
+                "shortcut": "Ctrl+7"
+            },
+            "cancel": {
+                "shortcut": "Ctrl+8"
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ccgtradingcards.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "SC": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZODATA_CHARACTERISTCS_GRADENEW_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "ccgtradingcards.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteCardView",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetCardView"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetCardView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "CardView",
+                    "viewName": "CardView"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "ccgtradingcards.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

@@ -1,0 +1,127 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<MenuButton id="insertBOMItemButton" 
+		type="Transparent"
+		class="sapUiTinyMarginEnd" 
+		icon="sap-icon://add"
+		buttonMode="Split"
+		defaultAction="onOpenBOMItemDialogForInsertItem"
+		tooltip="{i18n>vchclf_structpnl_insert_bom_item_tooltip}"
+		enabled="{path: 'global>/currentlyFocusedBOMItem',
+				formatter: '.isInsertBOMItemButtonEnabled'}"
+		visible="{= ${ui>/isBOMChangeAllowed} &amp;&amp; ${ui>/isStructurePanelEditable} }"
+		useDefaultActionOnly="true">
+		<menu>
+			<Menu itemSelected="onNavigateToBOMAppForInsertItem">
+				<MenuItem
+					text="{i18n>vchclf_structpnl_navigate_to_bom_app_for_insert}"
+					tooltip="{i18n>vchclf_structpnl_navigate_to_bom_app_for_insert}"
+					icon="sap-icon://edit-outside" 
+					enabled="{path: 'global>/currentlyFocusedBOMItem',
+						      formatter: '.isNavigateToBOMAppForInsertEnabled'}"/>
+			</Menu>
+		</menu>
+	</MenuButton>
+	<MenuButton id="changeBOMItemButton" 
+		type="Transparent"
+		class="sapUiTinyMarginEnd" 
+		icon="sap-icon://edit" 
+		buttonMode="Split"
+		defaultAction="onOpenBOMItemDialogForChangeItem"
+		tooltip="{i18n>vchclf_structpnl_change_bom_item_tooltip}"
+		enabled="{path: 'global>/currentlyFocusedBOMItem',
+				formatter: '.isUpdateBOMItemButtonEnabled'}"
+		visible="{= ${ui>/isBOMChangeAllowed} &amp;&amp; ${ui>/isStructurePanelEditable} }"
+		useDefaultActionOnly="true">
+		<menu>
+			<Menu itemSelected="onNavigateToBOMAppForChangeItem">
+				<MenuItem
+					text="{i18n>vchclf_structpnl_navigate_to_bom_app_for_update}"
+					tooltip="{i18n>vchclf_structpnl_navigate_to_bom_app_for_update}"
+					icon="sap-icon://edit-outside"	
+					enabled="{path: 'global>/currentlyFocusedBOMItem',
+						      formatter: '.isNavigateToBOMAppForUpdateEnabled'}"/>
+			</Menu>
+		</menu>
+	</MenuButton>
+	<Button id="deleteBOMItemButton" 
+		icon="sap-icon://delete"
+		press="onBOMItemDelete" 
+		type="Transparent" 
+		class="sapUiTinyMarginEnd"
+		enabled="{path: 'global>/currentlyFocusedBOMItem',
+				formatter: '.isDeleteBOMItemButtonEnabled'}"
+		visible="{= ${ui>/isBOMChangeAllowed} &amp;&amp; ${ui>/isStructurePanelEditable} }"
+		tooltip="{i18n>vchclf_structpnl_delete_bom_item_tooltip}" />
+	<Button id="fixateBOMItemButton"
+		text="{i18n>vchclf_structpnl_fix_bom_item}" 
+		press="onBOMItemFixate"
+		type="Transparent" 
+		class="sapUiTinyMarginEnd"
+		enabled="{path: 'global>/currentlyFocusedBOMItem',	 
+				formatter: '.isFixateButtonEnabled'}"
+		visible="{parts: [
+							{path: 'ui>/ConfigurationUISettings'},
+							{path: 'ui>/isBOMChangeAllowed'},
+							{path: 'ui>/isStructurePanelEditable'}
+						],
+			formatter: '.isFixateButtonVisible'}"
+		tooltip="{i18n>vchclf_structpnl_fix_bom_item}" />
+	<MenuButton id="fixateSelectedBOMItemButton"
+		type="Transparent"
+		class="sapUiTinyMarginEnd"
+		text="{i18n>vchclf_structpnl_fix_bom_item}"
+		buttonMode="Split"
+		defaultAction="onBOMItemFixate"
+		tooltip="{i18n>vchclf_structpnl_fix_bom_item_tooltip}"
+		useDefaultActionOnly="true"
+		enabled="{path: 'global>/currentlyFocusedBOMItem',
+				formatter: '.isFixateButtonEnabled'}"
+		visible="{parts: [
+							{path: 'ui>/ConfigurationUISettings'},
+							{path: 'ui>/isBOMChangeAllowed'},
+							{path: 'ui>/isStructurePanelEditable'}
+						],
+			formatter: '.isFixateMenuButtonVisible'}">
+		<menu>
+			<Menu itemSelected="onBOMItemFixateTopdown">
+				<MenuItem
+					text="{i18n>vchclf_structpnl_fix_topdown_bom_item}"
+					tooltip="{i18n>vchclf_structpnl_fix_topdown_bom_item_tooltip}"/>
+			</Menu>
+		</menu>
+	</MenuButton>
+	<MenuButton id="fixateTopdownBOMItemButton"
+		type="Transparent"
+		class="sapUiTinyMarginEnd"
+		text="{i18n>vchclf_structpnl_fix_topdown_bom_item}"
+		buttonMode="Split"
+		defaultAction="onBOMItemFixateTopdown"
+		tooltip="{i18n>vchclf_structpnl_fix_topdown_bom_item_tooltip}"
+		useDefaultActionOnly="true"
+		enabled="{path: 'global>/currentlyFocusedBOMItem',
+				formatter: '.isFixateButtonEnabled'}"
+		visible="{parts: [
+							{path: 'ui>/ConfigurationUISettings'},
+							{path: 'ui>/isBOMChangeAllowed'},
+							{path: 'ui>/isStructurePanelEditable'}
+						],
+			formatter: '.isFixateTopDownMenuButtonVisible'}">
+		<menu>
+			<Menu itemSelected="onBOMItemFixate">
+				<MenuItem
+					text="{i18n>vchclf_structpnl_fix_bom_item}"
+					tooltip="{i18n>vchclf_structpnl_fix_bom_item_tooltip}"/>
+			</Menu>
+		</menu>
+	</MenuButton>
+	<ToolbarSeparator 
+		class="sapUiTinyMarginEnd"
+		visible="{= ${ui>/isBOMChangeAllowed} &amp;&amp; ${ui>/isStructurePanelEditable} }" />
+</core:FragmentDefinition>

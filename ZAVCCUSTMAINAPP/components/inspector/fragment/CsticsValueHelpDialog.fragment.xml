@@ -1,0 +1,60 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<vh:ValueHelpDialog
+	xmlns="sap.m"
+	xmlns:vh="sap.ui.comp.valuehelpdialog"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core"
+	title="{i18n>vchclf_trace_cstics_value_help_title}"
+	descriptionKey="CsticName"
+	key="CsticId"
+	tokenDisplayBehaviour="descriptionOnly"
+	ok="onOkPressed"
+	cancel="onCancelPressed">
+	<vh:filterBar>
+		<fb:FilterBar
+			search="onSearchPressed"
+			advancedMode="true">
+			<fb:filterGroupItems>
+				<fb:FilterGroupItem
+					name="characteristicFilter"
+					label="{i18n>vchclf_trace_cstics_value_help_filter_cstics}"
+					groupName="csticsValueHelpFilterGroup">
+					<fb:control>
+						<Input
+							id="idCharacteristicFilter"
+							submit="onSearchPressed"
+							name="csticsValueHelpFilterChar"
+							value="{columns>/filters/name}"/>
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem
+					name="characteristicDescFilter"
+					label="{i18n>vchclf_trace_cstics_value_help_filter_csticsdesc}"
+					groupName="csticsValueHelpFilterGroup">
+					<fb:control>
+						<Input
+							id="idCharacteristicDescFilter"
+							submit="onSearchPressed"
+							name="csticsValueHelpFilterDesc"
+							value="{columns>/filters/description}"/>
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem
+ 					name="isContainedInConfignModel"
+ 					label="{i18n>vchclf_trace_generic_value_help_in_conf_model_label}"
+ 					groupName="csticsValueHelpFilterGroup">
+ 					<fb:control>
+						<CheckBox
+							id="idIsContainedInConfignModel"
+							selected="{columns>/filters/isContainedInConfignModel}"
+							select="onSearchPressed"/>
+ 					</fb:control>
+ 				</fb:FilterGroupItem>
+			</fb:filterGroupItems>
+		</fb:FilterBar>
+	</vh:filterBar>
+</vh:ValueHelpDialog>

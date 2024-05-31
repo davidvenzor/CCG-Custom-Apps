@@ -1,0 +1,39 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition 
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Popover id="unassignClassPopover"
+		placement="Bottom"
+		afterClose="onUnassignClassPopoverAfterClose">
+    	<List id="unassignClassList"
+    		items="{
+    		    path: 'localClassificationModel>AssignedClasses',
+    		    filters: {
+                    path: 'ClassType',
+                    operator: 'NE',
+                    value1: ''
+                }
+    		}"
+    		mode="SingleSelectLeft"
+    		includeItemInSelection="true"
+    		selectionChange="onUnassignClassListSelectionChange">
+    		<StandardListItem
+    			title="{localClassificationModel>ClassName}"
+    			description="{localClassificationModel>Description}" />
+    	</List>
+    	
+        <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="unassignClassButton"
+					text="{i18n>UNASSIGN_CLASS}"
+					press="onUnassignClassPopoverUnassignButtonPress"
+					enabled="{= !!${classTypeViewModel>/unassignClassSelectedContext}}" />
+			</Toolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

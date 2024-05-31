@@ -1,0 +1,54 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition	
+    xmlns:core="sap.ui.core"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m" 
+    xmlns:ext="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox id="form">
+		<Text id="groupTitle"
+			visible="{valuationSettings>/showGroupTitle}"
+			text="{view>Description}" 
+			class="sapUiFormTitleH5 sapUiSmallMarginBottom sapUiSmallMarginTop"/>
+			
+		<grid:CSSGrid id="valuationForm" class="sapVchclfCSSGrid" items="{	
+		                            path:'view>Characteristics',
+									length:'30',
+									factory:'.characteristicFactory',
+									filters: {
+					                	path: 'IsHidden',
+					                	operator: 'EQ',
+					                	value1: false
+					            	}
+								}"
+			ext:formId="valuationForm"
+			ext:flexBoxId="more_less_flexbox">
+			<grid:customLayout>
+				<grid:GridBoxLayout boxesPerRowConfig="XL4 L3 M2 S1"></grid:GridBoxLayout>
+			</grid:customLayout>
+		</grid:CSSGrid>	
+		
+		<FlexBox id="more_less_flexbox" class="sapVchclfMoreLessFlexBox"
+			visible="{= ${view>Characteristics}.length &gt; 29 &amp;&amp; ${view>CsticCount} &gt; 30 &amp;&amp; ${view>Characteristics}.length > 0}"
+			justifyContent="End"
+			alignItems="Center">
+			<Button id="more_less_button"
+				type="Transparent"
+				text="{= ${appStateModel>top} &gt; 30 ? ${i18n>SEE_LESS} : ${i18n>SEE_MORE} }"
+				press=".handleSeeLessMore"/>
+		</FlexBox>
+		
+		<!-- If Characteristics has no entry, there are no characteristics in the group -->
+		<!-- Show a placeholder (noData) in this case -->
+		<FlexBox
+			visible="{= !${view>CsticCount} &amp;&amp; !${view>Characteristics}.length}"
+			alignItems="Center"
+			justifyContent="Center">
+			<Text text="{= ${i18n>NO_CHARACTERISTICS_TEXT}}"/>
+		</FlexBox>
+	</VBox>		
+</core:FragmentDefinition>

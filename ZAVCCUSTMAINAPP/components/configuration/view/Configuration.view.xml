@@ -1,0 +1,224 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="sap.i2d.lo.lib.zvchclfz.components.configuration.controller.Configuration" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.f" xmlns:config="sap.i2d.lo.lib.zvchclfz.components.configuration.control"
+	xmlns:splitter="sap.i2d.lo.lib.zvchclfz.common.control" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap" xmlns:m="sap.ui.layout.form"
+	busyIndicatorDelay="0" height="100%">
+	<f:DynamicPage id="dynamicPage" fitContent="true" showFooter="{configurationSettings>/showFooter}"
+		class="vchDynamicPageContentWithoutPadding">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle id="dynamicPageTitle" backgroundDesign="Solid" areaShrinkRatio="0.1:1:1"
+				actions="{path: 'headerConfiguration>/headerActions', factory: '.createAction'}">
+				<f:heading>
+					<Title text="{headerConfiguration>/title}"/>
+				</f:heading>
+				<f:expandedContent>
+					<Text text="{headerConfiguration>/subtitle}"/>
+				</f:expandedContent>
+				<f:snappedContent>
+					<HBox alignItems="Center" wrap="Wrap" renderType="Bare">
+						<Text wrapping="false" text="{headerConfiguration>/subtitle}" class="sapUiTinyMarginEnd"/>
+						<ObjectStatus text="{vchclf>StatusDescription}"
+							state="{= ${vchclf>StatusType} === '1' ? 'Success' : ${vchclf>StatusType} === '3' ? 'Warning' : 'Error'}"/>
+					</HBox>
+				</f:snappedContent>
+			</f:DynamicPageTitle>
+		</f:title>
+		<!-- DynamicPage Header -->
+		<f:header>
+			<f:DynamicPageHeader id="dynamicPageHeader" backgroundDesign="Solid" pinnable="false">
+				<f:content>
+					<HeaderContainer id="headerContainer" showDividers="false" tooltip="{vchI18n>CONFIGURATION_HEADER_TOOLTIP}"
+						content="{path: 'headerConfiguration>/headerFields', factory: '.createField'}"></HeaderContainer>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- DynamicPage Content -->
+		<f:content>
+			<l:FixFlex >
+				<l:fixContent>
+					<MessageStrip id="InconsistentInstanceMessageStrip"
+						visible="{ parts: [ 'vchclf>StatusType', 'vchclf>InconsistencyInformation' ], formatter: '.oInconsistencyInformationFormatter.isInconsistentMessageStripVisible' }"
+						text="{ parts: [ 'vchclf>Instances', 'vchI18n>INCONSISTENT_INSTANCE_TEXT_MULTILEVEL_MESSAGESTRIP', 'vchI18n>INCONSISTENT_INSTANCE_TEXT_SINGLELEVEL_MESSAGESTRIP', 'vchI18n>INCONSISTENT_INSTANCE_TEXT_MULTILEVEL_MESSAGESTRIP_W_CSTIC_INFO', 'vchI18n>INCONSISTENT_INSTANCE_TEXT_SINGLELEVEL_MESSAGESTRIP_W_CSTIC_INFO', 'vchclf>StatusType', 'vchclf>InconsistencyInformation', 'configurationSettings>/descriptionMode', 'vchI18n>DESCRIPTION_MODE_TEXT_BOTH' ], formatter: '.oInconsistencyInformationFormatter.getTextForInconsistentInstance' }"
+						type="Error" class="sapiconfont sapUiTinyMarginTop">
+						<link>
+							<Link id="InconsistencyHelpLink"
+								text="{ parts: [ 'vchI18n>INCONSISTENCY_INFORMATION_LINK_TEXT_MESSAGESTRIP_W_LONGTEXT', 'vchclf>InconsistencyInformation' ], formatter: '.oInconsistencyInformationFormatter.getTextForInconsistencyLink' }"
+								target="_blank" press="onInconsistencyInformationRequested"
+								visible="{ parts: [ 'vchI18n>INCONSISTENCY_INFORMATION_LINK_TEXT_MESSAGESTRIP_W_LONGTEXT', 'vchclf>InconsistencyInformation' ], formatter: '.oInconsistencyInformationFormatter.getVisibilityOfInconsistencyLink' }"/>
+						</link>
+					</MessageStrip>
+				</l:fixContent>
+				<l:flexContent>
+					<splitter:Splitter id="layout" leftContentIsAvailable="{configurationSettings>/StructurePanelIsVisible}">
+						<splitter:leftContent>
+							<core:ComponentContainer id="structurePanelComponentContainer" height="100%"/>
+						</splitter:leftContent>
+						<!--//BOC-->
+						<!--<splitter:middleContent >-->
+						<!--	<l:Splitter id="instanceArea" orientation="Vertical">-->
+						<!--		<l:Splitter>-->
+						<!--			<l:contentAreas>-->
+						<!--				<l:FixFlex minFlexSize="25" id="instanceArea2">-->
+						<!--					<l:fixContent>-->
+						<!--						<Bar id="singleInstanceHeader" design="Header" class="sapContrastPlus sapVchlClfInstanceHeader">-->
+						<!--<splitter:-->
+						<!--							<contentLeft>-->
+						<!--								<HBox wrap="Wrap" class="sapUiSmallMarginTop">-->
+						<!--									<Title titleStyle="H3" class="sapUiMediumMarginBegin"-->
+						<!--										text="{= !!${vchclf>MaterialDescription} ? ${vchclf>MaterialDescription} : ${vchclf>Material} }"/>-->
+						<!--									<Text text="{vchclf>Material}" class="sapUiSmallMarginBegin" visible="{= !!${vchclf>MaterialDescription}}"/>-->
+						<!--									<ToolbarSeparator class="sapUiSmallMarginBegin sapUiTinyMarginTop"-->
+						<!--										visible="{= !!${vchclf>MaterialDescription} &amp;&amp; !!${vchclf>ConfigurationValidationStatusDescription} &amp;&amp; ${configurationSettings>/uiMode} !== 'Display' }"/>-->
+						<!--									<ObjectStatus text="{vchclf>ConfigurationValidationStatusDescription}"-->
+						<!--										state="{= ${vchclf>ConfigurationValidationStatus} === '1' ? 'Success' : ${vchclf>ConfigurationValidationStatus} === '4' ? 'Error' : 'Warning'}"-->
+						<!--										class="sapUiSmallMarginBegin sapUiTinyMarginTop"-->
+						<!--										visible="{= !!${vchclf>MaterialDescription} &amp;&amp; !!${vchclf>ConfigurationValidationStatusDescription} &amp;&amp; ${configurationSettings>/uiMode} !== 'Display' }"/>-->
+						<!--								</HBox>-->
+						<!--							</contentLeft>-->
+						<!--							<contentRight>-->
+						<!--								<Button id="buttonImage" icon="sap-icon://image-viewer" tooltip="Product Image" press="onOpenImage" visible="true"-->
+						<!--									ariaDescribedBy="singleInstanceHeader"/>-->
+						<!--								<Button id="buttonFilter" icon="sap-icon://filter" tooltip="{vchI18n>FILTER_BUTTON_TOOLTIP}" press="onOpenFilterDialog"-->
+						<!--									ariaDescribedBy="singleInstanceHeader"/>-->
+						<!--								<Button id="buttonUndo" icon="sap-icon://undo" press="onUndo" visible="{configurationSettings>/editable}"-->
+						<!--									tooltip="{vchI18n>UNDO_BUTTON_TOOLTIP}" enabled="{commandState>/enableUndoButton}"/>-->
+						<!--								<Button id="buttonRedo" icon="sap-icon://redo" press="onRedo" visible="{configurationSettings>/editable}"-->
+						<!--									tooltip="{vchI18n>REDO_BUTTON_TOOLTIP}" enabled="{commandState>/enableRedoButton}"/>-->
+						<!--							</contentRight>-->
+						<!--						</Bar>-->
+						<!--					</l:fixContent>-->
+						<!--					<l:flexContent>-->
+						<!--						<core:ComponentContainer id="valuationComponentContainer" propagateModel="true" height="100%"/>-->
+						<!--					</l:flexContent>-->
+						<!--				</l:FixFlex>-->
+						<!--				<l:FixFlex minFlexSize="25" id="instanceArea1">-->
+						<!--					<l:fixContent>-->
+						<!--						<Bar id="singleInstanceHeader1" design="Header" class="sapContrastPlus sapVchlClfInstanceHeader">-->
+						<!--<splitter: -->
+						<!--							<contentLeft>-->
+						<!--								<HBox wrap="Wrap" class="sapUiSmallMarginTop">-->
+						<!--									<Title titleStyle="H3" class="sapUiMediumMarginBegin"-->
+						<!--										text="{= !!${vchclf>MaterialDescription} ? ${vchclf>MaterialDescription} : ${vchclf>Material} }"/>-->
+						<!--									<Text text="{vchclf>Material}" class="sapUiSmallMarginBegin" visible="{= !!${vchclf>MaterialDescription}}"/>-->
+						<!--									<ToolbarSeparator class="sapUiSmallMarginBegin sapUiTinyMarginTop"-->
+						<!--										visible="{= !!${vchclf>MaterialDescription} &amp;&amp; !!${vchclf>ConfigurationValidationStatusDescription} &amp;&amp; ${configurationSettings>/uiMode} !== 'Display' }"/>-->
+						<!--									<ObjectStatus text="{vchclf>ConfigurationValidationStatusDescription}"-->
+						<!--										state="{= ${vchclf>ConfigurationValidationStatus} === '1' ? 'Success' : ${vchclf>ConfigurationValidationStatus} === '4' ? 'Error' : 'Warning'}"-->
+						<!--										class="sapUiSmallMarginBegin sapUiTinyMarginTop"-->
+						<!--										visible="{= !!${vchclf>MaterialDescription} &amp;&amp; !!${vchclf>ConfigurationValidationStatusDescription} &amp;&amp; ${configurationSettings>/uiMode} !== 'Display' }"/>-->
+						<!--								</HBox>-->
+						<!--							</contentLeft>-->
+						<!--							<contentRight>-->
+						<!--								<Button id="buttonImage1" icon="sap-icon://image-viewer" tooltip="Product Image" press="onOpenImage" visible="true"-->
+						<!--									ariaDescribedBy="singleInstanceHeader"/>-->
+						<!--								<Button id="buttonFilter1" icon="sap-icon://filter" tooltip="{vchI18n>FILTER_BUTTON_TOOLTIP}" press="onOpenFilterDialog"-->
+						<!--									ariaDescribedBy="singleInstanceHeader"/>-->
+						<!--								<Button id="buttonUndo1" icon="sap-icon://undo" press="onUndo" visible="{configurationSettings>/editable}"-->
+						<!--									tooltip="{vchI18n>UNDO_BUTTON_TOOLTIP}" enabled="{commandState>/enableUndoButton}"/>-->
+						<!--								<Button id="buttonRedo1" icon="sap-icon://redo" press="onRedo" visible="{configurationSettings>/editable}"-->
+						<!--									tooltip="{vchI18n>REDO_BUTTON_TOOLTIP}" enabled="{commandState>/enableRedoButton}"/>-->
+						<!--							</contentRight>-->
+						<!--						</Bar>-->
+						<!--					</l:fixContent>-->
+						<!--					<l:flexContent>-->
+						<!--						<core:ComponentContainer id="valuationComponentContainer1" propagateModel="true" height="100%"/>-->
+						<!--					</l:flexContent>-->
+						<!--				</l:FixFlex>-->
+						<!--				<l:FixFlex>-->
+						<!--					<l:fixContent></l:fixContent>-->
+						<!--					<l:flexContent>-->
+						<!--						<Button width="100%" text="Content 2">-->
+						<!--							<layoutData>-->
+						<!--								<l:SplitterLayoutData size="300px"/>-->
+						<!--							</layoutData>-->
+						<!--						</Button>-->
+						<!--					</l:flexContent>-->
+						<!--				</l:FixFlex>-->
+						<!--			</l:contentAreas>-->
+						<!--		</l:Splitter>-->
+						<!--		<l:Splitter>-->
+						<!--			<l:contentAreas>-->
+						<!--				<l:FixFlex>-->
+						<!--					<l:fixContent></l:fixContent>-->
+						<!--					<l:flexContent>-->
+						<!--						<Button width="100%" text="Content 2">-->
+						<!--							<layoutData>-->
+						<!--								<l:SplitterLayoutData size="300px"/>-->
+						<!--							</layoutData>-->
+						<!--						</Button>-->
+						<!--					</l:flexContent>-->
+						<!--				</l:FixFlex>-->
+						<!--				<l:FixFlex>-->
+						<!--					<l:fixContent></l:fixContent>-->
+						<!--					<l:flexContent>-->
+						<!--						<Button width="100%" text="Content 2">-->
+						<!--							<layoutData>-->
+						<!--								<l:SplitterLayoutData size="300px"/>-->
+						<!--							</layoutData>-->
+						<!--						</Button>-->
+						<!--					</l:flexContent>-->
+						<!--				</l:FixFlex>-->
+						<!--				<l:FixFlex>-->
+						<!--					<l:fixContent></l:fixContent>-->
+						<!--					<l:flexContent>-->
+						<!--						<Button width="100%" text="Content 2">-->
+						<!--							<layoutData>-->
+						<!--								<l:SplitterLayoutData size="300px"/>-->
+						<!--							</layoutData>-->
+						<!--						</Button>-->
+						<!--					</l:flexContent>-->
+						<!--				</l:FixFlex>-->
+						<!--			</l:contentAreas>-->
+						<!--		</l:Splitter>-->
+						<!--	</l:Splitter>-->
+						<!--</splitter:middleContent>-->
+						<!--//EOC-->
+						<splitter:middleContent>
+							<l:FixFlex minFlexSize="50" id="instanceArea">
+								<l:fixContent>
+									<Bar id="singleInstanceHeader" design="Header" class="sapContrastPlus sapVchlClfInstanceHeader">
+										<contentLeft>
+											<HBox wrap="Wrap" class="sapUiSmallMarginTop">
+												<Title titleStyle="H3" class="sapUiMediumMarginBegin"
+													text="{= !!${vchclf>MaterialDescription} ? ${vchclf>MaterialDescription} : ${vchclf>Material} }"/>
+												<Text text="{vchclf>Material}" class="sapUiSmallMarginBegin" visible="{= !!${vchclf>MaterialDescription}}"/>
+												<ToolbarSeparator class="sapUiSmallMarginBegin sapUiTinyMarginTop"
+													visible="{= !!${vchclf>MaterialDescription} &amp;&amp; !!${vchclf>ConfigurationValidationStatusDescription} &amp;&amp; ${configurationSettings>/uiMode} !== 'Display' }"/>
+												<ObjectStatus text="{vchclf>ConfigurationValidationStatusDescription}"
+													state="{= ${vchclf>ConfigurationValidationStatus} === '1' ? 'Success' : ${vchclf>ConfigurationValidationStatus} === '4' ? 'Error' : 'Warning'}"
+													class="sapUiSmallMarginBegin sapUiTinyMarginTop"
+													visible="{= !!${vchclf>MaterialDescription} &amp;&amp; !!${vchclf>ConfigurationValidationStatusDescription} &amp;&amp; ${configurationSettings>/uiMode} !== 'Display' }"/>
+											</HBox>
+										</contentLeft>
+										<contentRight>
+											<Button id="buttonImage" icon="sap-icon://image-viewer" tooltip="Product Image" press="onOpenImage" visible="true"
+												ariaDescribedBy="singleInstanceHeader"/>
+											<Button id="buttonFilter" icon="sap-icon://filter" tooltip="{vchI18n>FILTER_BUTTON_TOOLTIP}" press="onOpenFilterDialog"
+												ariaDescribedBy="singleInstanceHeader"/>
+											<Button id="buttonUndo" icon="sap-icon://undo" press="onUndo" visible="{configurationSettings>/editable}"
+												tooltip="{vchI18n>UNDO_BUTTON_TOOLTIP}" enabled="{commandState>/enableUndoButton}"/>
+											<Button id="buttonRedo" icon="sap-icon://redo" press="onRedo" visible="{configurationSettings>/editable}"
+												tooltip="{vchI18n>REDO_BUTTON_TOOLTIP}" enabled="{commandState>/enableRedoButton}"/>
+										</contentRight>
+									</Bar>
+								</l:fixContent>
+								<l:flexContent>
+									<core:ComponentContainer id="valuationComponentContainer" propagateModel="true" height="100%"/>
+								</l:flexContent>
+							</l:FixFlex>
+						</splitter:middleContent>
+						<splitter:rightContent>
+							<core:ComponentContainer id="inspectorComponentContainer" height="100%"/>
+						</splitter:rightContent>
+					</splitter:Splitter>
+				</l:flexContent>
+			</l:FixFlex>
+		</f:content>
+	</f:DynamicPage>
+	<mvc:XMLView id="errorPage" visible="false" viewName="sap.i2d.lo.lib.zvchclfz.components.configuration.view.ErrorPage"/>
+</mvc:View>

@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:l="sap.ui.layout.form" xmlns:ui="sap.ui.table"> 
+	<Dialog id="colDialog" contentWidth="500px" title="Business Unit">
+		<content>
+			<l:SimpleForm editable="true">
+				<l:content>
+					<VBox>
+						<!--<Panel expandable="true" width="auto" class="sapUiResponsiveMargin">-->
+						<!--<HBox>-->
+						<!--	<VBox class="sapUiTinyMarginEnd">-->
+						<!--		<HBox>-->
+						<!--			<Label text="BusinessUnit" class="sapUiTinyMarginTop clLabelView"/>-->
+									<!--<Input value="{MaraDataModel>/ZCsgSportsCode}" width="150px" class="clInputSportsCardModelSportsCardModelSportsCardModelField"/>-->
+						<!--			<ComboBox id="idSportsCard" showSecondaryValues="true" selectedKey="{BUModel>/Spart}" width="350px"-->
+						<!--				items="{BUModel>/}" change="handleGoDlogPress">-->
+						<!--				<items>-->
+						<!--					<core:ListItem text="{BUModel>Spart}" additionalText="{BUModel>Vtext}" key="{BUModel>Spart}"/>-->
+						<!--				</items>-->
+						<!--			</ComboBox>-->
+						<!--		</HBox>-->
+						<!--	</VBox>-->
+						<!--</HBox>-->
+						<!--</Panel>-->
+						<ui:Table id="idBUSearch" selectionMode="Single" rows="{BUModel>/}"  paste="onPaste" 
+							alternateRowColors="true" ariaLabelledBy="title" class="sapUiMediumMarginTop sapUiMediumMarginBottom"
+							rowSelectionChange = "actionBU">
+							<ui:columns>
+								<ui:Column width="8em">
+									<Label text="BusinessUnit"/>
+									<ui:template>
+										<Text text="{BUModel>Spart}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+									<ui:Column width="16em">
+									<Label text="Text"/>
+									<ui:template>
+										<Text text="{BUModel>Vtext}" wrapping="false"/>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<HBox>
+								<Button text="OK"    press="handleOkDlogPress"    width="8rem" class="sapUiLargeMarginBegin sapUiSmallMarginEnd sapUiLargeMarginBelow"/>
+								<Button text="Close" icon="sap-icon://sys-cancel" width="8rem" press="onCloseDialog"
+									class="sapUiTinyMarginBegin sapUiSmallMarginEnd sapUiLargeMarginBelow"/>
+							</HBox>
+						</Toolbar>
+					</VBox>
+				</l:content>
+			</l:SimpleForm>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

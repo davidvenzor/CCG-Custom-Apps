@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Dialog id="imgDialog" title="Select the File" contentWidth="850px">
+		<!--<l:VerticalLayout>-->
+		<!--	<u:FileUploader id="fileUploader" name="myFileUpload" width="700px" -->
+		<!--		uploadComplete="handleUploadComplete" class="sapUiLargeMarginBegin sapUiLargeMarginTop"/>-->
+		<!--	<Button text="Display" press="handleUploadPress" class="sapUiLargeMarginBegin sapUiSmallMarginTop"/>-->
+		<!--	<Button text="Close" press="onCloseDialog" class="sapUiTinyMarginBegin sapUiSmallMarginTop"/>-->
+		<!--</l:VerticalLayout>-->
+		<content>
+			<l:SimpleForm editable="true">
+				<l:content>
+					<u:FileUploader id="fileUploader" width="700px" placeholder="Select the file to display" style="Emphasized"
+						uploadComplete="handleUploadComplete" class="sapUiLargeMarginBegin sapUiLargeMarginTop"/>
+				</l:content>
+			</l:SimpleForm>
+		</content>
+		<Buttons>
+			<HBox>
+			<Button text="Display" press="handleUploadPress" class="sapUiLargeMarginBegin sapUiSmallMarginTop"/>
+			<Button text="Close" icon="sap-icon://sys-cancel" press="onCloseDialog" class="sapUiTinyMarginBegin sapUiSmallMarginTop"/>
+			</HBox>
+		</Buttons>
+	</Dialog>
+</core:FragmentDefinition>

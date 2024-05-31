@@ -1,0 +1,517 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": "BaseConfigurationComponent-dbg.js",
+			"size": 63477,
+			"isDebug": true
+		},
+		{
+			"name": "BaseConfigurationComponent.js",
+			"size": 34731
+		},
+		{
+			"name": "BaseHeaderConfiguration-dbg.js",
+			"size": 7179,
+			"isDebug": true
+		},
+		{
+			"name": "BaseHeaderConfiguration.js",
+			"size": 3581
+		},
+		{
+			"name": "Component-dbg.js",
+			"size": 3038,
+			"isDebug": true
+		},
+		{
+			"name": "Component.js",
+			"size": 1216
+		},
+		{
+			"name": "HeaderConfiguration-dbg.js",
+			"size": 9888,
+			"isDebug": true
+		},
+		{
+			"name": "HeaderConfiguration.js",
+			"size": 6764
+		},
+		{
+			"name": "HeaderField-dbg.js",
+			"size": 1150,
+			"isDebug": true
+		},
+		{
+			"name": "HeaderField.js",
+			"size": 665
+		},
+		{
+			"name": "control/SettingsDialog-dbg.js",
+			"size": 2675,
+			"isDebug": true
+		},
+		{
+			"name": "control/SettingsDialog.control.xml",
+			"size": 2665
+		},
+		{
+			"name": "control/SettingsDialog.js",
+			"size": 1094
+		},
+		{
+			"name": "controller/Configuration-dbg.controller.js",
+			"size": 26319,
+			"isDebug": true
+		},
+		{
+			"name": "controller/Configuration.controller.js",
+			"size": 13508
+		},
+		{
+			"name": "controller/fragment/Base-dbg.js",
+			"size": 925,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/Base.js",
+			"size": 461
+		},
+		{
+			"name": "controller/fragment/ChangeDocuments-dbg.js",
+			"size": 1405,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/ChangeDocuments.js",
+			"size": 751
+		},
+		{
+			"name": "controller/fragment/PricingRecords-dbg.js",
+			"size": 5572,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/PricingRecords.js",
+			"size": 3432
+		},
+		{
+			"name": "controller/fragment/VariantMatching-dbg.js",
+			"size": 12422,
+			"isDebug": true
+		},
+		{
+			"name": "controller/fragment/VariantMatching.js",
+			"size": 8232
+		},
+		{
+			"name": "css/style.css",
+			"size": 651
+		},
+		{
+			"name": "dao/ConfigurationDAO-dbg.js",
+			"size": 4136,
+			"isDebug": true
+		},
+		{
+			"name": "dao/ConfigurationDAO.js",
+			"size": 2295
+		},
+		{
+			"name": "dao/PersonalizationDAO-dbg.js",
+			"size": 9792,
+			"isDebug": true
+		},
+		{
+			"name": "dao/PersonalizationDAO.js",
+			"size": 3618
+		},
+		{
+			"name": "factory/FactoryBase-dbg.js",
+			"size": 973,
+			"isDebug": true
+		},
+		{
+			"name": "factory/FactoryBase.js",
+			"size": 393
+		},
+		{
+			"name": "factory/HeaderFactory-dbg.js",
+			"size": 3738,
+			"isDebug": true
+		},
+		{
+			"name": "factory/HeaderFactory.js",
+			"size": 2015
+		},
+		{
+			"name": "formatter/HeaderFieldFormatter-dbg.js",
+			"size": 4038,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/HeaderFieldFormatter.js",
+			"size": 2109
+		},
+		{
+			"name": "formatter/InconsistencyInformationFormatter-dbg.js",
+			"size": 9634,
+			"isDebug": true
+		},
+		{
+			"name": "formatter/InconsistencyInformationFormatter.js",
+			"size": 3974
+		},
+		{
+			"name": "i18n/messagebundle.properties",
+			"size": 17929,
+			"locale": "",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ar.properties",
+			"size": 32064,
+			"locale": "ar",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_bg.properties",
+			"size": 40545,
+			"locale": "bg",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ca.properties",
+			"size": 19152,
+			"locale": "ca",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_cs.properties",
+			"size": 19637,
+			"locale": "cs",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_da.properties",
+			"size": 18435,
+			"locale": "da",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_de.properties",
+			"size": 18874,
+			"locale": "de",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_el.properties",
+			"size": 38852,
+			"locale": "el",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en.properties",
+			"size": 17750,
+			"locale": "en",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en_US_sappsd.properties",
+			"size": 45178,
+			"locale": "en_US_sappsd",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en_US_saptrc.properties",
+			"size": 21753,
+			"locale": "en_US_saptrc",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_es.properties",
+			"size": 19165,
+			"locale": "es",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_et.properties",
+			"size": 18259,
+			"locale": "et",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_fi.properties",
+			"size": 18410,
+			"locale": "fi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_fr.properties",
+			"size": 19600,
+			"locale": "fr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hi.properties",
+			"size": 36113,
+			"locale": "hi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hr.properties",
+			"size": 18463,
+			"locale": "hr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_hu.properties",
+			"size": 20979,
+			"locale": "hu",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_it.properties",
+			"size": 18951,
+			"locale": "it",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_iw.properties",
+			"size": 28946,
+			"locale": "iw",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ja.properties",
+			"size": 22780,
+			"locale": "ja",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_kk.properties",
+			"size": 36607,
+			"locale": "kk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ko.properties",
+			"size": 21584,
+			"locale": "ko",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_lt.properties",
+			"size": 19291,
+			"locale": "lt",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_lv.properties",
+			"size": 20135,
+			"locale": "lv",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ms.properties",
+			"size": 17760,
+			"locale": "ms",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_nl.properties",
+			"size": 18239,
+			"locale": "nl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_no.properties",
+			"size": 18173,
+			"locale": "no",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_pl.properties",
+			"size": 19237,
+			"locale": "pl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_pt.properties",
+			"size": 19743,
+			"locale": "pt",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ro.properties",
+			"size": 19328,
+			"locale": "ro",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_ru.properties",
+			"size": 38279,
+			"locale": "ru",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sh.properties",
+			"size": 18400,
+			"locale": "sh",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sk.properties",
+			"size": 19546,
+			"locale": "sk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sl.properties",
+			"size": 18338,
+			"locale": "sl",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_sv.properties",
+			"size": 18553,
+			"locale": "sv",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_th.properties",
+			"size": 37999,
+			"locale": "th",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_tr.properties",
+			"size": 20103,
+			"locale": "tr",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_uk.properties",
+			"size": 36656,
+			"locale": "uk",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_vi.properties",
+			"size": 25065,
+			"locale": "vi",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_zh_CN.properties",
+			"size": 19937,
+			"locale": "zh_CN",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_zh_TW.properties",
+			"size": 19803,
+			"locale": "zh_TW",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "manifest.json",
+			"size": 1786
+		},
+		{
+			"name": "type/EmbeddingMode-dbg.js",
+			"size": 429,
+			"isDebug": true
+		},
+		{
+			"name": "type/EmbeddingMode.js",
+			"size": 203
+		},
+		{
+			"name": "type/LegacyScenario-dbg.js",
+			"size": 360,
+			"isDebug": true
+		},
+		{
+			"name": "type/LegacyScenario.js",
+			"size": 173
+		},
+		{
+			"name": "type/VariantMatchingMode-dbg.js",
+			"size": 439,
+			"isDebug": true
+		},
+		{
+			"name": "type/VariantMatchingMode.js",
+			"size": 213
+		},
+		{
+			"name": "view/Configuration.view.xml",
+			"size": 7162
+		},
+		{
+			"name": "view/ErrorPage.view.xml",
+			"size": 347
+		},
+		{
+			"name": "view/NotConfigurableItem.view.xml",
+			"size": 348
+		},
+		{
+			"name": "view/fragment/AcceptReviewDialog.fragment.xml",
+			"size": 781
+		},
+		{
+			"name": "view/fragment/CancelConfigurationDialog.fragment.xml",
+			"size": 699
+		},
+		{
+			"name": "view/fragment/ChangeDocumentsDialog.fragment.xml",
+			"size": 2695
+		},
+		{
+			"name": "view/fragment/DoneConfigurationDialog.fragment.xml",
+			"size": 839
+		},
+		{
+			"name": "view/fragment/ErrorDialog.fragment.xml",
+			"size": 520
+		},
+		{
+			"name": "view/fragment/InconsistencyInformationDetails.fragment.xml",
+			"size": 3086
+		},
+		{
+			"name": "view/fragment/InconsistencyPopover.fragment.xml",
+			"size": 2947
+		},
+		{
+			"name": "view/fragment/PricingRecords.fragment.xml",
+			"size": 3998
+		},
+		{
+			"name": "view/fragment/ReviseEngineeringChangesDialog.fragment.xml",
+			"size": 810
+		},
+		{
+			"name": "view/fragment/SetETOStatusDialog.fragment.xml",
+			"size": 774
+		},
+		{
+			"name": "view/fragment/StatusChangedDialog.fragment.xml",
+			"size": 955
+		},
+		{
+			"name": "view/fragment/SwitchToETODialog.fragment.xml",
+			"size": 711
+		},
+		{
+			"name": "view/fragment/VariantMatching.fragment.xml",
+			"size": 2977
+		},
+		{
+			"name": "view/fragment/VariantValuationDifferencePopover.fragment.xml",
+			"size": 2874
+		}
+	]
+}

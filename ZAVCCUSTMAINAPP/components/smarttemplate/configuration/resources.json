@@ -1,0 +1,40 @@
+{
+	"_version": "1.1.0",
+	"resources": [
+		{
+			"name": "Component-dbg.js",
+			"size": 9049,
+			"isDebug": true
+		},
+		{
+			"name": "Component.js",
+			"size": 3945
+		},
+		{
+			"name": "css/style.css",
+			"size": 0
+		},
+		{
+			"name": "i18n/messagebundle.properties",
+			"size": 116,
+			"locale": "",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en_US_sappsd.properties",
+			"size": 1,
+			"locale": "en_US_sappsd",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "i18n/messagebundle_en_US_saptrc.properties",
+			"size": 1,
+			"locale": "en_US_saptrc",
+			"raw": "i18n/messagebundle.properties"
+		},
+		{
+			"name": "manifest.json",
+			"size": 1579
+		}
+	]
+}

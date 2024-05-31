@@ -1,0 +1,49 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View 
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.Dependencies"
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns="sap.m">
+	<List
+		id="idDependencyList"
+		class="sapUiNoContentPadding"
+		items="{
+			path: 'dependencies>/results',
+			sorter: {
+				path: 'TypeDescription',
+				group: true
+			}
+		}">
+		<ObjectListItem
+			title="{
+				parts: [{
+					path: 'dependencies>ObjectDependency'
+				}, {
+					path: 'dependencies>Name'
+				}, {
+					path: 'dependencies>Description'
+				}],
+				formatter: '._dependencyFormatter.dependencyTitleFormatter'
+			}"
+			type="Navigation"
+			press="onDependencyItemPress">
+			<attributes>
+				<ObjectAttribute
+					text="{
+						parts: [{
+							path: 'dependencies>ObjectDependency'
+						}, {
+							path: 'dependencies>Name'
+						}, {
+							path: 'dependencies>Description'
+						}],
+						formatter: '._dependencyFormatter.dependencySubtitleFormatter'
+					}"/>
+			</attributes>
+		</ObjectListItem>
+	</List>
+</mvc:View>

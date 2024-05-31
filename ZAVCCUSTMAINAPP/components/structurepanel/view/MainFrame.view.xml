@@ -1,0 +1,26 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	height="100%"
+	busyIndicatorDelay="0"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.structurepanel.controller.MainFrame">
+		<NavContainer
+			id="idStructurePanelNavContainer"
+			width="100%"
+			defaultTransitionName="{= ${ui>/isMultiLevelScenario} ? 'slide' : 'show'}"
+			autoFocus="false"
+			height="100%">
+			<mvc:XMLView
+				height="100%"
+				viewName="sap.i2d.lo.lib.zvchclfz.components.structurepanel.view.StructureFrame" />
+			<mvc:XMLView
+				height="100%"
+				viewName="sap.i2d.lo.lib.zvchclfz.components.structurepanel.view.RoutingFrame" />
+		</NavContainer>
+</mvc:View>

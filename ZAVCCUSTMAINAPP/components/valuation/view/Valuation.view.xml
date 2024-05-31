@@ -1,0 +1,48 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View 
+    controllerName="sap.i2d.lo.lib.zvchclfz.components.valuation.controller.Valuation" 
+    xmlns:mvc="sap.ui.core.mvc"	
+    xmlns:core="sap.ui.core" 
+    xmlns:form="sap.ui.layout.form"
+    xmlns:vchclf="sap.i2d.lo.lib.zvchclfz.controls"
+    xmlns:valuation="sap.i2d.lo.lib.zvchclfz.components.valuation.control"
+	xmlns="sap.m"
+	busyIndicatorDelay="0"
+	height="100%">
+	
+		<OverflowToolbar id="filterStatus" 
+			active="true" 
+			design="Info" 
+			visible="false"
+			press="openFilterDialog"
+			class="sapVchclfFilterStatusHeight">
+			<Text id="filterStatusText" 
+				text=""/>
+			<ToolbarSpacer/>
+			<core:Icon id="resetFilterIcon"
+				src="sap-icon://sys-cancel" 
+				width="2rem" 
+				press="removeFilter" 
+				tooltip="{i18n>RESET_FILTER}"/>
+		</OverflowToolbar>
+
+		<VBox id="groupVBox"
+		
+			class="sapVchclfVBoxHeight sapVchclfVBoxItemHeight"
+			items="{path: 'valuationSettings>/groupRepresentation', factory: '.groupsFactory'}" 
+			visible="{= !${valuationSettings>/showNoCharacteristicText}}"/>
+
+		<!-- If results has no entry, there are no groups of characteristics -->
+		<!-- Show a placeholder (noData) in this case -->
+		<FlexBox
+			visible="{valuationSettings>/showNoCharacteristicText}"
+			alignItems="Center"
+			justifyContent="Center">
+			<Text text="{= ${i18n>NO_CHARACTERISTICS_TEXT}}"/>
+		</FlexBox>	
+	
+</mvc:View>

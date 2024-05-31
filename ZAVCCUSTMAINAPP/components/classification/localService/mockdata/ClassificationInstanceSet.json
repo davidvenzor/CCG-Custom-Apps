@@ -1,0 +1,146 @@
+[{
+	"Status": {
+		"Status": "Status 1",
+		"StatusSeverity": "StatusSeverity 1",
+		"Description": "Description 1",
+		"LongDescription": "LongDescription 1",
+		"IsReleased": "IsReleased 1",
+		"IsLocked": "IsLocked 1",
+		"IsIncompleteManual": "IsIncompleteManual 1",
+		"IsIncompleteSystem": "IsIncompleteSystem 1"
+	},
+	"ContextId": "CLF(12)SEMANTIC_OBJ(7)PRODUCT(10)OBJECT_KEY(19)NL_TEST_MATERIAL_10",
+	"InstanceId": "0001",
+	"SemanticObj": "SemanticObj1",
+	"ObjectKey": "ObjectKey1",
+	"ClassType": "001",
+	"EnableProposals": false,
+	"ClassName": "TEST_CAR",
+	"ClassTypeDescription": "Material type",
+	"Description": "Test car class",
+	"__metadata": {
+		"uri": "ClassificationInstanceSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X',InstanceId='InstanceId 1')",
+		"type": "LO_VCHCLF.ClassificationInstance"
+	},
+	"CharacteristicsGroups": {
+		"__deferred": {
+			"uri": "ClassificationInstanceSet(ContextId='VCH(12)SEMANTIC_OBJ(12)SemanticObj1(10)OBJECT_KEY(10)ObjectKey1(9)DRAFT_KEY(9)DraftKey1(16)DRAFT_KEY_IS_STR(1)X',InstanceId='InstanceId 1')/CharacteristicsGroups"
+		}
+	}
+}, {
+	"Status": {
+		"Status": "Status 2",
+		"StatusSeverity": "StatusSeverity 2",
+		"Description": "Description 2",
+		"LongDescription": "LongDescription 2",
+		"IsReleased": "IsReleased 2",
+		"IsLocked": "IsLocked 2",
+		"IsIncompleteManual": "IsIncompleteManual 2",
+		"IsIncompleteSystem": "IsIncompleteSystem 2"
+	},
+	"ContextId": "CLF(12)SEMANTIC_OBJ(7)PRODUCT(10)OBJECT_KEY(19)NL_TEST_MATERIAL_10",
+	"InstanceId": "0002",
+	"SemanticObj": "SemanticObj2",
+	"ObjectKey": "ObjectKey2",
+	"ClassType": "001",
+	"EnableProposals": false,
+	"ClassName": "TEST_BUS",
+	"ClassTypeDescription": "Material type",
+	"Description": "Test bus class",
+	"__metadata": {
+		"uri": "ClassificationInstanceSet(ContextId='ContextId 2',InstanceId='InstanceId 2')",
+		"type": "LO_VCHCLF.ClassificationInstance"
+	},
+	"CharacteristicsGroups": {
+		"__deferred": {
+			"uri": "ClassificationInstanceSet(ContextId='ContextId 2',InstanceId='InstanceId 2')/CharacteristicsGroups"
+		}
+	}
+}, {
+	"Status": {
+		"Status": "Status 3",
+		"StatusSeverity": "StatusSeverity 3",
+		"Description": "Description 3",
+		"LongDescription": "LongDescription 3",
+		"IsReleased": "IsReleased 3",
+		"IsLocked": "IsLocked 3",
+		"IsIncompleteManual": "IsIncompleteManual 3",
+		"IsIncompleteSystem": "IsIncompleteSystem 3"
+	},
+	"ContextId": "CLF(12)SEMANTIC_OBJ(7)PRODUCT(10)OBJECT_KEY(19)NL_TEST_MATERIAL_10",
+	"InstanceId": "0003",
+	"SemanticObj": "SemanticObj3",
+	"ObjectKey": "ObjectKey3",
+	"ClassType": "001",
+	"EnableProposals": false,
+	"ClassName": "TEST_PLANE",
+	"ClassTypeDescription": "Material type",
+	"Description": "Test plane class",
+	"__metadata": {
+		"uri": "ClassificationInstanceSet(ContextId='ContextId 3',InstanceId='InstanceId 3')",
+		"type": "LO_VCHCLF.ClassificationInstance"
+	},
+	"CharacteristicsGroups": {
+		"__deferred": {
+			"uri": "ClassificationInstanceSet(ContextId='ContextId 3',InstanceId='InstanceId 3')/CharacteristicsGroups"
+		}
+	}
+}, {
+	"Status": {
+		"Status": "Status 4",
+		"StatusSeverity": "StatusSeverity 4",
+		"Description": "Description 4",
+		"LongDescription": "LongDescription 4",
+		"IsReleased": "IsReleased 4",
+		"IsLocked": "IsLocked 4",
+		"IsIncompleteManual": "IsIncompleteManual 4",
+		"IsIncompleteSystem": "IsIncompleteSystem 4"
+	},
+	"ContextId": "CLF(12)SEMANTIC_OBJ(7)PRODUCT(10)OBJECT_KEY(19)NL_TEST_MATERIAL_10",
+	"InstanceId": "0004",
+	"SemanticObj": "SemanticObj4",
+	"ObjectKey": "ObjectKey4",
+	"ClassType": "023",
+	"ClassName": "TEST_LAPTOP",
+	"EnableProposals": true,
+	"ClassTypeDescription": "Other class type",
+	"Description": "Test laptop class",
+	"__metadata": {
+		"uri": "ClassificationInstanceSet(ContextId='ContextId 4',InstanceId='InstanceId 4')",
+		"type": "LO_VCHCLF.ClassificationInstance"
+	},
+	"CharacteristicsGroups": {
+		"__deferred": {
+			"uri": "ClassificationInstanceSet(ContextId='ContextId 4',InstanceId='InstanceId 4')/CharacteristicsGroups"
+		}
+	}
+}, {
+	"Status": {
+		"Status": "Status 5",
+		"StatusSeverity": "StatusSeverity 5",
+		"Description": "Description 5",
+		"LongDescription": "LongDescription 5",
+		"IsReleased": "IsReleased 5",
+		"IsLocked": "IsLocked 5",
+		"IsIncompleteManual": "IsIncompleteManual 5",
+		"IsIncompleteSystem": "IsIncompleteSystem 5"
+	},
+	"ContextId": "CLF(12)SEMANTIC_OBJ(7)PRODUCT(10)OBJECT_KEY(19)NL_TEST_MATERIAL_10",
+	"InstanceId": "0005",
+	"SemanticObj": "SemanticObj5",
+	"ObjectKey": "ObjectKey5",
+	"ClassType": "023",
+	"EnableProposals": true,
+	"ClassName": "TEST_PC",
+	"ClassTypeDescription": "Other class type",
+	"Description": "Test PC class",
+	"__metadata": {
+		"uri": "ClassificationInstanceSet(ContextId='ContextId 5',InstanceId='InstanceId 5')",
+		"type": "LO_VCHCLF.ClassificationInstance"
+	},
+	"CharacteristicsGroups": {
+		"__deferred": {
+			"uri": "ClassificationInstanceSet(ContextId='ContextId 5',InstanceId='InstanceId 5')/CharacteristicsGroups"
+		}
+	}
+}]

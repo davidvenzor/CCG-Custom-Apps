@@ -1,0 +1,88 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover id="valuationDifferencePopover"
+		title="{vchI18n>VARIANT_VALUATION_DIFFERENCE}"
+		placement="Auto"
+		contentWidth="50%"
+		resizable="true">
+			<content>
+				<Table id="VariantValuationTable"
+					noDataText="{vchI18n>VARIANT_MATCHING_TABLE_TITLE}"
+					width="auto"
+					class="sapUiTinyMarginTopBottom sapUiSmallMarginBeginEnd"
+					items="{
+						path: 'vchclf_bind_only>VariantValuationDifference',
+						templateShareable: false,
+						events: { dataRequested: '.onVariantValuationRequested',
+						          dataReceived: '.onVariantValuationReceived'},
+						parameters: { countMode: 'sap.ui.model.odata.CountMode.None', 
+						              expand: 'VariantValuatDiffCsticRefValues,VariantValuatDiffCsticVarValues' }
+					}">
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier
+									title="{vchclf_bind_only>CsticDescr}"
+									text="{vchclf_bind_only>CsticName}"/>
+								<VBox items="{path: 'vchclf_bind_only>VariantValuatDiffCsticRefValues', templateShareable: false}"
+									  wrap= "Wrap">
+									<Text 
+										text="{
+											parts: [
+												'vchclf_bind_only>ValueName', 
+												'vchclf_bind_only>ValueDescription', 
+												'configurationSettings>/descriptionMode',
+												'vchI18n>HEADER_FIELD_VALUE'
+											], 
+											formatter: '.getCharacteristicValueDescriptionWithName'
+										}"
+										class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom"
+									/>
+								</VBox>
+								<VBox items="{path: 'vchclf_bind_only>VariantValuatDiffCsticVarValues', templateShareable: false}"
+									  wrap= "Wrap">
+									<Text 
+										text="{
+											parts: [
+												'vchclf_bind_only>ValueName', 
+												'vchclf_bind_only>ValueDescription', 
+												'configurationSettings>/descriptionMode',
+												'vchI18n>HEADER_FIELD_VALUE'
+											], 
+											formatter: '.getCharacteristicValueDescriptionWithName'
+										}"
+										class="sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom"
+									/>
+								</VBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+					<columns>
+						<Column id="Cstic" hAlign="Left" width="auto">
+							<Text 
+								text="{vchI18n>VARIANT_VALUATION_CSTIC} " 
+								textAlign="Left"/>
+						</Column>
+						<Column id="RefValues" 
+							hAlign="Left">
+							<Text 
+								text="{vchI18n>REF_VALUATION_VALUES}"
+								textAlign="Left"/>
+						</Column>
+						<Column id="VarValues" 
+							hAlign="Left">
+							<Text 
+								text="{vchI18n>VARIANT_VALUATION_VALUES}"
+								textAlign="Left"/>
+						</Column>
+					</columns>
+				</Table> 
+			</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

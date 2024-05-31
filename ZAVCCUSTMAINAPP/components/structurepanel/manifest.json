@@ -1,0 +1,71 @@
+{
+	"_version": "1.5.0",
+	"sap.app": {
+		"id": "sap.i2d.lo.lib.zvchclfz.components.structurepanel",
+		"type": "component",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{title}}",
+		"embeddedBy": "../../",
+		"description": "{{description}}",
+		"resources": "resources.json",
+		"ach": "LO-VCH-FIO-SIM",
+		"dataSources": {}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://task"
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": "sap.i2d.lo.lib.zvchclfz.components.structurepanel.view.MainFrame",
+		"handleValidation": true,
+		"dependencies": {
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.comp": {},
+				"sap.ui.table": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.i2d.lo.lib.zvchclfz.components.structurepanel.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+
+			},
+			"routes": [
+
+			],
+			"targets": {
+
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	}
+}

@@ -1,0 +1,25 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition	
+	xmlns:core="sap.ui.core" 
+	xmlns="sap.m">
+	<Dialog	id="errorConfiguration" 
+		contentWidth="500px"
+		contentHeight="300px"
+		type="Message"
+		state="Error"
+		title="{vchI18n>ERROR}"
+		resizable="false"
+		verticalScrolling="false">
+		<endButton>
+			<Button id="closeButton" 
+			text="{vchI18n>CLOSE_ERROR_DIALOG_TXT}"/>
+		</endButton>
+		<content>
+
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

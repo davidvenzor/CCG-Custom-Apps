@@ -1,0 +1,7 @@
+/* Enter your custom styles here */
+*[data-myTextColor='red'] .sapMITBText{
+    color: Blue !important;
+}
+.clPanelText {
+    color: #0854a0;
+}

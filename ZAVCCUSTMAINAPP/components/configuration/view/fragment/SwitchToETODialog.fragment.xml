@@ -1,0 +1,28 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition	
+	xmlns:core="sap.ui.core" 
+	xmlns="sap.m">
+	<Dialog	id="switchToETO" 
+		type="Message"
+		state="Warning"
+		title="{vchI18n>SWITCH_TO_ETO_DIALOG}"
+		verticalScrolling="false">
+		<beginButton>
+			<Button id="okButton" 
+			type="Emphasized"
+			text="{vchI18n>SWTICH_TO_ETO_OK_BUTTON}"
+			press=".onConfirmSwitchToETO"/>
+		</beginButton>
+		<endButton>
+			<Button id="cancelButton" 
+			text="{vchI18n>SWITCH_TO_ETO_CANCEL_BUTTON}"/>
+		</endButton>
+		<content>
+			<Text text="{vchI18n>SWITCH_TO_ETO_DIALOG_CONTENT}"/>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

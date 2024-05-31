@@ -1,0 +1,30 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<core:FragmentDefinition	
+	xmlns:core="sap.ui.core" 
+	xmlns="sap.m">
+	<Dialog	id="statusChangedConfiguration" 
+		contentWidth="20%"
+		contentHeight="auto"
+		type="Message"
+		state="Warning"
+		title="{vchI18n>STATUS_CHANGED_TITLE}" >
+		<beginButton>
+			<Button id="leaveButton" 
+			text="{vchI18n>BTN_TEXT_LEAVE_CONFIGURATION_LOCKED}"/>
+		</beginButton>
+		<endButton>
+			<Button id="unlockButton" 
+			text="{vchI18n>BTN_TEXT_UNLOCK_AND_CONTINUE_CONFIGURATION}"
+			press="onUnlockStatusChangedDialog"/>
+		</endButton>
+		<content>
+			<Text id="doneDialogText" 
+				text="{parts: ['vchI18n>STATUS_CHANGED_TEXT','statusChangedDialog>/lastStatusTypeDescription', 'statusChangedDialog>/newStatusTypeDescription'], formatter: '.oInconsistencyInformationFormatter.formatMessage'}" 
+				class="sapUiResponsiveMargin"/>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

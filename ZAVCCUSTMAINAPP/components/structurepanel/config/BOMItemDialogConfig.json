@@ -1,0 +1,105 @@
+{
+	"fieldsConfig":[
+		{
+			"fixedItemCagetory": "L",
+			"mandatoryFields": [
+				"BOMItemNameForInsert",
+				"BOMItemPosition",
+				"BOMItemQuantity",
+				"BOMItemUnitOfMeasure"
+			]
+		},
+		{
+			"fixedItemCagetory": "N",
+			"mandatoryFields": [
+				"BOMItemNameForInsert",
+				"BOMItemPosition",
+				"BOMItemQuantity",
+				"BOMItemUnitOfMeasure"
+			]
+		},
+		{
+			"fixedItemCagetory": "R",
+			"mandatoryFields": [
+				"BOMItemNameForInsert",
+				"BOMItemPosition",
+				"BOMItemSize1",
+				"BOMItemNumber",
+				"BOMItemVarQuantity",
+				"BOMItemVarUnitOfMeasure"
+			]
+		},
+		{
+			"fixedItemCagetory": "T",
+			"mandatoryFields": [
+				"BOMItemPosition"
+			]
+		},
+		{
+			"fixedItemCagetory": "D",
+			"mandatoryFields": [
+				"BOMItemPosition",
+				"BOMItemDocument",
+				"BOMItemDocumentType",
+				"BOMItemDocumentPart",
+				"BOMItemDocumentVersion"
+			]
+		}
+	],
+	"filterEntityConfig": 
+		{
+			"product": {
+				"entity": "/C_VarConfignProductPlantVH",
+				"filters": [
+					{"path": "Material", "operator": "Contains", "operatorForFieldValidation": "EQ"}
+				]
+			},
+			"productWithPlant": {
+				"entity": "/C_VarConfignProductPlantVH",
+				"filters": [
+					{"path": "Material", "operator": "Contains", "operatorForFieldValidation": "EQ"},
+					{"path": "Plant", "operator": "EQ", "operatorForFieldValidation": "EQ"}
+				]
+			},
+			"documentNumber": {
+				"entity": "/I_DocumentInfoRecordDocPrtVH",
+				"filters": [
+					{"path": "DocumentInfoRecordDocNumber", "operator": "Contains", "operatorForFieldValidation": "EQ"}
+				]
+			},
+			"documentType": {
+				"entity": "/I_DocumentInfoRecordDocPrtVH",
+				"filters": [
+					{"path": "DocumentInfoRecordDocType", "operator": "Contains", "operatorForFieldValidation": "EQ"}
+				]
+			},
+			"documentVersion": {
+				"entity": "/I_DocumentInfoRecordDocPrtVH",
+				"filters": [
+					{"path": "DocumentInfoRecordDocVersion", "operator": "Contains", "operatorForFieldValidation": "EQ"}
+				]
+			},
+			"documentPart": {
+				"entity": "/I_DocumentInfoRecordDocPrtVH",
+				"filters": [
+					{"path": "DocumentInfoRecordDocPart", "operator": "Contains", "operatorForFieldValidation": "EQ"}
+				]
+			},
+			"formula": {
+				"entity": "/I_BillOfMaterialFormulaVH",
+				"filters": [
+					{"path": "VariableSizeCompFormulaKey", "operator": "Contains", "operatorForFieldValidation": "EQ"}
+				]
+			},
+			"uom": {
+				"entity": "/I_UnitOfMeasureStdVH",
+				"filters": [
+					{"path": "UnitOfMeasure", "operator": "Contains", "operatorForFieldValidation": "EQ"}
+				]
+			}
+		},
+	"filterPurpose": {
+		"VALIDATION": "Validation",
+		"SUGGESTION": "Suggestion"
+	}
+}

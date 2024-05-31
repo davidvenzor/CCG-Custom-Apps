@@ -1,0 +1,48 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View id="classificationView"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.classification.controller.Classification" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	busy="{component>/classificationBusy}"
+	busyIndicatorDelay="0">
+	<ObjectStatus id="classificationLoadErrorObjectStatus"
+		class="sapUiMediumMarginBeginEnd"
+		visible="{localClassificationModel>/HasLoadError}"
+		text="{i18n>CLASSIFICATION_CANNOT_BE_DISPLAYED}" 
+		state="Error" />
+	<VBox id="classificationVBox"
+		items="{localClassificationModel>/ClassTypes}">
+		<mvc:XMLView
+			viewName="sap.i2d.lo.lib.zvchclfz.components.classification.view.ClassType" />
+	</VBox>
+	<FlexBox
+		visible="{= !${localClassificationModel>/HasAssignedClasses} &amp;&amp; !${localClassificationModel>/HasLoadError} }"
+		alignItems="Center"
+		justifyContent="Center">
+		<Label id="noClassAssignedLabel"
+			text="{i18n>NO_CLASS_ASSIGNED_LABEL_DISPLAY}" />
+		<Link id="noClassAssignedLinkWithPeriod"
+			class="sapUiTinyMarginBegin"
+			visible="{= ${component>/editable} &amp;&amp; !${component>/enableProposals} &amp;&amp; !${component>/disableAddAssignment} &amp;&amp; !${localClassificationModel>/DisableAddAssignment} }"
+			text="{i18n>NO_CLASS_ASSIGNED_LINK_WITH_PERIOD}"
+			press="onAssignClassLinkPress" />
+		<Link id="noClassAssignedLink"
+			class="sapUiTinyMarginBegin"
+			visible="{= ${component>/editable} &amp;&amp; ${component>/enableProposals} &amp;&amp; !${component>/disableAddAssignment} &amp;&amp; !${localClassificationModel>/DisableAddAssignment} }"
+			text="{i18n>NO_CLASS_ASSIGNED_LINK}"
+			press="onAssignClassLinkPress" />
+		<Label id="noClassAssignedProposalOrLabel"
+			class="sapUiTinyMarginBegin"
+			visible="{= ${component>/editable} &amp;&amp; ${component>/enableProposals} &amp;&amp; !${component>/disableAddAssignment} &amp;&amp; !${localClassificationModel>/DisableAddAssignment} }"
+	        text="{i18n>NO_CLASS_ASSIGNED_PROPOSAL_OR_LABEL}" />
+		<Link id="noClassAssignedProposalLink"
+			class="sapUiTinyMarginBegin"
+			visible="{= ${component>/editable} &amp;&amp; ${component>/enableProposals} &amp;&amp; !${component>/disableAddAssignment} &amp;&amp; !${localClassificationModel>/DisableAddAssignment} }"
+			text="{i18n>NO_CLASS_ASSIGNED_PROPOSAL_LINK}"
+			press="onProposeClassificationLinkPress" />
+	</FlexBox>
+</mvc:View>

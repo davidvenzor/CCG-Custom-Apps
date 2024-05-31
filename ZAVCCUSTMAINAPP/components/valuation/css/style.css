@@ -1,0 +1,104 @@
+.hideIconTabHeader>.sapMITBNotScrollable.sapMITH {
+    display: none;
+}
+
+.classificationForm .sapUiFormResGrid>div { /*additional space on the right of the Form deleted*/
+    padding-right: 0;
+}
+
+.classificationForm .sapUiFormResGridCont>div { /*This is to adjust the space between columns*/
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sapMComboBoxPointer :first-child{
+	cursor: pointer;
+}
+
+.sapVchclfValutionForm .sapUiFormResGridCont {
+	padding-bottom: 0rem;
+    padding-top: 0.625rem;
+}
+
+.sapVchclfFilterStatusHeight {
+	height: 2rem !important;
+}
+
+.sapVchclfFilterStatusHeight + .sapVchclfVBoxHeight   {
+	height: calc(100% - 2rem);
+}
+
+.sapVchclfVBoxHeight {
+	height: 100%;
+}
+
+.sapVchclfVBoxItemHeight > div:first-child{
+	height: 100% !important;
+}
+
+.sapVchclfIntervalArrowClosed {
+	position: absolute;
+    z-index: 1000;
+    top: 30%;
+    right: 0.85rem;
+    cursor: pointer;
+}
+
+.sapVchclfSDOuterVBoxPadding{
+	padding-top: 0.7rem;
+}
+
+.sapVchclfSDListItem .sapMSLIImgIcon {
+	margin-left: -1rem;
+}
+
+/*.sapVchclfCheckboxMarginLeft div[id$="-selectMulti"] is not used because of the lower preformance but this rule is supported for older browser versions. 
+Please use this rule in case the below rule is not supported for any earlier browser version.*/
+.sapVchclfCheckboxMarginLeft .sapMCb.sapMLIBSelectM {
+	margin-left: 0 !important;
+	margin-right: -0.8rem;
+}
+
+.sapVchclfSDLabelTop :first-child{
+	top: 0.25rem;
+}
+
+.sapVchlclfSDLICheckboxTop .sapMCb.sapMLIBSelectM {
+	top: -1rem;
+}
+
+.sapVchclfIntervalArrowTinyTop {
+	top: 20%;
+}
+
+/* ensure that the tokens are not too long */
+.sapVchclfMultiInput .sapMTokenizer .sapMToken {
+	max-Width: 150px!important;
+}
+
+.sapVchclfCsticFlexBox {
+    display: inline-flex!important;
+    vertical-align: baseline!important;
+    padding-right: 1rem;
+    max-width: 400px;
+}
+
+/* FlexItem containing MultiInput must have set an absolute width */
+.sapVchclfFlexItemInput{
+	width: 1px;
+}
+
+.sapVchclfCSSGrid {
+	white-space: normal!important;
+}
+
+.sapVchclfMoreLessFlexBox {
+	padding-right: 1rem;
+}
+
+.VBoxStyle{
+	  margin-top: 70px;
+  margin-bottom: 100px;
+  margin-right: 70px;
+  margin-left: 70px;
+}

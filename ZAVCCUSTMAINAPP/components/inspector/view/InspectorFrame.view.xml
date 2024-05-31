@@ -1,0 +1,123 @@
+<!--
+
+    Copyright (C) 2009-2021 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:uxap="sap.uxap"
+	controllerName="sap.i2d.lo.lib.zvchclfz.components.inspector.controller.InspectorFrame"
+	height="100%">
+	<Page
+		backgroundDesign="Solid"
+		showFooter="false"
+		showHeader="true"
+		showSubHeader="false">
+		<customHeader>
+			<OverflowToolbar
+				style="Clear"
+				class="vchclfinspectorHeaderTitleWithPadding">
+				<SegmentedButton
+					id="idInspectorSegmentedButton"
+					selectedKey="{global>/selectedView}"
+					selectionChange="onSelectedViewChanged"
+					visible="{= ${global>/isTraceSupported} || ${global>/isConfigComparisonAllowed}}"
+					class="sapMSegmentedButtonNoAutoWidth">
+					<items>
+						<SegmentedButtonItem
+							text="{i18n>vchclf_objectheader_inspector}"
+							key="inspector"
+							tooltip="{i18n>vchclf_objectheader_inspector}" />
+						<SegmentedButtonItem
+							text="{i18n>vchclf_objectheader_comparison}"
+							key="comparison"
+							tooltip="{i18n>vchclf_objectheader_comparison}"
+							visible="{global>/isConfigComparisonAllowed}" />
+						<SegmentedButtonItem
+							text="{i18n>vchclf_objectheader_trace}"
+							key="trace"
+							tooltip="{i18n>vchclf_objectheader_trace}"
+							visible="{global>/isTraceSupported}" />
+					</items>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</SegmentedButton>
+				<ToolbarSpacer/>
+				<Button
+					icon="sap-icon://nav-back"
+					tooltip="{i18n>vchclf_objectheader_back_tt}"
+					press="onBackPressed"
+					visible="{= ${global>/selectedView} === 'inspector' ? true : false }"
+					enabled="{global>/isBackEnabled}">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToggleButton
+					icon="{= ${global>/isTrackEventConnected} ? 'sap-icon://connected' : 'sap-icon://disconnected'}"
+					pressed="{global>/isTrackEventConnected}"
+					tooltip="{i18n>vchclf_objectheader_inspector_track_tt}"
+					visible="{= ${global>/selectedView} === 'inspector'}" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</ToggleButton>
+				<Button 
+					icon="sap-icon://action-settings"
+					press="onComparisonSettingsPressed"
+					tooltip="{i18n>vchclf_objectheader_comparison_settings_tt}"
+					visible="{= ${global>/selectedView} === 'comparison'}" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+				<Switch
+					id="idTraceSwitch"
+					visible="{= ${global>/selectedView} === 'trace'}"
+					state="{global>/isTraceOn}"
+					change="onTraceSwitchChange"
+					busyIndicatorDelay="0"
+					tooltip="{i18n>vchclf_objectheader_trace_switch_on_off_tt}"
+					busy="{global>/traceSwitchBusyState}"/>
+				<Button
+					icon="sap-icon://decline"
+					tooltip="{i18n>vchclf_objectheader_close_tt}"
+					press="onClosePressed" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Low"/>
+					</layoutData>
+				</Button>
+			</OverflowToolbar>
+		</customHeader>
+		<content>
+			<NavContainer
+				id="idInspectorNavContainer"
+				height="100%"
+				navigate="onNavigate"
+				afterNavigate="onAfterNavigate"
+				autoFocus="false"
+				visible="{= ${global>/selectedView} === 'inspector'}" />
+			<NavContainer
+				id="idComparisonNavContainer"
+				height="100%"
+				autoFocus="false"
+				visible="{= ${global>/selectedView} === 'comparison'}" >
+				<mvc:XMLView
+					visible="{= ${global>/selectedView} === 'comparison'}"
+					viewName="sap.i2d.lo.lib.zvchclfz.components.inspector.view.Comparison" />
+			</NavContainer>
+			<NavContainer
+				id="idTraceNavContainer"
+				height="100%"
+				autoFocus="false"
+				visible="{= ${global>/selectedView} === 'trace'}" >
+				<mvc:XMLView
+					visible="{= ${global>/selectedView} === 'trace'}"
+					viewName="sap.i2d.lo.lib.zvchclfz.components.inspector.view.DependencyTrace" />
+			</NavContainer>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,26 @@
+<core:FragmentDefinition 
+xmlns="sap.m" 
+xmlns:fb="sap.ui.comp.filterbar" 
+xmlns:core="sap.ui.core" 
+xmlns:u="sap.ui.unified"
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form" 
+xmlns:tbl="sap.ui.table">
+	<Dialog id="XPMS" contentWidth="300px" title="X-Plant Mat Status">
+		<content>
+
+			<List
+                items="{XPMS>/}"
+                headerText="">
+                <ObjectListItem
+                    title="{XPMS>Mmsta}"
+                    type="Active"
+                    press="onListItemXPMSPress">
+                    <ObjectAttribute text="{XPMS>Mtstb}" />
+                </ObjectListItem>
+            </List>
+			
+		</content>
+		
+	</Dialog>
+</core:FragmentDefinition>
