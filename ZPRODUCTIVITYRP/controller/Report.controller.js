@@ -1,1 +1,493 @@
-sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/model/json/JSONModel","sap/ui/model/ValidateException","sap/ui/core/Core","sap/ui/core/Fragment","sap/m/MessageBox"],function(e,t,i,s,l,a){"use strict";return e.extend("sap.ops.productivityreport.ZOPSPRODUCTIVITYREPORT.controller.Report",{onInit:function(){var e=this.getView(),i=s.getMessageManager();e.setModel(new t({Bunit:""}));i.registerObject(e.byId("Bunit"),true);var l=new Date;var a=new Date(l.setDate(l.getDate()-l.getDay()+1));var o=new t;var r=this.getOwnerComponent().getModel();r.read("/HTspaSet(Spart='14')",{success:function(e,t){o.setData({today:new Date,fromdate:a,BUnit:14,BTUnit:e.Vtext})},error:function(){}});o.setData({today:new Date,fromdate:a,BUnit:14});this.getView().setModel(o)},_validateInput:function(e){var t="None";var i=false;var s=e.getBinding("value");try{s.getType().validateValue(e.getValue())}catch(e){t="Error";i=true}e.setValueState(t);return i},onNameChange:function(e){var t=e.getSource();this._validateInput(t)},onPress:function(e){var t=this.getView().byId("Bunit").getValue();if(t===""){a.error("Business Unit is Mandatory.")}else{if(t!==""){var i=this.getView(),s=[i.byId("Bunit")],l=false;s.forEach(function(e){l=this._validateInput(e)||l},this);if(l){a.error("Business Unit is Incorrect.")}else{var o=new sap.ui.model.json.JSONModel;this.getView().setModel(o,"ProductivityModel");var r=new sap.ui.model.json.JSONModel;var d=this.getOwnerComponent().getModel();var n=this.getView().byId("FUser").getValue().toUpperCase();var u=this.getView().byId("FDate").getValue();var b=this.getView().byId("Option").getSelectedButton().getText();if(b==="Daily"){this.byId("idReportTable").getColumns()[1].setVisible(true);this.byId("idReportTable").getColumns()[2].setVisible(false);this.byId("idReportTable").getColumns()[3].setVisible(true);this.byId("idReceiveTable").getColumns()[1].setVisible(true);this.byId("idReceiveTable").getColumns()[2].setVisible(false);this.byId("idReceiveTable").getColumns()[3].setVisible(true);this.byId("idVerifyTable").getColumns()[1].setVisible(true);this.byId("idVerifyTable").getColumns()[2].setVisible(false);this.byId("idVerifyTable").getColumns()[3].setVisible(true);this.byId("idSlabTable").getColumns()[1].setVisible(true);this.byId("idSlabTable").getColumns()[2].setVisible(false);this.byId("idSlabTable").getColumns()[3].setVisible(true);this.byId("idImageTable").getColumns()[1].setVisible(true);this.byId("idImageTable").getColumns()[2].setVisible(false);this.byId("idImageTable").getColumns()[3].setVisible(true);this.byId("idQCTable").getColumns()[1].setVisible(true);this.byId("idQCTable").getColumns()[2].setVisible(false);this.byId("idQCTable").getColumns()[3].setVisible(true);this.byId("idFinalTable").getColumns()[1].setVisible(true);this.byId("idFinalTable").getColumns()[2].setVisible(false);this.byId("idFinalTable").getColumns()[3].setVisible(true);this.byId("idShipTable").getColumns()[1].setVisible(true);this.byId("idShipTable").getColumns()[2].setVisible(false);this.byId("idShipTable").getColumns()[3].setVisible(true);this.byId("idWeekTable").getColumns()[1].setVisible(true);this.byId("idWeekTable").getColumns()[2].setVisible(true);this.byId("idWeekTable").getColumns()[3].setVisible(true)}if(b==="Weekly"){this.byId("idReportTable").getColumns()[1].setVisible(false);this.byId("idReportTable").getColumns()[2].setVisible(true);this.byId("idReportTable").getColumns()[3].setVisible(false);this.byId("idReceiveTable").getColumns()[1].setVisible(false);this.byId("idReceiveTable").getColumns()[2].setVisible(true);this.byId("idReceiveTable").getColumns()[3].setVisible(false);this.byId("idVerifyTable").getColumns()[1].setVisible(false);this.byId("idVerifyTable").getColumns()[2].setVisible(true);this.byId("idVerifyTable").getColumns()[3].setVisible(false);this.byId("idSlabTable").getColumns()[1].setVisible(false);this.byId("idSlabTable").getColumns()[2].setVisible(true);this.byId("idSlabTable").getColumns()[3].setVisible(false);this.byId("idImageTable").getColumns()[1].setVisible(false);this.byId("idImageTable").getColumns()[2].setVisible(true);this.byId("idImageTable").getColumns()[3].setVisible(false);this.byId("idQCTable").getColumns()[1].setVisible(false);this.byId("idQCTable").getColumns()[2].setVisible(true);this.byId("idQCTable").getColumns()[3].setVisible(false);this.byId("idFinalTable").getColumns()[1].setVisible(false);this.byId("idFinalTable").getColumns()[2].setVisible(true);this.byId("idFinalTable").getColumns()[3].setVisible(false);this.byId("idShipTable").getColumns()[1].setVisible(false);this.byId("idShipTable").getColumns()[2].setVisible(true);this.byId("idShipTable").getColumns()[3].setVisible(false);this.byId("idWeekTable").getColumns()[1].setVisible(true);this.byId("idWeekTable").getColumns()[2].setVisible(true);this.byId("idWeekTable").getColumns()[3].setVisible(true);var g="X"}var h=this.getView().byId("TDate").getValue();var c=[new sap.ui.model.Filter("Guser",sap.ui.model.FilterOperator.EQ,n)];d.read("/WeeklyStatusSet",{filters:c,success:function(e,t){r.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this),error:function(){}})}}}},onRbutton:function(e){var t=this.getView().byId("Option").getSelectedButton().getText();if(t==="Daily"){this.byId("FDate").setEnabled(true);this.byId("TDate").setEnabled(true);this.byId("Button1").setEnabled(true)}if(t==="Weekly"){this.byId("FDate").setEnabled(false);this.byId("TDate").setEnabled(false);this.byId("Button1").setEnabled(true)}},onFilterSelect:function(e){var t=this.byId("idWeekTable").getBinding("items"),i=e.getParameter("key");this.byId("Button1").setEnabled(false);var s=new sap.ui.model.json.JSONModel;this.getView().setModel(s,"ProductivityModel");var l=new sap.ui.model.json.JSONModel;var a=this.getOwnerComponent().getModel();var o=this.getView().byId("FUser").getValue().toUpperCase();var r=this.getView().byId("FDate").getValue();var d=this.getView().byId("Option").getSelectedButton().getText();if(d==="Daily"){}if(d==="Weekly"){var n="X"}var u=this.getView().byId("TDate").getValue();var b=[new sap.ui.model.Filter("Guser",sap.ui.model.FilterOperator.EQ,o),new sap.ui.model.Filter("Gdatefrom",sap.ui.model.FilterOperator.EQ,r),new sap.ui.model.Filter("Gdateto",sap.ui.model.FilterOperator.EQ,u),new sap.ui.model.Filter("Weekly",sap.ui.model.FilterOperator.EQ,n)];var g=[new sap.ui.model.Filter("Guser",sap.ui.model.FilterOperator.EQ,o)];if(i==="Grading"){a.read("/GradingCountsSet",{filters:b,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}else if(i==="Receive"){a.read("/RecieveCountsSet",{filters:b,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}else if(i==="Verify"){a.read("/VerifyCountsSet",{filters:b,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}else if(i==="Slab"){a.read("/SlabbedCountsSet",{filters:b,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}else if(i==="Image"){a.read("/ImageCountsSet",{filters:b,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}else if(i==="Qc"){a.read("/QCCountsSet",{filters:b,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}else if(i==="Final"){a.read("/FinalCountsSet",{filters:b,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}else if(i==="Ship"){a.read("/ShipCountsSet",{filters:b,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}else if(i==="Week"||i===" "){a.read("/WeeklyStatusSet",{filters:g,success:function(e,t){l.setData(e);this.getView().getModel("ProductivityModel").setData(e.results);this.getView().getModel("ProductivityModel").refresh()}.bind(this)})}},BUhelp:function(){var e=new sap.ui.model.json.JSONModel;this.getView().setModel(e,"BUModel");var t=new sap.ui.model.json.JSONModel;var i=this.getOwnerComponent().getModel();i.read("/HTspaSet",{success:function(e,i){t.setData(e);this.getView().getModel("BUModel").setData(e.results);this.getView().getModel("BUModel").refresh()}.bind(this),error:function(){}});this.cDialog=l.load({name:"sap.ops.productivityreport.ZOPSPRODUCTIVITYREPORT.view.fragment.BUsearch",controller:this}).then(function(e){this.getView().addDependent(e);e.open()}.bind(this))},onValueHelpCancelPress:function(){this._oValueHelpDialog.close()},onValueHelpAfterClose:function(){this._oValueHelpDialog.destroy()},handleOkDlogPress:function(e){var t=sap.ui.getCore().byId("idBUSearch");var i=t.getSelectedIndices();if(i.length===0){a.error("No Business Unit Row is selected")}else{this.getView().byId("Bunit").setValue(this.BU);this.getView().byId("BTunit").setValue(this.text);var s=this;s.onCloseDialog()}},Userhelp:function(){var e=new sap.ui.model.json.JSONModel;this.getView().setModel(e,"UserModel");var t=new sap.ui.model.json.JSONModel;var i=this.getOwnerComponent().getModel();i.read("/UserHelpSet",{success:function(e,i){t.setData(e);this.getView().getModel("UserModel").setData(e.results);this.getView().getModel("UserModel").refresh()}.bind(this),error:function(){}});this.cDialog=l.load({name:"sap.ops.productivityreport.ZOPSPRODUCTIVITYREPORT.view.fragment.UserSearch",controller:this}).then(function(e){this.getView().addDependent(e);e.open()}.bind(this))},handleOkUserPress:function(e){var t=sap.ui.getCore().byId("idUserSearch");var i=t.getSelectedIndices();if(i.length===0){a.error("No User is selected")}else{this.getView().byId("FUser").setValue(this.user);var s=this;s.onCloseDialog()}},onCloseDialog:function(e){sap.ui.getCore().byId("colDialog").destroy()},action:function(e){var t=e.getParameters().rowContext.getPath();var i=e.getParameters().rowContext.getModel("UserModel").getProperty(t);var s=i.Bname;this.user=s},actionBU:function(e){var t=e.getParameters().rowContext.getPath();var i=e.getParameters().rowContext.getModel("BUModel").getProperty(t);var s=i.Spart;var l=i.Vtext;this.BU=s;this.text=l}})});
+sap.ui.define([
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/ValidateException",
+	"sap/ui/core/Core",
+	"sap/ui/core/Fragment",
+	"sap/m/MessageBox"
+], function (Controller, JSONModel, ValidateException, Core, Fragment, MessageBox) {
+	"use strict";
+
+	return Controller.extend("sap.ops.productivityreport.ZOPSPRODUCTIVITYREPORT.controller.Report", {
+		onInit: function () {
+			var oView = this.getView(),
+				oMM = Core.getMessageManager();
+
+			oView.setModel(new JSONModel({
+				Bunit: ""
+			}));
+			// attach handlers for validation errors
+			oMM.registerObject(oView.byId("Bunit"), true);
+			// var ReportModel = new sap.ui.model.json.JSONModel();
+			// this.getView().setModel(ReportModel, "ReportModel");
+
+			// var tableModel = new sap.ui.model.json.JSONModel();
+			// var oModel = this.getOwnerComponent().getModel();
+			// // OData Call to get year dropdown data
+			// // oModel.read("/ZIB_PROD_SUM(p_date='20221124')/Set", {
+			// oModel.read("/GradingCountsSet", {
+			// 	// filters: filter,
+			// 	success: function (oData, oResponse) {
+			// 		tableModel.setData(oData);
+			// 		this.getView().getModel("ReportModel").setData(oData.results);
+			// 		this.getView().getModel("ReportModel").refresh();
+			// 	}.bind(this),
+			// 	error: function () {
+			// 		// MessageToast.show("Failed");
+			// 	}
+			// });
+			//var BUnit = this.getView().byId("Bunit").getValue();
+			var curr = new Date();
+			var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 1));
+			var oModel = new JSONModel();
+			var oModel1 = this.getOwnerComponent().getModel();
+			oModel1.read("/HTspaSet(Spart='14')", {
+				success: function (oData, oResponse) {
+					oModel.setData({
+						today: new Date(),
+						fromdate: firstday,
+						BUnit: 14,
+						BTUnit: oData.Vtext
+					});
+				},
+				error: function () {
+					//	MessageToast.show("Failed");
+				}
+			});
+			oModel.setData({
+				today: new Date(),
+				fromdate: firstday,
+				BUnit: 14
+			});
+			this.getView().setModel(oModel);
+		},
+		_validateInput: function (oInput) {
+			var sValueState = "None";
+			var bValidationError = false;
+			var oBinding = oInput.getBinding("value");
+			try {
+				oBinding.getType().validateValue(oInput.getValue());
+			} catch (oException) {
+				sValueState = "Error";
+				bValidationError = true;
+			}
+			oInput.setValueState(sValueState);
+			return bValidationError;
+		},
+
+		onNameChange: function (oEvent) {
+			var oInput = oEvent.getSource();
+			this._validateInput(oInput);
+		},
+		onPress: function (evt) {
+			var BUnit = this.getView().byId("Bunit").getValue();
+			if (BUnit === "") {
+				MessageBox.error("Business Unit is Mandatory.");
+			} else {
+				if (BUnit !== "") {
+					var oView = this.getView(),
+						aInputs = [
+							oView.byId("Bunit")
+						],
+						bValidationError = false;
+
+					// Check that inputs are not empty.
+					// Validation does not happen during data binding as this is only triggered by user actions.
+					aInputs.forEach(function (oInput) {
+						bValidationError = this._validateInput(oInput) || bValidationError;
+					}, this);
+					if (bValidationError) {
+						MessageBox.error("Business Unit is Incorrect.");
+					} else {
+						var ProductivityModel = new sap.ui.model.json.JSONModel();
+						this.getView().setModel(ProductivityModel, "ProductivityModel");
+
+						var tableModel = new sap.ui.model.json.JSONModel();
+						var oModel = this.getOwnerComponent().getModel();
+
+						var User = this.getView().byId("FUser").getValue().toUpperCase();
+						var fromdate = this.getView().byId("FDate").getValue();
+						var Option = this.getView().byId("Option").getSelectedButton().getText();
+						if (Option === "Daily") {
+							this.byId("idReportTable").getColumns()[1].setVisible(true);
+							this.byId("idReportTable").getColumns()[2].setVisible(false);
+							this.byId("idReportTable").getColumns()[3].setVisible(true);
+							this.byId("idReceiveTable").getColumns()[1].setVisible(true);
+							this.byId("idReceiveTable").getColumns()[2].setVisible(false);
+							this.byId("idReceiveTable").getColumns()[3].setVisible(true);
+							this.byId("idVerifyTable").getColumns()[1].setVisible(true);
+							this.byId("idVerifyTable").getColumns()[2].setVisible(false);
+							this.byId("idVerifyTable").getColumns()[3].setVisible(true);
+							this.byId("idSlabTable").getColumns()[1].setVisible(true);
+							this.byId("idSlabTable").getColumns()[2].setVisible(false);
+							this.byId("idSlabTable").getColumns()[3].setVisible(true);
+							this.byId("idImageTable").getColumns()[1].setVisible(true);
+							this.byId("idImageTable").getColumns()[2].setVisible(false);
+							this.byId("idImageTable").getColumns()[3].setVisible(true);
+							this.byId("idQCTable").getColumns()[1].setVisible(true);
+							this.byId("idQCTable").getColumns()[2].setVisible(false);
+							this.byId("idQCTable").getColumns()[3].setVisible(true);
+							this.byId("idFinalTable").getColumns()[1].setVisible(true);
+							this.byId("idFinalTable").getColumns()[2].setVisible(false);
+							this.byId("idFinalTable").getColumns()[3].setVisible(true);
+							this.byId("idShipTable").getColumns()[1].setVisible(true);
+							this.byId("idShipTable").getColumns()[2].setVisible(false);
+							this.byId("idShipTable").getColumns()[3].setVisible(true);
+							this.byId("idWeekTable").getColumns()[1].setVisible(true);
+							this.byId("idWeekTable").getColumns()[2].setVisible(true);
+							this.byId("idWeekTable").getColumns()[3].setVisible(true);
+						}
+						if (Option === "Weekly") {
+							this.byId("idReportTable").getColumns()[1].setVisible(false);
+							this.byId("idReportTable").getColumns()[2].setVisible(true);
+							this.byId("idReportTable").getColumns()[3].setVisible(false);
+							this.byId("idReceiveTable").getColumns()[1].setVisible(false);
+							this.byId("idReceiveTable").getColumns()[2].setVisible(true);
+							this.byId("idReceiveTable").getColumns()[3].setVisible(false);
+							this.byId("idVerifyTable").getColumns()[1].setVisible(false);
+							this.byId("idVerifyTable").getColumns()[2].setVisible(true);
+							this.byId("idVerifyTable").getColumns()[3].setVisible(false);
+							this.byId("idSlabTable").getColumns()[1].setVisible(false);
+							this.byId("idSlabTable").getColumns()[2].setVisible(true);
+							this.byId("idSlabTable").getColumns()[3].setVisible(false);
+							this.byId("idImageTable").getColumns()[1].setVisible(false);
+							this.byId("idImageTable").getColumns()[2].setVisible(true);
+							this.byId("idImageTable").getColumns()[3].setVisible(false);
+							this.byId("idQCTable").getColumns()[1].setVisible(false);
+							this.byId("idQCTable").getColumns()[2].setVisible(true);
+							this.byId("idQCTable").getColumns()[3].setVisible(false);
+							this.byId("idFinalTable").getColumns()[1].setVisible(false);
+							this.byId("idFinalTable").getColumns()[2].setVisible(true);
+							this.byId("idFinalTable").getColumns()[3].setVisible(false);
+							this.byId("idShipTable").getColumns()[1].setVisible(false);
+							this.byId("idShipTable").getColumns()[2].setVisible(true);
+							this.byId("idShipTable").getColumns()[3].setVisible(false);
+							this.byId("idWeekTable").getColumns()[1].setVisible(true);
+							this.byId("idWeekTable").getColumns()[2].setVisible(true);
+							this.byId("idWeekTable").getColumns()[3].setVisible(true);
+							var weekly = "X";
+						}
+						//var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "YYYYMMDD"});
+						//var date = new Date(fromdate);
+						//var dateStr = dateFormat.format(date);
+
+						var Todate = this.getView().byId("TDate").getValue();
+						//dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "YYYYMMDD"});
+						//date = new Date(Todate);
+						//var dateStrto = dateFormat.format(date);
+						var Nfilter1 = [
+							new sap.ui.model.Filter("Guser", sap.ui.model.FilterOperator.EQ, User),
+						];
+						// var Nfilter = [
+						// 	new sap.ui.model.Filter("Guser", sap.ui.model.FilterOperator.EQ, User),
+						// 	new sap.ui.model.Filter("Gdatefrom", sap.ui.model.FilterOperator.EQ, fromdate),
+						// 	new sap.ui.model.Filter("Gdateto", sap.ui.model.FilterOperator.EQ, Todate),
+						// 	new sap.ui.model.Filter("Weekly", sap.ui.model.FilterOperator.EQ, weekly)
+						// ];
+
+						// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+						oModel.read("/WeeklyStatusSet", {
+							filters: Nfilter1,
+							success: function (oData, oResponse) {
+								tableModel.setData(oData);
+								// passing count value
+								//this.getView().byID("idLblCnt1").setValue("30");
+								this.getView().getModel("ProductivityModel").setData(oData.results);
+								this.getView().getModel("ProductivityModel").refresh();
+							}.bind(this),
+
+							error: function () {
+								// MessageToast.show("Failed");
+							}
+						});
+					}
+				}
+			}
+		},
+		onRbutton: function (evt) {
+			var Option1 = this.getView().byId("Option").getSelectedButton().getText();
+			if (Option1 === "Daily") {
+				this.byId("FDate").setEnabled(true); //Disables the control
+				this.byId("TDate").setEnabled(true); //Disables the control
+				this.byId("Button1").setEnabled(true); //Disables the execute button
+			}
+			if (Option1 === "Weekly") {
+				this.byId("FDate").setEnabled(false); //Disables the control
+				this.byId("TDate").setEnabled(false); //Disables the control
+				this.byId("Button1").setEnabled(true); //Disables the execute button
+			}
+
+		},
+		onFilterSelect: function (oEvent) {
+			var oBinding = this.byId("idWeekTable").getBinding("items"),
+				sKey = oEvent.getParameter("key");
+			// Array to combine filters
+			//aFilters = [];
+			this.byId("Button1").setEnabled(false); //Disables the execute button
+			var ProductivityModel = new sap.ui.model.json.JSONModel();
+			this.getView().setModel(ProductivityModel, "ProductivityModel");
+
+			var tableModel = new sap.ui.model.json.JSONModel();
+			var oModel = this.getOwnerComponent().getModel();
+
+			var User = this.getView().byId("FUser").getValue().toUpperCase();
+			var fromdate = this.getView().byId("FDate").getValue();
+			var Option = this.getView().byId("Option").getSelectedButton().getText();
+			if (Option === "Daily") {
+				//	this.byId("idReportTable").getColumns()[1].setVisible(true);
+				// 	this.byId("idReportTable").getColumns()[2].setVisible(false);
+				// 	this.byId("idReportTable").getColumns()[3].setVisible(true);
+			}
+			if (Option === "Weekly") {
+				//	this.byId("idReportTable").getColumns()[1].setVisible(false);
+				// 	this.byId("idReportTable").getColumns()[2].setVisible(true);
+				// 	this.byId("idReportTable").getColumns()[3].setVisible(false);
+				var weekly = "X";
+			}
+			//var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "YYYYMMDD"});
+			//var date = new Date(fromdate);
+			//var dateStr = dateFormat.format(date);
+
+			var Todate = this.getView().byId("TDate").getValue();
+			var Nfilter = [
+				new sap.ui.model.Filter("Guser", sap.ui.model.FilterOperator.EQ, User),
+				new sap.ui.model.Filter("Gdatefrom", sap.ui.model.FilterOperator.EQ, fromdate),
+				new sap.ui.model.Filter("Gdateto", sap.ui.model.FilterOperator.EQ, Todate),
+				new sap.ui.model.Filter("Weekly", sap.ui.model.FilterOperator.EQ, weekly)
+			];
+			var Nfilter1 = [
+				new sap.ui.model.Filter("Guser", sap.ui.model.FilterOperator.EQ, User),
+			];
+			if (sKey === "Grading") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/GradingCountsSet", {
+					filters: Nfilter,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+			} else if (sKey === "Receive") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/RecieveCountsSet", {
+					filters: Nfilter,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+
+			} else if (sKey === "Verify") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/VerifyCountsSet", {
+					filters: Nfilter,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+			} else if (sKey === "Slab") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/SlabbedCountsSet", {
+					filters: Nfilter,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+			} else if (sKey === "Image") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/ImageCountsSet", {
+					filters: Nfilter,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+			} else if (sKey === "Qc") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/QCCountsSet", {
+					filters: Nfilter,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+			} else if (
+				sKey === "Final") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/FinalCountsSet", {
+					filters: Nfilter,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+			} else if (sKey === "Ship") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/ShipCountsSet", {
+					filters: Nfilter,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+			} else if (sKey === "Week" || sKey === " ") {
+				// oModel.read("/GradingCountsSet?$filter=Guser eq 'PALLAVIM' and Gdatefrom eq '20221101' and Gdateto eq '20221130'", {
+				oModel.read("/WeeklyStatusSet", {
+					filters: Nfilter1,
+					success: function (oData, oResponse) {
+						tableModel.setData(oData);
+						// passing count value
+						//this.getView().byID("idLblCnt1").setValue("30");
+						this.getView().getModel("ProductivityModel").setData(oData.results);
+						this.getView().getModel("ProductivityModel").refresh();
+					}.bind(this)
+				});
+			}
+			//	oBinding.filter(aFilters);
+		},
+		BUhelp: function () {
+			var BUModel = new sap.ui.model.json.JSONModel();
+			this.getView().setModel(BUModel, "BUModel");
+
+			var tableModel = new sap.ui.model.json.JSONModel();
+			var oModel = this.getOwnerComponent().getModel();
+			oModel.read("/HTspaSet", {
+				// filters: filter,
+				success: function (oData, oResponse) {
+					tableModel.setData(oData);
+					this.getView().getModel("BUModel").setData(oData.results);
+					this.getView().getModel("BUModel").refresh();
+				}.bind(this),
+
+				error: function () {
+					// MessageToast.show("Failed");
+				}
+			});
+			this.cDialog = Fragment.load({
+				name: "sap.ops.productivityreport.ZOPSPRODUCTIVITYREPORT.view.fragment.BUsearch",
+				controller: this
+			}).then(
+				function (oFrag) {
+					this.getView().addDependent(oFrag);
+					oFrag.open();
+				}.bind(this)
+			);
+		},
+		onValueHelpCancelPress: function () {
+			this._oValueHelpDialog.close();
+		},
+
+		onValueHelpAfterClose: function () {
+			this._oValueHelpDialog.destroy();
+		},
+
+		handleOkDlogPress: function (oEvent) {
+			var tb = sap.ui.getCore().byId("idBUSearch");
+			var rowid = tb.getSelectedIndices();
+
+			if (rowid.length === 0) {
+				MessageBox.error("No Business Unit Row is selected");
+			} else {
+				//var BU = tb.getRows()[0].getCells()[0].getText();
+				this.getView().byId("Bunit").setValue(this.BU);
+				this.getView().byId("BTunit").setValue(this.text);
+				var that = this;
+				that.onCloseDialog();
+			}
+		},
+		Userhelp: function () {
+			var UserModel = new sap.ui.model.json.JSONModel();
+			this.getView().setModel(UserModel, "UserModel");
+
+			var tableModel = new sap.ui.model.json.JSONModel();
+			var oModel = this.getOwnerComponent().getModel();
+
+			oModel.read("/UserHelpSet", {
+				// filters: filter,
+				success: function (oData, oResponse) {
+					tableModel.setData(oData);
+					this.getView().getModel("UserModel").setData(oData.results);
+					this.getView().getModel("UserModel").refresh();
+				}.bind(this),
+
+				error: function () {
+					// MessageToast.show("Failed");
+				}
+			});
+			this.cDialog = Fragment.load({
+				name: "sap.ops.productivityreport.ZOPSPRODUCTIVITYREPORT.view.fragment.UserSearch",
+				controller: this
+			}).then(
+				function (oFrag) {
+					this.getView().addDependent(oFrag);
+					oFrag.open();
+				}.bind(this)
+			);
+		},
+		handleOkUserPress: function (oEvent) {
+			var tb = sap.ui.getCore().byId("idUserSearch");
+			var rowid = tb.getSelectedIndices();
+			if (rowid.length === 0) {
+				MessageBox.error("No User is selected");
+			} else {
+				//var sPath = oEvent.getParameters().rowContext.getPath();
+				//var selectedData = oEvent.getParameters().rowContext.getModel("UserModel").getProperty(sPath);
+				//var User = tb.getRows()[rowid].getCells()[0].getText();
+				//this.getView().getModel().setProperty("FUser", User);
+				//	sap.ui.getCore().byId("FUser").setValue(User);
+				this.getView().byId("FUser").setValue(this.user);
+				var that = this;
+				that.onCloseDialog();
+			}
+		},
+		// On Fragment Close
+		onCloseDialog: function (oEvent) {
+			//	sap.ui.getCore().byId("idSportsCardf").setSelectedKey(" ");
+			//	sap.ui.getCore().byId("idUser").setSelectedKey(" ");
+			sap.ui.getCore().byId("colDialog").destroy();
+		},
+		action: function (oEvent) {
+			var sPath = oEvent.getParameters().rowContext.getPath();
+			var selectedData = oEvent.getParameters().rowContext.getModel("UserModel").getProperty(sPath);
+			var User = selectedData.Bname;
+			this.user = User;
+			//this.getView().byId("FUser").setValue(this.User);
+		},
+		actionBU: function (oEvent) {
+			var sPath = oEvent.getParameters().rowContext.getPath();
+			var selectedData = oEvent.getParameters().rowContext.getModel("BUModel").getProperty(sPath);
+			var BU = selectedData.Spart;
+			var text = selectedData.Vtext;
+			this.BU = BU;
+			this.text = text;
+			//this.getView().byId("FUser").setValue(this.User);
+		}
+
+	});
+});

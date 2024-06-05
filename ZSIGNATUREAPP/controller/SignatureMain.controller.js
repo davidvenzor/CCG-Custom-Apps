@@ -1,2 +1,818 @@
-sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/core/Fragment","sap/m/MessageBox","sap/ui/model/Filter","sap/ui/model/FilterOperator"],function(e,t,i,a,n){"use strict";return e.extend("SS.signaturescan.controller.SignatureMain",{onInit:function(){this.oModel=new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZSIGNATUREAPP_SRV/");this.getSignatureData("S","SignedModel");this.getSignatureData("T","ArtistName");this.onTableDefaultmodel([]);this.getViewInfo();var e=this.getMyComponent().getComponentData().startupParameters;if(e.SaleOrder){this.SalesOrderNo=e.SaleOrder[0];this.LineNo=e.LineItem[0];this.getSalesOrderData(this.SalesOrderNo,this.LineNo)}},getMyComponent:function(){"use strict";var e=sap.ui.core.Component.getOwnerIdFor(this.getView());return sap.ui.component(e)},getSalesOrderData:function(e,t){var i=this;var a=[new sap.ui.model.Filter("Vbeln",sap.ui.model.FilterOperator.EQ,e),new sap.ui.model.Filter("Posnr",sap.ui.model.FilterOperator.EQ,t)];this.oModel.read("/SignatureSet",{filters:a,success:function(e,t){i.formatData(e.results)},error:function(e){}})},formatData:function(e){var t=this;e.forEach(function(e){var i=e.SignedOn;var a=e.AddedDate;var n=t.getDateFormat("2",i);var s=t.getDateFormat("1",i);var r=t.getDateFormat("1",a);e.SeqNo=e.SeqNo,e.SignatureType=e.SignatureType,e.ArtistName=e.ArtistName,e.Abbrevation=e.Labellines1,e.SignedDate=e.SignedOn,e.SignedOn=n,e.PrintSort=e.Mandt,e.Mandt=s,e.AddedBy=e.AddedBy,e.AddedDate=r});t.onTableDefaultmodel(e);this.SignatureLblLines(e)},getViewInfo:function(){var e=this;this.oModel.read("/SignatureSet",{success:function(t,i){e.AddedBy=t.results[0].AddedBy;e.CreatedOn=t.results[0].AddedDate}})},onTableDefaultmodel:function(e){var t=new sap.ui.model.json.JSONModel(e);this.getView().setModel(t,"osignatureTbldata")},getDateFormat:function(e,t){this.year1=t.getFullYear();this.mes1=t.getMonth()+1;this.dia1=t.getDate();if(this.mes1.toString().length==1){this.mes1="0"+this.mes1}if(this.dia1.toString().length==1){this.dia1="0"+this.dia1}if(e=="1"){return this.year1+"-"+this.mes1+"-"+this.dia1}else if(e=="2"){return this.mes1+"/"+this.dia1+"/"+this.year1}},onAddEnter:function(){var e=this;this.SelctedItems=[];this.Date=this.getView().byId("DateId").getDateValue();this.SignedDateFormat=this.getView().byId("DateId").getValue();var t=this.getView().byId("DateId").getDateValue();this.addId=this.getView().byId("addId").getValue();var i=e.CreatedOn;this.AddedOn=e.getDateFormat("1",i);this.SignedOnformat=e.getDateFormat("1",t);this.SelctedItems=[{SeqNo:0,SignatureType:e.SignTypeText,ArtistName:e.ArtistNameText,Abbrevation:this.ArtistNameTextKey,SignedOn:e.SignedDateFormat,Mandt:this.SignedOnformat,SignedDate:e.Date,AddedBy:e.AddedBy,AddedDate:e.AddedOn,PrintSort:e.SignedTypekey}];var a=this.getView().getModel("osignatureTbldata").oData;if(a.length==0){var n=new sap.ui.model.json.JSONModel(this.SelctedItems);this.getView().setModel(n,"osignatureTbldata")}else{var n=this.getView().getModel("osignatureTbldata").oData;this.getView().getModel("osignatureTbldata").oData=n.concat(this.SelctedItems);this.sortTableData(this.getView().getModel("osignatureTbldata").oData);this.getView().getModel("osignatureTbldata").refresh()}var s=this.getView().getModel("osignatureTbldata").oData;this.SignatureLblLines(s);this.ClearScreenData()},SignatureLblLines:function(e){var t="";var i="";var a;var n;var s;var r;var l;if(e.length>0){for(var o=0;o<e.length;o++){l=e[o].SignedOn;if(o==0){t=t+e[o].SignatureType+" By "+e[o].ArtistName+" On "+e[o].SignedOn;i=i+e[o].SignatureType+" By "+e[o].Abbrevation+" On "+e[o].SignedOn;a=e[o].SignatureType;n=e[o].SignedDate;s=e[o].ArtistName}else{if(a==e[o].SignatureType&&n.getTime()==e[o].SignedDate.getTime()){r="On "+l;var g=t.lastIndexOf(r);var t=t.slice(0,g);var d=i.lastIndexOf(r);var i=i.slice(0,d);t=t+" , "+e[o].ArtistName+" On "+e[o].SignedOn;i=i+" , "+e[o].Abbrevation+" On "+e[o].SignedOn}else if(a==e[o].SignatureType){t=t+" , "+"By "+e[o].ArtistName+" On "+e[o].SignedOn;i=i+" , "+"By "+e[o].Abbrevation+" On "+e[o].SignedOn}else{t=t+" & "+e[o].SignatureType+" By "+e[o].ArtistName+" On "+e[o].SignedOn;i=i+" & "+e[o].SignatureType+" By "+e[o].Abbrevation+" On "+e[o].SignedOn;a=e[o].SignatureType;n=e[o].SignedDate;s=e[o].ArtistName}}}this.FullLabelLines=t;var u=t.match(/.{1,100}/g);var h="";var S="";if(u.length>0){for(var o=0;o<u.length;o++){if(o>3){S=S+u[o]+"\n";this.LabelLines5=u[4];this.LabelLines6=u[5]}else{h=h+u[o]+"\n"}this.LabelLines1=u[0];this.LabelLines2=u[1];this.LabelLines3=u[2];this.LabelLines4=u[3]}}var c=i.match(/.{1,100}/g);var b="";var m="";if(c.length>0){for(var o=0;o<c.length;o++){if(o>3){m=m+c[o]+"\n"}else{b=b+c[o]+"\n"}}}this.getView().byId("SigLblLinesID").setValue(h);this.getView().byId("SigOverLblLines2ID").setValue(S);this.OnBuildLabel=h;this.OnAbbrviation=b;this.labelLine2=S;this.labelLine2Abbr=m}else{this.getView().byId("SigLblLinesID").setValue("");this.getView().byId("SigOverLblLines2ID").setValue("")}},onBuildAbbr:function(){this.getView().byId("SigLblLinesID").setValue(this.OnAbbrviation);this.getView().byId("SigOverLblLines2ID").setValue(this.labelLine2Abbr)},onBuildSignLine:function(){this.getView().byId("SigLblLinesID").setValue(this.OnBuildLabel);this.getView().byId("SigOverLblLines2ID").setValue(this.labelLine2)},sortTableData:function(e){e.sort(function(e,t){if(e.PrintSort===t.PrintSort){return e.SignedDate-t.SignedDate}else{return e.PrintSort-t.PrintSort}})},ClearScreenData:function(){this.getView().byId("DateId").setValue("");this.getView().byId("addId").setValue("");this.getView().byId("sigTypeID").setSelectedKey("");this.getView().byId("sigTypeID").setValue("");this.getView().byId("artistNameID").setValue("");this.getView().byId("artistNameID").setSelectedKey("")},onSignClearPress:function(){this.ClearScreenData()},onSignRemovePress:function(){var e=this.getView().byId("SignatureTbl").getSelectedIndices();e.sort(function(e,t){return t-e});var t=e.length;for(var i=0;i<t;i++){this.getView().getModel("osignatureTbldata").oData.splice(e[i],1)}e=[];this.getView().getModel("osignatureTbldata").refresh();var a=this.getView().getModel("osignatureTbldata").oData;this.SignatureLblLines(a)},onScanInvoicesPress:function(){var e=this,i=this.getView();if(!e.oScanInvoiceDialog){e.oScanInvoiceDialog=t.load({id:i.getId(),name:"SS.signaturescan.fragment.ScanInvoice",controller:e}).then(function(e){e.setModel();i.addDependent(e);return e}.bind(e))}e.oScanInvoiceDialog.then(function(t){t.open();if(e.SalesOrderNo){var i=e.SalesOrderNo.concat(e.LineNo);e.getView().byId("ScanInvoice_SortID").setValue(i);e.getView().byId("ScanInvoice_SortID").setEnabled(false)}});this.osignatureTbldata=this.getView().getModel("osignatureTbldata").oData;this.osignatureTbldata.forEach(function(e){e.SignedOn=e.Mandt+"T00:00:0";e.AddedDate=e.AddedDate+"T00:00:0"})},handleCloseScanPress:function(){var e=this;e.getView().byId("ScanInvoice_SortID").setValue("");this.oScanInvoiceDialog.then(function(e){e.close()});this.osignatureTbldata=this.getView().getModel("osignatureTbldata").oData;this.osignatureTbldata.forEach(function(t){t.SignedOn=e.Date;t.AddedDate=e.AddedOn})},handleSubmitScanPress:function(){var e=this;var t;var i;var a=this.getView().byId("ScanInvoice_SortID").getValue();if(a.length>10){var n=a.match(/.{1,10}/g);t=n[0];i=n[1]}else{t=this.getView().byId("ScanInvoice_SortID").getValue();i=""}e.GetLabelLine(t,i).then(function(t){e.SubmitSignDetails(t)},true)},SubmitSignDetails:function(){var e=this;this.busyDialogCUUpload=new sap.m.BusyDialog({text:"Please wait..."});this.busyDialogCUUpload.open();var t={};var a=this.getView().getModel("osignatureTbldata").oData;a.forEach(function(e){delete e.Abbrevation;delete e.PrintSort;delete e.SignedDate;delete e.Mandt;if(e.SeqNo>0){t.Flag="X"}});var n=this.getView().byId("SigLblLinesID").getValue();var s=this.getView().byId("ScanInvoice_SortID").getValue();if(s.length>10){var r=s.match(/.{1,10}/g);t.Vbeln=r[0];t.Posnr=r[1];if(t.Flag=="X"){t.Flag=""}else{t.Flag="Y"}}else{t.Vbeln=this.getView().byId("ScanInvoice_SortID").getValue();t.Posnr="";t.Flag="Y"}var l=n.match(/.{1,100}/g);if(l.length>0){t.LabelLines1=l[0]}if(l.length>1){t.LabelLines2=l[1]}if(l.length>2){t.LabelLines3=l[2]}if(l.length>3){t.LabelLines4=l[3]}if(l.length>4){t.LabelLines5=l[4]}if(l.length>5){t.LabelLines6=l[5]}t.SignatureSet=this.osignatureTbldata;var o=new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZSIGNATUREAPP_SRV/");o.create("/Signature_hdrSet",t,{success:function(t,a){e.busyDialogCUUpload.close();i.success("Successfully Scaned");e.handleCloseScanPress();e.getView().getModel("osignatureTbldata").oData=[];e.getView().getModel("osignatureTbldata").refresh();e.getView().byId("SigLblLinesID").setValue("");e.getView().byId("SigOverLblLines2ID").setValue("")},error:function(t){e.busyDialogCUUpload.close();i.error("failed to update, Please Contact Technical Team ");e.handleCloseScanPress()}})},onSignatureMaintain:function(){var e=this,i=this.getView();if(!e.oSignatureMaintain){e.oSignatureMaintain=t.load({id:i.getId(),name:"SS.signaturescan.fragment.MaintainSign",controller:e}).then(function(e){e.setModel();i.addDependent(e);return e}.bind(e))}e.oSignatureMaintain.then(function(e){e.open()})},handleCloseMntSignPress:function(){this.oSignatureMaintain.then(function(e){e.close()})},onSigTypeDdSelected:function(e){this.SignTypeText=e.getSource().getSelectedItem().getAdditionalText();this.SignTypeValue=e.mParameters.value;this.SignedTypekey=this.getView().byId("sigTypeID").getSelectedKey()},onArtNameSelected:function(e){this.ArtistNameText=e.getParameters().selectedItem.mProperties.text;this.ArtistNameTextKey=e.getParameters().selectedItem.mProperties.key},getSignatureData:function(e,t){var i=[new sap.ui.model.Filter("ImFlag",sap.ui.model.FilterOperator.EQ,e)];this.oModel.read("/Sign_DropDownSet",{filters:i,success:function(e,i){var a=new sap.ui.model.json.JSONModel(e.results);if(t=="ArtistName"){a.setSizeLimit(1e5)}this.getView().setModel(a,t)}.bind(this),error:function(){MessageToast.show("Sub-Grades failed to Load, Please Contact Technical Team")}})},onBtnSignMntPress:function(){var e=this;var t=this.getView().byId("CG_SignTypeCode").getValue();var a=this.getView().byId("SignDesc").getValue();var n=this.getView().byId("CG_SignDisplaySort").getValue();var s=this.getView().byId("CG_SignPrintSort").getValue();var r={};r.ImFlag="S";r.LvPosnr=n;r.LvVbeln=s;r.CharValue=t;r.DescrCval=a;r.NameChar="";r.Name="";this.oModel.create("/Sign_DropDownSet",r,{success:function(t,a){i.success("Signature type Saved successfully");e.handleCloseMntSignPress();e.SignTypeInputClear();e.getSignatureData("S","SignedModel")},error(t){i.error(" failed to update Sign type, Please Contact Technical Team");e.handleCloseMntSignPress()}})},SignTypeInputClear:function(){this.getView().byId("CG_SignTypeCode").setValue("");this.getView().byId("SignDesc").setValue("");this.getView().byId("CG_SignDisplaySort").setValue("");this.getView().byId("CG_SignPrintSort").setValue("")},onBtnArtNameclearPress:function(){this.getView().byId("FirstNameID_MS").setValue("");this.getView().byId("LastNameID_MS").setValue("");this.getView().byId("FullNameID_MS").setValue("")},onNameChnage:function(){this.FullName=this.getView().byId("FirstNameID_MS").getValue()+" "+this.getView().byId("LastNameID_MS").getValue();this.Abbrevation=this.getView().byId("FirstNameID_MS").getValue().charAt(0)+" "+this.getView().byId("LastNameID_MS").getValue();this.getView().byId("FullNameID_MS").setValue(this.FullName);this.getView().byId("AbbreviationID_MS").setValue(this.Abbrevation)},onBtnArtNamePress:function(){var e=this;var t=this.getView().byId("FirstNameID_MS").getValue();var a=this.getView().byId("LastNameID_MS").getValue();var n=this.getView().byId("FullNameID_MS").getValue();var s=this.getView().byId("AbbreviationID_MS").getValue();var r={};r.ImFlag="A";r.LvPosnr="1";r.LvVbeln="1";r.CharValue=t;r.DescrCval=a;r.NameChar=n;r.Name=s;this.oModel.create("/Sign_DropDownSet",r,{success:function(t,a){i.success("Artist Name Saved successfully");e.handleCloseMntSignPress();e.onBtnArtNameclearPress();e.getSignatureData("T","ArtistName")},error(t){i.error(" failed to update Artist Name, Please Contact Technical Team");e.handleCloseMntSignPress()}})},GetLabelLine:function(e,t){return new Promise(function(e,t){e(this)}.bind(this))},getNextLineItem:function(e){return new Promise(function(t,i){var a=this;var n=[new sap.ui.model.Filter("LvVbeln",sap.ui.model.FilterOperator.EQ,this.SalesOrderNumber),new sap.ui.model.Filter("LvPosnr",sap.ui.model.FilterOperator.EQ,this.LineId),new sap.ui.model.Filter("ImFlag",sap.ui.model.FilterOperator.EQ,e)];this.oModel.read("/Grade_MARADATASet",{filters:n,success:function(e,i){t(e.results[0].ExtRefItemId)},error(e){}})}.bind(this))},onVHArtist:function(e){var i=e.getSource().getValue(),s=this.getView();if(!this._pValueHelpDialog){this._pValueHelpDialog=t.load({id:s.getId(),name:"SS.signaturescan.fragment.ValueHelpDialog",controller:this}).then(function(e){s.addDependent(e);return e})}this._pValueHelpDialog.then(function(e){e.getBinding("items").filter([new a("CharValue",n.Contains,i)]);e.open(i)})},onValueHelpDialogSearch:function(e){var t=e.getParameter("value");var i=new a("CharValue",n.Contains,t);e.getSource().getBinding("items").filter([i])},onValueHelpDialogClose:function(e){var t,i,a=e.getParameter("selectedItem");e.getSource().getBinding("items").filter([]);if(!a){return}t=a.getDescription();i=a.getTitle();this.byId("artistNameID").setSelectedKey(t);this.ArtistNameText=i;this.ArtistNameTextKey=t},onSuggestionItemSelected:function(e){var t=e.getParameter("selectedItem");var i=t?t.getKey():"";this.byId("selectedKeyIndicator").setText(i)}})});
-//# sourceMappingURL=SignatureMain.controller.js.map
+sap.ui.define([
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/Fragment",
+    "sap/m/MessageBox",
+    "sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+],
+    /**
+     * @param {typeof sap.ui.core.mvc.Controller} Controller
+     */
+    function (Controller, Fragment, MessageBox, Filter, FilterOperator) {
+        "use strict";
+
+        return Controller.extend("SS.signaturescan.controller.SignatureMain", {
+            onInit: function () {
+               
+                this.oModel  = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZSIGNATUREAPP_SRV/");
+                this.getSignatureData("S","SignedModel");
+                this.getSignatureData("T","ArtistName");
+                this.onTableDefaultmodel([]);
+                this.getViewInfo();
+                
+                   var oStartupParameters = this.getMyComponent().getComponentData().startupParameters;
+                 if(oStartupParameters.SaleOrder){
+
+                    this.SalesOrderNo = oStartupParameters.SaleOrder[0];
+                    this.LineNo = oStartupParameters.LineItem[0];
+                    this.getSalesOrderData(this.SalesOrderNo,this.LineNo);
+
+                }   
+            },
+            getMyComponent: function() {
+                "use strict";
+                var sComponentId = sap.ui.core.Component.getOwnerIdFor(this.getView());
+                return sap.ui.component(sComponentId);
+            },
+            getSalesOrderData : function(salesOrder,LineItem)
+            {
+                
+                var that  = this;
+                var filter = [
+                    new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.EQ, salesOrder),
+                    new sap.ui.model.Filter("Posnr", sap.ui.model.FilterOperator.EQ, LineItem)
+                ];
+
+                this.oModel.read("/SignatureSet", {
+                    filters: filter,
+                    success : function(oData, oResponse){
+
+                        that.formatData(oData.results);
+                        
+
+                    },
+                    error : function(oFail){
+
+                    }
+                });
+
+
+            },
+            formatData : function(odata){
+
+                var that = this;
+
+                odata.forEach(function(value){
+                    var date1 = value.SignedOn;
+                    var date2 = value.AddedDate;
+                    var SignedDateFormat = that.getDateFormat("2",date1);
+                    var Mandt =  that.getDateFormat("1", date1);
+                    var addedDate = that.getDateFormat("1",date2);
+                    value.SeqNo   = value.SeqNo,
+                    value.SignatureType = value.SignatureType,
+                    value.ArtistName    = value.ArtistName,
+                    value.Abbrevation   = value.Labellines1,
+                    value.SignedDate    = value.SignedOn,
+                    value.SignedOn      = SignedDateFormat,
+                    value.PrintSort     = value.Mandt,
+                    value.Mandt         = Mandt,
+                    value.AddedBy       = value.AddedBy,
+                    value.AddedDate     = addedDate
+                    
+                    
+
+                });
+
+                that.onTableDefaultmodel(odata);
+                this.SignatureLblLines(odata);
+
+                    
+
+            },
+            getViewInfo :function(){
+                var that = this;
+                
+
+                this.oModel.read("/SignatureSet",{
+					success : function(oData,oResponse){
+                        that.AddedBy = oData.results[0].AddedBy;
+                        that.CreatedOn = oData.results[0].AddedDate;
+                                            ;
+                    }
+                }); 
+
+            },
+            
+            onTableDefaultmodel: function (oData) {
+
+                var osignatureTbldata = new sap.ui.model.json.JSONModel(oData);
+                this.getView().setModel(osignatureTbldata, "osignatureTbldata");
+            },
+            getDateFormat : function(format,date){
+
+                this.year1 = date.getFullYear();
+                this.mes1 = date.getMonth()+1;
+                this.dia1 = date.getDate();
+                if(this.mes1.toString().length == 1)
+                {
+                    this.mes1 = "0"+this.mes1;
+                }
+                if(this.dia1.toString().length == 1){
+
+                    this.dia1 = "0"+this.dia1;
+                }
+                if(format == '1'){
+                    return this.year1+"-"+ this.mes1 +"-"+ this.dia1;
+                }else if(format == '2'){
+                    return this.mes1+"/"+ this.dia1 +"/"+ this.year1;  //MM/dd/YYYY
+                }
+                
+
+            },
+            onAddEnter : function () {
+                var that = this;
+                this.SelctedItems = [];
+                this.Date = this.getView().byId("DateId").getDateValue();
+                this.SignedDateFormat = this.getView().byId("DateId").getValue();
+                var SignedOnformat = this.getView().byId("DateId").getDateValue();
+                this.addId = this.getView().byId("addId").getValue();
+                var oAddedDate = that.CreatedOn;
+                /* var year = oAddedDate.getFullYear();
+                var mes = oAddedDate.getMonth()+1;
+                var dia = oAddedDate.getDate(); */
+                this.AddedOn = that.getDateFormat("1", oAddedDate);
+                
+                /* var year1 = SignedOnformat.getFullYear();
+                var mes1 = SignedOnformat.getMonth()+1;
+                var dia1 = SignedOnformat.getDate(); */
+                this.SignedOnformat = that.getDateFormat("1", SignedOnformat);
+                
+                
+                this.SelctedItems = [{
+                    SeqNo   : 0,
+                    SignatureType: that.SignTypeText,
+                    ArtistName: that.ArtistNameText,
+                    Abbrevation : this.ArtistNameTextKey,
+                    SignedOn: that.SignedDateFormat,
+                    Mandt : this.SignedOnformat,
+                    SignedDate : that.Date,
+                    AddedBy: that.AddedBy,
+                    AddedDate: that.AddedOn,
+                    PrintSort : that.SignedTypekey,
+
+                }]
+                var oSigTblModel = this.getView().getModel("osignatureTbldata").oData;
+                if (oSigTblModel.length == 0) {
+                    var osignatureTbldata = new sap.ui.model.json.JSONModel(this.SelctedItems);
+                    this.getView().setModel(osignatureTbldata, "osignatureTbldata");
+                } else {
+                    var osignatureTbldata = this.getView().getModel("osignatureTbldata").oData;
+                    this.getView().getModel("osignatureTbldata").oData = osignatureTbldata.concat(this.SelctedItems);
+                    this.sortTableData(this.getView().getModel("osignatureTbldata").oData);
+                    this.getView().getModel("osignatureTbldata").refresh();
+                }
+                var oData = this.getView().getModel("osignatureTbldata").oData;
+                this.SignatureLblLines(oData);
+                this.ClearScreenData();
+
+            },
+            SignatureLblLines : function(oData){
+                var sigLabel = "";
+                var AbbrLabel = "";
+                var signType;
+                var DateSigned;
+                var ArtistName;
+                var SplitWord;
+                var SignedDate;
+                if(oData.length > 0)
+                {
+                for(var i=0;i<oData.length;i++){
+
+                    SignedDate = oData[i].SignedOn;
+
+                    if(i==0){
+                    
+                         sigLabel = sigLabel + oData[i].SignatureType + " By "  + oData[i].ArtistName + " On " + oData[i].SignedOn;
+                         AbbrLabel = AbbrLabel + oData[i].SignatureType + " By "  + oData[i].Abbrevation + " On " + oData[i].SignedOn;
+
+                            signType   = oData[i].SignatureType;
+                            DateSigned = oData[i].SignedDate;
+                            ArtistName = oData[i].ArtistName;
+                    }else{
+                        if(signType == oData[i].SignatureType && DateSigned.getTime() == oData[i].SignedDate.getTime()){
+                            SplitWord = "On " + SignedDate;
+                            var lastIndex  = sigLabel.lastIndexOf(SplitWord);
+                            var sigLabel = sigLabel.slice(0, lastIndex);
+                            var lastIndex1  = AbbrLabel.lastIndexOf(SplitWord);
+                            var AbbrLabel = AbbrLabel.slice(0, lastIndex1);
+
+
+                            sigLabel = sigLabel +" , " + oData[i].ArtistName + " On " + oData[i].SignedOn;
+                            AbbrLabel = AbbrLabel +" , " + oData[i].Abbrevation + " On " + oData[i].SignedOn;
+
+                        }else if(signType == oData[i].SignatureType){
+
+                            sigLabel = sigLabel +" , " + "By "+ oData[i].ArtistName + " On " + oData[i].SignedOn;
+                            AbbrLabel = AbbrLabel +" , " +"By "+ oData[i].Abbrevation + " On " + oData[i].SignedOn;
+
+                        }else{
+                            sigLabel = sigLabel + " & " + oData[i].SignatureType + " By " + oData[i].ArtistName + " On " + oData[i].SignedOn;
+                            AbbrLabel = AbbrLabel + " & " + oData[i].SignatureType + " By " + oData[i].Abbrevation + " On " + oData[i].SignedOn;
+
+                                signType   = oData[i].SignatureType;
+                                DateSigned = oData[i].SignedDate;
+                                ArtistName = oData[i].ArtistName;
+                                
+                        }
+
+                    }
+
+                }
+                this.FullLabelLines = sigLabel;
+                var Labels = sigLabel.match(/.{1,100}/g);
+                var fullWord = "";
+                var LabelLine2 = "";
+                if(Labels.length>0){
+                    for(var i=0;i<Labels.length;i++){
+                          
+                          if(i>3){
+                            LabelLine2 = LabelLine2 + Labels[i] + "\n";
+                            this.LabelLines5 = Labels[4];
+                            this.LabelLines6 = Labels[5];
+                          }else{
+                            fullWord = fullWord + Labels[i] + "\n";
+                          }
+                          
+                            this.LabelLines1 = Labels[0];
+                            this.LabelLines2 = Labels[1];
+                            this.LabelLines3 = Labels[2];
+                            this.LabelLines4 = Labels[3];
+                            
+
+                    }
+                }
+
+                //abbreviation
+                var LabelsAbbr = AbbrLabel.match(/.{1,100}/g);
+                var fullWordAbbr = "";
+                var LabelLine2Abbr = "";
+                if(LabelsAbbr.length>0){
+                    for(var i=0;i<LabelsAbbr.length;i++){
+                        if(i>3){
+                            LabelLine2Abbr = LabelLine2Abbr + LabelsAbbr[i] + "\n";
+                          }else{
+                            fullWordAbbr = fullWordAbbr + LabelsAbbr[i] + "\n";
+                          }
+
+                    }
+                }
+
+                
+
+                this.getView().byId("SigLblLinesID").setValue(fullWord);
+                this.getView().byId("SigOverLblLines2ID").setValue(LabelLine2);
+                this.OnBuildLabel = fullWord;
+                this.OnAbbrviation = fullWordAbbr;
+                this.labelLine2  = LabelLine2;
+                this.labelLine2Abbr = LabelLine2Abbr;
+            }else{
+                this.getView().byId("SigLblLinesID").setValue("");
+                this.getView().byId("SigOverLblLines2ID").setValue("");
+            }
+            },
+            onBuildAbbr : function(){
+
+                this.getView().byId("SigLblLinesID").setValue(this.OnAbbrviation);
+                this.getView().byId("SigOverLblLines2ID").setValue(this.labelLine2Abbr);
+
+            },
+            onBuildSignLine : function(){
+
+                this.getView().byId("SigLblLinesID").setValue(this.OnBuildLabel);
+                this.getView().byId("SigOverLblLines2ID").setValue(this.labelLine2);
+
+            },
+            sortTableData : function(arrayTable){
+
+                arrayTable.sort(function(a, b){
+                   
+                    if(a.PrintSort === b.PrintSort){
+                        return a.SignedDate-b.SignedDate;
+                    }else{
+                        return a.PrintSort - b.PrintSort;
+                    }
+                    
+                    
+                });
+
+            },
+            ClearScreenData : function(){
+                this.getView().byId("DateId").setValue("");
+                this.getView().byId("addId").setValue("");
+                this.getView().byId("sigTypeID").setSelectedKey("");
+                this.getView().byId("sigTypeID").setValue("");
+                this.getView().byId("artistNameID").setValue("");
+                this.getView().byId("artistNameID").setSelectedKey("");
+               
+
+            },
+            onSignClearPress : function(){
+
+                this.ClearScreenData();
+
+            },
+            onSignRemovePress : function(){
+
+                var sPath = this.getView().byId("SignatureTbl").getSelectedIndices();
+
+                /* var arrayPaths = [];
+                 sPath.forEach(function(path){
+                    var paths = path.split("/results/");
+                    sPath.push(paths[1]);
+
+                 }); */
+
+                 sPath.sort(function(a, b) {
+                    return b - a;
+                  });
+
+                var length = sPath.length;
+                for(var i=0;i<length;i++){
+                    //var AtbRowPath = sPath[i].substr(-1);
+                    this.getView().getModel("osignatureTbldata").oData.splice(sPath[i],1);
+                    
+                }
+                sPath = [];
+                this.getView().getModel("osignatureTbldata").refresh();
+                var oData = this.getView().getModel("osignatureTbldata").oData;
+                this.SignatureLblLines(oData);
+                
+
+            },
+            onScanInvoicesPress: function () {
+
+                var that = this,
+                    oView = this.getView();
+                if (!that.oScanInvoiceDialog) {
+                    that.oScanInvoiceDialog = Fragment.load({
+                        id: oView.getId(),
+                        name: "SS.signaturescan.fragment.ScanInvoice",
+                        controller: that
+                    }).then(function (oDialog) {
+                        oDialog.setModel();
+                        oView.addDependent(oDialog);
+                        return oDialog;
+                    }.bind(that));
+                }
+                that.oScanInvoiceDialog.then(function (oDialog) {
+                    oDialog.open();
+                    if(that.SalesOrderNo){
+                        var SO = that.SalesOrderNo.concat(that.LineNo);
+                        that.getView().byId("ScanInvoice_SortID").setValue(SO);
+                        that.getView().byId("ScanInvoice_SortID").setEnabled(false);
+                    }
+                });
+
+                this.osignatureTbldata = this.getView().getModel("osignatureTbldata").oData;
+                this.osignatureTbldata.forEach(function(value){
+                    value.SignedOn  = value.Mandt+"T00:00:0";
+                    value.AddedDate = value.AddedDate+"T00:00:0";
+
+                    
+                });
+                
+
+            },
+            handleCloseScanPress: function () {
+                var that = this;
+                that.getView().byId("ScanInvoice_SortID").setValue("");
+                this.oScanInvoiceDialog.then(function (oDialog) {
+                    oDialog.close();
+                });
+
+                this.osignatureTbldata = this.getView().getModel("osignatureTbldata").oData;
+                this.osignatureTbldata.forEach(function(value){
+                    value.SignedOn  = that.Date;
+                    value.AddedDate = that.AddedOn;
+
+                    
+                });
+
+            },
+            handleSubmitScanPress: function () {
+                var that = this;
+                var FilterVbeln;
+                var FilterPosnr;
+                var vbeln = this.getView().byId("ScanInvoice_SortID").getValue();
+                if(vbeln.length>10){
+                    var vbelnArray = vbeln.match(/.{1,10}/g);
+                    FilterVbeln  = vbelnArray[0];
+                    FilterPosnr  = vbelnArray[1];
+
+                }else{
+
+                    FilterVbeln              = this.getView().byId("ScanInvoice_SortID").getValue();
+                    FilterPosnr              = "";
+                }
+
+                that.GetLabelLine(FilterVbeln,FilterPosnr)
+                .then(function (oApp) {
+                    that.SubmitSignDetails(oApp);
+
+                }, true);
+
+                
+            },
+
+            SubmitSignDetails : function(){
+                var that = this;
+                 this.busyDialogCUUpload = new sap.m.BusyDialog({
+
+                    text: "Please wait...",
+
+                });
+                this.busyDialogCUUpload.open();
+                var payload = {};
+
+                var osignatureTbldata = this.getView().getModel("osignatureTbldata").oData;
+                osignatureTbldata.forEach(function(value){
+
+                    delete value.Abbrevation;
+                    delete value.PrintSort;
+                    delete value.SignedDate;
+                    delete value.Mandt;
+                    if(value.SeqNo>0){
+                        payload.Flag = 'X'
+                    }
+                    
+                });
+                var LableLines  = this.getView().byId("SigLblLinesID").getValue();
+                var vbeln = this.getView().byId("ScanInvoice_SortID").getValue();
+
+                if(vbeln.length>10){
+                    var vbelnArray = vbeln.match(/.{1,10}/g);
+                    payload.Vbeln  = vbelnArray[0];
+                    payload.Posnr  = vbelnArray[1];
+                    if(payload.Flag == 'X'){
+
+                        payload.Flag   = '';
+                    }else{
+                        payload.Flag   =  'Y';
+                    }
+                    
+
+                }else{
+
+                payload.Vbeln              = this.getView().byId("ScanInvoice_SortID").getValue();
+                payload.Posnr              = "";
+                payload.Flag   =  'Y';
+                }
+                
+                //Parse full line into segments
+                var fullLabel = LableLines.match(/.{1,100}/g);
+                if(fullLabel.length>0){
+                    payload.LabelLines1 = fullLabel[0];
+                }
+                if(fullLabel.length>1){
+                    payload.LabelLines2 = fullLabel[1];
+                }
+                if(fullLabel.length>2){
+                    payload.LabelLines3 = fullLabel[2];
+                }
+                if(fullLabel.length>3){
+                    payload.LabelLines4 = fullLabel[3];
+                }
+                if(fullLabel.length>4){
+                    payload.LabelLines5 = fullLabel[4];
+                }
+                if(fullLabel.length>5){
+                    payload.LabelLines6 = fullLabel[5];
+                }
+                //payload.LabelLines1         = this.LabelLines1;
+                //payload.LabelLines2         = this.LabelLines2;
+                //payload.LabelLines3         = this.LabelLines3;
+                //payload.LabelLines4         = this.LabelLines4;
+                //payload.LabelLines5         = this.LabelLines5;
+                //payload.LabelLines6         = this.LabelLines6;
+                payload.SignatureSet            = this.osignatureTbldata;
+                var oDataModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZSIGNATUREAPP_SRV/");
+                oDataModel.create("/Signature_hdrSet", payload, {
+                    success: function (data, response) {
+                        that.busyDialogCUUpload.close();
+                        MessageBox.success("Successfully Scaned");
+                        that.handleCloseScanPress();
+                        that.getView().getModel("osignatureTbldata").oData = [];
+                        that.getView().getModel("osignatureTbldata").refresh();
+                        that.getView().byId("SigLblLinesID").setValue("");
+                        that.getView().byId("SigOverLblLines2ID").setValue("");
+
+                        
+                    },
+                    error: function (error) {
+                        that.busyDialogCUUpload.close();
+                        MessageBox.error("failed to update, Please Contact Technical Team ");
+                        that.handleCloseScanPress();
+                    }
+                });
+            },
+            
+            onSignatureMaintain : function(){
+
+                var that = this,
+                    oView = this.getView();
+                if (!that.oSignatureMaintain) {
+                    that.oSignatureMaintain = Fragment.load({
+                        id: oView.getId(),
+                        name: "SS.signaturescan.fragment.MaintainSign",
+                        controller: that
+                    }).then(function (oDialogSignM) {
+                        oDialogSignM.setModel();
+                        oView.addDependent(oDialogSignM);
+                        return oDialogSignM;
+                    }.bind(that));
+                }
+                that.oSignatureMaintain.then(function (oDialogSignM) {
+                    oDialogSignM.open();
+                });
+
+                
+            },
+            handleCloseMntSignPress: function () {
+
+                this.oSignatureMaintain.then(function (oDialogSignM) {
+                    oDialogSignM.close();
+                });
+
+            },
+
+            onSigTypeDdSelected: function (oEvent) {
+                this.SignTypeText = oEvent.getSource().getSelectedItem().getAdditionalText();
+                this.SignTypeValue = oEvent.mParameters.value;
+                this.SignedTypekey  = this.getView().byId("sigTypeID").getSelectedKey();
+
+            },
+            onArtNameSelected: function (oEvent) {
+                this.ArtistNameText = oEvent.getParameters().selectedItem.mProperties.text;
+                this.ArtistNameTextKey = oEvent.getParameters().selectedItem.mProperties.key;
+
+            },
+
+            getSignatureData: function (FilterValue, model) {
+
+                var filtern = [
+                    new sap.ui.model.Filter("ImFlag", sap.ui.model.FilterOperator.EQ, FilterValue)
+                ];
+                this.oModel.read("/Sign_DropDownSet", {
+                    filters: filtern,
+                    success: function (oData, oResponse) {
+                        var SignatureModel = new sap.ui.model.json.JSONModel(oData.results);
+                        if(model == "ArtistName"){
+                            SignatureModel.setSizeLimit(100000);
+                        }
+                        this.getView().setModel(SignatureModel, model);
+
+                    }.bind(this),
+
+                    error: function () {
+                        MessageToast.show("Sub-Grades failed to Load, Please Contact Technical Team");
+                    }
+                });
+            },
+            onBtnSignMntPress : function(){
+                var that = this;
+                var sigCode          = this.getView().byId("CG_SignTypeCode").getValue();
+                var sigDescription   = this.getView().byId("SignDesc").getValue();
+                var SignDisSort      = this.getView().byId("CG_SignDisplaySort").getValue();
+                var SignPrintSort    = this.getView().byId("CG_SignPrintSort").getValue();
+                var oSignType = {};
+                oSignType.ImFlag     = "S"
+                oSignType.LvPosnr    = SignDisSort
+                oSignType.LvVbeln    = SignPrintSort
+                oSignType.CharValue  = sigCode;
+                oSignType.DescrCval  = sigDescription;
+                oSignType.NameChar   = "";
+                oSignType.Name       = "";
+
+                this.oModel.create("/Sign_DropDownSet",oSignType,{
+                    success : function(oData,oResponse){
+                        MessageBox.success("Signature type Saved successfully");
+                        that.handleCloseMntSignPress();
+                        that.SignTypeInputClear();
+                        that.getSignatureData("S","SignedModel");
+
+                    },
+                    error(oFail){
+                        MessageBox.error(" failed to update Sign type, Please Contact Technical Team");
+                        that.handleCloseMntSignPress();
+
+                    }
+
+
+                });
+
+            },
+            SignTypeInputClear : function(){
+
+                this.getView().byId("CG_SignTypeCode").setValue("");
+                this.getView().byId("SignDesc").setValue("");
+                this.getView().byId("CG_SignDisplaySort").setValue("");
+                this.getView().byId("CG_SignPrintSort").setValue("");
+
+
+            },
+            onBtnArtNameclearPress : function(){
+
+                this.getView().byId("FirstNameID_MS").setValue("");
+                this.getView().byId("LastNameID_MS").setValue("");
+                this.getView().byId("FullNameID_MS").setValue("");
+
+            },
+            onNameChnage : function(){
+
+                this.FullName = this.getView().byId("FirstNameID_MS").getValue() + " " + this.getView().byId("LastNameID_MS").getValue();
+                this.Abbrevation = this.getView().byId("FirstNameID_MS").getValue().charAt(0) + " " + this.getView().byId("LastNameID_MS").getValue();
+                this.getView().byId("FullNameID_MS").setValue(this.FullName);
+                this.getView().byId("AbbreviationID_MS").setValue(this.Abbrevation);
+            },
+            
+            onBtnArtNamePress : function(){
+                var that = this;
+                var firstName        = this.getView().byId("FirstNameID_MS").getValue();
+                var Lastname         = this.getView().byId("LastNameID_MS").getValue();
+                var FullName      = this.getView().byId("FullNameID_MS").getValue();
+                var Abbrevation   = this.getView().byId("AbbreviationID_MS").getValue();
+                var oSignType = {};
+                oSignType.ImFlag     = "A"
+                oSignType.LvPosnr    = "1"
+                oSignType.LvVbeln    = "1"
+                oSignType.CharValue  = firstName;
+                oSignType.DescrCval  = Lastname;
+                oSignType.NameChar   = FullName;
+                oSignType.Name       = Abbrevation;
+
+                this.oModel.create("/Sign_DropDownSet",oSignType,{
+                    success : function(oData,oResponse){
+                        MessageBox.success("Artist Name Saved successfully");
+                        that.handleCloseMntSignPress();
+                        that.onBtnArtNameclearPress();
+                        that.getSignatureData("T","ArtistName");
+                    },
+                    error(oFail){
+                        MessageBox.error(" failed to update Artist Name, Please Contact Technical Team");
+                        that.handleCloseMntSignPress();
+                    }
+
+
+                });
+
+            },
+           
+            GetLabelLine : function(FilterVbeln,FilterPosnr){
+
+                return new Promise(function (resolve, reject) {
+
+                /* var filter = [
+                    new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.EQ, FilterVbeln),
+                    new sap.ui.model.Filter("Posnr", sap.ui.model.FilterOperator.EQ, FilterPosnr)
+                ];
+                this.oModel.read("/Signature_hdrSet", {
+                    filters: filter,
+                    success: function (oData, oResponse) {
+
+                        if (oData.results.length > 0) {
+                            if (oData.results[0].LabelLines1)
+                                var LabelLines = oData.results[0].LabelLines1
+                            if (oData.results[0].LabelLines2)
+                                LabelLines = LabelLines + "" + oData.results[0].LabelLines2;
+                            if (oData.results[0].LabelLines3)
+                                LabelLines = LabelLines + "" + oData.results[0].LabelLines3;
+                            if (oData.results[0].LabelLines4)
+                                LabelLines = LabelLines + "" + oData.results[0].LabelLines4;
+                            if (oData.results[0].LabelLines5)
+                                LabelLines = LabelLines + "" + oData.results[0].LabelLines5;
+                            if (oData.results[0].LabelLines6){
+                                LabelLines = LabelLines + "" + oData.results[0].LabelLines6;
+                            }
+                            if(LabelLines){
+                            this.FullLabelLines = this.FullLabelLines +" , " + LabelLines;
+                            }
+
+                            var Labels = this.FullLabelLines.match(/.{1,100}/g);
+                           
+                            if(Labels.length>0){
+                                for(var i=0;i<Labels.length;i++){
+                                    
+                                    if(i>3){
+                                       
+                                        this.LabelLines5 = Labels[4];
+                                        this.LabelLines6 = Labels[5];
+                                    }
+                                    
+                                        this.LabelLines1 = Labels[0];
+                                        this.LabelLines2 = Labels[1];
+                                        this.LabelLines3 = Labels[2];
+                                        this.LabelLines4 = Labels[3];
+                                        
+
+                                }
+                            }
+                            
+                        }
+                        resolve(this);
+                        
+
+                    }.bind(this),
+
+                    error: function () {
+                        resolve();
+                    }
+                }); */
+
+                resolve(this);
+
+            }.bind(this));
+
+            },
+            getNextLineItem: function (oApp) {
+
+                return new Promise(function (resolve, reject) {
+
+                    var that = this;
+
+                    var Nfilter = [
+                        new sap.ui.model.Filter("LvVbeln", sap.ui.model.FilterOperator.EQ, this.SalesOrderNumber),
+                        new sap.ui.model.Filter("LvPosnr", sap.ui.model.FilterOperator.EQ, this.LineId),
+                        new sap.ui.model.Filter("ImFlag", sap.ui.model.FilterOperator.EQ, oApp)
+                    ];
+
+                    this.oModel.read("/Grade_MARADATASet", {
+                        filters: Nfilter,
+                        success: function (oData, oResponse) {
+                            resolve(oData.results[0].ExtRefItemId);
+                        },
+                        error(oFail) {
+
+                        }
+                    });
+                }.bind(this));
+
+
+            },
+            
+            onVHArtist : function (oEvent) {
+                var sInputValue = oEvent.getSource().getValue(),
+                    oView = this.getView();
+    
+                if (!this._pValueHelpDialog) {
+                    this._pValueHelpDialog = Fragment.load({
+                        id: oView.getId(),
+                        name: "SS.signaturescan.fragment.ValueHelpDialog",
+                        controller: this
+                    }).then(function (oDialog) {
+                        oView.addDependent(oDialog);
+                        return oDialog;
+                    });
+                }
+                this._pValueHelpDialog.then(function (oDialog) {
+                    // Create a filter for the binding
+                    oDialog.getBinding("items").filter([new Filter("CharValue", FilterOperator.Contains, sInputValue)]);
+
+                    // Open ValueHelpDialog filtered by the input's value
+                    oDialog.open(sInputValue);
+                });
+            },
+
+            onValueHelpDialogSearch: function (oEvent) {
+                var sValue = oEvent.getParameter("value");
+                var oFilter = new Filter("CharValue", FilterOperator.Contains, sValue);
+    
+                oEvent.getSource().getBinding("items").filter([oFilter]);
+            },
+    
+            onValueHelpDialogClose: function (oEvent) {
+                var sDescription,
+                    sTitle,
+                    oSelectedItem = oEvent.getParameter("selectedItem");
+                oEvent.getSource().getBinding("items").filter([]);
+    
+                if (!oSelectedItem) {
+                    return;
+                }
+    
+                sDescription = oSelectedItem.getDescription();
+                sTitle       = oSelectedItem.getTitle();
+    
+                this.byId("artistNameID").setSelectedKey(sDescription);
+                this.ArtistNameText = sTitle;
+                this.ArtistNameTextKey = sDescription;
+            },
+    
+            onSuggestionItemSelected: function (oEvent) {
+                var oItem = oEvent.getParameter("selectedItem");
+                var oText = oItem ? oItem.getKey() : "";
+                this.byId("selectedKeyIndicator").setText(oText);
+            }
+
+        });
+    });
+
